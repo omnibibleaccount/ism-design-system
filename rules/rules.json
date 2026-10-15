@@ -673,5 +673,220 @@
     "Pills (--radius-pill) are for buttons, chips and badges; inputs use --radius-md (12) and are at least 48px high.",
     "Use only the gradient tokens (--gradient-signature, -line, -marker, -signature-soft and the stop colours); --gradient-signature is for hero accents and the brand bar, never behind text.",
     "Tap targets are at least 44px on every platform."
-  ]
+  ],
+  "applied": {
+    "note": "Rules for non-UI applications. Derived from the reference templates and boards; see rules/print-editorial.md, decks.md, email.md, social.md.",
+    "print": {
+      "status": "derived",
+      "page": {
+        "size": "8.5x11in",
+        "orientation": "portrait",
+        "marginIn": 0.6,
+        "bleedIn": 0.125,
+        "darkPage": "#0E1013"
+      },
+      "eyebrow": {
+        "fontSizePx": 11,
+        "weight": 700,
+        "trackingEm": 0.2,
+        "uppercase": true,
+        "shape": "rectangle",
+        "border": "1px",
+        "color": "#1a7fe8",
+        "colorOnDark": "#2A86F0",
+        "ruleToEdge": true,
+        "neverPill": true
+      },
+      "headline": {
+        "font": "Inter",
+        "weight": 600,
+        "sizePx": [
+          31,
+          54
+        ],
+        "trackingEm": -0.02,
+        "markerGradient": "linear-gradient(90deg,rgba(75,110,224,.45),rgba(143,125,224,.45))"
+      },
+      "subline": {
+        "style": "bold italic",
+        "sizePx": [
+          14,
+          15
+        ],
+        "color": "#1a7fe8"
+      },
+      "body": {
+        "sizePx": 12.5,
+        "lineHeight": 1.65,
+        "align": "justify",
+        "hyphens": true,
+        "columns": 2
+      },
+      "medallion": {
+        "sizePx": 62,
+        "iconPx": 28,
+        "haloPx": 5
+      },
+      "closingBand": {
+        "gradient": "linear-gradient(100deg,#4b6ee0,#8f7de0 45%,#e8b98a)",
+        "statementColor": "#fff"
+      },
+      "placeholders": [
+        "[ # ]",
+        "TBD"
+      ],
+      "boilerplate": "International Scripture Ministries, Inc. | PO Box 24253 Boone, IA 50950 | +1 (833) 60-24253 | ISM.Bible",
+      "never": [
+        "pill eyebrows",
+        "centred body copy",
+        "plain grey rules",
+        "redrawn logos",
+        "invented statistics"
+      ]
+    },
+    "decks": {
+      "status": "derived",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "background": "#16191E",
+      "lightBackground": "#f4f3f1",
+      "headline": {
+        "sizePx": [
+          66,
+          76
+        ],
+        "weight": 700,
+        "trackingEm": -0.02,
+        "color": "#fff"
+      },
+      "subtitle": {
+        "style": "italic",
+        "weight": 700,
+        "sizePx": [
+          30,
+          34
+        ],
+        "color": "#2A86F0"
+      },
+      "body": {
+        "sizePx": [
+          25,
+          28
+        ],
+        "leadOpacity": 0.86,
+        "supportOpacity": [
+          0.62,
+          0.72
+        ]
+      },
+      "stat": {
+        "color": "#F3B25A",
+        "minSizePx": 96,
+        "cardRadiusPx": 20,
+        "cardFill": "rgba(255,255,255,.03)"
+      },
+      "hairline": "linear-gradient(90deg,#4b6ee0,#8f7de0,#f3b25a)",
+      "split": [
+        56,
+        44
+      ],
+      "iconChipPx": [
+        76,
+        78
+      ],
+      "logoPx": 58,
+      "archetypes": [
+        "cover",
+        "split text and photo",
+        "labelled benefits",
+        "process steps",
+        "light slide",
+        "gradient divider",
+        "gradient panel opener",
+        "stats",
+        "testimonial",
+        "icon grid",
+        "closing call to action"
+      ],
+      "never": [
+        "outlined eyebrow pills",
+        "centred body copy",
+        "drop shadows on cards",
+        "more than one accent colour per slide"
+      ]
+    },
+    "email": {
+      "status": "derived",
+      "families": [
+        "donor engagement",
+        "lifecycle marketing",
+        "transactional"
+      ],
+      "widthPx": 650,
+      "altWidthPx": 600,
+      "stackBelowPx": 670,
+      "order": [
+        "preheader",
+        "hero",
+        "greeting and intro",
+        "primary button",
+        "scripture quote band",
+        "closing and signature",
+        "dark footer"
+      ],
+      "footer": {
+        "block": "HTML-ISM-Dark-Footer",
+        "background": "#20242B"
+      },
+      "primaryButtonsPerEmail": 1,
+      "colorScheme": "light only",
+      "darkModeHook": "[data-ogsc]",
+      "prefersColorSchemeBlock": false,
+      "fontStack": "Inter, Arial, sans-serif",
+      "heroGradientRequires": [
+        "background-clip: text",
+        "text-fill-color: transparent"
+      ],
+      "colors": {
+        "text": [
+          "#111111",
+          "#333333"
+        ],
+        "background": "#F4F4F6",
+        "blue": "#046DE3",
+        "quoteBand": "#FFF9EC",
+        "quoteRule": "#E0A231"
+      },
+      "placeholders": "[PLACEHOLDER …]",
+      "moduleToggles": "show_*"
+    },
+    "social": {
+      "status": "thin, observed from the Instagram grid only",
+      "faces": {
+        "display": "Neue Power",
+        "script": "Miss Noteworthy",
+        "caption": "Inter"
+      },
+      "accentColorsPerTile": 1,
+      "treatments": [
+        "dark typographic card",
+        "cream card over photo",
+        "black and white documentary photo"
+      ],
+      "textures": [
+        "halftone dots",
+        "concentric circles"
+      ],
+      "verseTextEditable": false,
+      "undefined": [
+        "tile sizes",
+        "story and reel safe areas",
+        "caption length",
+        "hashtags",
+        "video treatment"
+      ]
+    }
+  }
 }

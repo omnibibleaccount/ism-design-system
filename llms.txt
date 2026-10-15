@@ -9,7 +9,7 @@
 ## Machine-readable
 - [tokens/tokens.json](tokens/tokens.json): all design tokens (colour, type, spacing, radius, shadow, gradient, layout, z-index, motion, opacity, size, scripts)
 - [packages/tokens/tokens.flat.json](packages/tokens/tokens.flat.json): flat name/value list
-- [rules/rules.json](rules/rules.json): states, multilingual and RTL, layout, icons and links, accessibility (with approved contrast pairs), voice
+- [rules/rules.json](rules/rules.json): states, multilingual and RTL, layout, icons and links, accessibility (with approved contrast pairs), voice, and `applied` (print, decks, email, social)
 - [specs/index.json](specs/index.json): list of all components with group, summary and platform support
 - [specs/all.json](specs/all.json): every component spec in one file (anatomy, variants, props, states, do and don't, snippets)
 - components/<Name>/spec.json: one component spec; components/<Name>/README.md: the authored source
@@ -21,6 +21,10 @@
 - [rules/icons-links.md](rules/icons-links.md): ⌄ opens, ↗ goes to another page, › drills in, → continues
 - [rules/accessibility.md](rules/accessibility.md): contrast, focus ring, 44px targets, alt text, semantics
 - [rules/voice-microcopy.md](rules/voice-microcopy.md): button verbs, error tone, referring to Scripture
+- [rules/print-editorial.md](rules/print-editorial.md): brochures, reports, media kits
+- [rules/decks.md](rules/decks.md): slide decks
+- [rules/email.md](rules/email.md): donor, lifecycle and transactional email
+- [rules/social.md](rules/social.md): social (thin, observed only)
 
 ## Code
 - [packages/web/css/ism.css](packages/web/css/ism.css): all tokens and component CSS in one file; [packages/web/css/rtl.css](packages/web/css/rtl.css): RTL overrides
