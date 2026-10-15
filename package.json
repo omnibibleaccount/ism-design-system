@@ -33,5 +33,13 @@
   "devDependencies": {
     "typescript": "^5.9.0",
     "@types/node": "^22.0.0"
+  },
+  "overrides": {
+    "next": {
+      "postcss": "^8.5.23"
+    },
+    "tsup": {
+      "esbuild": "^0.28.1"
+    }
   }
 }
