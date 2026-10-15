@@ -18,6 +18,8 @@ let stale = 0;
 for (const [dir, rename] of targets) {
   for (const f of readdirSync(src).filter((x) => x.endsWith('.ttf'))) {
     const dest = resolve(ROOT, dir, rename(f));
+    // react-native/fonts is gitignored and recopied by that package's build, so a fresh checkout has nothing to check.
+    if (CHECK && dir === 'packages/react-native/fonts') continue;
     if (CHECK) { if (!existsSync(dest) || !readFileSync(dest).equals(readFileSync(resolve(src, f)))) { console.error(`STALE font: ${dir}/${rename(f)}`); stale++; } continue; }
     mkdirSync(resolve(ROOT, dir), { recursive: true });
     copyFileSync(resolve(src, f), dest);
