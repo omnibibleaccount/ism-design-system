@@ -1,0 +1,340 @@
+<!-- @dsCard group="Donor Email" viewport="420x600" name="Donor Newsletter — Mobile, no hero" subtitle="Single-column, text-first hero" -->
+<!DOCTYPE html>
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
+
+<head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Prefer light where clients honor it. Outlook Windows / Gmail apps may still force dark;
+       the [data-ogsc] swaps below are the safety net for those cases. -->
+  <meta name="color-scheme" content="light only">
+  <meta name="supported-color-schemes" content="light">
+  <!--[if mso]>
+  <xml><w:WordDocument xmlns:w="urn:schemas-microsoft-com:office:word"><w:DontUseAdvancedTypographyReadingMail/></w:WordDocument>
+  <o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch><o:AllowPNG/></o:OfficeDocumentSettings></xml>
+  <![endif]-->
+  <!--[if !mso]><!-->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" type="text/css">
+  <!--<![endif]-->
+  <style>
+    * { box-sizing: border-box }
+    body { margin: 0; padding: 0 }
+    a[x-apple-data-detectors] { color: inherit !important; text-decoration: inherit !important }
+    #MessageViewBody a { color: inherit; text-decoration: none }
+    p { line-height: inherit }
+    .image_block img+div { display: none }
+    .hero-img-mobile { display: none; }
+    .dm-show { display: none; }
+
+    /* ---------- DARK MODE SWAPS (Outlook.com / Outlook apps, via [data-ogsc]) ----------
+       Fires only when the email itself is rendered dark, so it cannot misfire.
+       No prefers-color-scheme block on purpose: Apple Mail honors color-scheme:light only and
+       keeps the light bg, but the media query would still fire off the OS setting and put white
+       assets on a light email. */
+    [data-ogsc] .dm-hide { display: none !important; }
+    [data-ogsc] .dm-show { display: block !important; }
+    [data-ogsc] .dm-text-light { color: #F4F4F6 !important; }
+
+    /* ---------- HERO GRADIENT WORD ----------
+       Solid blue by default (inline). Gradient applies ONLY where the client supports BOTH
+       background-clip:text AND text-fill-color:transparent, so the word never "disappears".
+       Outlook Windows ignores @supports and keeps the solid color. */
+    @supports ((-webkit-background-clip: text) or (background-clip: text)) and (-webkit-text-fill-color: transparent) {
+      .hero-grad {
+        background: linear-gradient(to right, #046DE3 0%, #8F7DE0 55%, #F3B25A 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    @media (max-width:99999px) {
+      .row-content { width: 100% !important }
+      .stack .column { width: 100% !important; display: block !important }
+      .hero-text-col { padding: 28px 25px 35px 25px !important; }
+      .hero-img-col { padding: 0 !important; text-align: center !important; }
+      .hero-img-desktop { display: none !important; }
+      .hero-img-mobile { display: block !important; width: 100% !important; max-width: 100% !important; height: auto !important; margin: 0 !important; }
+      .hero-cell { padding: 30px 25px 36px 25px !important; }
+      .hero-spacer { height: 64px !important; line-height: 64px !important; }
+      .h1-hero { font-size: 36px !important; line-height: 1.12 !important; }
+      .h2-section { font-size: 28px !important; line-height: 1.18 !important; }
+      .feat-text-col { padding: 24px 25px 39px 25px !important; }
+      .feat-img-col { padding: 0 !important; }
+      .feat-img { width: 100% !important; max-width: 100% !important; height: auto !important; }
+      .pad-lr { padding-left: 25px !important; padding-right: 25px !important; }
+    }
+  </style>
+</head>
+
+<!-- ================================================================================
+     ISM DONOR-ENGAGEMENT NEWSLETTER  —  reusable Braze template (English only)
+     ================================================================================
+     HOW TO USE
+     1. CONFIG block below: set the per-send text + link placeholders in ONE place.
+        Every "[PLACEHOLDER ...]" MUST be replaced before sending. Do NOT invent Braze
+        link aliases / lid= codes — paste the real destination URLs.
+     2. MODULE TOGGLES: flip each show_* boolean true/false to add or remove a block.
+        Modules ON by default: logo header, split hero, greeting, primary CTA,
+        scripture band, feature row, closing + signature, footer.
+        Available but OFF: full-bleed hero, impact/stats, testimonial, P.S.
+        (only ONE hero should be true at a time — split is the default.)
+     3. Footer is the shared block HTML-ISM-Dark-Footer (address, social, unsubscribe,
+        manage preferences) — do not rebuild it here.
+     ================================================================================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body style="max-width:375px;margin:0 auto;background-color:#f4f4f6;margin:0;padding:0;-webkit-text-size-adjust:none;text-size-adjust:none">
+
+  <!-- ===================== PREHEADER (required, non-empty; hidden in body, shows in inbox) ===================== -->
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#f4f4f6;opacity:0">See what your partnership made possible this month.</div>
+  <!-- Spacer stops following body copy from leaking into the preview. Decorative -> hidden from AT. -->
+  <div aria-hidden="true" style="display:none;max-height:0;overflow:hidden;mso-hide:all">&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;</div>
+
+  <table class="nl-container" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#f4f4f6">
+    <tbody>
+      <tr>
+        <td>
+
+          
+          <!-- ===================== HERO A: SPLIT (logo + H1 + primary CTA left, photo right) =====================
+               DEFAULT hero. Puts the primary action above the fold per the standards. -->
+          <table class="row" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#f4f4f6">
+            <tbody>
+              <tr>
+                <td>
+                  <table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#f4f4f6;width:650px;margin:0 auto" width="650">
+                    <tbody>
+                      <tr>
+                        <td class="column hero-text-col" width="100%" style="mso-table-lspace:0;mso-table-rspace:0;vertical-align:top;padding:35px 40px 35px 40px">
+                          <img class="dm-hide" src="https://braze-images.com/appboy/communication/assets/image_assets/images/6aa95cf22700b6008de6e75b/original.png?1789484274" alt="International Scripture Ministries" width="120" style="display:block;border:0;height:auto;width:120px;max-width:120px;margin-bottom:28px">
+                          <!--[if !mso]><!-->
+                          <img class="dm-show" src="https://braze-images.com/appboy/communication/assets/image_assets/images/6896b922b00797009289303e/original.png?1754708258" alt="International Scripture Ministries" width="120" style="display:none;border:0;height:auto;width:120px;max-width:120px;margin-bottom:28px">
+                          <!--<![endif]-->
+                          <h1 class="h1-hero" style="font-family:Inter,Arial,sans-serif;font-size:44px;font-weight:700;color:#111111;-webkit-text-fill-color:#111111;margin:0 0 26px 0;line-height:1.08;letter-spacing:-0.02em">Your gift is reaching people in their <span class="hero-grad dm-text-light" style="color:#046DE3;">own language</span></h1>
+                          
+                          <!-- PRIMARY CTA (single filled-blue button = the one unmistakable action) -->
+                          <!--[if mso]>
+                          <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://example.org/impact" style="height:46px;v-text-anchor:middle;width:220px;" arcsize="50%" stroke="f" fillcolor="#046DE3">
+                            <w:anchorlock/>
+                            <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">&#8599;&nbsp; See your impact</center>
+                          </v:roundrect>
+                          <![endif]-->
+                          <!--[if !mso]><!-->
+                          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+                            <td bgcolor="#046DE3" style="border-radius:30px">
+                              <a href="https://example.org/impact" target="_blank" style="display:inline-block;padding:14px 28px;font-family:Inter,Arial,sans-serif;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;border-radius:30px">&#8599;&nbsp; See your impact</a>
+                            </td>
+                          </tr></table>
+                          <!--<![endif]-->
+                          
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+
+          
+
+          
+          <!-- ===================== GREETING + INTRO ===================== -->
+          <table class="row" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#f4f4f6">
+            <tbody>
+              <tr>
+                <td>
+                  <table class="row-content" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#f4f4f6;width:650px;margin:0 auto" width="650">
+                    <tbody>
+                      <tr>
+                        <td class="pad-lr" style="mso-table-lspace:0;mso-table-rspace:0;padding:35px 40px 35px 40px;vertical-align:top">
+                          <p style="font-family:Inter,Arial,sans-serif;font-size:18px;font-weight:400;color:#111111;margin:0 0 22px 0;line-height:1.5">Hi friend,</p>
+                          <p style="font-family:Inter,Arial,sans-serif;font-size:17px;font-weight:400;color:#333333;margin:0 0 20px 0;line-height:1.6">[PLACEHOLDER opening paragraph — thank the donor and name, concretely, what their partnership made possible. Stewardship, not a new ask.]</p>
+                          <p style="font-family:Inter,Arial,sans-serif;font-size:17px;font-weight:400;color:#333333;margin:15px 0 0 0;line-height:1.6">[PLACEHOLDER second paragraph — optional. Keep it short; the primary action is already above.]</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+
+          
+          <!-- ===================== SCRIPTURE QUOTE (cream band, gold left rule) ===================== -->
+          <table class="row" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#fff9ec">
+            <tbody>
+              <tr>
+                <td style="padding:0">
+                  <table class="row-content" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#fff9ec;width:650px;margin:0 auto" width="650">
+                    <tbody>
+                      <tr>
+                        <td class="pad-lr" style="mso-table-lspace:0;mso-table-rspace:0;padding:49px 55px 49px 40px;vertical-align:top">
+                          <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0"><tr>
+                            <td style="padding:4px 0 4px 22px;border-left:4px solid #e0a231">
+                              <p style="font-family:Inter,Arial,sans-serif;font-size:18px;font-style:italic;font-weight:400;color:#1a1a1a;margin:0 0 14px 0;line-height:1.55">&ldquo;For the word of God is living and active, sharper than any two-edged sword.&rdquo;</p>
+                              <p style="font-family:Inter,Arial,sans-serif;font-size:15px;font-weight:700;color:#1a1a1a;margin:0">Hebrews 4:12</p>
+                            </td>
+                          </tr></table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+
+          
+          <!-- ===================== FEATURE ROW (text left / image right) =====================
+               Uses a SECONDARY (outline) CTA so the hero's filled button stays the one primary action.
+               To alternate image-left, add dir="rtl" to .row-content and dir="ltr" to both columns
+               (keeps text first in source so it stacks first on mobile). -->
+          <table class="row" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#f4f4f6">
+            <tbody>
+              <tr>
+                <td style="padding:20px 0">
+                  <table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#f4f4f6;width:650px;margin:0 auto" width="650">
+                    <tbody>
+                      <tr>
+                        <td class="column feat-text-col" width="54%" style="mso-table-lspace:0;mso-table-rspace:0;vertical-align:middle;padding:36px 24px 40px 40px">
+                          <h2 class="h2-section" style="font-family:Inter,Arial,sans-serif;font-size:30px;font-weight:700;color:#111111;margin:0 0 16px 0;line-height:1.18;letter-spacing:-0.01em">Where your partnership went this month</h2>
+                          <p style="font-family:Inter,Arial,sans-serif;font-size:16px;font-weight:400;color:#333333;margin:0 0 22px 0;line-height:1.6">A short, concrete story of what changed because a donor like you gave — one ministry, one place, one life. Keep it human and specific.</p>
+                          <!--[if mso]>
+                          <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://example.org/story" style="height:44px;v-text-anchor:middle;width:220px;" arcsize="50%" stroke="t" strokeweight="2px" strokecolor="#046DE3" fillcolor="#f4f4f6">
+                            <w:anchorlock/>
+                            <center style="color:#046DE3;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">&#8599;&nbsp; Read the full story</center>
+                          </v:roundrect>
+                          <![endif]-->
+                          <!--[if !mso]><!-->
+                          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+                            <td style="border:2px solid #046DE3;border-radius:30px">
+                              <a href="https://example.org/story" target="_blank" style="display:inline-block;padding:11px 24px;font-family:Inter,Arial,sans-serif;font-size:15px;font-weight:700;color:#046DE3;text-decoration:none;border-radius:30px">&#8599;&nbsp; Read the full story</a>
+                            </td>
+                          </tr></table>
+                          <!--<![endif]-->
+                        </td>
+                        <td class="column feat-img-col" width="46%" style="mso-table-lspace:0;mso-table-rspace:0;vertical-align:middle;padding:0;text-align:right">
+                          <img class="feat-img" src="https://placehold.co/598x420/20242b/f4f4f6/png?text=Story+photo" alt="[PLACEHOLDER — describe the story image]" width="299" style="display:block;border:0;height:auto;width:100%;max-width:299px;margin-left:auto">
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+
+          
+
+          
+
+          
+          <!-- ===================== CLOSING + SIGNATURE ===================== -->
+          <table class="row" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#f4f4f6">
+            <tbody>
+              <tr>
+                <td>
+                  <table class="row-content" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#f4f4f6;width:650px;margin:0 auto" width="650">
+                    <tbody>
+                      <tr>
+                        <td class="pad-lr" style="mso-table-lspace:0;mso-table-rspace:0;padding:40px 40px 0 40px;vertical-align:top">
+                          <p style="font-family:Inter,Arial,sans-serif;font-size:17px;font-weight:400;color:#333333;margin:0;line-height:1.6">[PLACEHOLDER closing line — warm gratitude. No new ask here.]</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="pad-lr" style="padding:22px 40px 48px 40px">
+                          <p style="font-family:Inter,Arial,sans-serif;font-size:17px;font-weight:700;color:#111111;margin:0 0 6px 0;line-height:1.4">'Til all have heard,</p>
+                          <img class="dm-hide" src="https://braze-images.com/appboy/communication/assets/image_assets/images/6aa95d3a306f5c008d4ea11d/original.png?1789484345" alt="Troy Carl" width="185" style="display:block;border:0;height:auto;width:185px;max-width:185px;margin:4px 0 6px 0">
+                          <!--[if !mso]><!-->
+                          <img class="dm-show" src="https://braze-images.com/appboy/communication/assets/image_assets/images/6aa81bac73c0cc008d84f883/original.png?1789402028" alt="Troy Carl" width="185" style="display:none;border:0;height:auto;width:185px;max-width:185px;margin:4px 0 6px 0">
+                          <!--<![endif]-->
+                          <p style="font-family:Inter,Arial,sans-serif;font-size:17px;font-weight:400;color:#111111;margin:0;line-height:1.4">Troy Carl</p>
+                          <p style="font-family:Inter,Arial,sans-serif;font-size:15px;font-style:italic;font-weight:400;color:#333333;margin:2px 0 0 0;line-height:1.4">President</p>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+
+          <!-- ===================== FOOTER (shared block: HTML-ISM-Dark-Footer) ===================== -->
+          <!-- Carries its own full-width #20242b bg + unsubscribe + manage-preferences + address + social. -->
+          <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" bgcolor="#20242b" style="mso-table-lspace:0;mso-table-rspace:0;background-color:#20242b">
+            <tbody>
+              <tr>
+                <td bgcolor="#20242b" style="background-color:#20242b">
+                  <div style="padding:32px 24px;text-align:center;font-family:Inter,Arial,sans-serif;color:#c7c8cb;font-size:12px;line-height:1.7">International Scripture Ministries<br>PO Box 24253, Boone, IA 50950-0400<br>1-833-60-BIBLE (24253) | contact@ism.bible<br><br><a href="#" style="color:#8ab4f0">Manage preferences</a> &nbsp;|&nbsp; <a href="#" style="color:#8ab4f0">Unsubscribe</a><br><span style="opacity:.6">[ rendered stand-in for HTML-ISM-Dark-Footer ]</span></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
