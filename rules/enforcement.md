@@ -19,7 +19,9 @@ Written rules are not enough when LLMs and design tools build screens. This repo
 
 Errors: hardcoded colour (hex, rgb, hsl), font outside Inter/Lora/Procerus/Noto, numeric z-index, raw border-radius, raw box-shadow, raw gradient, unknown CSS variable, invented class name with an ISM prefix, Tailwind palette or arbitrary-value classes, emoji, "!" in a button label, vague labels ("Click here", "Submit", "OK", "Go"), two primary buttons in one group, white or recoloured logo files, missing `alt`, missing `lang`, RTL language without `dir="rtl"`.
 
-Warnings: spacing off the space scale, raw motion durations, pill-shaped eyebrows, typed ALL CAPS labels.
+Warnings: spacing off the space scale, raw motion durations, pill-shaped eyebrows, typed ALL CAPS labels, component overrides.
+
+`component-override` (warning) fires when a `<style>` rule or an inline `style` restyles a system class (any class in `specs/lint-data.json`, such as `.btn-primary`, `.ap-tab`, `.sx-reader`, `.dp-ccta`) by setting `border*`, `border-radius`, `background*`, `color`, `text-decoration*`, `padding*` or `margin*`. Only the subject of a selector counts: `.ap-tab:hover { color: … }` warns, `.my-shell .ap-tab { … }` warns, but `.ap-tab .my-note { … }` styles your own class and does not. Layout properties (`display`, `flex`, `gap`, `position`, `inset`, `width`, `height`, `max-width`, `overflow`, `z-index` tokens) and classes you define yourself never trigger it. Spacing on the page containers `.wrap` and `.narrow` is page layout and is allowed; borders, backgrounds and colours on them still warn. If a component cannot do what you need, report the gap instead of patching it.
 
 Suppress deliberately: `ism-lint-disable-line [rule]` on the line, or `ism-lint-disable-file`. A suppression is a design decision; say why next to it.
 
@@ -36,4 +38,4 @@ Add it to CI next to your tests so generated code cannot merge with drift.
 
 ## Tests
 
-`tests/lint/` holds a clean fixture and deliberately bad fixtures (`bad.html`, `bad.tsx`, `bad-rtl.html`). `npm run test:lint` proves each rule fires, and that all 79 component snippets pass. Add a fixture whenever you add a rule.
+`tests/lint/` holds clean fixtures (`good.html`, `override-clean.html`) and deliberately bad fixtures (`bad.html`, `bad.tsx`, `bad-rtl.html`, `override.html`). `npm run test:lint` proves each rule fires, and that all 79 component snippets pass. Add a fixture whenever you add a rule.

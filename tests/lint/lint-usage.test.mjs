@@ -27,6 +27,17 @@ test('RTL language without dir is an error', () => {
   assert.ok(rules(run('bad-rtl.html')).has('rtl-dir'));
 });
 
+test('restyling system classes warns (component-override)', () => {
+  const f = run('override.html').filter((x) => x.rule === 'component-override');
+  assert.ok(f.length >= 3, `expected .ap-tab, .sx-reader and inline overrides; got ${f.map((x) => x.message).join(' | ')}`);
+  assert.ok(f.every((x) => x.severity === 'warn'));
+  assert.ok(f.some((x) => /\.ap-tab\b/.test(x.message)) && f.some((x) => /\.sx-reader\b/.test(x.message)));
+});
+
+test('layout-only CSS and own classes do not trigger component-override', () => {
+  assert.deepEqual(run('override-clean.html'), []);
+});
+
 test('JSX style objects and Button components are checked', () => {
   const r = rules(run('bad.tsx'));
   for (const id of ['hardcoded-color', 'numeric-z-index', 'off-palette-font', 'button-exclamation', 'multiple-primary']) assert.ok(r.has(id), id);
