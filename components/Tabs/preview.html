@@ -1,0 +1,108 @@
+<!-- @dsCard group="Navigation" height=686 subtitle="Underline, segmented, vertical, mobile" -->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+.pv{padding:24px;display:flex;flex-direction:column;gap:24px;background:var(--off-white)}
+.pv-sec{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pv-lbl{font-size:12px;font-weight:600;color:var(--gray-600);letter-spacing:.02em}
+.pv-panel{background:var(--white);border:1px solid var(--gray-200);border-radius:20px;padding:24px}
+.pv-dark{background:var(--charcoal-900);border-radius:16px;padding:16px}
+.pv-states{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.pv-states .nv-tabs{border-bottom-color:var(--gray-100)}
+.pv-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.pv-vt{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px}
+.pv-copy{display:flex;flex-direction:column;gap:12px}
+.pv-copy p{margin:0}
+.pv-phone{width:390px;border-radius:20px;border:1px solid var(--gray-200);background:var(--white);overflow:hidden}
+.pv-segrow{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="pv">
+  <div class="pv-panel" style="display:flex;flex-direction:column;gap:28px">
+    <div class="pv-sec">
+      <span class="pv-lbl">Underline tabs · Resources page · click or use ← →</span>
+      <div class="nv-tabs" role="tablist" aria-label="Resource types" id="pv-tabs">
+        <button class="nv-tab" role="tab" aria-selected="true">All resources <span class="nv-cnt">24</span></button>
+        <button class="nv-tab" role="tab" aria-selected="false" tabindex="-1">Apps <span class="nv-cnt">6</span></button>
+        <button class="nv-tab" role="tab" aria-selected="false" tabindex="-1">Radio <span class="nv-cnt">4</span></button>
+        <button class="nv-tab" role="tab" aria-selected="false" tabindex="-1">Publishing <span class="nv-cnt">9</span></button>
+        <button class="nv-tab" role="tab" aria-selected="false" tabindex="-1">NFC Cards <span class="nv-cnt">5</span></button>
+      </div>
+      <span class="hint">Counts are sample numbers.</span>
+    </div>
+    <div class="pv-states">
+      <div class="pv-sec"><span class="pv-lbl">Default</span><div class="nv-tabs"><span class="nv-tab">Apps <span class="nv-cnt">6</span></span></div></div>
+      <div class="pv-sec"><span class="pv-lbl">Hover · grey underline</span><div class="nv-tabs"><span class="nv-tab nv-hover">Apps <span class="nv-cnt">6</span></span></div></div>
+      <div class="pv-sec"><span class="pv-lbl">Focus (keyboard)</span><div class="nv-tabs"><span class="nv-tab nv-focus">Apps <span class="nv-cnt">6</span></span></div></div>
+      <div class="pv-sec"><span class="pv-lbl">Selected</span><div class="nv-tabs"><span class="nv-tab" aria-selected="true">Apps <span class="nv-cnt">6</span></span></div></div>
+      <div class="pv-sec"><span class="pv-lbl">Disabled · nothing yet</span><div class="nv-tabs"><span class="nv-tab" aria-disabled="true">Archive <span class="nv-cnt">0</span></span></div></div>
+    </div>
+  </div>
+
+  <div class="pv-two">
+    <div class="pv-sec">
+      <span class="pv-lbl">Vertical tabs · .nv-vtab · selected = tint + 3px blue edge · hover on Give</span>
+      <div class="pv-panel pv-vt">
+        <div class="nv-vtabs" role="tablist" aria-orientation="vertical" aria-label="Ways to partner">
+          <button class="nv-vtab" role="tab" aria-selected="true">Pray</button>
+          <button class="nv-vtab nv-hover" role="tab" aria-selected="false" tabindex="-1">Give</button>
+          <button class="nv-vtab" role="tab" aria-selected="false" tabindex="-1">Volunteer</button>
+          <button class="nv-vtab" role="tab" aria-selected="false" tabindex="-1">Churches</button>
+          <button class="nv-vtab" role="tab" aria-selected="false" aria-disabled="true" tabindex="-1">Events <span class="small" style="font-size:12px">Soon</span></button>
+        </div>
+        <div class="pv-copy" role="tabpanel" aria-label="Pray">
+          <p class="h4">Pray with us</p>
+          <p class="muted" style="font-size:15px;line-height:1.65">Every Scripture translation, broadcast and card starts with prayer. Join our monthly prayer list and pray for language teams by name.</p>
+          <a class="btn btn-primary btn-sm" href="#" style="width:fit-content">Join the prayer list</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div class="pv-sec">
+        <span class="pv-lbl">Segmented (pill) · .nv-seg on light · .nv-seg-dark on dark</span>
+        <div class="pv-panel pv-segrow">
+          <div class="nv-seg" role="tablist" aria-label="Gift frequency"><button role="tab" aria-selected="false">One-time</button><button role="tab" aria-selected="true">Monthly</button><button role="tab" aria-selected="false">Yearly</button></div>
+          <div class="pv-dark"><div class="nv-seg nv-seg-dark" role="tablist" aria-label="Listen or read"><button role="tab" aria-selected="true">Listen</button><button role="tab" aria-selected="false">Read</button></div></div>
+        </div>
+      </div>
+      <div class="pv-sec">
+        <span class="pv-lbl">Mobile · 390 wide · scrolls sideways, right fade hints more</span>
+        <div class="pv-phone">
+          <div class="nv-tabs-scroll">
+            <div class="nv-tabs" role="tablist" aria-label="Resource types">
+              <button class="nv-tab" role="tab" aria-selected="true">All <span class="nv-cnt">24</span></button>
+              <button class="nv-tab" role="tab" aria-selected="false" tabindex="-1">Apps <span class="nv-cnt">6</span></button>
+              <button class="nv-tab" role="tab" aria-selected="false" tabindex="-1">Radio <span class="nv-cnt">4</span></button>
+              <button class="nv-tab" role="tab" aria-selected="false" tabindex="-1">Publishing <span class="nv-cnt">9</span></button>
+              <button class="nv-tab" role="tab" aria-selected="false" tabindex="-1">NFC Cards <span class="nv-cnt">5</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  document.querySelectorAll('[role="tablist"]').forEach(function(list){
+    var tabs=[].slice.call(list.querySelectorAll('button[role="tab"]')).filter(function(t){return t.getAttribute('aria-disabled')!=='true';});
+    function pick(t){tabs.forEach(function(o){o.setAttribute('aria-selected',o===t?'true':'false');o.tabIndex=o===t?0:-1;o.classList.remove('nv-hover');});t.focus();}
+    tabs.forEach(function(t,i){
+      t.addEventListener('click',function(){pick(t);});
+      t.addEventListener('keydown',function(e){
+        var n=null;
+        if(e.key==='ArrowRight'||e.key==='ArrowDown')n=tabs[(i+1)%tabs.length];
+        if(e.key==='ArrowLeft'||e.key==='ArrowUp')n=tabs[(i-1+tabs.length)%tabs.length];
+        if(e.key==='Home')n=tabs[0];
+        if(e.key==='End')n=tabs[tabs.length-1];
+        if(n){e.preventDefault();pick(n);}
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

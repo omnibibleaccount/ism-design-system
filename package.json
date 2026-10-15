@@ -23,16 +23,28 @@
     "build:previews": "node scripts/build-previews.mjs",
     "sync:native": "node scripts/sync-native-assets.mjs",
     "validate": "node scripts/validate.mjs",
-    "build": "npm run build:tokens && npm run build:icons && npm run build --workspace @ism/web && npm run build:specs && npm run sync:native && npm run build:previews && npm run build --workspaces --if-present",
+    "build": "npm run build:tokens && npm run build:icons && npm run build --workspace @ism/web && npm run build:specs && npm run sync:native && npm run build:previews && npm run build:dtcg && npm run build:lint-data && npm run build:prompts && npm run build --workspaces --if-present",
     "test": "npm run validate && npm test --workspaces --if-present",
-    "check": "npm run check:tokens && npm run check:icons && npm run check:native && npm run check:specs && npm run validate",
+    "check": "npm run check:tokens && npm run check:icons && npm run check:native && npm run check:specs && npm run validate && npm run check:dtcg && npm run check:screenshots && npm run check:prompts && npm run check:lint-data && npm run lint:usage && npm run test:lint",
     "build:icons": "node scripts/build-icons.mjs",
     "check:icons": "node scripts/build-icons.mjs --check",
-    "check:native": "node scripts/sync-native-assets.mjs --check"
+    "check:native": "node scripts/sync-native-assets.mjs --check",
+    "build:screenshots": "node scripts/build-screenshots.mjs",
+    "check:screenshots": "node scripts/build-screenshots.mjs --check",
+    "build:dtcg": "node scripts/build-dtcg.mjs",
+    "check:dtcg": "node scripts/build-dtcg.mjs --check",
+    "build:prompts": "node scripts/build-prompts.mjs",
+    "check:prompts": "node scripts/build-prompts.mjs --check",
+    "build:lint-data": "node scripts/lint-usage.mjs --emit-data",
+    "lint:usage": "node scripts/lint-usage.mjs components examples --md",
+    "test:lint": "node --test tests/lint/lint-usage.test.mjs",
+    "build:site": "npm run build:previews && npm run build:dtcg && npm run build:lint-data && npm run build:prompts && node scripts/build-site.mjs",
+    "check:lint-data": "node scripts/lint-usage.mjs --check-data"
   },
   "devDependencies": {
     "typescript": "^5.9.0",
-    "@types/node": "^22.0.0"
+    "@types/node": "^22.0.0",
+    "playwright-core": "^1.56.0"
   },
   "overrides": {
     "next": {

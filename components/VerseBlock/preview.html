@@ -1,0 +1,57 @@
+<!-- @dsCard group="Scripture" height=640 subtitle="Verse card, verse of the day, citation" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;align-items:start}
+.pv-col{display:flex;flex-direction:column;gap:16px}
+.pv-states{display:flex;gap:20px;flex-wrap:wrap}
+.pv-state{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.pv-box{display:flex;flex-direction:column;gap:10px;padding:20px 24px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg)}
+.pv-box p{font-size:17px;line-height:1.6;color:var(--gray-700)}
+</style></head><body>
+<div class="pv">
+  <div class="pv-col">
+    <span class="sx-lbl">Verse card</span>
+    <article class="sx-verse">
+      <p class="sx-verse-text">“For God so loved the world that He gave His one and only Son, that everyone who believes in Him shall not perish but have eternal life.”</p>
+      <div class="sx-verse-foot">
+        <span class="sx-ref">John 3:16 · BSB</span>
+        <div class="sx-verse-tools">
+          <button type="button" class="sx-ibtn" aria-label="Share verse"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></button>
+          <button type="button" class="sx-ibtn" aria-label="Copy verse"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>
+          <button type="button" class="sx-ibtn" id="pv-bm" aria-label="Bookmark verse" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+        </div>
+      </div>
+    </article>
+    <div class="pv-states">
+      <div class="pv-state"><span class="sx-ibtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span><span class="sx-lbl">Default</span></div>
+      <div class="pv-state"><span class="sx-ibtn is-hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span><span class="sx-lbl">Hover</span></div>
+      <div class="pv-state"><span class="sx-ibtn is-focus"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span><span class="sx-lbl">Focus</span></div>
+      <div class="pv-state"><span class="sx-ibtn is-on"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span><span class="sx-lbl">Saved</span></div>
+    </div>
+    <div class="pv-box">
+      <span class="sx-lbl">Inline citation · default and hover</span>
+      <p>Jesus told Nicodemus he must be born again (<a class="sx-cite" href="#">John 3:3</a>), and Paul writes that faith comes by hearing (<a class="sx-cite is-hover" href="#">Romans 10:17</a>).</p>
+    </div>
+  </div>
+  <div class="pv-col">
+    <span class="sx-lbl">Verse of the day · on dark</span>
+    <section class="sx-votd" aria-labelledby="pv-votd">
+      <span class="eyebrow sx-eyebrow-gold" id="pv-votd">Verse of the day</span>
+      <div class="sx-gold-rule" aria-hidden="true"></div>
+      <p class="sx-votd-text">“Your word is a lamp to my feet and a light to my path.”</p>
+      <div class="sx-verse-foot">
+        <span class="sx-votd-ref">Psalm 119:105 · BSB</span>
+        <div class="sx-verse-tools">
+          <button type="button" class="sx-ibtn sx-ibtn-dark" aria-label="Share verse"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></button>
+          <button type="button" class="sx-ibtn sx-ibtn-dark" aria-label="Copy verse"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>
+          <button type="button" class="sx-ibtn sx-ibtn-dark" aria-label="Bookmark verse" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+        </div>
+      </div>
+      <p class="sx-votd-more">Read the whole chapter in the dot.Bible app <a class="sx-cite sx-cite-dark" href="#">Psalm 119 ↗</a></p>
+    </section>
+  </div>
+</div>
+<script>
+var b=document.getElementById('pv-bm');b.addEventListener('click',function(){var on=b.getAttribute('aria-pressed')==='true';b.setAttribute('aria-pressed',on?'false':'true');b.setAttribute('aria-label',on?'Bookmark verse':'Remove bookmark');});
+</script>
+</body></html>

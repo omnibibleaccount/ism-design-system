@@ -1,0 +1,61 @@
+<!-- @dsCard group="Scripture" height=1345 subtitle="Book, chapter and verse picker" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.pv-col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pv-desk{flex:1 1 640px;max-width:720px}
+.pv-note{font-size:14px;line-height:1.5;color:var(--gray-700);margin:0;max-width:720px}
+</style></head><body>
+<div class="pv">
+  <div class="pv-col pv-desk">
+    <span class="sx-lbl">Desktop panel · opens from “John 3 ⌄”</span>
+    <div class="sx-picker" role="dialog" aria-label="Choose a book and chapter">
+      <div class="sx-picker-head">
+        <div class="sx-seg" role="tablist" aria-label="Testament">
+          <button type="button" role="tab" aria-selected="false" data-t="ot">Old Testament</button>
+          <button type="button" role="tab" aria-selected="true" data-t="nt">New Testament</button>
+        </div>
+        <div class="sx-crumb" aria-label="Current selection"><b id="pv-cb">John</b><span aria-hidden="true">›</span><b id="pv-cc">3</b><span aria-hidden="true">›</span><span>Verse</span></div>
+      </div>
+      <div class="sx-picker-body">
+        <div class="sx-books" role="listbox" aria-label="Books" id="pv-books"></div>
+        <div class="sx-chapters">
+          <span class="sx-lbl" id="pv-chl">John · 21 chapters</span>
+          <div class="sx-grid" id="pv-grid" role="group" aria-labelledby="pv-chl"></div>
+          <div class="sx-legend"><span><i class="k-on"></i>Current</span><span><i class="k-hover"></i>Hover</span><span><i class="k-read"></i>Read</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="pv-note">Picking a book loads its chapters on the right; picking a chapter moves to verses (optional) and closes on the next tap. Esc or clicking outside closes without changing the text.</p>
+  </div>
+  <div class="pv-col">
+    <span class="sx-lbl">Mobile sheet · verse step</span>
+    <div class="sx-phone sx-scrim">
+      <div class="sx-sheet" role="dialog" aria-label="Choose a verse">
+        <div class="sx-handle" aria-hidden="true"></div>
+        <div class="sx-sheet-head">
+          <button type="button" class="sx-ibtn" aria-label="Back to chapters"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <span>John 3</span>
+          <button type="button" class="sx-ibtn" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </div>
+        <div class="sx-seg sx-seg-full" role="tablist" aria-label="Step" style="margin-bottom:16px"><button type="button" role="tab" aria-selected="false">Book</button><button type="button" role="tab" aria-selected="false">Chapter</button><button type="button" role="tab" aria-selected="true">Verse</button></div>
+        <div class="sx-grid" id="pv-verses" role="group" aria-label="Verses"></div>
+        <button type="button" class="btn btn-primary" id="pv-go" style="width:100%;margin-top:18px">Go to John 3:16</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+var NT=[['Matthew',28],['Mark',16],['Luke',24],['John',21],['Acts',28],['Romans',16],['1 Corinthians',16],['2 Corinthians',13],['Galatians',6],['Ephesians',6]];
+var OT=[['Genesis',50],['Exodus',40],['Leviticus',27],['Numbers',36],['Deuteronomy',34],['Joshua',24],['Judges',21],['Ruth',4],['Psalms',150],['Isaiah',66]];
+var state={t:'nt',book:'John',ch:3};
+function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e;}
+function renderBooks(){var box=document.getElementById('pv-books');box.innerHTML='';(state.t==='nt'?NT:OT).forEach(function(b){var r=el('button','sx-book');r.type='button';r.setAttribute('role','option');r.setAttribute('aria-selected',b[0]===state.book?'true':'false');r.appendChild(el('span','',b[0]));r.appendChild(el('span','n',String(b[1])));r.onclick=function(){state.book=b[0];state.ch=1;render();};box.appendChild(r);});}
+function count(){var all=NT.concat(OT);for(var i=0;i<all.length;i++){if(all[i][0]===state.book)return all[i][1];}return 1;}
+function renderGrid(){var g=document.getElementById('pv-grid');g.innerHTML='';var n=Math.min(count(),36);for(var i=1;i<=n;i++){(function(i){var c=el('button','sx-num',String(i));c.type='button';if(i===state.ch)c.setAttribute('aria-current','true');else if(state.book==='John'&&i<state.ch)c.classList.add('is-read');c.setAttribute('aria-label',state.book+' chapter '+i);c.onclick=function(){state.ch=i;render();};g.appendChild(c);})(i);}document.getElementById('pv-chl').textContent=state.book+' · '+count()+' chapters';document.getElementById('pv-cb').textContent=state.book;document.getElementById('pv-cc').textContent=state.ch;}
+function render(){renderBooks();renderGrid();}
+document.querySelectorAll('.sx-picker-head .sx-seg button').forEach(function(b){b.onclick=function(){state.t=b.getAttribute('data-t');document.querySelectorAll('.sx-picker-head .sx-seg button').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false');});render();};});
+render();
+var v=document.getElementById('pv-verses');for(var i=1;i<=36;i++){(function(i){var c=el('button','sx-num',String(i));c.type='button';c.setAttribute('aria-label','Verse '+i);if(i===16)c.setAttribute('aria-pressed','true');c.onclick=function(){v.querySelectorAll('.sx-num').forEach(function(x){x.removeAttribute('aria-pressed');});c.setAttribute('aria-pressed','true');document.getElementById('pv-go').textContent='Go to John 3:'+i;};v.appendChild(c);})(i);}
+</script>
+</body></html>

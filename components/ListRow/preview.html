@@ -1,0 +1,107 @@
+<!-- @dsCard group="Data display" height=860 subtitle="Rows: icon, avatar, ›, ↗, toggle, audio" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start}
+.pv-col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pv-h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-600)}
+.pv-c{font-size:12px;color:var(--gray-600);font-family:ui-monospace,Menlo,monospace;padding:0 4px}
+.pv-dk{background:var(--black);border-radius:20px;padding:8px 20px;color:var(--white)}
+.pv-lt{background:var(--white);border:1px solid var(--gray-200);border-radius:20px;padding:8px 20px}
+</style></head><body>
+<div class="pv">
+  <div class="pv-col">
+    <span class="pv-h">Divided · .cr-list-div</span>
+    <div class="cr-list cr-list-div">
+      <div class="cr-lr"><span class="cr-lr-tx"><span class="cr-lr-t">Simple row</span></span></div>
+      <div class="cr-lr">
+        <span class="cr-lr-ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 5.5v16"/></svg></span>
+        <span class="cr-lr-tx"><span class="cr-lr-t">Gospel of John</span></span>
+        <span class="cr-lr-end">21 chapters</span>
+      </div>
+      <div class="cr-lr">
+        <span class="cr-av" aria-hidden="true">MS</span>
+        <span class="cr-lr-tx"><span class="cr-lr-t">Maria Santos</span><span class="cr-lr-m">Partner · Lima, Peru</span></span>
+        <span class="cr-lr-end">2d ago</span>
+      </div>
+      <div class="cr-lr cr-lr-two">
+        <span class="cr-lr-ic cr-lr-ic-gold" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a8 8 0 0 1 16 0"/><path d="M7.5 11a4.5 4.5 0 0 1 9 0"/><circle cx="12" cy="11" r="1.2"/><path d="M12 12.5V21"/></svg></span>
+        <span class="cr-lr-tx"><span class="cr-lr-t">Radio Hope is back on air</span><span class="cr-lr-m">The HD Radio station in Nairobi is broadcasting scripture readings again, every morning and evening.</span></span>
+      </div>
+      <div class="cr-lr cr-is-hover"><span class="cr-lr-tx"><span class="cr-lr-t">Hover state</span></span><span class="cr-lr-end">--off-white</span></div>
+    </div>
+    <span class="pv-c">simple · icon · avatar + meta · two-line · hover</span>
+  </div>
+
+  <div class="pv-col">
+    <span class="pv-h">Inset · .cr-list-inset · in-app</span>
+    <div class="cr-list-inset">
+      <span class="overline" id="g-read">Reading</span>
+      <div class="cr-inset-grp" role="group" aria-labelledby="g-read">
+        <a class="cr-lr" href="#">
+          <span class="cr-lr-ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span>
+          <span class="cr-lr-tx"><span class="cr-lr-t">Language</span></span>
+          <span class="cr-lr-end">Amharic<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="cr-lr" href="#">
+          <span class="cr-lr-ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span>
+          <span class="cr-lr-tx"><span class="cr-lr-t">Downloaded Bibles</span></span>
+          <span class="cr-lr-end">3<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+        <div class="cr-lr" data-toggle>
+          <span class="cr-lr-ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 20a2 2 0 0 0 3.4 0"/></svg></span>
+          <span class="cr-lr-tx"><span class="cr-lr-t" id="t-dv">Daily verse</span><span class="cr-lr-m">7:00 each morning</span></span>
+          <button class="cr-sw" type="button" role="switch" aria-checked="true" aria-labelledby="t-dv"></button>
+        </div>
+        <div class="cr-lr" data-toggle>
+          <span class="cr-lr-ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a7 7 0 0 1 14 0"/><path d="M3 13h4v6H3zM17 13h4v6h-4z"/></svg></span>
+          <span class="cr-lr-tx"><span class="cr-lr-t" id="t-wf">Audio over Wi-Fi only</span></span>
+          <button class="cr-sw" type="button" role="switch" aria-checked="false" aria-labelledby="t-wf"></button>
+        </div>
+      </div>
+    </div>
+    <span class="pv-c">› drills in · switch toggles the whole row</span>
+  </div>
+
+  <div class="pv-col">
+    <span class="pv-h">Inset · links out ↗</span>
+    <div class="cr-list-inset">
+      <span class="overline" id="g-more">More from ISM</span>
+      <div class="cr-inset-grp" role="group" aria-labelledby="g-more">
+        <a class="cr-lr cr-lr-noic" href="#"><span class="cr-lr-tx"><span class="cr-lr-t">dot.Bible directory</span><span class="cr-lr-m">500+ languages</span></span><span class="cr-lr-end cr-lr-out" aria-hidden="true">↗</span></a>
+        <a class="cr-lr cr-lr-noic cr-is-hover" href="#"><span class="cr-lr-tx"><span class="cr-lr-t">ISM Publishing</span><span class="cr-lr-m">Hover state</span></span><span class="cr-lr-end cr-lr-out" aria-hidden="true" style="color:var(--horizon-blue)">↗</span></a>
+        <a class="cr-lr cr-lr-noic" href="#"><span class="cr-lr-tx"><span class="cr-lr-t">Global Bible Network</span><span class="cr-lr-m">Partners and stations</span></span><span class="cr-lr-end cr-lr-out" aria-hidden="true">↗</span></a>
+        <a class="cr-lr cr-lr-noic cr-lr-off" aria-disabled="true"><span class="cr-lr-tx"><span class="cr-lr-t">NFC card store</span><span class="cr-lr-m">Disabled · opening soon</span></span><span class="cr-lr-end cr-lr-out" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <span class="pv-c">↗ leaves for another page · disabled</span>
+  </div>
+
+  <div class="pv-col">
+    <span class="pv-h">React · ListRow · dark</span>
+    <div class="pv-dk" id="r-dark"></div>
+    <span class="pv-h" style="margin-top:8px">React · ListRow · light</span>
+    <div class="pv-lt" id="r-light"></div>
+    <span class="pv-c">icon · title · meta · progress · dark</span>
+  </div>
+</div>
+<script>
+(function(){
+  document.querySelectorAll('[data-toggle]').forEach(function(row){
+    row.style.cursor='pointer';
+    row.addEventListener('click',function(){
+      var sw=row.querySelector('.cr-sw');
+      sw.setAttribute('aria-checked', sw.getAttribute('aria-checked')==='true'?'false':'true');
+    });
+  });
+  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var h = React.createElement;
+  function ic(){ return h('svg',{width:18,height:18,viewBox:'0 0 24 24',fill:'none',stroke:'currentColor',strokeWidth:1.8,strokeLinecap:'round',strokeLinejoin:'round','aria-hidden':true},
+    h('path',{d:'M5 12.5a7 7 0 0 1 14 0'}),h('path',{d:'M3 13h4v6H3zM17 13h4v6h-4z'})); }
+  ReactDOM.createRoot(document.getElementById('r-dark')).render(h('div',{ style: { color:'var(--white)' } },
+    h(NS.ListRow,{icon:ic(),title:'John 3:17–4:54',meta:'9:12',progress:0.3}),
+    h(NS.ListRow,{icon:ic(),title:'Psalm 23',meta:'2:48',progress:0.85})));
+  ReactDOM.createRoot(document.getElementById('r-light')).render(h(React.Fragment,null,
+    h(NS.ListRow,{icon:ic(),title:'Romans 8',meta:'11:05',progress:0.1,dark:false})));
+})();
+</script>
+</body></html>

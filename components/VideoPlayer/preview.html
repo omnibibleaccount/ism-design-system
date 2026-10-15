@@ -1,0 +1,50 @@
+<!-- @dsCard group="Ministry" height=472 subtitle="16:9 poster and playing controls" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;align-items:start}
+.col{display:flex;flex-direction:column;gap:14px;min-width:0}
+.txt{display:flex;flex-direction:column;gap:6px}
+</style></head><body>
+<div class="grid">
+  <div class="col">
+    <span class="mn-st">Poster · default</span>
+    <div class="mn-vid">
+      <img src="../../assets/imagery/print-photo-friends.jpg" alt="">
+      <div class="mn-scrim"></div>
+      <button class="mn-playbtn" type="button" aria-label="Play video: Reading John together, across three countries, 4 minutes 12 seconds"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg></button>
+      <span class="mn-vchip mn-vchip-l"><span class="mn-cc">CC</span>12 languages</span>
+      <span class="mn-vchip mn-vchip-r">4:12</span>
+    </div>
+    <div class="txt">
+      <h3 class="h4">Reading John together, across three countries</h3>
+      <p class="muted" style="font-size:15px">Friends in Kenya, Peru and the Philippines meet on a video call to read John 3 in their own languages.</p>
+    </div>
+  </div>
+  <div class="col">
+    <span class="mn-st">Playing · controls on hover, tap or focus</span>
+    <div class="mn-vid">
+      <img src="../../assets/imagery/print-photo-friends.jpg" alt="">
+      <div class="mn-scrim mn-scrim-play"></div>
+      <div class="mn-caption">For God so loved the world…</div>
+      <div class="mn-vctrl">
+        <div class="mn-vtrack" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="252" aria-valuenow="84" aria-valuetext="1:24 of 4:12"><span class="mn-buf"></span><span class="mn-fill"></span><span class="mn-knob"></span></div>
+        <div class="mn-vrow">
+          <button class="mn-vbtn" type="button" aria-label="Pause"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4.5" width="4" height="15" rx="1"/><rect x="14" y="4.5" width="4" height="15" rx="1"/></svg></button>
+          <button class="mn-vbtn" type="button" aria-label="Mute"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg></button>
+          <span class="mn-vtime">1:24 / 4:12</span>
+          <span class="mn-vspacer"></span>
+          <button class="mn-vbtn" type="button" aria-label="Captions" aria-pressed="true"><span class="mn-cc">CC</span></button>
+          <button class="mn-vbtn" type="button" aria-label="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></button>
+          <button class="mn-vbtn" type="button" aria-label="Full screen"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="mn-vstates">
+      <div class="mn-spec"><span class="mn-st mn-st-sm">Play · default</span><span class="mn-playbtn mn-playbtn-static"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg></span></div>
+      <div class="mn-spec"><span class="mn-st mn-st-sm">Play · hover</span><span class="mn-playbtn mn-playbtn-static mn-is-hover"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg></span></div>
+      <div class="mn-spec"><span class="mn-st mn-st-sm">Play · focus</span><span class="mn-playbtn mn-playbtn-static mn-focus"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg></span></div>
+    </div>
+  </div>
+</div>
+</body></html>

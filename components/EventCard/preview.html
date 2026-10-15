@@ -1,0 +1,42 @@
+<!-- @dsCard group="Ministry" height=500 subtitle="Event with date tile, news card" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:stretch}
+.col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.col>.card{flex:1}
+</style></head><body>
+<div class="grid">
+  <div class="col">
+    <span class="mn-st">Event</span>
+    <article class="card card-flat mn-event">
+      <div class="mn-event-head">
+        <span class="mn-datetile" aria-hidden="true"><span class="mn-datetile-m">NOV</span><span class="mn-datetile-d">12</span></span>
+        <span class="badge badge-info">Online event</span>
+      </div>
+      <h3 class="h4">Global prayer night for Bible translation</h3>
+      <div class="mn-meta">
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-11-12T19:00-05:00">Thursday, Nov 12 · 7:00 pm ET · 90 min</time></span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg>Online · link sent after you register</span>
+      </div>
+      <p class="muted" style="font-size:15px">Pray with partners from 40 countries for the languages still waiting for Scripture.</p>
+      <div class="mn-event-foot">
+        <a class="btn btn-secondary btn-sm" href="#">Register <span class="arrow" aria-hidden="true">↗</span></a>
+        <span>212 going (sample)</span>
+      </div>
+    </article>
+  </div>
+  <div class="col">
+    <span class="mn-st">News</span>
+    <article class="card card-flat mn-news">
+      <div class="mn-news-img"><img class="photo" src="../../assets/imagery/print-photo-listener.jpg" alt="A woman listening to Scripture on her phone"></div>
+      <div class="mn-news-body">
+        <div class="mn-news-meta"><span class="badge badge-brand">Field story</span><time datetime="2026-10-02">Oct 2, 2026</time></div>
+        <h3 class="h4">An audio Bible in Amharic reaches 40 radio stations</h3>
+        <p class="muted" style="font-size:15px">Listeners across Ethiopia now hear Scripture read aloud each morning in their heart language.</p>
+        <a class="btn btn-ghost btn-sm mn-news-link" href="#">Read the story <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+  </div>
+</div>
+</body></html>

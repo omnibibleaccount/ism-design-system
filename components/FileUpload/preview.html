@@ -1,0 +1,64 @@
+<!-- @dsCard group="Forms" height=640 subtitle="Drop zone and file rows" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
+.s{display:flex;flex-direction:column;gap:8px;min-width:0}
+.list{margin-top:24px;max-width:640px}
+@media (max-width:767px){.g{grid-template-columns:minmax(0,1fr)} }
+</style></head><body>
+<div>
+  <div class="g">
+    <div class="s">
+      <span class="fm-st">Default · drag a file over it to try</span>
+      <div class="fm-drop" id="fu-drop">
+        <span class="fm-drop-ic" id="fu-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span>
+        <span class="fm-drop-t" id="fu-t">Drag your station licence here, or <button class="fm-linkbtn" type="button" id="fu-browse" aria-describedby="fu-types">browse</button></span>
+        <span class="hint" id="fu-types">PDF, JPG or PNG · up to 10 MB each</span>
+        <input class="fm-vh" type="file" id="fu-input" accept=".pdf,.jpg,.jpeg,.png" multiple tabindex="-1" aria-hidden="true">
+      </div>
+    </div>
+    <div class="s">
+      <span class="fm-st">Drag-over</span>
+      <div class="fm-drop fm-over">
+        <span class="fm-drop-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span>
+        <span class="fm-drop-t">Drop to upload</span>
+        <span class="hint">2 files</span>
+      </div>
+    </div>
+  </div>
+  <div class="s list">
+    <span class="fm-st">File rows · uploading / done / error</span>
+    <ul class="fm-files" aria-label="Uploaded files">
+      <li class="fm-file">
+        <span class="fm-file-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg></span>
+        <span class="fm-file-body"><span class="fm-file-nm">fcc-station-licence-2026.pdf</span><span class="fm-file-meta">1.8 MB of 2.8 MB · 64%</span><span class="fm-bar" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Uploading fcc-station-licence-2026.pdf"><span style="width:64%"></span></span></span>
+        <span class="fm-file-actions"><button class="fm-ib" type="button" aria-label="Cancel upload"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span>
+      </li>
+      <li class="fm-file">
+        <span class="fm-file-ic fm-ok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span>
+        <span class="fm-file-body"><span class="fm-file-nm">tower-site-photo.jpg</span><span class="fm-file-meta fm-ok">Uploaded · 2.4 MB</span></span>
+        <span class="fm-file-actions"><button class="fm-ib" type="button" aria-label="Remove tower-site-photo.jpg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></button></span>
+      </li>
+      <li class="fm-file fm-err">
+        <span class="fm-file-ic fm-bad"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg></span>
+        <span class="fm-file-body"><span class="fm-file-nm">coverage-map-full.png</span><span class="fm-file-meta fm-bad">14.2 MB is over the 10 MB limit. Try a smaller file.</span></span>
+        <span class="fm-file-actions"><button class="btn btn-ghost btn-sm" type="button">Retry</button><button class="fm-ib" type="button" aria-label="Remove coverage-map-full.png"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></button></span>
+      </li>
+    </ul>
+  </div>
+</div>
+<script>
+(function(){
+  var drop=document.getElementById('fu-drop'),t=document.getElementById('fu-t'),ic=document.getElementById('fu-ic'),input=document.getElementById('fu-input');
+  var idle=t.innerHTML,idleIc=ic.innerHTML,depth=0;
+  var downIc='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>';
+  function over(on){drop.classList.toggle('fm-over',on);t.innerHTML=on?'Drop to upload':idle;ic.innerHTML=on?downIc:idleIc;bind();}
+  function bind(){var b=document.getElementById('fu-browse');if(b)b.onclick=function(){input.click();};}
+  drop.addEventListener('dragenter',function(e){e.preventDefault();depth++;over(true);});
+  drop.addEventListener('dragover',function(e){e.preventDefault();});
+  drop.addEventListener('dragleave',function(){if(--depth<=0){depth=0;over(false);} });
+  drop.addEventListener('drop',function(e){e.preventDefault();depth=0;over(false);});
+  bind();
+})();
+</script>
+</body></html>

@@ -1,0 +1,45 @@
+<!-- @dsCard group="Navigation" height=464 subtitle="Bottom-left consent card" -->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+.pv{padding:24px;display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:32px;align-items:start;background:var(--off-white)}
+.pv p{margin:0}
+.pv-sec{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pv-lbl{font-size:12px;font-weight:600;color:var(--gray-600);letter-spacing:.02em}
+.pv-stage{position:relative;height:360px;border-radius:20px;overflow:hidden;border:1px solid var(--gray-200);background:var(--white);display:flex;align-items:flex-end;padding:24px}
+.pv-phone{height:360px;padding:16px}
+.pv-lines{position:absolute;inset:24px 24px auto 24px;display:flex;flex-direction:column;gap:12px}
+.pv-line{height:10px;border-radius:999px;background:var(--gray-200)}
+.pv-stage .nv-btt{position:absolute;right:24px;bottom:24px}
+.pv-phone .cookie{width:100%;padding:20px}
+.pv-phone .nv-cookie-actions .btn{flex:1 1 100%}
+</style>
+</head>
+<body>
+<div class="pv">
+  <div class="pv-sec">
+    <span class="pv-lbl">Desktop · bottom-left 24px · first visit · choice stored 365 days · reopened from "Cookie settings" in the footer</span>
+    <div class="pv-stage">
+      <div class="pv-lines" aria-hidden="true"><div class="pv-line" style="width:40%;height:14px;background:var(--gray-300)"></div><div class="pv-line" style="width:88%"></div><div class="pv-line" style="width:76%"></div><div class="pv-line" style="width:82%"></div></div>
+      <div class="cookie nv-static" role="region" aria-labelledby="pv-ck-h">
+        <p class="nv-cookie-h" id="pv-ck-h">A note on cookies</p>
+        <p>We use cookies to enhance your experience and analyze traffic. By clicking ‘Accept All’, you consent to our use of cookies. <a href="#">Learn more</a></p>
+        <div class="nv-cookie-actions"><button class="btn btn-primary" type="button">Accept All</button><button class="btn btn-outline-light" type="button">Reject Non-Essential</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="pv-sec">
+    <span class="pv-lbl">Mobile · 390 wide · 16px inset · buttons stack full width</span>
+    <div class="pv-stage pv-phone">
+      <div class="cookie nv-static" role="region" aria-labelledby="pv-ck-h2">
+        <p class="nv-cookie-h" id="pv-ck-h2">A note on cookies</p>
+        <p>We use cookies to enhance your experience and analyze traffic. By clicking ‘Accept All’, you consent to our use of cookies. <a href="#">Learn more</a></p>
+        <div class="nv-cookie-actions"><button class="btn btn-primary" type="button">Accept All</button><button class="btn btn-outline-light" type="button">Reject Non-Essential</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

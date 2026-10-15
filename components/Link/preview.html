@@ -1,0 +1,44 @@
+<!-- @dsCard group="Actions" height=360 subtitle="Inline, .lnk and ghost links" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.pv-box{background:var(--white);border:1px solid var(--gray-200);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0;font-size:16px}
+.pv-dk{background:var(--black);border-color:rgba(255,255,255,.16);color:rgba(255,255,255,.78)}
+.pv-h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-600)}
+.pv-dk .pv-h,.pv-dk .pv-c{color:rgba(255,255,255,.6)}
+.pv-c{font-size:12px;color:var(--gray-600);font-family:ui-monospace,Menlo,monospace}
+</style></head><body>
+<div class="pv">
+  <div class="pv-box">
+    <span class="pv-h">HTML / CSS · on light</span>
+    <span class="pv-c">inline a</span>
+    <p>Read our <a href="#">privacy policy</a> for details.</p>
+    <span class="pv-c">.lnk · underline reveal on hover</span>
+    <a class="lnk cr-link-ink" href="#">Get prayer updates ↗</a>
+    <span class="pv-c">.btn-ghost · "see all" link</span>
+    <div><a class="btn btn-ghost" href="#">Browse the directory <span class="arrow" aria-hidden="true">↗</span></a></div>
+  </div>
+  <div class="pv-box pv-dk">
+    <span class="pv-h">HTML / CSS · on dark</span>
+    <span class="pv-c">.cr-link-dark</span>
+    <p>Questions? Read the <a class="cr-link-dark" href="#">cookie policy</a>.</p>
+    <span class="pv-c">.lnk inherits white</span>
+    <a class="lnk" href="#" style="color:var(--white);width:fit-content">dot.Bible directory ↗</a>
+    <span class="pv-c">.navlink · gradient underline</span>
+    <div style="display:flex;gap:20px"><a class="navlink" href="#" aria-current="page">About ISM</a><a class="navlink" href="#">Resources</a></div>
+  </div>
+  <div class="pv-box">
+    <span class="pv-h">React · Button ghost</span>
+    <div id="r-link"></div>
+    <span class="pv-c">variant="ghost" with a ↗ icon</span>
+  </div>
+</div>
+<script>
+(function(){
+  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('r-link')).render(
+    h(NS.Button,{variant:'ghost',icon:h('span',{className:'arrow','aria-hidden':true},'↗')},'Browse All'));
+})();
+</script>
+</body></html>
