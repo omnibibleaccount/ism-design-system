@@ -759,6 +759,9 @@ span.fm-ti{display:flex;align-items:center}
 .fm-vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .on-dark .input.fm-sub-input,.sec-ink .input.fm-sub-input{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3);color:var(--white)}
 .on-dark .input.fm-sub-input::placeholder,.sec-ink .input.fm-sub-input::placeholder{color:var(--text-tertiary-dark)}
+/* The same translucent field as a stacked Input (React <Input dark>): no row flex-basis in the .field column, light label */
+.field>.input.fm-sub-input{flex:none}
+.on-dark .field:has(>.input.fm-sub-input)>.label,.sec-ink .field:has(>.input.fm-sub-input)>.label{color:rgba(255,255,255,.78)}
 
 /* InlineSubscribe: message line, error and success on light and dark */
 .fm-sub-wrap{display:flex;flex-direction:column;gap:8px}

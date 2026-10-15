@@ -36,8 +36,8 @@ body{margin:0;padding:24px;background:var(--off-white)}
     <div class="pv-box">
       <span class="pv-h">React · Input</span>
       <div id="r-light" style="display:flex;flex-direction:column;gap:16px"></div>
-      <div class="pv-box pv-dk" style="padding:20px">
-        <span class="pv-h">React · dark</span>
+      <div class="pv-box pv-dk on-dark" style="padding:20px">
+        <span class="pv-h">React · dark · inside .on-dark</span>
         <div id="r-dark" style="display:flex;flex-direction:column;gap:16px"></div>
       </div>
     </div>
@@ -45,7 +45,7 @@ body{margin:0;padding:24px;background:var(--off-white)}
 </div>
 <script>
 (function(){
-  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var NS = window.ISMUI; if(!NS || !window.React || !window.ReactDOM) return;
   var h = React.createElement;
   ReactDOM.createRoot(document.getElementById('r-light')).render(h(React.Fragment,null,
     h(NS.Input,{label:'Email',placeholder:'you@example.com',type:'email'}),

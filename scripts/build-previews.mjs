@@ -4,6 +4,7 @@
 // Open docs/previews/index.html in a browser. Pass --rtl to see how the page looks with dir="rtl".
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { build } from 'esbuild';
 import { ROOT } from './lib/tokens.mjs';
 
 const all = JSON.parse(readFileSync(resolve(ROOT, 'specs/all.json'), 'utf8'));
@@ -35,15 +36,52 @@ const cleanSnippet = (h) => h
   .replace(/…[A-Za-z ]{0,24}…/g, '')
   .replace(/…/g, '');
 mkdirSync(resolve(out, 'vendor'), { recursive: true });
-for (const [from, to] of [['scripts/vendor/react.production.min.js', 'react.js'], ['scripts/vendor/react-dom.production.min.js', 'react-dom.js'], ['reference/bundle.legacy.js', 'ism-react-legacy.js']]) copyFileSync(resolve(ROOT, from), resolve(out, 'vendor', to));
-// A full specimen page, wrapped so it renders on its own: design-system CSS, the legacy React bundle for the few React specimens, repo asset paths.
+for (const [from, to] of [['scripts/vendor/react.production.min.js', 'react.js'], ['scripts/vendor/react-dom.production.min.js', 'react-dom.js']]) copyFileSync(resolve(ROOT, from), resolve(out, 'vendor', to));
+// The current @ism/ui source (packages/react/src) as a browser IIFE exposing window.ISMUI, for the React specimens.
+// React is not bundled: react, react-dom and react/jsx-runtime resolve to shims over the vendored UMD globals (React 18.3.1).
+const reactShims = {
+  react: 'module.exports = window.React;',
+  'react-dom': 'module.exports = window.ReactDOM;',
+  'react/jsx-runtime': `const R = window.React;
+const jsx = (type, props, key) => R.createElement(type, key === undefined ? props : { ...props, key });
+const jsxs = (type, props, key) => { const { children, ...rest } = props; if (key !== undefined) rest.key = key; return R.createElement(type, rest, ...children); };
+export { jsx, jsxs };
+export const Fragment = R.Fragment;`,
+};
+await build({
+  absWorkingDir: ROOT,
+  entryPoints: ['packages/react/src/index.ts'],
+  tsconfig: 'packages/react/tsconfig.json',
+  outfile: 'docs/previews/vendor/ism-ui.js',
+  bundle: true,
+  format: 'iife',
+  globalName: 'ISMUI',
+  platform: 'browser',
+  target: 'es2020',
+  minify: true,
+  legalComments: 'none',
+  logLevel: 'warning',
+  logOverride: { 'module-level-directive': 'silent' },
+  plugins: [{
+    name: 'react-globals',
+    setup(b) {
+      b.onResolve({ filter: /^react(-dom)?(\/jsx-runtime)?$/ }, (a) => ({ path: a.path, namespace: 'react-global' }));
+      b.onLoad({ filter: /.*/, namespace: 'react-global' }, (a) => {
+        if (!(a.path in reactShims)) throw new Error(`build-previews: no React shim for "${a.path}"`);
+        return { contents: reactShims[a.path], loader: 'js' };
+      });
+    },
+  }],
+});
+// A full specimen page, wrapped so it renders on its own: design-system CSS, React + the @ism/ui bundle for the React specimens, repo asset paths.
 const standalone = (html) => html
   .replace('</head>', `<link rel="stylesheet" href="../../packages/web/css/ism.css">
 <link rel="stylesheet" href="../../packages/web/css/rtl.css" media="not all" id="rtl">
-<script src="vendor/react.js"></script><script src="vendor/react-dom.js"></script><script src="vendor/ism-react-legacy.js"></script>
+<script src="vendor/react.js"></script><script src="vendor/react-dom.js"></script><script src="vendor/ism-ui.js"></script>
 </head>`)
   .replace(/(src|href)="(?:\.\.\/)+assets\//g, '$1="../../packages/web/assets/')
-  .replace(/url\((['"]?)(?:\.\.\/)+assets\//g, 'url($1../../packages/web/assets/');
+  .replace(/url\((['"]?)(?:\.\.\/)+assets\//g, 'url($1../../packages/web/assets/')
+  .replace(/'(?:\.\.\/)+assets\//g, "'../../packages/web/assets/");
 const links = [];
 for (const c of all.components) {
   const snippets = c.snippets.html.length ? c.snippets.html : [];

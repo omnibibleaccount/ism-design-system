@@ -16,7 +16,7 @@
 <div class="pv">
   <div class="pv-col">
     <div class="pv-sec">
-      <span class="pv-lbl">React · &lt;Footer /&gt; from the component bundle · shown at 78%</span>
+      <span class="pv-lbl">React · &lt;Footer /&gt; from @ism/ui · same content as the HTML footer below · shown at 78%</span>
       <div class="pv-zoom" id="nv-react-footer"></div>
     </div>
     <div class="pv-sec">
@@ -110,9 +110,25 @@
 <script>
 (function(){
   try{
-    var ns=window.ISMDesignSystem_106e83;
+    var ns=window.ISMUI;
     if(ns&&ns.Footer&&window.React&&window.ReactDOM){
-      ReactDOM.createRoot(document.getElementById('nv-react-footer')).render(React.createElement(ns.Footer,{ctaText:'Help deliver the Bible beyond every barrier.',ctaLabel:'Support Bible Access'}));
+      var h=React.createElement;
+      function col(heading,labels){ return {heading:heading,links:labels.map(function(l){ return {label:l,href:'#'}; })}; }
+      // Reuse the social glyphs of the HTML footer below.
+      var socials=[].map.call(document.querySelectorAll('.nv-foot .nv-socials')[0].children,function(a){
+        var svg=a.querySelector('svg');
+        return {name:a.getAttribute('aria-label'),href:'#',icon:h('svg',{viewBox:svg.getAttribute('viewBox'),'aria-hidden':true,dangerouslySetInnerHTML:{__html:svg.innerHTML}})};
+      });
+      ReactDOM.createRoot(document.getElementById('nv-react-footer')).render(h(ns.Footer,{logoSrc:'../../assets/logos/Full%20Logo%20Black.svg',logoHref:'#',
+        ctaText:'Help deliver the Bible beyond every barrier.',ctaLabel:'Support Bible Access',ctaHref:'#',
+        tagline:'Delivering unhindered access to the Bible until everyone can engage with Scripture in their own language, without barriers.',
+        socials:socials,
+        columns:[col('About',['About ISM','Our Mission','Our Team','Statement of Faith',"FAQ's"]),
+          col('Platforms',['dot.Bible App','ISM Radio','ISM Publishing','TAP Cards','Global Bible Network']),
+          col('Get Involved',['Give Online','Join The Mission','Partner With Us','Newsletter','Contact'])],
+        legal:['© 2026 – International Scripture Ministries Inc','ISM is a 501(c)(3) nonprofit organization. All donations are tax-deductible.'],
+        legalLinks:[{label:'Cookie Policy',href:'#'},{label:'Terms',href:'#'},{label:'Privacy',href:'#'}],
+        cookieSettingsLabel:'Cookie settings',onCookieSettings:function(){}}));
     }
   }catch(e){}
 })();

@@ -29,9 +29,9 @@ body{margin:0;padding:24px;background:var(--off-white)}
     <span class="pv-c">single choice · sample amounts</span>
   </div>
   <div class="pv-box">
-    <span class="pv-h">React · className</span>
+    <span class="pv-h">React · ChipGroup</span>
     <div class="pv-row" id="r-chips"></div>
-    <span class="pv-c">no dedicated component: state drives aria-pressed</span>
+    <span class="pv-c">mode="multiple" · each Chip sets aria-pressed · click to try</span>
   </div>
 </div>
 <script>
@@ -44,17 +44,10 @@ body{margin:0;padding:24px;background:var(--off-white)}
     });
   }
   single('h-chips'); single('h-amt');
-  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var NS = window.ISMUI; if(!NS || !window.React || !window.ReactDOM) return;
   var h = React.createElement;
-  function Langs(){
-    var s = React.useState(['Amharic']); var sel = s[0], set = s[1];
-    return h(React.Fragment,null,['Amharic','Burmese','Cebuano','Swahili'].map(function(l){
-      var on = sel.indexOf(l) > -1;
-      return h('button',{key:l,type:'button',className:'chip','aria-pressed':on ? 'true' : 'false',
-        onClick:function(){ set(on ? sel.filter(function(x){return x!==l;}) : sel.concat(l)); } },l);
-    }));
-  }
-  ReactDOM.createRoot(document.getElementById('r-chips')).render(h(Langs));
+  ReactDOM.createRoot(document.getElementById('r-chips')).render(h(NS.ChipGroup,{mode:'multiple','aria-label':'Languages',defaultValue:['Amharic'],
+    options:['Amharic','Burmese','Cebuano','Swahili'].map(function(l){ return {value:l,label:l}; })}));
 })();
 </script>
 </body></html>
