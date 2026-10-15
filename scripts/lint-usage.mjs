@@ -86,6 +86,7 @@ export const RULES = {
   'rtl-dir': ['error', 'RTL languages (ar, he, fa, ur) need dir="rtl".'],
   'pill-eyebrow': ['warn', 'Pills are for buttons, chips and badges, not eyebrows or headings.'],
   'uppercase-typed': ['warn', 'Do not type ALL CAPS; the eyebrow style applies uppercase in CSS.'],
+  'component-override': ['warn', 'Do not restyle system classes (border, radius, background, colour, text-decoration, padding, margin). Wrap them in your own layout class, or report the gap.'],
 };
 
 /* ---------------- helpers ---------------- */
@@ -100,6 +101,13 @@ const VOID = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input'
 const VAGUE = /^(click here|here|submit|ok|okay|yes|no|go|click)$/i;
 const TW_PALETTE = /^(?:[a-z-]+:)*(?:bg|text|border|ring|fill|stroke|from|to|via|divide|outline|decoration|shadow|accent|caret)-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose|white|black)(?:-\d{2,3})?(?:\/\d+)?$/;
 const TW_ARB = /^(?:[a-z-]+:)*[a-z-]+-\[(?:#|rgb|hsl|\d+px|\d+(?:\.\d+)?rem)[^\]]*\]$/;
+// Visual properties a page must not change on a system class; layout (display, flex, gap, position, size, overflow, z-index) is fine.
+const OVERRIDE_PROP = /^(?:border(?:-[\w-]+)?|background(?:-[\w-]+)?|color|text-decoration(?:-[\w-]+)?|padding(?:-[\w-]+)?|margin(?:-[\w-]+)?)$/;
+const camelToKebab = (p) => p.replace(/[A-Z]/g, (c) => '-' + c.toLowerCase());
+// Page containers (rules/layout-motion.md): spacing around them is page layout, not a component restyle.
+const LAYOUT_CONTAINERS = new Set(['wrap', 'narrow']);
+const SPACING_PROP = /^(?:padding|margin)/;
+const restyled = (cls, props) => (LAYOUT_CONTAINERS.has(cls) ? props.filter((p) => !SPACING_PROP.test(p)) : props);
 
 function lineOf(text, idx) {
   let n = 1;
@@ -256,6 +264,29 @@ export function lintText(text, file, data, opts = {}) {
       if (isBtn && /!/.test(label)) add('button-exclamation', m.index, `Button label "${label}" has an exclamation mark.`);
       if ((isBtn || m[1].toLowerCase() === 'a') && VAGUE.test(label.replace(/[↗→←↑↓]/g, '').trim())) add('vague-button-label', m.index, `Label "${label}" is vague; say what happens next.`);
       if (isBtn && label.length > 8 && label === label.toUpperCase() && /[A-Z]{3}/.test(label)) add('uppercase-typed', m.index, `Label "${label}" is typed in capitals.`);
+    }
+
+    // restyled system classes: <style> rules whose subject (last compound selector) is a system class, and inline styles on system-class elements
+    const overrides = (decls) => decls.split(';').map((d) => camelToKebab(d.split(':')[0].trim().replace(/^["']|["']$/g, ''))).filter((p) => OVERRIDE_PROP.test(p));
+    for (const sb of text.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)) {
+      const css = sb[1].replace(/\/\*[\s\S]*?\*\//g, (s) => s.replace(/[^\n]/g, ' '));
+      const base = sb.index + sb[0].indexOf('>') + 1;
+      for (const r of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+        if (/^\s*@/.test(r[1])) continue;
+        const props = overrides(r[2]);
+        if (!props.length) continue;
+        const hit = r[1].split(',').flatMap((sel) => [...(sel.trim().split(/[\s>+~]+/).pop() || '').matchAll(/\.(-?[_a-zA-Z][\w-]*)/g)].map((c) => c[1])).filter((c) => classSet.has(c) && restyled(c, props).length);
+        if (hit.length) add('component-override', base + r.index + r[0].search(/\S/), `<style> sets ${[...new Set(restyled(hit[0], props))].join(', ')} on system class .${hit[0]}.`);
+      }
+    }
+    for (const m of text.matchAll(/<[a-zA-Z][\w-]*\b[^>]*>/g)) {
+      const tag = m[0];
+      const cls = (tag.match(/\bclass(?:Name)?\s*=\s*["']([^"']*)["']/) || [])[1];
+      const style = (tag.match(/\bstyle\s*=\s*"([^"]*)"/) || tag.match(/\bstyle\s*=\s*'([^']*)'/) || tag.match(/\bstyle\s*=\s*\{\{([^}]*)\}\}/) || [])[1];
+      if (!cls || !style) continue;
+      const props = overrides(style.replace(/,(?=\s*[\w"']+\s*:)/g, ';'));
+      const sys = cls.split(/\s+/).find((c) => classSet.has(c) && restyled(c, props).length);
+      if (sys) add('component-override', m.index, `Inline style sets ${[...new Set(restyled(sys, props))].join(', ')} on system class .${sys}.`);
     }
 
     // pill eyebrows
