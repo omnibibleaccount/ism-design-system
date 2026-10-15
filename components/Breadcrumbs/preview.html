@@ -1,0 +1,61 @@
+<!-- @dsCard group="Navigation" height=300 subtitle="Trail, … menu, on dark" -->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+.pv{padding:24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start;background:var(--off-white);padding-bottom:120px}
+.pv-sec{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pv-lbl{font-size:12px;font-weight:600;color:var(--gray-600);letter-spacing:.02em}
+.pv-panel{background:var(--white);border:1px solid var(--gray-200);border-radius:20px;padding:12px 24px}
+.pv-dark{background:var(--charcoal-900);border-radius:20px;padding:12px 24px}
+</style>
+</head>
+<body>
+<div class="pv">
+  <div class="pv-sec">
+    <span class="pv-lbl">Default · hover on "About ISM"</span>
+    <div class="pv-panel">
+      <nav aria-label="Breadcrumb"><ol class="nv-bc">
+        <li><a href="#">Home</a><span class="nv-bc-sep" aria-hidden="true">/</span></li>
+        <li><a href="#" class="nv-hover">About ISM</a><span class="nv-bc-sep" aria-hidden="true">/</span></li>
+        <li><span aria-current="page">Statement of Faith</span></li>
+      </ol></nav>
+    </div>
+  </div>
+  <div class="pv-sec">
+    <span class="pv-lbl">Truncated · … menu open (click … to toggle)</span>
+    <div class="pv-panel">
+      <nav aria-label="Breadcrumb"><ol class="nv-bc">
+        <li><a href="#">Home</a><span class="nv-bc-sep" aria-hidden="true">/</span></li>
+        <li><button type="button" class="nv-bc-more" id="pv-more" aria-expanded="true" aria-controls="pv-bc-menu" aria-label="Show 2 more levels">…</button><span class="nv-bc-sep" aria-hidden="true">/</span>
+          <div class="nv-bc-menu" id="pv-bc-menu">
+            <a href="#" class="nv-active">Resources</a>
+            <a href="#">ISM Publishing</a>
+          </div>
+        </li>
+        <li><a href="#">Study Bibles</a><span class="nv-bc-sep" aria-hidden="true">/</span></li>
+        <li><span aria-current="page">Amharic</span></li>
+      </ol></nav>
+    </div>
+  </div>
+  <div class="pv-sec">
+    <span class="pv-lbl">On dark · .nv-bc-dark on charcoal heroes</span>
+    <div class="pv-dark">
+      <nav aria-label="Breadcrumb"><ol class="nv-bc nv-bc-dark">
+        <li><a href="#">Home</a><span class="nv-bc-sep" aria-hidden="true">/</span></li>
+        <li><a href="#">Resources</a><span class="nv-bc-sep" aria-hidden="true">/</span></li>
+        <li><span aria-current="page">HD Radio Broadcast</span></li>
+      </ol></nav>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('pv-more'),m=document.getElementById('pv-bc-menu');
+  b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',o?'false':'true');m.hidden=o;});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){b.setAttribute('aria-expanded','false');m.hidden=true;b.focus();} });
+})();
+</script>
+</body>
+</html>

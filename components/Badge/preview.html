@@ -1,0 +1,77 @@
+<!-- @dsCard group="Actions" height=751 subtitle="Tone badges, status, tags, counts" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.pv-box{background:var(--white);border:1px solid var(--gray-200);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.pv-dk{background:var(--black);border-color:rgba(255,255,255,.16);color:var(--white)}
+.pv-wide{grid-column:1/-1}
+.pv-h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-600)}
+.pv-dk .pv-h,.pv-dk .pv-c{color:rgba(255,255,255,.6)}
+.pv-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.pv-c{font-size:12px;color:var(--gray-600);font-family:ui-monospace,Menlo,monospace}
+.pv-grid{display:grid;grid-template-columns:80px repeat(6,max-content);gap:10px 10px;align-items:center;overflow-x:auto}
+</style></head><body>
+<div class="pv">
+  <div class="pv-box pv-dk">
+    <span class="pv-h">React · Badge on dark</span>
+    <div class="pv-row" id="r-dark"></div>
+    <span class="pv-c">tone outlineDark · solidBlue · accentText</span>
+  </div>
+  <div class="pv-box">
+    <span class="pv-h">React · Badge on light</span>
+    <div class="pv-row" id="r-light"></div>
+    <span class="pv-c">tone outlineLight · accentText</span>
+  </div>
+  <div class="pv-box pv-wide">
+    <span class="pv-h">HTML / CSS · status badges</span>
+    <div class="pv-grid">
+      <span class="pv-c">subtle</span>
+      <span class="badge cr-badge-sm cr-badge-neutral">Draft</span><span class="badge cr-badge-sm badge-info">New</span><span class="badge cr-badge-sm badge-success">Live</span><span class="badge cr-badge-sm badge-warning cr-badge-warning">Pending</span><span class="badge cr-badge-sm badge-error">Failed</span><span class="badge cr-badge-sm cr-badge-gold">Partner</span>
+      <span class="pv-c">subtle md</span>
+      <span class="badge cr-badge-md cr-badge-neutral"><span class="cr-badge-dot"></span>Draft</span><span class="badge cr-badge-md badge-info"><span class="cr-badge-dot"></span>New</span><span class="badge cr-badge-md badge-success"><span class="cr-badge-dot"></span>Live</span><span class="badge cr-badge-md badge-warning cr-badge-warning"><span class="cr-badge-dot"></span>Pending</span><span class="badge cr-badge-md badge-error"><span class="cr-badge-dot"></span>Failed</span><span class="badge cr-badge-md cr-badge-gold"><span class="cr-badge-dot"></span>Partner</span>
+      <span class="pv-c">solid</span>
+      <span class="badge cr-badge-sm cr-solid-neutral">Draft</span><span class="badge cr-badge-sm cr-solid-info">New</span><span class="badge cr-badge-sm cr-solid-success">Live</span><span class="badge cr-badge-sm cr-solid-warning">Pending</span><span class="badge cr-badge-sm cr-solid-error">Failed</span><span class="badge cr-badge-sm cr-solid-gold">Partner</span>
+      <span class="pv-c">solid md</span>
+      <span class="badge cr-badge-md cr-solid-neutral">Draft</span><span class="badge cr-badge-md cr-solid-info">New</span><span class="badge cr-badge-md cr-solid-success">Live</span><span class="badge cr-badge-md cr-solid-warning">Pending</span><span class="badge cr-badge-md cr-solid-error">Failed</span><span class="badge cr-badge-md cr-solid-gold">Partner</span>
+    </div>
+  </div>
+  <div class="pv-box">
+    <span class="pv-h">HTML / CSS · removable tags</span>
+    <div class="pv-row" id="h-tags">
+      <span class="cr-tag">Amharic<button type="button" class="cr-tag-x" aria-label="Remove Amharic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span>
+      <span class="cr-tag">Burmese<button type="button" class="cr-tag-x cr-is-hover" aria-label="Remove Burmese"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span>
+      <span class="cr-tag cr-is-focus">Arabic<button type="button" class="cr-tag-x" aria-label="Remove Arabic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span>
+      <span class="cr-tag cr-tag-off">Swahili<button type="button" class="cr-tag-x" disabled aria-label="Remove Swahili"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span>
+    </div>
+    <span class="pv-c">default · hover × · focus × · disabled</span>
+    <div class="pv-row">
+      <span class="cr-tag cr-tag-active">HD Radio<button type="button" class="cr-tag-x" aria-label="Remove HD Radio"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span>
+      <span class="cr-tag cr-tag-active">dot.Bible app<button type="button" class="cr-tag-x" aria-label="Remove dot.Bible app"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span>
+      <button type="button" class="btn btn-ghost btn-sm">Clear all</button>
+    </div>
+    <span class="pv-c">.cr-tag-active · applied filters</span>
+  </div>
+  <div class="pv-box">
+    <span class="pv-h">HTML / CSS · counts &amp; live</span>
+    <div class="pv-row" style="gap:20px">
+      <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600">Messages <span class="count">3</span></span>
+      <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600">Prayer requests <span class="count">12</span></span>
+      <span class="badge cr-badge-md cr-solid-neutral"><span class="live-dot"></span>On air</span>
+    </div>
+    <span class="pv-c">.count (Horizon Blue, never red) · .live-dot (sample numbers)</span>
+  </div>
+</div>
+<script>
+(function(){
+  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('r-dark')).render(h(React.Fragment,null,
+    h(NS.Badge,{tone:'outlineDark'},'Trending'),
+    h(NS.Badge,{tone:'solidBlue'},'New'),
+    h(NS.Badge,{tone:'accentText'},"You're almost done!")));
+  ReactDOM.createRoot(document.getElementById('r-light')).render(h(React.Fragment,null,
+    h(NS.Badge,{tone:'outlineLight'},'Get a sneak peek'),
+    h(NS.Badge,{tone:'accentText'},'500+ languages')));
+})();
+</script>
+</body></html>

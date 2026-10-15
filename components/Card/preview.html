@@ -1,0 +1,119 @@
+<!-- @dsCard group="Cards & media" height=1694 subtitle="Image card + .card variants" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;align-items:start}
+.pv-col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pv-h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-600)}
+.pv-dk{background:var(--black);border-radius:20px;padding:16px}
+</style></head><body>
+<div class="pv">
+  <div class="pv-col">
+    <span class="pv-h">React · Card (image-led)</span>
+    <div class="pv-dk"><div id="r-card"></div></div>
+  </div>
+  <div class="pv-col">
+    <span class="pv-h">React · Card, no image, no CTA</span>
+    <div class="pv-dk"><div id="r-card2"></div></div>
+  </div>
+
+  <div class="pv-col">
+    <span class="pv-h">HTML · program card (image-led)</span>
+    <a class="card cr-card-clip" href="#">
+      <div class="media cr-card-media-top"><img class="photo" src="../../assets/imagery/deck-photo-tap-hand.png" alt="A hand holding a phone to a TAP card"></div>
+      <span class="icon cr-card-medal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18h2"/></svg></span>
+      <h3 class="h3">dot.Bible App</h3>
+      <p class="small muted">A directory of Bible apps in your language, free to download and ready to read offline.</p>
+      <span class="cr-card-cta">Learn more <span class="arrow" aria-hidden="true">↗</span></span>
+    </a>
+  </div>
+  <div class="pv-col">
+    <span class="pv-h">HTML · masonry program card</span>
+    <a class="card cr-card-flush" href="#">
+      <div class="media cr-media-1610"><img class="photo" src="../../assets/imagery/deck-photo-headphones.jpg" alt="Headphones resting on a table"></div>
+      <div class="cr-card-body">
+        <span class="eyebrow">Broadcast</span>
+        <h3 class="h3">HD Radio Broadcast</h3>
+        <p class="small muted">Scripture readings on the air, wherever listeners tune in.</p>
+        <span class="cr-card-cta">Learn more <span class="arrow" aria-hidden="true">↗</span></span>
+      </div>
+    </a>
+  </div>
+  <div class="pv-col">
+    <span class="pv-h">HTML · text card, dark + light</span>
+    <a class="card cr-card-tight cr-card-dark" href="#">
+      <span class="eyebrow">Updates</span>
+      <h3 class="h3">Ministry newsletter</h3>
+      <p class="small cr-card-text">Stories, prayer requests and new languages, once a month.</p>
+      <span class="cr-card-cta">Subscribe <span class="arrow" aria-hidden="true">↗</span></span>
+    </a>
+    <a class="card cr-card-tight" href="#">
+      <span class="eyebrow">Network</span>
+      <h3 class="h3">Global Bible Network</h3>
+      <p class="small muted">See how translators, broadcasters, publishers and churches connect through ISM.</p>
+    </a>
+  </div>
+
+  <div class="pv-col">
+    <span class="pv-h">HTML · value card (.card-lg)</span>
+    <article class="card card-lg cr-card-roomy">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span>
+      <h3 class="h3">Inclusion</h3>
+      <p class="muted">Every language and every community deserves access.</p>
+      <ul class="small muted cr-card-list"><li>Heart-language first</li><li>Free to the reader, always</li></ul>
+    </article>
+  </div>
+  <div class="pv-col">
+    <span class="pv-h">HTML · team member card</span>
+    <article class="card cr-card-flush">
+      <div class="media cr-media-43"><div class="ph" style="width:100%;height:100%">[Team photo]</div></div>
+      <div class="cr-card-body">
+        <h3 class="h4">[Full name]</h3>
+        <p class="cr-card-role">[Role]</p>
+        <p class="small muted">[Two-sentence bio.]</p>
+      </div>
+    </article>
+  </div>
+  <div class="pv-col">
+    <span class="pv-h">HTML · contact method card</span>
+    <a class="card" href="#">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+      <h3 class="h4">Email</h3>
+      <p class="small muted">[Contact email]</p>
+    </a>
+  </div>
+
+  <div class="pv-col">
+    <span class="pv-h">HTML · book card (Publishing)</span>
+    <a class="card" href="#">
+      <div class="media cr-book"><span class="cr-book-cover"></span></div>
+      <h3 class="h4">[Book title]</h3>
+      <p class="small muted">[Format · Price]</p>
+    </a>
+  </div>
+  <div class="pv-col">
+    <span class="pv-h">HTML · numbered step card</span>
+    <div class="card card-flat cr-card-pad" style="gap:10px">
+      <span class="cr-step-num">01</span>
+      <h3 class="h4">Resources for your people</h3>
+      <p class="small muted">Apps, books and share cards tailored to your community’s languages.</p>
+    </div>
+  </div>
+  <div class="pv-col">
+    <span class="pv-h">HTML · statement card</span>
+    <div class="card card-flat cr-card-pad">
+      <span class="eyebrow">Our mission</span>
+      <p class="cr-statement">To make scripture accessible to anyone, anywhere.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('r-card')).render(
+    h(NS.Card,{image:'../../assets/imagery/deck-photo-listeners.png',eyebrow:'Explore',title:'The New Testament',subtitle:'Matthew through Revelation',height:300}));
+  ReactDOM.createRoot(document.getElementById('r-card2')).render(
+    h(NS.Card,{eyebrow:'Listen',title:'ISM Radio',subtitle:'Scripture on HD Radio, day and night',cta:'',height:300}));
+})();
+</script>
+</body></html>

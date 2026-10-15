@@ -12,6 +12,14 @@ This repository is the single source of truth for the look, behaviour and wordin
 
 If two sources disagree, the higher one wins and the lower one is a bug: open an issue.
 
+## Hosted copy, screenshots and the linter
+
+- Hosted (GitHub Pages, no Git LFS): tokens, rules, specs, `css/ism.css`, fonts, images and a SHA-256 `manifest.json` at one base URL (see `integrations/README.md`). `llms.txt` there lists everything.
+- Visual target for each component: `docs/screenshots/<Name>.png` (hosted: `screenshots/<Name>.png`). Match it; do not approximate.
+- Paste-ready prompts: `prompts/ism-system-prompt.md` (full) and `prompts/ism-system-prompt-short.md`. Rebuild instructions: `RECREATE.md`. Per-tool guides: `integrations/`.
+- Check every output: `node scripts/lint-usage.mjs <files>` (or the hosted `lint/lint-usage.mjs`). Errors mean drift; fix them, do not suppress them. Details in `rules/enforcement.md`.
+- Figma and Style Dictionary: `packages/tokens/tokens.dtcg.json` (W3C DTCG).
+
 ## How to build a screen
 
 1. Find the components in `specs/index.json` (79, grouped: Brand, Actions, Cards, Data display, Forms, Feedback, Navigation, Patterns, Scripture, Ministry, App UI). Prefer an existing component over new markup.
@@ -41,12 +49,12 @@ If two sources disagree, the higher one wins and the lower one is a bug: open an
 
 ```
 npm install
-npm run check      # tokens, specs, validator (contrast, CSS variables, rules) – must pass
+npm run check      # tokens, DTCG, specs, screenshots, prompts, validator, usage linter and its tests – must pass
 npm run build      # generates tokens, specs, icons, CSS and builds all packages
 npm test           # validator plus package tests
 ```
 
-- Edit sources, not generated files. Sources: `tokens/tokens.json`, `rules/`, `components/*/README.md`, `packages/web/css/bundle.css`, `packages/web/css/states.css`, `packages/web/css/scripts.css`, `packages/web/assets/ui-icons/source.json`, package `src/` folders. Generated: `packages/tokens/src/*.generated.ts`, `packages/web/css/tokens.css`, `rtl.css`, `ism.css`, `components/*/spec.json`, `specs/*.json`, ios/android `Generated/` and icon resources.
+- Edit sources, not generated files. Sources: `tokens/tokens.json`, `rules/`, `components/*/README.md`, `packages/web/css/bundle.css`, `packages/web/css/states.css`, `packages/web/css/scripts.css`, `scripts/lint-usage.mjs` (rules), `packages/web/assets/ui-icons/source.json`, package `src/` folders. Generated: `packages/tokens/src/*.generated.ts`, `packages/web/css/tokens.css`, `rtl.css`, `ism.css`, `components/*/spec.json`, `specs/*.json`, ios/android `Generated/` and icon resources.
 - After changing tokens run `npm run build:tokens`; after changing a README run `npm run build:specs`; after changing icons run `node scripts/build-icons.mjs`.
 - Swift and Kotlin code was written without a compiler available. Build it in Xcode and Android Studio before releasing.
 - Do not commit AI-tool working files (`.claude/`, `CLAUDE.md`, `.cursor/`, …); `.gitignore` excludes them. This file and `llms.txt` are intentionally tracked.

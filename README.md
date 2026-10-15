@@ -20,7 +20,12 @@ Humans and AI tools should start with [AGENTS.md](AGENTS.md) (also [llms.txt](ll
 | `packages/android` | Gradle module (Jetpack Compose): 23 components |
 | `examples/next-app` | Minimal Next.js example |
 | `reference/` | Legacy kits, templates and board previews; reference only |
-| `scripts/` | Generators and the validator |
+| `docs/screenshots/` | One PNG per component rendered from the real CSS: the visual target |
+| `prompts/` | Generated, paste-ready system prompts for ChatGPT, Perplexity, Replit and others |
+| `integrations/`, `RECREATE.md` | Per-tool setup guides and rebuild prompts |
+| `packages/tokens/tokens.dtcg.json` | Tokens in W3C DTCG format for Figma, Tokens Studio, Style Dictionary |
+| `tests/lint/` | Fixtures and tests for the usage linter |
+| `scripts/` | Generators, the validator, the usage linter (`lint-usage.mjs`) and the hosted-site build |
 
 ## Quick start
 
@@ -59,7 +64,14 @@ npm run build     # tokens, specs, CSS, packages
 npm run check     # generated files up to date, contrast pairs, CSS variables, spec coverage
 npm test          # validator and package tests
 npm run build:previews   # static component previews in docs/previews
+npm run build:screenshots  # regenerate component screenshots (needs Chromium; PLAYWRIGHT_CHROMIUM_PATH)
+npm run lint:usage       # usage linter over components and examples
+npm run build:site       # hosted copy in site/ for GitHub Pages (SITE_BASE=<url> to override the base URL)
 ```
+
+### Keeping tools on-system
+
+Other tools (ChatGPT, Perplexity, Replit, Figma) read the hosted copy published by `.github/workflows/pages.yml` (enable Pages once: Settings > Pages > Source: GitHub Actions). Start with [integrations/README.md](integrations/README.md). Every output should pass `node scripts/lint-usage.mjs`; see [rules/enforcement.md](rules/enforcement.md).
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Fonts and imagery are large binaries and are stored with Git LFS (`.gitattributes`).
 

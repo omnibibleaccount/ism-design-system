@@ -1,0 +1,32 @@
+<!-- @dsCard group="Data display" height=590 subtitle="Order details and glossary" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
+@media (max-width:760px){.pv{grid-template-columns:minmax(0,1fr)} }
+</style></head><body>
+<div class="pv">
+  <div class="card card-flat" style="gap:12px">
+    <div class="dp-kv-head"><h3 class="h4">Order details</h3><span class="badge badge-success"><span class="dp-dot"></span>Shipped</span></div>
+    <dl class="dp-kv">
+      <dt>Order number</dt><dd class="dp-num">ISM-24817</dd>
+      <dt>Placed</dt><dd>14 October 2026</dd>
+      <dt>Item</dt><dd>NFC Bible cards × 50</dd>
+      <dt>Language</dt><dd>Amharic</dd>
+      <dt>Shipping</dt><dd>Standard · 5 to 7 days</dd>
+      <dt>Subtotal</dt><dd class="dp-num">$45.00</dd>
+      <dt>Shipping cost</dt><dd class="dp-num">$6.50</dd>
+      <dt class="dp-kv-tot">Total</dt><dd class="dp-kv-tot dp-num">$51.50</dd>
+    </dl>
+    <span class="dp-sample">Sample order; prices are placeholders.</span>
+  </div>
+  <div class="card card-flat" style="gap:20px">
+    <h3 class="h4">Glossary</h3>
+    <dl class="dp-dl">
+      <div><dt>HD Radio</dt><dd>Digital radio that carries extra channels on one FM signal. ISM uses them to broadcast Scripture in local languages.</dd></div>
+      <div><dt>NFC Bible card</dt><dd>A small printed card. Tap it with a phone and the dot.Bible app opens to a chosen passage.</dd></div>
+      <div><dt>Global Bible Network</dt><dd>Partner churches, stations and translators working together to bring the Bible to every language.</dd></div>
+      <div><dt>BSB</dt><dd>Berean Standard Bible, a modern English translation free for anyone to share.</dd></div>
+    </dl>
+  </div>
+</div>
+</body></html>

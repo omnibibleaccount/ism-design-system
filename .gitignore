@@ -156,3 +156,6 @@ packages/react/css/
 packages/react-native/fonts/
 docs/previews/
 packages/react/assets/
+
+# Hosted build output (published by .github/workflows/pages.yml)
+site/

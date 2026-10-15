@@ -1,0 +1,81 @@
+<!-- @dsCard group="Scripture" height=949 subtitle="Full player and mini player" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.pv-col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pv-full{flex:1 1 620px;max-width:760px}
+.pv-states{display:flex;gap:24px;flex-wrap:wrap;margin-top:8px}
+.pv-state{display:flex;align-items:center;gap:12px}
+.pv-phone{height:200px;background:var(--off-white)}
+.pv-phone-dark{height:200px;background:var(--black);border-color:var(--charcoal-900)}
+.pv-lines{padding:20px 20px 0;display:flex;flex-direction:column;gap:10px}
+.pv-lines i{display:block;height:10px;border-radius:4px;background:var(--gray-200)}
+.pv-phone-dark .pv-lines i{background:rgba(255,255,255,.1)}
+.pv-dock{position:absolute;left:12px;right:12px;bottom:12px}
+</style></head><body>
+<div class="pv">
+  <div class="pv-col pv-full">
+    <span class="sx-lbl">Full player · playing</span>
+    <section class="sx-player" aria-label="Audio player">
+      <div class="sx-cover"><img src="../../assets/imagery/deck-photo-headphones.jpg" alt=""></div>
+      <div class="sx-player-main">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span class="sx-lbl">Now playing · dot.Bible Audio</span>
+          <p class="sx-player-title">John 3 · Amharic</p>
+          <p class="sx-player-sub"><span lang="am">ዮሐንስ 3</span> · Narrated Bible</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="sx-track" tabindex="0" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="352" aria-valuenow="134" aria-valuetext="2 minutes 14 seconds"><i style="width:38%"></i><b style="left:38%"></b></div>
+          <div class="sx-time"><span>2:14</span><span>−3:38</span></div>
+        </div>
+        <div class="sx-controls">
+          <button type="button" class="sx-speed" id="pv-speed" aria-label="Playback speed, 1x">1x</button>
+          <div class="sx-transport">
+            <button type="button" class="sx-ctrl" aria-label="Previous chapter"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 5v14M18 6l-9 6 9 6z"/></svg></button>
+            <button type="button" class="sx-ctrl" aria-label="Back 15 seconds"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 3.5v3.7h3.7"/></svg><small aria-hidden="true">15</small></button>
+            <button type="button" class="sx-big" id="pv-play" aria-label="Pause"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+            <button type="button" class="sx-ctrl" aria-label="Forward 15 seconds"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 3.5v3.7h-3.7"/></svg><small aria-hidden="true">15</small></button>
+            <button type="button" class="sx-ctrl" aria-label="Next chapter"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 5v14M6 6l9 6-9 6z"/></svg></button>
+          </div>
+          <button type="button" class="sx-ibtn" aria-label="Chapter list"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg></button>
+        </div>
+      </div>
+    </section>
+    <div class="pv-states">
+      <div class="pv-state"><span class="sx-big sx-big-md"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="sx-lbl">Paused</span></div>
+      <div class="pv-state"><span class="sx-big sx-big-md is-hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="sx-lbl">Hover</span></div>
+      <div class="pv-state"><span class="sx-big sx-big-md" role="img" aria-label="Loading"><span class="spin"></span></span><span class="sx-lbl">Loading</span></div>
+    </div>
+  </div>
+  <div class="pv-col">
+    <span class="sx-lbl">Mini player · light</span>
+    <div class="sx-phone pv-phone">
+      <div class="pv-lines" aria-hidden="true"><i style="width:60%;height:14px"></i><i style="width:92%"></i><i style="width:84%"></i></div>
+      <div class="sx-mini pv-dock" style="--sx-progress:38%">
+        <img src="../../assets/imagery/deck-photo-headphones.jpg" alt="">
+        <div class="sx-mini-text"><span class="sx-mini-title">John 3 · Amharic</span><span class="sx-mini-meta">2:14 / 5:52</span></div>
+        <button type="button" class="sx-ctrl" aria-label="Back 15 seconds"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 3.5v3.7h3.7"/></svg><small aria-hidden="true">15</small></button>
+        <button type="button" class="sx-big sx-big-sm" aria-label="Pause"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+      </div>
+    </div>
+    <span class="sx-lbl" style="margin-top:8px">Mini player · dark, paused</span>
+    <div class="sx-phone pv-phone-dark">
+      <div class="pv-lines" aria-hidden="true"><i style="width:60%;height:14px"></i><i style="width:92%"></i><i style="width:84%"></i></div>
+      <div class="sx-mini sx-mini-dark pv-dock" style="--sx-progress:38%">
+        <img src="../../assets/imagery/deck-photo-headphones.jpg" alt="">
+        <div class="sx-mini-text"><span class="sx-mini-title">John 3 · Amharic</span><span class="sx-mini-meta">Paused · 2:14 / 5:52</span></div>
+        <button type="button" class="sx-ctrl" aria-label="Close player"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        <button type="button" class="sx-big sx-big-sm" aria-label="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+var speeds=['1x','1.25x','1.5x','0.75x'],si=0,sp=document.getElementById('pv-speed');
+sp.addEventListener('click',function(){si=(si+1)%speeds.length;sp.textContent=speeds[si];sp.setAttribute('aria-label','Playback speed, '+speeds[si]);});
+var pl=document.getElementById('pv-play'),playing=true;
+var PAUSE='<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+var PLAY='<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+pl.addEventListener('click',function(){playing=!playing;pl.innerHTML=playing?PAUSE:PLAY;pl.setAttribute('aria-label',playing?'Pause':'Play');});
+</script>
+</body></html>

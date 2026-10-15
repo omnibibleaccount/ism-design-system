@@ -1,0 +1,57 @@
+<!-- @dsCard group="Data display" height=647 subtitle="Hairline, or, vertical, thread" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.pv-box{background:var(--white);border:1px solid var(--gray-200);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.pv-dk{background:var(--black);border-color:rgba(255,255,255,.16);color:var(--white)}
+.pv-h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-600)}
+.pv-dk .pv-h,.pv-dk .pv-c{color:rgba(255,255,255,.6)}
+.pv-c{font-size:12px;color:var(--gray-600);font-family:ui-monospace,Menlo,monospace}
+.pv-row{display:flex;flex-wrap:wrap;gap:16px;align-items:center;font-size:15px;color:var(--charcoal-900)}
+.pv-vert{display:flex;gap:24px;align-items:center;height:120px}
+</style></head><body>
+<div class="pv">
+  <div class="pv-box">
+    <span class="pv-h">HTML / CSS · hairlines</span>
+    <span class="pv-c">.cr-rule</span>
+    <hr class="cr-rule">
+    <span class="pv-c">.cr-rule-strong</span>
+    <hr class="cr-rule cr-rule-strong">
+    <span class="pv-c">.cr-rule-or</span>
+    <div class="cr-rule-or" role="separator" aria-label="or">or</div>
+  </div>
+  <div class="pv-box">
+    <span class="pv-h">HTML / CSS · vertical &amp; thread</span>
+    <div class="pv-row">98.7 FM<span class="cr-rule-v" aria-hidden="true"></span>Amharic<span class="cr-rule-v" aria-hidden="true"></span>Addis Ababa</div>
+    <span class="pv-c">.cr-rule-v · 1 × 24px in toolbars</span>
+    <div class="thread" aria-hidden="true"></div>
+    <span class="pv-c">.thread · once per section</span>
+  </div>
+  <div class="pv-box pv-dk">
+    <span class="pv-h">On dark</span>
+    <hr class="cr-rule cr-rule-dark">
+    <span class="pv-c">.cr-rule-dark</span>
+    <div class="thread" aria-hidden="true"></div>
+    <span class="pv-c">.thread</span>
+  </div>
+  <div class="pv-box pv-dk">
+    <span class="pv-h">React · Divider</span>
+    <div id="r-h"></div>
+    <span class="pv-c">default · length 72 · thickness 2</span>
+    <div class="pv-vert" id="r-v"></div>
+    <span class="pv-c">orientation vertical · length 120 / 80</span>
+  </div>
+</div>
+<script>
+(function(){
+  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('r-h')).render(h('div',{ style: { display:'flex', flexDirection:'column', gap:14 } },
+    h(NS.Divider,null),
+    h(NS.Divider,{length:200,thickness:3})));
+  ReactDOM.createRoot(document.getElementById('r-v')).render(h(React.Fragment,null,
+    h(NS.Divider,{orientation:'vertical',length:120}),
+    h(NS.Divider,{orientation:'vertical',length:80})));
+})();
+</script>
+</body></html>
