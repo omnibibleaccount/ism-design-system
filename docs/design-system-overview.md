@@ -53,7 +53,7 @@ The library was ported from the ISM website component library (the "ISM Main Web
 - **Plain HTML in this repo** (ui_kits, cards): link `tokens/all.css`.
 - **Class prefixes** keep groups apart: shared base classes have no prefix (`.btn`, `.card`, `.input`, `.chip`, `.alert`, `.badge`, `.eyebrow`, `.h1`–`.h4`); group classes use `cr-` core, `fm-` forms, `fb-` feedback, `nv-` navigation, `dp-` data & patterns, `sx-` scripture, `mn-` ministry, `ap-` app UI.
 
-## Tokens (v2)
+## Tokens (v3 summary)
 - **Colour:** brand `--horizon-blue` #046DE3 (hover `--horizon-blue-dim`, light `--sky-blue`, on dark `--blue-on-dark`, tints `--blue-tint` / `--blue-tint-line`); accents `--gradient-violet`, `--gradient-gold`, `--gradient-peach`, `--violet-ink`, `--violet-tint`, `--gold-tint`, `--leather-gold`; neutrals `--black`, `--charcoal-900/800/700`, `--gray-700…100`, `--gray-placeholder`, `--off-white`, `--white`.
 - **Status:** `--success`, `--error`, `--warning`, `--info`, each with `-bg` and `-line`; `--success-on-dark`, `--error-on-dark`, `--error-field-bg`. `--live` (#e5484d) is only for on-air indicators.
 - **Gradients:** `--gradient-signature` (blue → violet → gold glow), `--gradient-line` (hairlines, borders, progress), `--gradient-marker` (highlight behind a key word), `--gradient-signature-soft`.
@@ -61,6 +61,8 @@ The library was ported from the ISM website component library (the "ISM Main Web
 - **Shadow:** `--shadow-card-light`, `--shadow-lift`, `--shadow-overlay`, `--shadow-card-dark`, `--shadow-focus`.
 - **Layout:** `--frame-max` 1280, `--container-max` 1200, `--gutter`, `--measure-reading`, `--measure-scripture`, `--breakpoint-mobile`, `--breakpoint-desktop`, `--tap-target` 44px.
 - **Type:** `--font-sans` (Inter with Noto Ethiopic, Myanmar and Naskh Arabic fallbacks), `--font-serif` (Lora). `.h1` is weight 700; `.h2`–`.h4` and UI labels are 600. Eyebrows: 12px, 600, uppercase, `--eyebrow-tracking` 0.2em. Overlines: `--overline-tracking` 0.06em.
+
+> Full v3 token set (z-index, motion, opacity, size, per-script line heights) lives in `tokens/tokens.json`; written rules in `rules/`.
 
 ## Building rules
 - **One Horizon Blue primary per group.** Every other action in that group is secondary, outline, light or ghost.
