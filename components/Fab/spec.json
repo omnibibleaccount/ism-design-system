@@ -1,0 +1,228 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Fab",
+  "title": "Fab",
+  "group": "App UI",
+  "version": "3.0.0",
+  "summary": "The floating + button for a screen's one main create action, with the pull-to-refresh indicator and the snackbar that sits above the tab bar.",
+  "whenToUse": [
+    "Use the FAB for the single most common create action on a list screen: New note on Saved.",
+    "Use pull to refresh on feeds that change from the server: Listen episodes, ISM Radio schedules.",
+    "Use the snackbar to confirm an action and offer Undo (note deleted, verse saved)."
+  ],
+  "whenNotToUse": [
+    "Do not use a FAB on reading screens, settings or anywhere with a blue primary button already.",
+    "Do not use the snackbar for errors that need attention; use an inline Alert."
+  ],
+  "anatomy": {
+    "description": "All three are placed inside `.ap-screen`, which is `position: relative`.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Fab } from '@ism/ui'",
+    "source": "packages/react/src/components/Fab.tsx",
+    "exports": [
+      "Fab",
+      "PullToRefresh",
+      "Snackbar"
+    ],
+    "extends": [
+      "Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'aria-label'>"
+    ],
+    "props": [
+      {
+        "name": "'aria-label'",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Names the action; the icon is always +, so there is no visible text. Required, e.g. \"New note\"."
+      },
+      {
+        "name": "lifted",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Lift above a visible snackbar (`.ap-fab-lifted`)."
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Replace the + icon. Keep it +; only change it for a different create glyph."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { Fab } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Fab.tsx",
+    "exports": [
+      "Fab",
+      "PullToRefresh",
+      "Snackbar"
+    ],
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Names the action, since the icon is always +: \"New note\". Required."
+      },
+      {
+        "name": "lifted",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Move up above a visible snackbar."
+      },
+      {
+        "name": "placement",
+        "type": "'absolute' | 'static'",
+        "required": false,
+        "default": "\"absolute\"",
+        "description": "Absolute inside the screen (`absolute`, 16dp from the end and 16dp above `bottomOffset`) or in the normal flow (`static`)."
+      },
+      {
+        "name": "bottomOffset",
+        "type": "number",
+        "required": false,
+        "default": "0",
+        "description": "Height of what the FAB must clear: the tab bar (including safe area) and the mini player. Added to the 16dp margin."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "ap-ep",
+    "ap-fab",
+    "ap-fab-lifted",
+    "ap-ptr",
+    "ap-ptr-c",
+    "ap-ptr-t",
+    "ap-screen",
+    "ap-snack",
+    "ap-snack-a"
+  ],
+  "variants": [
+    [
+      {
+        "part": "FAB",
+        "classes": ".ap-fab",
+        "notes": "56px, Horizon Blue, 16px from the right, 16px above the tab bar"
+      },
+      {
+        "part": "FAB lifted",
+        "classes": ".ap-fab.ap-fab-lifted",
+        "notes": "moves up while a snackbar shows"
+      },
+      {
+        "part": "Pressed",
+        "classes": ":active",
+        "notes": "--horizon-blue-dim"
+      },
+      {
+        "part": "Pull to refresh",
+        "classes": ".ap-ptr + .ap-ptr-c",
+        "notes": "white 40px disc, spinning blue arc, under the app bar"
+      },
+      {
+        "part": "Snackbar",
+        "classes": ".ap-snack + .ap-snack-a",
+        "notes": "--charcoal-900, --radius-md, 12px above the tab bar"
+      }
+    ]
+  ],
+  "variantNotes": [],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": false,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "One FAB per screen, and it is the screen's one Horizon Blue primary.",
+    "The icon is always +; the action is named in `aria-label`, not in visible text.",
+    "The FAB never covers the tab bar or the mini player; lift it with `.ap-fab-lifted` when a snackbar appears.",
+    "Snackbar: one line, one text action in `--blue-on-dark`, 44px tall action. Hide after 5s (8s with Undo).",
+    "Pull to refresh only on lists that fetch new data; show a short line of what is happening.",
+    "Feed rows (`.ap-ep`) use a 56px image, title 15/600, meta line and a 36px play button."
+  ],
+  "do": [
+    "Use the FAB for the single most common create action on a list screen: New note on Saved.",
+    "Use pull to refresh on feeds that change from the server: Listen episodes, ISM Radio schedules.",
+    "Use the snackbar to confirm an action and offer Undo (note deleted, verse saved).",
+    "One FAB per screen, and it is the screen's one Horizon Blue primary.",
+    "The icon is always +; the action is named in `aria-label`, not in visible text.",
+    "The FAB never covers the tab bar or the mini player; lift it with `.ap-fab-lifted` when a snackbar appears.",
+    "Snackbar: one line, one text action in `--blue-on-dark`, 44px tall action. Hide after 5s (8s with Undo).",
+    "Pull to refresh only on lists that fetch new data; show a short line of what is happening.",
+    "Feed rows (`.ap-ep`) use a 56px image, title 15/600, meta line and a 36px play button."
+  ],
+  "dont": [
+    "Do not use a FAB on reading screens, settings or anywhere with a blue primary button already.",
+    "Do not use the snackbar for errors that need attention; use an inline Alert."
+  ],
+  "accessibility": [
+    "`aria-label` on the FAB names the action (\"New note\").",
+    "Snackbar and refresh indicator use `role=\"status\"`; never move focus to them.",
+    "Offer Undo somewhere else as well (the item's menu), as the snackbar disappears.",
+    "Provide a Refresh command for people who cannot pull (in More or via keyboard).",
+    "Reduced motion: no spin, show the static arc and the text."
+  ],
+  "content": [
+    "FAB labels: \"New note\", \"New highlight\".",
+    "Refresh text: \"Checking for new episodes…\"",
+    "Snackbar: past tense + verb: \"Note deleted\" + \"Undo\", \"Verse saved\" + \"View\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<button class=\"ap-fab\" type=\"button\" aria-label=\"New note\"><svg …><path d=\"M12 5v14M5 12h14\"/></svg></button>\n\n<div class=\"ap-ptr\" role=\"status\">\n  <span class=\"ap-ptr-c\"><svg …><path d=\"M12 3a9 9 0 1 1-8.5 6\"/></svg></span>\n  <span class=\"ap-ptr-t\">Checking for new episodes…</span>\n</div>\n\n<div class=\"ap-snack\" role=\"status\"><span>Note deleted</span><button class=\"ap-snack-a\" type=\"button\">Undo</button></div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<button class=\"ap-fab\" type=\"button\" aria-label=\"New note\"><svg …><path d=\"M12 5v14M5 12h14\"/></svg></button>\n\n<div class=\"ap-ptr\" role=\"status\">\n  <span class=\"ap-ptr-c\"><svg …><path d=\"M12 3a9 9 0 1 1-8.5 6\"/></svg></span>\n  <span class=\"ap-ptr-t\">Checking for new episodes…</span>\n</div>\n\n<div class=\"ap-snack\" role=\"status\"><span>Note deleted</span><button class=\"ap-snack-a\" type=\"button\">Undo</button></div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/Fab/README.md",
+    "spec": "components/Fab/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

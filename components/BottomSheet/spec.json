@@ -1,0 +1,345 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "BottomSheet",
+  "title": "BottomSheet",
+  "group": "App UI",
+  "version": "3.0.0",
+  "summary": "A panel that slides up from the bottom of an app screen for sharing and quick options, plus the iOS-style action sheet for a short list of commands with Cancel.",
+  "whenToUse": [
+    "Use the bottom sheet for a focused task tied to what is on screen: share a verse, pick a translation, write to an NFC card.",
+    "Use the peek height for a few options; let people drag to expanded (96px from the top) for more.",
+    "Use the action sheet for 2–5 commands on one item (a highlight, a note), especially when one is destructive."
+  ],
+  "whenNotToUse": [
+    "Do not use a sheet for long forms or reading; push a new screen.",
+    "Do not stack sheets."
+  ],
+  "anatomy": {
+    "description": "Scrim + sheet. Grab handle, header with a 36px close button, then content. Action sheet:",
+    "markup": null
+  },
+  "react": {
+    "import": "import { BottomSheet } from '@ism/ui'",
+    "source": "packages/react/src/components/BottomSheet.tsx",
+    "exports": [
+      "BottomSheet",
+      "BottomSheetRow",
+      "BottomSheetVariant",
+      "SheetAction",
+      "SheetShareOption"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'title'>"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "BottomSheetVariant",
+        "required": false,
+        "default": "\"sheet\"",
+        "description": "`sheet` is the panel with a grab handle and Close; `action` is the iOS-style command list with Cancel."
+      },
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Controlled open state."
+      },
+      {
+        "name": "defaultOpen",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Initial open state when uncontrolled."
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the sheet asks to open or close (Esc, scrim, drag down, Close, Cancel, after an action)."
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Title that says the task, e.g. \"Share this verse\". Receives focus on open."
+      },
+      {
+        "name": "subtitle",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Sheet: sub-line naming the source, e.g. \"John 3:16 · Berean Standard Bible\". Action: the line under the bold title."
+      },
+      {
+        "name": "expanded",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Sheet: expanded height (top 96px) with the stronger 42% scrim. The peek has a 28% scrim."
+      },
+      {
+        "name": "shareOptions",
+        "type": "SheetShareOption[]",
+        "required": false,
+        "default": null,
+        "description": "Sheet: share tiles shown in a four-column row under the sub-line."
+      },
+      {
+        "name": "actions",
+        "type": "SheetAction[]",
+        "required": false,
+        "default": null,
+        "description": "Action sheet: commands, destructive last."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Sheet: extra content under the share row, such as `.ap-verse` or `.ap-sheet-list` rows. Also the action sheet's extra content."
+      },
+      {
+        "name": "closeLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Close\"",
+        "description": "Accessible name of the Close button."
+      },
+      {
+        "name": "cancelLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": "\"Cancel\"",
+        "description": "Action sheet: Cancel text. Cancel is never red."
+      },
+      {
+        "name": "modal",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Mark the dialog `aria-modal` and trap focus."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { BottomSheet } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/BottomSheet.tsx",
+    "exports": [
+      "ActionSheet",
+      "ActionSheetAction",
+      "BottomSheet",
+      "BottomSheetListRow",
+      "BottomSheetShareRow",
+      "ShareOption"
+    ],
+    "props": [
+      {
+        "name": "visible",
+        "type": "boolean",
+        "required": true,
+        "default": null,
+        "description": "Show the sheet. It animates in and out; unmounts after the exit."
+      },
+      {
+        "name": "onClose",
+        "type": "() => void",
+        "required": true,
+        "default": null,
+        "description": "Called by the scrim, the Close button and a drag down. The sheet only hides when you set `visible` to false."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Task title: \"Share this verse\". Gets focus when the sheet opens."
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Source line under the title: \"John 3:16 · Berean Standard Bible\"."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Sheet content: share tiles, list rows, a verse preview."
+      },
+      {
+        "name": "expanded",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Expanded height (top 96dp, heavier scrim) instead of the content-height peek. Controlled."
+      },
+      {
+        "name": "onExpandedChange",
+        "type": "(expanded: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the reader drags up (to expand)."
+      },
+      {
+        "name": "closeLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Close\"",
+        "description": "Accessible name of the Close button."
+      },
+      {
+        "name": "safeAreaInsets",
+        "type": "{ top?: number; bottom?: number }",
+        "required": false,
+        "default": null,
+        "description": "Safe-area insets; `bottom` is added under the content."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "ap-as",
+    "ap-as-cancel",
+    "ap-as-danger",
+    "ap-as-grp",
+    "ap-as-head",
+    "ap-as-row",
+    "ap-chv",
+    "ap-grab",
+    "ap-lrow",
+    "ap-scrim",
+    "ap-scrim-peek",
+    "ap-share-opt",
+    "ap-share-row",
+    "ap-sheet",
+    "ap-sheet-h",
+    "ap-sheet-list",
+    "ap-sheet-sub",
+    "ap-tb",
+    "ap-tb-sm",
+    "ap-val",
+    "ap-verse"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Peek",
+        "classes": ".ap-sheet + .ap-scrim.ap-scrim-peek (28% black)"
+      },
+      {
+        "variant": "Expanded",
+        "classes": ".ap-sheet.ap-sheet-full (top 96px) + .ap-scrim (42% black); add .ap-verse preview and .ap-sheet-list rows"
+      },
+      {
+        "variant": "List row",
+        "classes": ".ap-lrow; value .ap-val, drill-in .ap-chv (›)"
+      },
+      {
+        "variant": "Action sheet",
+        "classes": ".ap-as > .ap-as-grp + separate .ap-as-cancel"
+      },
+      {
+        "variant": "Destructive",
+        "classes": ".ap-as-danger (--error, 600), always last in the group"
+      }
+    ]
+  ],
+  "variantNotes": [],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": false,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Sheet: white, `--radius-xl` top corners, grab handle 40×5 `--gray-300`.",
+    "Share options are 56px tiles in `--blue-tint` with Horizon Blue icons, four per row.",
+    "Rows that open another screen end with ›; rows that act immediately have no trailing icon.",
+    "Action sheet: inset 10px, `--radius-lg` cards, `--shadow-overlay`. Cancel sits in its own card in Horizon Blue 600.",
+    "Only one destructive row, last in the group. Never make Cancel red.",
+    "Tapping the scrim or dragging down closes the sheet; the close X does the same.",
+    "All rows are at least 52px (action rows 56px)."
+  ],
+  "do": [
+    "Use the bottom sheet for a focused task tied to what is on screen: share a verse, pick a translation, write to an NFC card.",
+    "Use the peek height for a few options; let people drag to expanded (96px from the top) for more.",
+    "Use the action sheet for 2–5 commands on one item (a highlight, a note), especially when one is destructive.",
+    "Sheet: white, `--radius-xl` top corners, grab handle 40×5 `--gray-300`.",
+    "Share options are 56px tiles in `--blue-tint` with Horizon Blue icons, four per row.",
+    "Rows that open another screen end with ›; rows that act immediately have no trailing icon.",
+    "Action sheet: inset 10px, `--radius-lg` cards, `--shadow-overlay`. Cancel sits in its own card in Horizon Blue 600.",
+    "Only one destructive row, last in the group. Never make Cancel red.",
+    "Tapping the scrim or dragging down closes the sheet; the close X does the same.",
+    "All rows are at least 52px (action rows 56px)."
+  ],
+  "dont": [
+    "Do not use a sheet for long forms or reading; push a new screen.",
+    "Do not stack sheets."
+  ],
+  "accessibility": [
+    "`role=\"dialog\"` with `aria-labelledby` on the title; expanded sheets and action sheets are `aria-modal=\"true\"` and trap focus.",
+    "Move focus to the sheet title on open and back to the trigger on close. Escape closes.",
+    "The grab handle is decorative; always offer the visible Close button or Cancel.",
+    "Respect reduced motion: fade instead of slide."
+  ],
+  "content": [
+    "Titles say the task: \"Share this verse\". Sub-line names the source: \"John 3:16 · Berean Standard Bible\".",
+    "Commands are verb first: \"Copy verse\", \"Add a note\", \"Remove highlight\".",
+    "Cancel is always \"Cancel\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"ap-scrim ap-scrim-peek\"></div>\n<div class=\"ap-sheet\" role=\"dialog\" aria-labelledby=\"sh1\">\n  <span class=\"ap-grab\" aria-hidden=\"true\"></span>\n  <div class=\"ap-sheet-h\"><h3 id=\"sh1\">Share this verse</h3>\n    <button class=\"ap-tb ap-tb-sm\" type=\"button\" aria-label=\"Close\">…</button></div>\n  <p class=\"ap-sheet-sub\">John 3:16 · Berean Standard Bible</p>\n  <div class=\"ap-share-row\"><button class=\"ap-share-opt\" type=\"button\"><i>…</i>Copy</button>…</div>\n</div>",
+      "<div class=\"ap-as\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"as1\">\n  <div class=\"ap-as-grp\">\n    <div class=\"ap-as-head\"><b id=\"as1\">John 3:16</b><span>Highlighted in gold</span></div>\n    <button class=\"ap-as-row\" type=\"button\">…<span>Copy verse</span></button>\n    <button class=\"ap-as-row ap-as-danger\" type=\"button\">…<span>Remove highlight</span></button>\n  </div>\n  <button class=\"ap-as-cancel\" type=\"button\">Cancel</button>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"ap-scrim ap-scrim-peek\"></div>\n<div class=\"ap-sheet\" role=\"dialog\" aria-labelledby=\"sh1\">\n  <span class=\"ap-grab\" aria-hidden=\"true\"></span>\n  <div class=\"ap-sheet-h\"><h3 id=\"sh1\">Share this verse</h3>\n    <button class=\"ap-tb ap-tb-sm\" type=\"button\" aria-label=\"Close\">…</button></div>\n  <p class=\"ap-sheet-sub\">John 3:16 · Berean Standard Bible</p>\n  <div class=\"ap-share-row\"><button class=\"ap-share-opt\" type=\"button\"><i>…</i>Copy</button>…</div>\n</div>"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"ap-as\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"as1\">\n  <div class=\"ap-as-grp\">\n    <div class=\"ap-as-head\"><b id=\"as1\">John 3:16</b><span>Highlighted in gold</span></div>\n    <button class=\"ap-as-row\" type=\"button\">…<span>Copy verse</span></button>\n    <button class=\"ap-as-row ap-as-danger\" type=\"button\">…<span>Remove highlight</span></button>\n  </div>\n  <button class=\"ap-as-cancel\" type=\"button\">Cancel</button>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/BottomSheet/README.md",
+    "spec": "components/BottomSheet/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

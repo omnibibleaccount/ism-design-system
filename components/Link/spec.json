@@ -1,0 +1,289 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Link",
+  "title": "Link",
+  "group": "Actions",
+  "version": "3.0.0",
+  "summary": "Text links for navigation: plain inline links in copy, the `.lnk` underline-reveal link, and the ghost \"see all\" link with ↗.",
+  "whenToUse": [
+    "Inline `<a>`: a link inside a sentence (\"Read our privacy policy\").",
+    "`.lnk`: a standalone text link in a list, footer or card (\"Get prayer updates ↗\").",
+    "Ghost link (`.btn-ghost`, React `Button variant=\"ghost\"`): a \"See all\" / \"Browse All\" link after a section or row of cards."
+  ],
+  "whenNotToUse": [
+    "Do not use a link for an action that changes data (submit, give, delete); use Button."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Link } from '@ism/ui'",
+    "source": "packages/react/src/components/Link.tsx",
+    "exports": [
+      "Link",
+      "LinkVariant"
+    ],
+    "extends": [
+      "AnchorHTMLAttributes<HTMLAnchorElement>"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "LinkVariant",
+        "required": false,
+        "default": "\"inline\"",
+        "description": "`inline` is a plain link in copy; `reveal` is `.lnk` (underline grows on hover); `ghost` is the \"See all\" link-button;\n`onDark` is for dark surfaces; `ink` is `.lnk` in black at content width."
+      },
+      {
+        "name": "external",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Link goes to another site or page: adds the hidden \"(opens in a new tab)\" text, `target=\"_blank\"` and `rel=\"noopener\"`."
+      },
+      {
+        "name": "arrow",
+        "type": "boolean | ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Show the trailing arrow glyph (decorative, `aria-hidden`). Pass `true` for ↗ or a node for another glyph. Used on reveal and ghost links."
+      },
+      {
+        "name": "newTabLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"(opens in a new tab)\"",
+        "description": "Visually hidden text announced for external links. Override to translate."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": "There is no separate Link component. Use the bundle's `Button` with `variant=\"ghost\"`, which is the text-only inline link-button (\"Browse All\"), and pass the arrow as `icon`. For inline links in copy, render a normal `<a>`."
+  },
+  "reactNative": {
+    "import": "import { Link } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Link.tsx",
+    "exports": [
+      "Link",
+      "LinkVariant"
+    ],
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Specific link text (\"Read the statement of faith\"), never \"here\"."
+      },
+      {
+        "name": "href",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "URL opened with `Linking.openURL` when pressed. Use `onPress` alone for in-app navigation."
+      },
+      {
+        "name": "onPress",
+        "type": "(event: GestureResponderEvent) => void",
+        "required": false,
+        "default": null,
+        "description": "Called on press, before `href` is opened."
+      },
+      {
+        "name": "variant",
+        "type": "LinkVariant",
+        "required": false,
+        "default": "\"standalone\"",
+        "description": "`inline` sits inside a `<Text>` paragraph and stays underlined; `standalone` is the `.lnk` text link in a list, footer or card\n(ink colour, underline on press and focus); `ghost` is the semibold blue \"See all\" link with a 44dp hit area."
+      },
+      {
+        "name": "arrow",
+        "type": "'external' | 'drill' | 'none'",
+        "required": false,
+        "default": "\"external\" when `href` is set and the variant is not `inline`, otherwise \"none\"",
+        "description": "Show the arrow after the label. `external` is ↗ (goes to another page or site, never mirrored in RTL);\n`drill` is › (drills into an app screen, mirrored in RTL); `none` shows nothing. Do not mix them."
+      },
+      {
+        "name": "onDark",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Use `--blue-on-dark` (white on press) on dark surfaces. Defaults to the theme scheme for colour."
+      },
+      {
+        "name": "newTabLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Spoken after the label for links that leave the app, e.g. \"(opens in a new tab)\". Pass it translated."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": ""
+      },
+      {
+        "name": "accessibilityLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": ""
+      },
+      {
+        "name": "accessibilityHint",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": ""
+      },
+      {
+        "name": "testID",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": ""
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      },
+      {
+        "name": "textStyle",
+        "type": "StyleProp<TextStyle>",
+        "required": false,
+        "default": null,
+        "description": "Text style, used by `inline` for size and weight inherited from the paragraph."
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "arrow",
+    "btn",
+    "btn-ghost",
+    "cr-link-dark",
+    "cr-link-ink",
+    "lnk",
+    "navlink"
+  ],
+  "variants": [
+    [
+      {
+        "kind": "Inline",
+        "class": "a",
+        "look": "--horizon-blue, hover --horizon-blue-dim, browser underline"
+      },
+      {
+        "kind": "Underline reveal",
+        "class": ".lnk",
+        "look": "inherits colour; 1px underline grows from the left on hover"
+      },
+      {
+        "kind": "Ghost",
+        "class": ".btn-ghost",
+        "look": "Horizon Blue, semibold, 44px hit area; .arrow nudges up-right on hover"
+      },
+      {
+        "kind": "On dark",
+        "class": ".cr-link-dark",
+        "look": "--blue-on-dark, hover white"
+      },
+      {
+        "kind": "Nav",
+        "class": ".navlink",
+        "look": "header links with the gradient underline (see SiteHeader)"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "`.cr-link-ink` sets `.lnk` to black at content width on light backgrounds."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "The ↗ rule: put ↗ after the label when the link goes to another page or site. Use ⌄ when it opens something here, and › when it drills into an app screen. Do not mix them.",
+    "Links are `--horizon-blue` on light and `--blue-on-dark` on dark. Never pure blue on black.",
+    "Keep standalone links at least 44px tall to tap; `.btn-ghost` does this for you.",
+    "Inline links stay underlined so they are visible without colour.",
+    "External links open in the same tab unless leaving would lose form input."
+  ],
+  "do": [
+    "Inline `<a>`: a link inside a sentence (\"Read our privacy policy\").",
+    "`.lnk`: a standalone text link in a list, footer or card (\"Get prayer updates ↗\").",
+    "Ghost link (`.btn-ghost`, React `Button variant=\"ghost\"`): a \"See all\" / \"Browse All\" link after a section or row of cards.",
+    "The ↗ rule: put ↗ after the label when the link goes to another page or site. Use ⌄ when it opens something here, and › when it drills into an app screen. Do not mix them.",
+    "Links are `--horizon-blue` on light and `--blue-on-dark` on dark. Never pure blue on black.",
+    "Keep standalone links at least 44px tall to tap; `.btn-ghost` does this for you.",
+    "Inline links stay underlined so they are visible without colour.",
+    "External links open in the same tab unless leaving would lose form input."
+  ],
+  "dont": [
+    "Do not use a link for an action that changes data (submit, give, delete); use Button."
+  ],
+  "accessibility": [
+    "Link text must make sense out of context: \"Read the statement of faith\", not \"here\".",
+    "Mark the ↗ glyph inside `.arrow` with `aria-hidden=\"true\"`; if the link opens a new tab, add \"(opens in a new tab)\" as visually hidden text.",
+    "Focus uses the shared ring: 2px Horizon Blue outline + `--shadow-focus`."
+  ],
+  "content": [
+    "Short and specific: \"Our statement of faith ↗\", \"Browse the directory ↗\", \"See all\", \"Get prayer updates ↗\".",
+    "Sentence case. No \"Click here\"."
+  ],
+  "snippets": {
+    "react": [
+      "<Button variant=\"ghost\" icon={<span className=\"arrow\" aria-hidden=\"true\">↗</span>}>Browse All</Button>"
+    ],
+    "html": [
+      "<p>Read our <a href=\"/privacy\">privacy policy</a> for details.</p>\n\n<a class=\"lnk\" href=\"/prayer\">Get prayer updates ↗</a>\n\n<a class=\"btn btn-ghost\" href=\"https://dot.bible\">Browse the directory <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n\n<!-- on dark -->\n<a class=\"cr-link-dark\" href=\"/cookies\">cookie policy</a>"
+    ],
+    "other": [
+      {
+        "lang": "jsx",
+        "code": "<Button variant=\"ghost\" icon={<span className=\"arrow\" aria-hidden=\"true\">↗</span>}>Browse All</Button>"
+      },
+      {
+        "lang": "html",
+        "code": "<p>Read our <a href=\"/privacy\">privacy policy</a> for details.</p>\n\n<a class=\"lnk\" href=\"/prayer\">Get prayer updates ↗</a>\n\n<a class=\"btn btn-ghost\" href=\"https://dot.bible\">Browse the directory <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n\n<!-- on dark -->\n<a class=\"cr-link-dark\" href=\"/cookies\">cookie policy</a>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/Link/README.md",
+    "spec": "components/Link/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

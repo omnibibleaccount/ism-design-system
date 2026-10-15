@@ -1,0 +1,435 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "DonationWidget",
+  "title": "DonationWidget",
+  "group": "Ministry",
+  "version": "3.0.0",
+  "summary": "The giving module: one-time or monthly switch, preset amount chips with Other, a live impact line, one Give button and a secure note, plus compact and goal-progress versions.",
+  "whenToUse": [
+    "Full widget `.mn-give`: the Give page and giving sections on ism.bible.",
+    "Compact `.mn-compact`: sidebars and the end of articles.",
+    "Goal progress `.mn-bar`: campaigns with a real target (year-end Bible drive)."
+  ],
+  "whenNotToUse": [
+    "Do not use for partner sign-up or newsletter; use PartnerCard or NewsletterCard.",
+    "Do not show more than one giving module in a view."
+  ],
+  "anatomy": {
+    "description": "Heading → frequency switch → amount chips → impact line → Give button → secure note. Other amount: `<div class=\"mn-other\"><span aria-hidden=\"true\">$</span><input class=\"input\" type=\"text\" inputmode=\"decimal\" aria-label=\"Other amount\"></div>`. Goal progress:",
+    "markup": null
+  },
+  "react": {
+    "import": "import { DonationWidget } from '@ism/ui'",
+    "source": "packages/react/src/components/DonationWidget.tsx",
+    "exports": [
+      "DonationAmount",
+      "DonationFrequency",
+      "DonationGoal",
+      "DonationLabels",
+      "DonationSubmit",
+      "DonationVariant",
+      "DonationWidget",
+      "defaultDonationLabels"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'onSubmit' | 'defaultValue'>"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "DonationVariant",
+        "required": false,
+        "default": "\"full\"",
+        "description": "`full` is the Give module, `compact` is one row for sidebars, `goal` shows campaign progress."
+      },
+      {
+        "name": "frequency",
+        "type": "DonationFrequency",
+        "required": false,
+        "default": null,
+        "description": "Controlled frequency."
+      },
+      {
+        "name": "defaultFrequency",
+        "type": "DonationFrequency",
+        "required": false,
+        "default": "\"monthly\"",
+        "description": "Initial frequency when uncontrolled."
+      },
+      {
+        "name": "onFrequencyChange",
+        "type": "(frequency: DonationFrequency) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the frequency changes."
+      },
+      {
+        "name": "amount",
+        "type": "DonationAmount",
+        "required": false,
+        "default": null,
+        "description": "Controlled selected amount (a preset or `\"other\"`)."
+      },
+      {
+        "name": "defaultAmount",
+        "type": "DonationAmount",
+        "required": false,
+        "default": "the second preset",
+        "description": "Initial amount when uncontrolled."
+      },
+      {
+        "name": "onAmountChange",
+        "type": "(amount: DonationAmount) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the selected amount changes."
+      },
+      {
+        "name": "otherValue",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Controlled text of the Other input."
+      },
+      {
+        "name": "onOtherValueChange",
+        "type": "(value: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the Other input text changes."
+      },
+      {
+        "name": "presets",
+        "type": "number[]",
+        "required": false,
+        "default": "[25, 50, 100, 250]",
+        "description": "Preset amounts in whole currency units. The compact variant shows the first three."
+      },
+      {
+        "name": "currencySymbol",
+        "type": "string",
+        "required": false,
+        "default": "\"$\"",
+        "description": "Currency symbol shown before amounts."
+      },
+      {
+        "name": "onSubmit",
+        "type": "(value: DonationSubmit) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the reader presses Give. Presentational only: this component never calls a payment API."
+      },
+      {
+        "name": "submitting",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Show the processing state: spinner, \"Processing…\", disabled, `aria-busy`."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<DonationLabels>",
+        "required": false,
+        "default": null,
+        "description": "Override visible strings."
+      },
+      {
+        "name": "formatGiveLabel",
+        "type": "(amount: number, frequency: DonationFrequency, currencySymbol: string) => ReactNode",
+        "required": false,
+        "default": "\"Give $50 monthly\"",
+        "description": "Builds the Give button label. Must repeat amount and frequency."
+      },
+      {
+        "name": "renderImpact",
+        "type": "(amount: number, frequency: DonationFrequency, isOther: boolean, currencySymbol: string) => ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Builds the one-sentence impact line (bold the number). Rates are samples until confirmed."
+      },
+      {
+        "name": "goal",
+        "type": "DonationGoal",
+        "required": false,
+        "default": null,
+        "description": "Goal data, required for `variant=\"goal\"`."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Goal variant on the dark panel (`.mn-panel-dark`)."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { DonationWidget } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/DonationWidget.tsx",
+    "exports": [
+      "DonationAmount",
+      "DonationCompact",
+      "DonationFrequency",
+      "DonationGoal",
+      "DonationImpact",
+      "DonationLabels",
+      "DonationWidget"
+    ],
+    "props": [
+      {
+        "name": "frequency",
+        "type": "DonationFrequency",
+        "required": true,
+        "default": null,
+        "description": "Selected frequency. Default to `monthly`."
+      },
+      {
+        "name": "onFrequencyChange",
+        "type": "(frequency: DonationFrequency) => void",
+        "required": true,
+        "default": null,
+        "description": "Called when the frequency changes. Update the Give label and impact line in response."
+      },
+      {
+        "name": "amounts",
+        "type": "number[]",
+        "required": false,
+        "default": "[25, 50, 100, 250]",
+        "description": "Preset amounts in whole currency units, ascending. Default to the second chip."
+      },
+      {
+        "name": "amount",
+        "type": "DonationAmount",
+        "required": true,
+        "default": null,
+        "description": "Selected preset, or `other`."
+      },
+      {
+        "name": "onAmountChange",
+        "type": "(amount: DonationAmount) => void",
+        "required": true,
+        "default": null,
+        "description": "Called when a chip is chosen."
+      },
+      {
+        "name": "otherValue",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Text typed in the Other field."
+      },
+      {
+        "name": "onOtherValueChange",
+        "type": "(value: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called as the Other field changes."
+      },
+      {
+        "name": "currencySymbol",
+        "type": "string",
+        "required": false,
+        "default": "\"$\"",
+        "description": "Currency symbol on chips and the Other prefix."
+      },
+      {
+        "name": "impact",
+        "type": "DonationImpact",
+        "required": false,
+        "default": null,
+        "description": "Impact line, one sentence with the number in bold. Updates on every change; announced politely."
+      },
+      {
+        "name": "giveLabel",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Give button label; always repeat amount and frequency: \"Give $50 monthly\"."
+      },
+      {
+        "name": "onGive",
+        "type": "() => void",
+        "required": true,
+        "default": null,
+        "description": "Called by Give. Presentational: this component never takes payment."
+      },
+      {
+        "name": "giveDisabled",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Disable the Give button, e.g. until an Other amount is valid."
+      },
+      {
+        "name": "submitting",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Submitting: spinner and `processingLabel`, button disabled and busy, width unchanged."
+      },
+      {
+        "name": "processingLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Processing…\"",
+        "description": "Label while submitting."
+      },
+      {
+        "name": "labels",
+        "type": "DonationLabels",
+        "required": false,
+        "default": null,
+        "description": "Fixed strings; override for translation."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn",
+    "btn-lg",
+    "btn-light",
+    "btn-primary",
+    "card",
+    "card-flat",
+    "card-lg",
+    "chip",
+    "field",
+    "h4",
+    "label",
+    "mn-amts",
+    "mn-bar",
+    "mn-compact",
+    "mn-give",
+    "mn-give-head",
+    "mn-goal-meta",
+    "mn-goal-row",
+    "mn-goal-sum",
+    "mn-goal-title",
+    "mn-impact",
+    "mn-impact-text",
+    "mn-other",
+    "mn-panel-dark",
+    "mn-secure",
+    "mn-seg",
+    "muted",
+    "spin"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Full",
+        "classes": ".card card-lg card-flat mn-give"
+      },
+      {
+        "variant": "Compact",
+        "classes": ".mn-compact mn-amts-sm (three chips + Give button) + .mn-impact-text"
+      },
+      {
+        "variant": "Goal, light",
+        "classes": ".mn-goal-row + .mn-bar + .mn-goal-sum on white"
+      },
+      {
+        "variant": "Goal, dark",
+        "classes": "same inside .mn-panel-dark; track turns white 14%, .btn-light Give now"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "Amount chip states: default, hover (black border), focus (Horizon Blue ring), selected (`aria-pressed=\"true\"`: black fill, white text), disabled (45% opacity). Frequency switch: selected segment is white with a light shadow. Other: chip opens `.mn-other` input with a `$` prefix; focus is a Horizon Blue border + `--shadow-focus`. Submitting: Give button shows `.spin` + \"Processing…\" and is disabled."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": true,
+      "loading": true,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "One Horizon Blue button per widget: Give. The selected chip is black, not blue.",
+    "The Give label always repeats amount and frequency (\"Give $50 monthly\"); update it and the impact line on every change.",
+    "Default to Monthly and the second chip ($50).",
+    "Chips and segments are at least 44px tall; chips at least 76px wide (64px compact).",
+    "Progress fill uses `--gradient-line`, never Horizon Blue; track `--gray-100`, 10px, pill.",
+    "Impact line on `--blue-tint` with `--horizon-blue-dim` text; one sentence, bold the number.",
+    "Always show the secure-payment note under the button.",
+    "Impact rates and goal figures are samples until finance confirms them; say so on the page."
+  ],
+  "do": [
+    "Full widget `.mn-give`: the Give page and giving sections on ism.bible.",
+    "Compact `.mn-compact`: sidebars and the end of articles.",
+    "Goal progress `.mn-bar`: campaigns with a real target (year-end Bible drive).",
+    "One Horizon Blue button per widget: Give. The selected chip is black, not blue.",
+    "The Give label always repeats amount and frequency (\"Give $50 monthly\"); update it and the impact line on every change.",
+    "Default to Monthly and the second chip ($50).",
+    "Chips and segments are at least 44px tall; chips at least 76px wide (64px compact).",
+    "Progress fill uses `--gradient-line`, never Horizon Blue; track `--gray-100`, 10px, pill.",
+    "Impact line on `--blue-tint` with `--horizon-blue-dim` text; one sentence, bold the number.",
+    "Always show the secure-payment note under the button.",
+    "Impact rates and goal figures are samples until finance confirms them; say so on the page."
+  ],
+  "dont": [
+    "Do not use for partner sign-up or newsletter; use PartnerCard or NewsletterCard.",
+    "Do not show more than one giving module in a view."
+  ],
+  "accessibility": [
+    "Frequency and amounts are `role=\"group\"` with names; each option is a toggle with `aria-pressed`.",
+    "The impact line is `aria-live=\"polite\"` so changes are announced.",
+    "The Other input has `aria-label=\"Other amount\"` and `inputmode=\"decimal\"`; the `$` prefix is `aria-hidden`.",
+    "The goal bar is `role=\"progressbar\"` with min, max, now and a label; the text sum repeats the numbers.",
+    "Keep the loading button's width and set `aria-busy=\"true\"`."
+  ],
+  "content": [
+    "Heading: \"Give to the mission\". Lead: \"Your gift puts Scripture in the hands of people still waiting for it.\"",
+    "Impact: \"**$50 places 10 Bibles** with new readers every month.\" For Other: \"**Every $5 places a Bible** with a new reader.\"",
+    "Goal: \"**$18,400** of $25,000 raised · 74%\", \"18 days left\".",
+    "No guilt, no urgency tricks, no exclamation marks."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"card card-lg card-flat mn-give\">\n  <div class=\"mn-give-head\">\n    <h3 class=\"h4\">Give to the mission</h3>\n    <p class=\"muted\">Your gift puts Scripture in the hands of people still waiting for it.</p>\n  </div>\n  <div class=\"mn-seg\" role=\"group\" aria-label=\"Gift frequency\">\n    <button type=\"button\" aria-pressed=\"false\">One-time</button>\n    <button type=\"button\" aria-pressed=\"true\">Monthly</button>\n  </div>\n  <div class=\"field\">\n    <span class=\"label\" id=\"amt-l\">Amount (USD)</span>\n    <div class=\"mn-amts\" role=\"group\" aria-labelledby=\"amt-l\">\n      <button class=\"chip\" type=\"button\" aria-pressed=\"false\">$25</button>\n      <button class=\"chip\" type=\"button\" aria-pressed=\"true\">$50</button>\n      <button class=\"chip\" type=\"button\" aria-pressed=\"false\">$100</button>\n      <button class=\"chip\" type=\"button\" aria-pressed=\"false\">$250</button>\n      <button class=\"chip\" type=\"button\" aria-pressed=\"false\">Other</button>\n    </div>\n  </div>\n  <p class=\"mn-impact\" aria-live=\"polite\"><svg …aria-hidden=\"true\">…</svg><span><b>$50 places 10 Bibles</b> with new readers every month.</span></p>\n  <a class=\"btn btn-primary btn-lg\" href=\"/give\" style=\"width:100%\">Give $50 monthly</a>\n  <p class=\"mn-secure\"><svg …aria-hidden=\"true\">…</svg>Secure, encrypted payment · cancel monthly gifts anytime</p>\n</div>",
+      "<div class=\"mn-goal-row\"><p class=\"mn-goal-title\">Year-end Bible drive</p><p class=\"mn-goal-meta\">18 days left</p></div>\n<div class=\"mn-bar\" role=\"progressbar\" aria-valuemin=\"0\" aria-valuemax=\"25000\" aria-valuenow=\"18400\" aria-label=\"Raised toward goal\"><span style=\"width:74%\"></span></div>\n<p class=\"mn-goal-sum\"><b>$18,400</b> of $25,000 raised · 74%</p>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"card card-lg card-flat mn-give\">\n  <div class=\"mn-give-head\">\n    <h3 class=\"h4\">Give to the mission</h3>\n    <p class=\"muted\">Your gift puts Scripture in the hands of people still waiting for it.</p>\n  </div>\n  <div class=\"mn-seg\" role=\"group\" aria-label=\"Gift frequency\">\n    <button type=\"button\" aria-pressed=\"false\">One-time</button>\n    <button type=\"button\" aria-pressed=\"true\">Monthly</button>\n  </div>\n  <div class=\"field\">\n    <span class=\"label\" id=\"amt-l\">Amount (USD)</span>\n    <div class=\"mn-amts\" role=\"group\" aria-labelledby=\"amt-l\">\n      <button class=\"chip\" type=\"button\" aria-pressed=\"false\">$25</button>\n      <button class=\"chip\" type=\"button\" aria-pressed=\"true\">$50</button>\n      <button class=\"chip\" type=\"button\" aria-pressed=\"false\">$100</button>\n      <button class=\"chip\" type=\"button\" aria-pressed=\"false\">$250</button>\n      <button class=\"chip\" type=\"button\" aria-pressed=\"false\">Other</button>\n    </div>\n  </div>\n  <p class=\"mn-impact\" aria-live=\"polite\"><svg …aria-hidden=\"true\">…</svg><span><b>$50 places 10 Bibles</b> with new readers every month.</span></p>\n  <a class=\"btn btn-primary btn-lg\" href=\"/give\" style=\"width:100%\">Give $50 monthly</a>\n  <p class=\"mn-secure\"><svg …aria-hidden=\"true\">…</svg>Secure, encrypted payment · cancel monthly gifts anytime</p>\n</div>"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"mn-goal-row\"><p class=\"mn-goal-title\">Year-end Bible drive</p><p class=\"mn-goal-meta\">18 days left</p></div>\n<div class=\"mn-bar\" role=\"progressbar\" aria-valuemin=\"0\" aria-valuemax=\"25000\" aria-valuenow=\"18400\" aria-label=\"Raised toward goal\"><span style=\"width:74%\"></span></div>\n<p class=\"mn-goal-sum\"><b>$18,400</b> of $25,000 raised · 74%</p>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/DonationWidget/README.md",
+    "spec": "components/DonationWidget/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

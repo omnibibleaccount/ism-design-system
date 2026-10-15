@@ -1,0 +1,286 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Footer",
+  "title": "Footer",
+  "group": "Navigation",
+  "version": "3.0.0",
+  "summary": "The site-wide black footer for ism.bible: a gradient-bordered giving banner, the full ISM logo with tagline and socials, three link columns and a legal line.",
+  "whenToUse": [
+    "Use it once, at the bottom of every ism.bible page and every page built from the website kit."
+  ],
+  "whenNotToUse": [
+    "Do not use it in apps or email (email has its own footer).",
+    "Do not add page-specific links here. Put them in the page body or in a sitemap link list."
+  ],
+  "anatomy": {
+    "description": "Top to bottom: glow layer, CTA banner, brand column + three nav columns, hairline, legal row.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Footer } from '@ism/ui'",
+    "source": "packages/react/src/components/Footer.tsx",
+    "exports": [
+      "Footer",
+      "FooterColumn",
+      "FooterLink",
+      "FooterSocial"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'children'>"
+    ],
+    "props": [
+      {
+        "name": "ctaText",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Mission sentence in the giving banner."
+      },
+      {
+        "name": "ctaLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Label of the banner button (an outline button with ↗). Omit with `ctaHref` to hide the banner."
+      },
+      {
+        "name": "ctaHref",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Destination of the banner button."
+      },
+      {
+        "name": "linkComponent",
+        "type": "ElementType",
+        "required": false,
+        "default": "\"a\"",
+        "description": "Component used to render links. Defaults to `'a'`.\nPass `next/link` (or any component accepting `href`, `className` and `children`) for client-side routing."
+      },
+      {
+        "name": "logo",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Logo slot. Defaults to an `<img>` using `logoSrc`; the CSS inverts it to white."
+      },
+      {
+        "name": "logoSrc",
+        "type": "string",
+        "required": false,
+        "default": "\"/ism/assets/logos/Full%20Logo%20Black.svg\"",
+        "description": "Path of the default full logo."
+      },
+      {
+        "name": "logoAlt",
+        "type": "string",
+        "required": false,
+        "default": "\"International Scripture Ministries\"",
+        "description": "Alt text of the default logo."
+      },
+      {
+        "name": "logoHref",
+        "type": "string",
+        "required": false,
+        "default": "\"/\"",
+        "description": "Where the logo links to."
+      },
+      {
+        "name": "logoLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"International Scripture Ministries home\"",
+        "description": "Accessible name of the logo link."
+      },
+      {
+        "name": "tagline",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Tagline under the logo."
+      },
+      {
+        "name": "socials",
+        "type": "FooterSocial[]",
+        "required": false,
+        "default": null,
+        "description": "Social links."
+      },
+      {
+        "name": "columns",
+        "type": "FooterColumn[]",
+        "required": true,
+        "default": null,
+        "description": "Link columns (the README uses three)."
+      },
+      {
+        "name": "navLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Footer\"",
+        "description": "Accessible name of the columns' `<nav>`."
+      },
+      {
+        "name": "legal",
+        "type": "ReactNode[]",
+        "required": false,
+        "default": null,
+        "description": "Legal lines on the left: copyright, nonprofit notice. Each item becomes a paragraph."
+      },
+      {
+        "name": "legalLinks",
+        "type": "FooterLink[]",
+        "required": false,
+        "default": null,
+        "description": "Legal links on the right (Cookie Policy, Terms, Privacy)."
+      },
+      {
+        "name": "cookieSettingsLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Label of the \"Cookie settings\" button. The button is omitted when this or `onCookieSettings` is missing."
+      },
+      {
+        "name": "onCookieSettings",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when \"Cookie settings\" is pressed; it should reopen the cookie banner. It is a `<button>` because it opens a dialog."
+      },
+      {
+        "name": "compact",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Force the phone layout (`.nv-foot-sm`). It also applies automatically below 768px."
+      },
+      {
+        "name": "legalExtra",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Extra content rendered at the end of the legal row, for example an inline `LanguageInline`."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": "The bundle exposes `window.ISMDesignSystem_106e83.Footer`. The React footer is a static picture: its links are plain text, the Platforms column has no Global Bible Network, there is no Newsletter or Cookie settings, and its glow comes from a remote image. Use it for mock-ups. For production pages use the HTML below."
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "arrow",
+    "btn",
+    "btn-outline-light",
+    "lnk",
+    "nv-fbrand",
+    "nv-fcol",
+    "nv-fcol-h",
+    "nv-fcta",
+    "nv-fcta-btn",
+    "nv-fcta-h",
+    "nv-flegal",
+    "nv-flegal-links",
+    "nv-flogo",
+    "nv-fmain",
+    "nv-fnav",
+    "nv-foot",
+    "nv-foot-body",
+    "nv-foot-glow",
+    "nv-foot-in",
+    "nv-foot-sm",
+    "nv-frule",
+    "nv-ftag",
+    "nv-soc",
+    "nv-socials"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "**Desktop:** 1100px max content width; brand column (max 390px) beside the three columns; legal row splits left/right.",
+    "**Mobile (below 768px, or `.nv-foot-sm`):** banner stacks with a full-width button, columns become a 2-up grid, legal links sit above the copyright.",
+    "**Link hover:** `.lnk` draws a 1px underline from the left.",
+    "**Social hover:** ring brightens to `rgba(255,255,255,.55)`.",
+    "**Cookie settings:** re-opens the CookieBanner."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": false,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Keep the footer `var(--black)` with the blue/peach glow; never put it on a light background.",
+    "The banner border is always `var(--gradient-line)` on a 1px transparent border, `var(--radius-ml)`. Do not fill it.",
+    "The banner button is `.btn-outline-light` with a white border and ↗ (it goes to another page). Never use a Horizon Blue primary here; the header already carries Give.",
+    "Column heads: 11px, 700, uppercase, `.13em` tracking, `var(--text-tertiary-dark)`. Links: 13px, 600, white.",
+    "Social links are 44px rings. Logo is white (`filter: brightness(0) invert(1)`), 285px wide max.",
+    "Legal text is 12px `var(--text-tertiary-dark)`; legal links and Cookie settings keep 44px tap height.",
+    "Only use ↗ on links that leave the page's context (the banner button); plain footer links get no icon."
+  ],
+  "do": [
+    "Use it once, at the bottom of every ism.bible page and every page built from the website kit.",
+    "Keep the footer `var(--black)` with the blue/peach glow; never put it on a light background.",
+    "The banner border is always `var(--gradient-line)` on a 1px transparent border, `var(--radius-ml)`. Do not fill it.",
+    "The banner button is `.btn-outline-light` with a white border and ↗ (it goes to another page). Never use a Horizon Blue primary here; the header already carries Give.",
+    "Column heads: 11px, 700, uppercase, `.13em` tracking, `var(--text-tertiary-dark)`. Links: 13px, 600, white.",
+    "Social links are 44px rings. Logo is white (`filter: brightness(0) invert(1)`), 285px wide max.",
+    "Legal text is 12px `var(--text-tertiary-dark)`; legal links and Cookie settings keep 44px tap height.",
+    "Only use ↗ on links that leave the page's context (the banner button); plain footer links get no icon."
+  ],
+  "dont": [
+    "Do not use it in apps or email (email has its own footer).",
+    "Do not add page-specific links here. Put them in the page body or in a sitemap link list."
+  ],
+  "accessibility": [
+    "Wrap the columns in `<nav aria-label=\"Footer\">`. Column heads are headings so screen-reader users can jump between them.",
+    "Social icons are `aria-hidden`; each link has `aria-label` with the network's name.",
+    "\"Cookie settings\" is a `<button>`, not a link, because it opens a dialog.",
+    "White on black and 50% white on black both pass AA at the sizes used."
+  ],
+  "content": [
+    "Banner: one plain sentence about the mission plus a short action. Example: \"Help deliver the Bible beyond every barrier.\" / \"Support Bible Access ↗\".",
+    "Tagline stays as written: \"Delivering unhindered access to the Bible until everyone can engage with Scripture in their own language, without barriers.\"",
+    "Columns: About (About ISM, Our Mission, Our Team, Statement of Faith, FAQ's), Platforms (dot.Bible App, ISM Radio, ISM Publishing, TAP Cards, Global Bible Network), Get Involved (Give Online, Join The Mission, Partner With Us, Newsletter, Contact)."
+  ],
+  "snippets": {
+    "react": [
+      "<Footer ctaText=\"Help deliver the Bible beyond every barrier.\" ctaLabel=\"Support Bible Access\" />"
+    ],
+    "html": [
+      "<footer class=\"nv-foot\">\n  <div class=\"nv-foot-glow\" aria-hidden=\"true\"></div>\n  <div class=\"nv-foot-in\">\n    <div class=\"nv-fcta\">\n      <h2 class=\"nv-fcta-h\">Help deliver the Bible beyond every barrier.</h2>\n      <a class=\"btn btn-outline-light nv-fcta-btn\" href=\"/give\">Support Bible Access <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n    </div>\n  </div>\n  <div class=\"nv-foot-in nv-foot-body\">\n    <div class=\"nv-fmain\">\n      <div class=\"nv-fbrand\">\n        <a class=\"nv-flogo\" href=\"/\" aria-label=\"International Scripture Ministries home\"><img src=\"assets/logos/Full%20Logo%20Black.svg\" alt=\"International Scripture Ministries\"></a>\n        <p class=\"nv-ftag\">Delivering unhindered access to the Bible until everyone can engage with Scripture in their own language, without barriers.</p>\n        <div class=\"nv-socials\"><a class=\"nv-soc\" href=\"…\" aria-label=\"Instagram\"><svg viewBox=\"0 0 32 32\" aria-hidden=\"true\">…</svg></a> <!-- Facebook, X, LinkedIn --></div>\n      </div>\n      <nav class=\"nv-fnav\" aria-label=\"Footer\">\n        <div class=\"nv-fcol\"><h2 class=\"nv-fcol-h\">About</h2><a class=\"lnk\" href=\"/about\">About ISM</a> …</div>\n        <div class=\"nv-fcol\"><h2 class=\"nv-fcol-h\">Platforms</h2> …</div>\n        <div class=\"nv-fcol\"><h2 class=\"nv-fcol-h\">Get Involved</h2> …</div>\n      </nav>\n    </div>\n    <div class=\"nv-frule\"></div>\n    <div class=\"nv-flegal\">\n      <div><p>© 2026 – International Scripture Ministries Inc</p><p>ISM is a 501(c)(3) nonprofit organization. All donations are tax-deductible.</p></div>\n      <div class=\"nv-flegal-links\"><a class=\"lnk\" href=\"/cookies\">Cookie Policy</a><a class=\"lnk\" href=\"/terms\">Terms</a><a class=\"lnk\" href=\"/privacy\">Privacy</a><button type=\"button\" class=\"lnk\">Cookie settings</button></div>\n    </div>\n  </div>\n</footer>"
+    ],
+    "other": [
+      {
+        "lang": "jsx",
+        "code": "<Footer ctaText=\"Help deliver the Bible beyond every barrier.\" ctaLabel=\"Support Bible Access\" />"
+      },
+      {
+        "lang": "html",
+        "code": "<footer class=\"nv-foot\">\n  <div class=\"nv-foot-glow\" aria-hidden=\"true\"></div>\n  <div class=\"nv-foot-in\">\n    <div class=\"nv-fcta\">\n      <h2 class=\"nv-fcta-h\">Help deliver the Bible beyond every barrier.</h2>\n      <a class=\"btn btn-outline-light nv-fcta-btn\" href=\"/give\">Support Bible Access <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n    </div>\n  </div>\n  <div class=\"nv-foot-in nv-foot-body\">\n    <div class=\"nv-fmain\">\n      <div class=\"nv-fbrand\">\n        <a class=\"nv-flogo\" href=\"/\" aria-label=\"International Scripture Ministries home\"><img src=\"assets/logos/Full%20Logo%20Black.svg\" alt=\"International Scripture Ministries\"></a>\n        <p class=\"nv-ftag\">Delivering unhindered access to the Bible until everyone can engage with Scripture in their own language, without barriers.</p>\n        <div class=\"nv-socials\"><a class=\"nv-soc\" href=\"…\" aria-label=\"Instagram\"><svg viewBox=\"0 0 32 32\" aria-hidden=\"true\">…</svg></a> <!-- Facebook, X, LinkedIn --></div>\n      </div>\n      <nav class=\"nv-fnav\" aria-label=\"Footer\">\n        <div class=\"nv-fcol\"><h2 class=\"nv-fcol-h\">About</h2><a class=\"lnk\" href=\"/about\">About ISM</a> …</div>\n        <div class=\"nv-fcol\"><h2 class=\"nv-fcol-h\">Platforms</h2> …</div>\n        <div class=\"nv-fcol\"><h2 class=\"nv-fcol-h\">Get Involved</h2> …</div>\n      </nav>\n    </div>\n    <div class=\"nv-frule\"></div>\n    <div class=\"nv-flegal\">\n      <div><p>© 2026 – International Scripture Ministries Inc</p><p>ISM is a 501(c)(3) nonprofit organization. All donations are tax-deductible.</p></div>\n      <div class=\"nv-flegal-links\"><a class=\"lnk\" href=\"/cookies\">Cookie Policy</a><a class=\"lnk\" href=\"/terms\">Terms</a><a class=\"lnk\" href=\"/privacy\">Privacy</a><button type=\"button\" class=\"lnk\">Cookie settings</button></div>\n    </div>\n  </div>\n</footer>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/Footer/README.md",
+    "spec": "components/Footer/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

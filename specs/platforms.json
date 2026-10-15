@@ -1,0 +1,6 @@
+{
+  "$comment": "Which platform packages implement each component. Edited by hand; build-specs.mjs reads it and fails if a listed component has no folder. web = HTML/CSS classes in @ism/web (all components). react = @ism/ui (all components).",
+  "reactNative": ["Logos","Iconography","Button","IconButton","Chip","Link","Badge","Eyebrow","Card","Divider","AccentBar","ListRow","Avatar","StatTile","Quote","Input","SearchField","Checkbox","Radio","Switch","SegmentedControl","Alert","Toast","Modal","Loader","Progress","EmptyState","VerseBlock","ReadingView","BookPicker","AudioPlayer","BibleCard","LanguageRow","AppBar","TabBar","BottomSheet","SettingsRow","SearchResults","DownloadState","Fab","AppHomeScreen","StoreBadges","DonationWidget"],
+  "ios": ["Logos","Iconography","Button","IconButton","Chip","Badge","Card","Divider","ListRow","Avatar","Input","SearchField","Switch","Alert","Toast","Loader","Progress","EmptyState","VerseBlock","AppBar","TabBar","SettingsRow","Fab"],
+  "android": ["Logos","Iconography","Button","IconButton","Chip","Badge","Card","Divider","ListRow","Avatar","Input","SearchField","Switch","Alert","Toast","Loader","Progress","EmptyState","VerseBlock","AppBar","TabBar","SettingsRow","Fab"]
+}

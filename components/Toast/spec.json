@@ -1,0 +1,259 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Toast",
+  "title": "Toast",
+  "group": "Feedback",
+  "version": "3.0.0",
+  "summary": "A short dark message that confirms an action or reports a quiet failure, then hides itself, with at most one action such as Undo or Retry.",
+  "whenToUse": [
+    "Use after the reader does something and the result is not otherwise visible: a verse saved, a link copied, a download started.",
+    "Use the error toast for a failed background action the reader can retry."
+  ],
+  "whenNotToUse": [
+    "Do not use a toast for form validation or anything the reader must read; use an inline Alert next to the form.",
+    "Do not use a toast for a question or a choice; use a Modal.",
+    "Never put the only path to an important action inside a toast."
+  ],
+  "anatomy": {
+    "description": "Status dot (24px) + message + one action or a dismiss X. Toasts live inside one `.fb-toaster` region per page.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Toast } from '@ism/ui'",
+    "source": "packages/react/src/components/Toast.tsx",
+    "exports": [
+      "Toast",
+      "ToastAction",
+      "ToastApi",
+      "ToastOptions",
+      "ToastProvider",
+      "ToastVariant",
+      "useToast"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'children'>"
+    ],
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "The message. Past tense, plain, one line where possible."
+      },
+      {
+        "name": "variant",
+        "type": "ToastVariant",
+        "required": false,
+        "default": "\"success\"",
+        "description": "Status dot. Errors use `role=\"alert\"`, the others `role=\"status\"`."
+      },
+      {
+        "name": "action",
+        "type": "ToastAction",
+        "required": false,
+        "default": null,
+        "description": "One text action at most. When present the dismiss X is not shown."
+      },
+      {
+        "name": "onDismiss",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the reader presses the dismiss X or the action. When omitted no X is shown."
+      },
+      {
+        "name": "dismissLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Dismiss\"",
+        "description": "Accessible name of the dismiss button."
+      },
+      {
+        "name": "compact",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "44px tall compact form for small frames and narrow phones."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { Toast } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Toast.tsx",
+    "exports": [
+      "Toast",
+      "ToastApi",
+      "ToastOptions",
+      "ToastProvider",
+      "ToastVariant",
+      "useToast"
+    ],
+    "props": [
+      {
+        "name": "dismissLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Dismiss\"",
+        "description": "Accessible name of the dismiss button."
+      },
+      {
+        "name": "onDismiss",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called by the dismiss button (shown when there is no action)."
+      },
+      {
+        "name": "onPauseChange",
+        "type": "(paused: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "Pause timers while the pointer, finger or focus is on the toast."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "fb-tdot",
+    "fb-tdot-err",
+    "fb-tdot-info",
+    "fb-tdot-ok",
+    "fb-toast",
+    "fb-toast-act",
+    "fb-toast-msg",
+    "fb-toast-sm",
+    "fb-toast-x",
+    "fb-toaster"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Success",
+        "dot": ".fb-tdot-ok (--success)",
+        "ends_with": ".fb-toast-x dismiss, or an Undo action"
+      },
+      {
+        "variant": "Error",
+        "dot": ".fb-tdot-err (--error)",
+        "ends_with": ".fb-toast-act Retry; role=\"alert\""
+      },
+      {
+        "variant": "Info",
+        "dot": ".fb-tdot-info (--horizon-blue)",
+        "ends_with": ".fb-toast-x dismiss"
+      },
+      {
+        "variant": "With action",
+        "dot": "any dot",
+        "ends_with": ".fb-toast-act (Undo, Retry, View)"
+      },
+      {
+        "variant": "Compact",
+        "dot": ".fb-toast-sm",
+        "ends_with": "44px tall; inside small frames and narrow phones"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "States: entering (rise from 8px below, 200ms), resting, paused (hover or focus inside), leaving (fade 150ms)."
+  ],
+  "states": {
+    "documented": "entering (rise from 8px below, 200ms), resting, paused (hover or focus inside), leaving (fade 150ms).",
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": true,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Surface `--charcoal-900`, text white 15px, radius `--radius-md`, shadow `--shadow-overlay`, min-height 52px, max-width 420px.",
+    "One action at most, text only, colour `--blue-on-dark`. Never a filled Horizon Blue button inside a toast.",
+    "The action and the dismiss X are 44px tap targets.",
+    "Auto-hide after 5s; 8s when there is an action. Pause the timer on hover and on focus.",
+    "Placement: `.fb-toaster` puts toasts bottom-center 16px from the edges on mobile and bottom-right 24px in on desktop (768px and up). Keep them clear of the sticky Give bar and the cookie banner; raise the toaster above them.",
+    "Stack newest on top, three at most; drop the oldest when a fourth arrives.",
+    "One message per toast, one line where possible, two at most.",
+    "Status colour lives only in the 24px dot. Never colour the whole toast."
+  ],
+  "do": [
+    "Use after the reader does something and the result is not otherwise visible: a verse saved, a link copied, a download started.",
+    "Use the error toast for a failed background action the reader can retry.",
+    "Surface `--charcoal-900`, text white 15px, radius `--radius-md`, shadow `--shadow-overlay`, min-height 52px, max-width 420px.",
+    "One action at most, text only, colour `--blue-on-dark`. Never a filled Horizon Blue button inside a toast.",
+    "The action and the dismiss X are 44px tap targets.",
+    "Auto-hide after 5s; 8s when there is an action. Pause the timer on hover and on focus.",
+    "Placement: `.fb-toaster` puts toasts bottom-center 16px from the edges on mobile and bottom-right 24px in on desktop (768px and up). Keep them clear of the sticky Give bar and the cookie banner; raise the toaster above them.",
+    "Stack newest on top, three at most; drop the oldest when a fourth arrives.",
+    "One message per toast, one line where possible, two at most.",
+    "Status colour lives only in the 24px dot. Never colour the whole toast."
+  ],
+  "dont": [
+    "Do not use a toast for form validation or anything the reader must read; use an inline Alert next to the form.",
+    "Do not use a toast for a question or a choice; use a Modal.",
+    "Never put the only path to an important action inside a toast."
+  ],
+  "accessibility": [
+    "The `.fb-toaster` region exists in the page from load with `aria-live=\"polite\"`, so new toasts are announced.",
+    "Success and info toasts use `role=\"status\"`; error toasts use `role=\"alert\"`.",
+    "Do not move focus to a toast. Offer the same action elsewhere (Undo is also reachable through the item itself).",
+    "Give the dismiss button `aria-label=\"Dismiss\"`. Status dots are `aria-hidden` icons; the message text carries the meaning.",
+    "Respect reduced motion: no slide, just appear and disappear.",
+    "Allow the reader enough time: the timer pauses while the pointer or focus is on the toast."
+  ],
+  "content": [
+    "Past tense, plain, short. Say what happened, not that something \"succeeded\".",
+    "Good: \"Verse saved to your library.\" / \"Link copied\" + Undo / \"Amharic Bible downloading for offline use.\"",
+    "Error: say what failed and what to do. \"Couldn’t send your message. Check your connection.\" + Retry.",
+    "Action labels are one verb: Undo, Retry, View.",
+    "No exclamation marks, no emoji."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"fb-toaster\" aria-live=\"polite\">\n  <div class=\"fb-toast\" role=\"status\">\n    <span class=\"fb-tdot fb-tdot-ok\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l5 5 9-10\"/></svg></span>\n    <span class=\"fb-toast-msg\">Link copied</span>\n    <button class=\"fb-toast-act\" type=\"button\">Undo</button>\n  </div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"fb-toaster\" aria-live=\"polite\">\n  <div class=\"fb-toast\" role=\"status\">\n    <span class=\"fb-tdot fb-tdot-ok\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l5 5 9-10\"/></svg></span>\n    <span class=\"fb-toast-msg\">Link copied</span>\n    <button class=\"fb-toast-act\" type=\"button\">Undo</button>\n  </div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/Toast/README.md",
+    "spec": "components/Toast/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

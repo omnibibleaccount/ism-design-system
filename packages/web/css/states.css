@@ -1,0 +1,32 @@
+/* ISM universal interaction states (pressed, loading, error). Loaded after bundle.css.
+   Rule: every interactive component has default, hover, focus, pressed, disabled, loading, error. See rules/states.md.
+   Hooks: :active or .is-pressed · [aria-busy="true"] or .is-loading · [aria-invalid="true"] or .is-error · [disabled] or [aria-disabled="true"]. */
+
+/* Pressed: one step darker than hover, no movement, no scale. */
+.btn-primary:active,.btn-primary.is-pressed{background:var(--charcoal-900);color:var(--white)}
+.btn-secondary:active,.btn-secondary.is-pressed{background:rgba(0,0,0,.12)}
+.btn-ghost:active,.btn-ghost.is-pressed{color:var(--charcoal-900)}
+.btn-light:active,.btn-light.is-pressed{background:var(--gray-300)}
+.btn-outline-light:active,.btn-outline-light.is-pressed{background:rgba(255,255,255,.18)}
+.iconbtn:active,.iconbtn.is-pressed,.chip:active,.chip.is-pressed{background:var(--gray-200)}
+.card:active,.card.is-pressed{box-shadow:var(--shadow-card-light)}
+
+/* Loading: label stays, a spinner replaces the leading icon, pointer events off, width does not change. */
+.btn[aria-busy="true"],.btn.is-loading{position:relative;pointer-events:none;cursor:progress}
+.btn[aria-busy="true"]::before,.btn.is-loading::before{content:"";width:16px;height:16px;flex:none;border-radius:50%;border:2px solid currentColor;border-inline-end-color:transparent;animation:ism-spin var(--duration-spin) var(--ease-linear) infinite}
+.btn[aria-busy="true"] .arrow,.btn.is-loading .arrow{display:none}
+/* A button that already contains a .spin element keeps that one. */
+.btn:has(.spin)::before{display:none}
+.iconbtn[aria-busy="true"],.chip[aria-busy="true"]{pointer-events:none;cursor:progress}
+@keyframes ism-spin{to{transform:rotate(360deg)}}
+
+/* Error: red border plus a text message; never colour alone. Field components already style [aria-invalid="true"]. */
+.input.is-error,.fm-select[aria-invalid="true"],.fm-sel-btn[aria-invalid="true"]{border-color:var(--error);background:var(--error-field-bg)}
+.is-error:focus-visible,[aria-invalid="true"]:focus-visible{outline-color:var(--error);box-shadow:0 0 0 3px rgba(180,35,24,.3)}
+
+/* Disabled: one opacity token for every control; removed from pointer interaction. */
+.iconbtn[disabled],.iconbtn[aria-disabled="true"],.chip[disabled],.chip[aria-disabled="true"]{opacity:var(--opacity-disabled);pointer-events:none;cursor:not-allowed}
+
+@media (prefers-reduced-motion: reduce){
+  .btn[aria-busy="true"]::before,.btn.is-loading::before{animation-duration:2400ms}
+}

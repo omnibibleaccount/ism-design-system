@@ -1,0 +1,677 @@
+{
+  "name": "ISM Design System rules",
+  "version": "3.0.0",
+  "description": "Machine-readable rules an LLM or a linter needs and cannot infer from the visual boards. Human-readable versions live beside this file as Markdown. Token names refer to tokens/tokens.json.",
+  "states": {
+    "list": [
+      "default",
+      "hover",
+      "focus",
+      "pressed",
+      "disabled",
+      "loading",
+      "error"
+    ],
+    "hooks": {
+      "hover": ":hover (pointer devices only; never the only cue)",
+      "focus": ":focus-visible (keyboard) – 2px --horizon-blue outline, 2px offset, plus --shadow-focus",
+      "pressed": ":active or .is-pressed – one step darker than hover; no scale, no movement",
+      "disabled": "[disabled] or [aria-disabled=\"true\"] – opacity var(--opacity-disabled), no pointer events, not focusable when truly disabled",
+      "loading": "[aria-busy=\"true\"] or .is-loading – spinner replaces the leading icon, label stays, width does not change, input blocked",
+      "error": "[aria-invalid=\"true\"] or .is-error – --error border and --error-field-bg on fields, plus a text message; never colour alone"
+    },
+    "rules": [
+      "Every interactive component implements all seven states, or its spec lists which states do not apply and why.",
+      "Focus must be visible on every interactive element and may never be removed with outline:none unless replaced by an equal indicator.",
+      "Disabled elements keep their label legible; the 0.45 opacity is the only dimming. Do not also grey the text.",
+      "Loading never changes the control's size. Do not hide the label.",
+      "Error text sits directly below the field, is linked with aria-describedby, and says what to do next.",
+      "Hover must not be required to discover an action; touch has no hover."
+    ],
+    "perComponentClass": {
+      "button": {
+        "hover": "background steps to --horizon-blue-dim (primary), 6% black (secondary)",
+        "pressed": "--charcoal-900 (primary), 12% black (secondary)",
+        "loading": "leading spinner, aria-busy",
+        "error": "not applicable – errors belong to the form, not the button"
+      },
+      "field": {
+        "hover": "border darkens one step",
+        "focus": "blue ring",
+        "disabled": "--gray-100 background, --gray-600 text",
+        "loading": "trailing spinner for async validation",
+        "error": "--error border, --error-field-bg, message below"
+      },
+      "choice": {
+        "applies": [
+          "checkbox",
+          "radio",
+          "switch"
+        ],
+        "disabled": "--gray-100/--gray-300, opacity .45 for switch",
+        "error": "--error border on the control, message under the group"
+      },
+      "row": {
+        "applies": [
+          "ListRow",
+          "SettingsRow",
+          "LanguageRow",
+          "SearchResults"
+        ],
+        "pressed": "--gray-100 background",
+        "focus": "inset ring so it is not clipped",
+        "disabled": "--gray-600 text"
+      },
+      "overlay": {
+        "applies": [
+          "Modal",
+          "BottomSheet",
+          "Toast",
+          "Tooltip"
+        ],
+        "note": "No hover or pressed state on the surface itself; actions inside follow the button rules."
+      }
+    }
+  },
+  "multilingual": {
+    "fontFallbacks": {
+      "sans": [
+        "Inter",
+        "Noto Sans Ethiopic",
+        "Noto Sans Myanmar",
+        "Noto Naskh Arabic",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "Arial",
+        "sans-serif"
+      ],
+      "serif": [
+        "Lora",
+        "Noto Sans Ethiopic",
+        "Noto Sans Myanmar",
+        "Noto Naskh Arabic",
+        "Georgia",
+        "serif"
+      ],
+      "note": "Inter and Lora have no Ethiopic, Myanmar or Arabic glyphs, so the browser falls through the stack per character. Always set lang on the element so :lang() rules apply."
+    },
+    "scripts": [
+      {
+        "id": "latin",
+        "langs": [
+          "en",
+          "es",
+          "fr",
+          "pt",
+          "sw",
+          "…"
+        ],
+        "dir": "ltr",
+        "lineHeightBody": 1.5,
+        "lineHeightHeading": 1.12,
+        "status": "shipped"
+      },
+      {
+        "id": "ethiopic",
+        "langs": [
+          "am",
+          "ti"
+        ],
+        "dir": "ltr",
+        "lineHeightBody": 1.65,
+        "lineHeightHeading": 1.25,
+        "font": "Noto Sans Ethiopic",
+        "status": "recommended, native-reader review pending"
+      },
+      {
+        "id": "myanmar",
+        "langs": [
+          "my"
+        ],
+        "dir": "ltr",
+        "lineHeightBody": 1.9,
+        "lineHeightHeading": 1.5,
+        "font": "Noto Sans Myanmar",
+        "status": "recommended, native-reader review pending"
+      },
+      {
+        "id": "arabic",
+        "langs": [
+          "ar",
+          "fa",
+          "ur"
+        ],
+        "dir": "rtl",
+        "lineHeightBody": 1.9,
+        "lineHeightHeading": 1.4,
+        "font": "Noto Naskh Arabic",
+        "status": "recommended, native-reader review pending; Urdu is conventionally Nastaliq and needs a font decision"
+      }
+    ],
+    "typography": [
+      "Letter-spacing is 0 for Ethiopic, Myanmar and Arabic-script text; tracking breaks joining and stacking.",
+      "No uppercase transform, no italics for Ethiopic, Myanmar and Arabic-script text; use weight or colour for emphasis.",
+      "Burmese uses line-break:strict.",
+      "Headings in these scripts use the heading line-height from the table, never the Latin 1.12.",
+      "Do not truncate with ellipsis mid-word in Myanmar; allow wrapping."
+    ],
+    "rtl": {
+      "languages": [
+        "ar",
+        "fa",
+        "ur",
+        "he"
+      ],
+      "mechanism": "Set dir=\"rtl\" and lang on <html> (or on the content block). Load ism.rtl.css after ism.css; it is generated from the component CSS with postcss-rtlcss. Use CSS logical properties in new code.",
+      "mirror": [
+        "layout order and alignment",
+        "text-align start/end",
+        "padding/margin/border/inset left-right",
+        "chevrons that mean next, back, previous or drill-in (› ‹)",
+        "back and forward arrows",
+        "progress bars and sliders direction",
+        "tab order and carousels",
+        "list bullets and numbering side",
+        "drawers (slide from the right in RTL)",
+        "ListRow trailing affordance"
+      ],
+      "doNotMirror": [
+        "↗ (it points to an external page, not a direction)",
+        "the down caret ⌄ (it means opens)",
+        "media transport: play, pause, skip, scrub position",
+        "logos and wordmarks",
+        "QR codes",
+        "phone numbers, verse references, numerals, URLs and email addresses (wrap in dir=ltr / .ism-ltr)",
+        "clocks, checkmarks, close ×, search magnifier",
+        "photographs and illustrations with meaning"
+      ],
+      "utilities": {
+        ".ism-no-flip": "exempt an element from mirroring",
+        ".ism-ltr": "isolate an LTR run (numbers, URLs) inside RTL text",
+        ".ism-dir-icon": "icon that flips in RTL"
+      },
+      "scripture": "Scripture text keeps the reading direction of its language. Verse numbers stay Latin or Arabic-Indic per language convention; see voice rules."
+    }
+  },
+  "layout": {
+    "breakpoints": {
+      "compact": 480,
+      "mobile": 767,
+      "desktop": 1024,
+      "note": "Mobile-first. ≤767 is mobile, 768–1023 tablet, ≥1024 desktop. ≤480 compact tightens padding and stacks button groups."
+    },
+    "container": {
+      "frameMax": 1280,
+      "containerMax": 1200,
+      "gutter": 24,
+      "readingMeasure": 760,
+      "scriptureMeasure": 680,
+      "note": ".wrap = width 100%, max --container-max (1200), side padding --gutter (24). .narrow = 760. Full-bleed frames cap at --frame-max (1280)."
+    },
+    "grid": {
+      "status": "recommended",
+      "columns": {
+        "mobile": 4,
+        "tablet": 8,
+        "desktop": 12
+      },
+      "gap": 24,
+      "note": "The shipped CSS uses flex and CSS grid inside .wrap rather than a fixed column system. When a 12-column grid is needed use repeat(12,1fr) with gap var(--gutter); spans collapse to full width at ≤767."
+    },
+    "spacing": "4px base. Use --space-1…--space-10 only (4, 8, 12, 16, 24, 32, 48, 64, 96, 128). No other values.",
+    "zIndex": {
+      "behind": -1,
+      "raised": 2,
+      "dropdown": 20,
+      "sticky": 40,
+      "header": 50,
+      "scrim": 60,
+      "drawer": 61,
+      "cookie": 70,
+      "float": 72,
+      "modal": 90,
+      "toast": 95,
+      "tooltip": 96,
+      "skip": 100,
+      "rule": "Use the tokens. Values 3–9 may be used for local layering inside one component only. Never exceed --z-skip."
+    },
+    "elevation": {
+      "levels": [
+        "flat (0)",
+        "card (--shadow-card-light / --shadow-card-dark)",
+        "lift (--shadow-lift)",
+        "overlay (--shadow-overlay)",
+        "focus (--shadow-focus, a ring, not elevation)"
+      ],
+      "rules": [
+        "Cards at rest use card elevation; hover on interactive cards raises to lift.",
+        "Anything floating over content (menu, sheet, modal, toast) uses overlay.",
+        "Dark surfaces use a border (--border-hairline-dark) instead of shadow."
+      ]
+    },
+    "motion": {
+      "durations": {
+        "fast": 150,
+        "base": 200,
+        "drawer": 260,
+        "slow": 300,
+        "enter": 400,
+        "media": 500,
+        "spin": 800,
+        "pulse": 1600
+      },
+      "easings": {
+        "standard": "ease",
+        "drawer": "cubic-bezier(.2,.8,.2,1)",
+        "rise": "cubic-bezier(.2,.7,.2,1)",
+        "linear": "linear"
+      },
+      "rules": [
+        "Color, border and opacity changes: fast, ease-standard.",
+        "Drawers, sheets, menus: drawer duration, ease-drawer.",
+        "Entrance of page content: enter duration, ease-rise, 20px translate max.",
+        "Spinners are linear. Pulse is for the live indicator only.",
+        "Honour prefers-reduced-motion: remove translate and scale, keep opacity fades under 150ms, slow spinners.",
+        "Never animate layout properties (width, height, top, left) on large areas; animate transform and opacity."
+      ]
+    },
+    "scrim": {
+      "peek": 0.28,
+      "sheet": 0.42,
+      "drawer": 0.55,
+      "modal": "rgba(22,24,25,.6)",
+      "photoOverlay": 0.4
+    },
+    "sectionRhythm": {
+      "desktop": {
+        "section": 112,
+        "compact": 80
+      },
+      "mobile": {
+        "section": 72,
+        "compact": 56
+      },
+      "note": "Classes .sec and .sec-sm. Vertical padding between page sections; use these classes, not ad-hoc padding."
+    }
+  },
+  "iconsAndLinks": {
+    "glyphs": [
+      {
+        "glyph": "⌄",
+        "meaning": "opens something on this page: menu, dropdown, accordion, select, language switcher",
+        "rotates": "180° when open"
+      },
+      {
+        "glyph": "↗",
+        "meaning": "goes to another page or another site (new context). The only glyph for external or off-page navigation.",
+        "rtl": "do not mirror"
+      },
+      {
+        "glyph": "›",
+        "meaning": "drills into a deeper screen or level (lists in the app, breadcrumbs separator, row affordance)",
+        "rtl": "mirror to ‹"
+      },
+      {
+        "glyph": "→",
+        "meaning": "primary continue in a flow (one per group, on the primary button only)",
+        "rtl": "mirror"
+      },
+      {
+        "glyph": "←",
+        "meaning": "back",
+        "rtl": "mirror"
+      },
+      {
+        "glyph": "+",
+        "meaning": "add or expand a disclosure that adds content (accordion item uses +/−)",
+        "rtl": "no mirror"
+      },
+      {
+        "glyph": "×",
+        "meaning": "dismiss or clear. Always a button with an accessible name.",
+        "rtl": "no mirror"
+      }
+    ],
+    "rules": [
+      "Links inside body copy are underlined; links in navigation are not, but gain an underline or colour change on hover and a visible focus ring.",
+      "Link colour is --horizon-blue on light, --blue-on-dark on dark. Hover is --horizon-blue-dim. Visited links are not restyled.",
+      "A link that leaves the site or opens in a new tab shows ↗ and uses target=\"_blank\" rel=\"noopener\"; say so to assistive tech with a visually-hidden \"(opens in a new tab)\".",
+      "Buttons do things, links go places. A control that changes state or submits is a <button>; a control that navigates is an <a>.",
+      "Icons are 1.8px stroke, round caps and joins, currentColor, on a 24px grid. Sizes: 16, 20, 24 (--icon-sm, --icon-md, --icon-lg). Do not mix filled and outline in one group.",
+      "Decorative icons: aria-hidden=\"true\". Meaningful icons without text: an accessible name on the control, not the svg.",
+      "Counts and notification dots are blue. Red is for errors only. The live/on-air dot is --live and used only for on-air.",
+      "One Horizon Blue primary per group of actions; everything else is secondary or ghost."
+    ]
+  },
+  "accessibility": {
+    "standard": "WCAG 2.2 AA minimum",
+    "minimums": {
+      "textContrast": 4.5,
+      "largeTextContrast": 3,
+      "uiContrast": 3,
+      "largeTextDefinition": "≥24px, or ≥18.66px bold",
+      "tapTargetPx": 44,
+      "focusRing": "2px solid --horizon-blue, 2px offset, plus --shadow-focus; on --horizon-blue backgrounds use white; on dark use --blue-on-dark",
+      "minBodySizePx": 16,
+      "lineLengthCh": "45–75, max 760px (reading) or 680px (scripture)",
+      "textResize": "Works at 200% zoom without loss of content; use rem or px in tokens with no fixed-height text containers.",
+      "targetSpacing": "8px between adjacent tap targets"
+    },
+    "contrastPairs": [
+      {
+        "fg": "black",
+        "bg": "off-white",
+        "min": 4.5,
+        "use": "body text on page"
+      },
+      {
+        "fg": "black",
+        "bg": "white",
+        "min": 4.5,
+        "use": "text on cards"
+      },
+      {
+        "fg": "gray-700",
+        "bg": "off-white",
+        "min": 4.5,
+        "use": "secondary body"
+      },
+      {
+        "fg": "gray-700",
+        "bg": "white",
+        "min": 4.5,
+        "use": "secondary body on cards"
+      },
+      {
+        "fg": "gray-600",
+        "bg": "white",
+        "min": 4.5,
+        "use": "captions, disabled text"
+      },
+      {
+        "fg": "gray-600",
+        "bg": "off-white",
+        "min": 4.5,
+        "use": "captions on page"
+      },
+      {
+        "fg": "gray-placeholder",
+        "bg": "white",
+        "min": 4.5,
+        "use": "input placeholder"
+      },
+      {
+        "fg": "horizon-blue",
+        "bg": "white",
+        "min": 4.5,
+        "use": "links and ghost buttons on cards"
+      },
+      {
+        "fg": "horizon-blue",
+        "bg": "off-white",
+        "min": 4.5,
+        "use": "links on page"
+      },
+      {
+        "fg": "white",
+        "bg": "horizon-blue",
+        "min": 4.5,
+        "use": "primary button label"
+      },
+      {
+        "fg": "white",
+        "bg": "horizon-blue-dim",
+        "min": 4.5,
+        "use": "primary button hover"
+      },
+      {
+        "fg": "blue-on-dark",
+        "bg": "black",
+        "min": 4.5,
+        "use": "links on dark"
+      },
+      {
+        "fg": "blue-on-dark",
+        "bg": "charcoal-900",
+        "min": 4.5,
+        "use": "links on dark cards"
+      },
+      {
+        "fg": "white",
+        "bg": "black",
+        "min": 4.5,
+        "use": "text on dark"
+      },
+      {
+        "fg": "text-secondary-dark",
+        "bg": "black",
+        "min": 4.5,
+        "use": "secondary text on dark"
+      },
+      {
+        "fg": "text-tertiary-dark",
+        "bg": "black",
+        "min": 4.5,
+        "use": "tertiary text on dark"
+      },
+      {
+        "fg": "text-tertiary-dark",
+        "bg": "charcoal-900",
+        "min": 4.5,
+        "use": "tertiary on dark cards"
+      },
+      {
+        "fg": "text-secondary-light",
+        "bg": "off-white",
+        "min": 4.5,
+        "use": "secondary on page"
+      },
+      {
+        "fg": "text-secondary-light",
+        "bg": "white",
+        "min": 4.5,
+        "use": "secondary on cards"
+      },
+      {
+        "fg": "success",
+        "bg": "success-bg",
+        "min": 4.5,
+        "use": "success alert"
+      },
+      {
+        "fg": "error",
+        "bg": "error-bg",
+        "min": 4.5,
+        "use": "error alert"
+      },
+      {
+        "fg": "error",
+        "bg": "white",
+        "min": 4.5,
+        "use": "field error text"
+      },
+      {
+        "fg": "warning",
+        "bg": "warning-bg",
+        "min": 4.5,
+        "use": "warning alert"
+      },
+      {
+        "fg": "info",
+        "bg": "info-bg",
+        "min": 4.5,
+        "use": "info alert"
+      },
+      {
+        "fg": "success-on-dark",
+        "bg": "black",
+        "min": 4.5,
+        "use": "success on dark"
+      },
+      {
+        "fg": "error-on-dark",
+        "bg": "black",
+        "min": 4.5,
+        "use": "error on dark"
+      },
+      {
+        "fg": "violet-ink",
+        "bg": "violet-tint",
+        "min": 4.5,
+        "use": "violet tag"
+      },
+      {
+        "fg": "live",
+        "bg": "black",
+        "min": 3,
+        "use": "live dot (graphic, not text)"
+      },
+      {
+        "fg": "horizon-blue",
+        "bg": "black",
+        "min": 3,
+        "use": "focus ring and UI strokes on black; NOT for text (4.30)"
+      },
+      {
+        "fg": "horizon-blue",
+        "bg": "blue-tint",
+        "min": 3,
+        "use": "large text or UI on blue tint only (4.43)"
+      },
+      {
+        "fg": "gray-500",
+        "bg": "off-white",
+        "min": 3,
+        "use": "non-text only (3.75); never for text"
+      }
+    ],
+    "forbidden": [
+      "--gray-500 and lighter for text",
+      "--horizon-blue as text colour on black or charcoal (use --blue-on-dark)",
+      "--horizon-blue as small text on --blue-tint (4.43:1)",
+      "Colour as the only signal of state, error or meaning"
+    ],
+    "images": {
+      "alt": [
+        "Informative image: alt describes the content and purpose in one sentence, in the page language, no \"image of\".",
+        "Decorative image or pattern: alt=\"\" (and role=\"presentation\" on svg).",
+        "Logo as link: alt is the link purpose (\"International Scripture Ministries home\"), not the logo's appearance.",
+        "Functional image (QR code): alt says what it does and what it encodes, and the URL is also given as text.",
+        "Photos of people: describe what they are doing, never guess ethnicity, nationality or age.",
+        "Text in images is avoided; if unavoidable, the alt carries the exact text."
+      ]
+    },
+    "semantics": [
+      "Use native elements first: button, a, input, select, details/summary, dialog, nav, main, header, footer.",
+      "One h1 per page; headings do not skip levels.",
+      "Landmarks are labelled when more than one of a kind exists (nav aria-label).",
+      "Modals trap focus, restore focus on close, close on Esc, and label with aria-labelledby.",
+      "Toasts use role=status (polite) for success and info and role=alert only for errors.",
+      "Form fields have a visible label, an id/for pair, aria-describedby for hint and error, and aria-invalid on error.",
+      "Language changes inside a page carry a lang attribute.",
+      "Provide a skip link as the first focusable element.",
+      "Audio and video: captions or transcript, keyboard-operable controls, no autoplay with sound."
+    ]
+  },
+  "voice": {
+    "principles": [
+      "Plain",
+      "Warm",
+      "Reverent",
+      "Direct",
+      "Global"
+    ],
+    "rules": [
+      "Sentence case everywhere: headings, buttons, labels, menu items. Proper nouns keep their capitals.",
+      "No exclamation marks. No emoji. No all-caps except the eyebrow style, which is rendered by CSS not typed.",
+      "Write for translation: short sentences, no idioms, no wordplay, no culture-specific metaphors.",
+      "Say \"you\" and \"we\". Avoid passive voice.",
+      "Numbers: numerals for counts (12 languages), spell out one only in running prose."
+    ],
+    "buttons": {
+      "rule": "Verb first, 1–3 words, says what happens next.",
+      "good": [
+        "Read now",
+        "Listen",
+        "Download the app",
+        "Give today",
+        "Find a station",
+        "Send message",
+        "Save changes",
+        "Try again"
+      ],
+      "bad": [
+        "Click here",
+        "Submit",
+        "OK",
+        "Learn more!",
+        "Yes",
+        "Go"
+      ],
+      "pairs": {
+        "confirm/cancel": [
+          "Delete note",
+          "Keep note"
+        ],
+        "dismiss": "Not now",
+        "back": "Back"
+      },
+      "primaryWithArrow": "→ only on the primary \"continue\" button of a flow."
+    },
+    "errors": {
+      "tone": "Calm, specific, no blame, no jokes. Say what happened and what to do.",
+      "shape": "[What is wrong]. [What to do.]",
+      "examples": [
+        {
+          "bad": "Invalid input!",
+          "good": "Enter an email address like name@example.com."
+        },
+        {
+          "bad": "Oops, something went wrong.",
+          "good": "We couldn't save your changes. Check your connection and try again."
+        },
+        {
+          "bad": "Error 404",
+          "good": "We can't find that page. Go to the home page or search for what you need."
+        }
+      ],
+      "rules": [
+        "Never use red text alone; include an icon or the word \"Error\".",
+        "Do not clear what the user typed.",
+        "Do not say \"please\" more than once in a view."
+      ]
+    },
+    "emptyStates": "Say what will appear here and how to get started. One action.",
+    "scripture": {
+      "reference": "Book chapter:verse, with a non-breaking space: John 3:16 · 1 Corinthians 13:4–7 (en dash for ranges). Use the book names of the reader's language and tradition.",
+      "quotation": "Scripture text is set in Lora, never edited, never ellipsised without marking, and always followed by its reference and the translation abbreviation (e.g. NIV, RVR60, or the language's translation name).",
+      "naming": "Say \"Scripture\", \"the Bible\" or \"God's Word\" consistently with how the translation names itself. Capitalise God, Lord (when YHWH) and pronouns per translation convention; do not decide this in UI code.",
+      "verseNumbers": "Verse numbers are small, superscript-style, --gray-600, not selectable in copy by default.",
+      "attribution": "Always show translation and copyright line where required by the licence.",
+      "neverDo": [
+        "Paraphrase scripture in UI copy and present it as a quote",
+        "Use scripture as decoration without its reference",
+        "Change verse text for fit; shorten the passage instead"
+      ]
+    },
+    "orgName": {
+      "full": "International Scripture Ministries",
+      "short": "ISM",
+      "domain": "ism.bible",
+      "app": "dot.Bible",
+      "rule": "Write \"dot.Bible\" with a capital B. Write \"ISM\" in capitals. Do not abbreviate the organisation in the first mention."
+    }
+  },
+  "buildingRules": [
+    "One Horizon Blue primary action per group.",
+    "Inter for UI (h1 weight 700, other headings 600); Lora for scripture and quotes only.",
+    "Logos are black ink; on dark backgrounds invert with filter: brightness(0) invert(1). Never recolour, rotate or stretch a logo; keep clear space of the dot height.",
+    "Use tokens, never raw hex, px radius, shadows or z-index values.",
+    "Cards: white on off-white, radius --radius-lg (20), --shadow-card-light, 24px padding; no card inside a card.",
+    "Pills (--radius-pill) are for buttons, chips and badges; inputs use --radius-md (12) and are at least 48px high.",
+    "Use only the gradient tokens (--gradient-signature, -line, -marker, -signature-soft and the stop colours); --gradient-signature is for hero accents and the brand bar, never behind text.",
+    "Tap targets are at least 44px on every platform."
+  ]
+}

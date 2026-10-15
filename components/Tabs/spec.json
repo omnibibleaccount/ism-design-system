@@ -1,0 +1,202 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Tabs",
+  "title": "Tabs",
+  "group": "Navigation",
+  "version": "3.0.0",
+  "summary": "Switches between panels of related content on the same page without a page load: underline tabs with counts, pill segmented tabs, vertical tabs and a scrollable mobile row.",
+  "whenToUse": [
+    "Use underline tabs to filter one collection into kinds: Resources page \"All / Apps / Radio / Publishing / NFC Cards\".",
+    "Use segmented (`.nv-seg`) for 2–4 short, equal options: gift frequency, Listen / Read.",
+    "Use vertical tabs (`.nv-vtabs`) for a settings-style page with a side list: \"Ways to partner\"."
+  ],
+  "whenNotToUse": [
+    "Do not use tabs to go to another page. Use links, Breadcrumbs or AnchorNav for that.",
+    "Do not use tabs for more than about 6 options on desktop; use a select or filter chips (`.chip[aria-pressed]`)."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Tabs } from '@ism/ui'",
+    "source": "packages/react/src/components/Tabs.tsx",
+    "exports": [
+      "TabItem",
+      "Tabs",
+      "TabsVariant"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'>"
+    ],
+    "props": [
+      {
+        "name": "items",
+        "type": "TabItem[]",
+        "required": true,
+        "default": null,
+        "description": "The tabs, in order."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Accessible name of the tablist that names the set: \"Resource types\". Required for a11y."
+      },
+      {
+        "name": "variant",
+        "type": "TabsVariant",
+        "required": false,
+        "default": "\"underline\"",
+        "description": "`underline` filters one collection into kinds; `segmented` is for 2 to 4 short equal options; `vertical` is a side list (max 7)."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Selected tab value (controlled)."
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "required": false,
+        "default": "the first enabled tab",
+        "description": "Initially selected value (uncontrolled)."
+      },
+      {
+        "name": "onChange",
+        "type": "(value: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the selection changes (click, arrow keys, Home, End)."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Segmented tabs on a dark background (`.nv-seg-dark`)."
+      },
+      {
+        "name": "scrollable",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Underline tabs: scroll sideways on phones instead of wrapping (`.nv-tabs-scroll`)."
+      },
+      {
+        "name": "tablistClassName",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Class name for the tablist element (the root `className` goes on the wrapper)."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "nv-cnt",
+    "nv-seg",
+    "nv-seg-dark",
+    "nv-tab",
+    "nv-tabs",
+    "nv-tabs-scroll",
+    "nv-vtab",
+    "nv-vtabs"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "**Underline tab (`.nv-tab`):** 48px tall, 15px/500 `var(--gray-700)`, 28px apart on a `var(--gray-200)` hairline.",
+    "Hover: text `var(--black)`, grey `var(--gray-300)` underline.",
+    "Focus: 2px `var(--horizon-blue)` outline + `var(--shadow-focus)`, 6px radius.",
+    "Selected: `aria-selected=\"true\"`, 600 weight, 2px `var(--horizon-blue)` underline; count turns `var(--blue-tint)` / `var(--horizon-blue-dim)`.",
+    "Disabled: `aria-disabled=\"true\"`, `var(--gray-300)`, no underline.",
+    "**Count (`.nv-cnt`):** 22px pill, 12px/600, `var(--gray-100)`.",
+    "**Segmented (`.nv-seg`):** `var(--gray-100)` pill track with 4px padding; 44px buttons; selected is a white pill with a soft shadow. On dark add `.nv-seg-dark` (track `rgba(255,255,255,.08)`).",
+    "**Vertical (`.nv-vtab`):** 48px rows, `var(--radius-md)`; hover `var(--off-white)`; selected `var(--blue-tint)` with a 3px inset `var(--horizon-blue)` edge.",
+    "**Mobile scroll row (`.nv-tabs-scroll`):** no wrap, `overflow-x:auto`, 16px gutter, 22px gaps, white fade on the right hints more."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": true,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Tabs swap panels in place. Never make a tab navigate to a new URL.",
+    "Only the selected underline is Horizon Blue. Never colour unselected tabs blue.",
+    "Counts are neutral grey, or blue-tint when selected. Never red.",
+    "Keep all tabs at least 44px tall (48px for underline and vertical tabs).",
+    "Keep labels on one line (`white-space:nowrap`); on phones scroll the row, never wrap it.",
+    "Segmented tabs: 2–4 options of similar length. Vertical tabs: max 7.",
+    "Show a disabled tab only when its absence would confuse (\"Archive 0\"); otherwise hide it."
+  ],
+  "do": [
+    "Use underline tabs to filter one collection into kinds: Resources page \"All / Apps / Radio / Publishing / NFC Cards\".",
+    "Use segmented (`.nv-seg`) for 2–4 short, equal options: gift frequency, Listen / Read.",
+    "Use vertical tabs (`.nv-vtabs`) for a settings-style page with a side list: \"Ways to partner\".",
+    "Tabs swap panels in place. Never make a tab navigate to a new URL.",
+    "Only the selected underline is Horizon Blue. Never colour unselected tabs blue.",
+    "Counts are neutral grey, or blue-tint when selected. Never red.",
+    "Keep all tabs at least 44px tall (48px for underline and vertical tabs).",
+    "Keep labels on one line (`white-space:nowrap`); on phones scroll the row, never wrap it.",
+    "Segmented tabs: 2–4 options of similar length. Vertical tabs: max 7.",
+    "Show a disabled tab only when its absence would confuse (\"Archive 0\"); otherwise hide it."
+  ],
+  "dont": [
+    "Do not use tabs to go to another page. Use links, Breadcrumbs or AnchorNav for that.",
+    "Do not use tabs for more than about 6 options on desktop; use a select or filter chips (`.chip[aria-pressed]`)."
+  ],
+  "accessibility": [
+    "Use `role=\"tablist\"`, `role=\"tab\"` and `role=\"tabpanel\"`, linked by `aria-controls` / `aria-labelledby`.",
+    "Roving tabindex: only the selected tab has `tabindex=\"0\"`. ← → move between tabs (↑ ↓ for vertical), Home/End jump to the ends.",
+    "Mark selection with `aria-selected`, never with colour alone (weight and underline also change).",
+    "Give the tablist an `aria-label` that names the set: \"Resource types\", \"Gift frequency\"."
+  ],
+  "content": [
+    "Short nouns in sentence case: \"All resources\", \"Apps\", \"Radio\", \"Publishing\", \"NFC Cards\".",
+    "Counts are real totals of the items in each panel (preview numbers are samples).",
+    "Segmented: \"One-time / Monthly / Yearly\", \"Listen / Read\".",
+    "Vertical: \"Pray / Give / Volunteer / Churches / Events\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"nv-tabs\" role=\"tablist\" aria-label=\"Resource types\">\n  <button class=\"nv-tab\" role=\"tab\" id=\"t-all\" aria-selected=\"true\" aria-controls=\"p-all\">All resources <span class=\"nv-cnt\">24</span></button>\n  <button class=\"nv-tab\" role=\"tab\" id=\"t-apps\" aria-selected=\"false\" aria-controls=\"p-apps\" tabindex=\"-1\">Apps <span class=\"nv-cnt\">6</span></button>\n</div>\n<div role=\"tabpanel\" id=\"p-all\" aria-labelledby=\"t-all\">…</div>\n\n<!-- segmented -->\n<div class=\"nv-seg\" role=\"tablist\" aria-label=\"Gift frequency\">\n  <button role=\"tab\" aria-selected=\"false\">One-time</button>\n  <button role=\"tab\" aria-selected=\"true\">Monthly</button>\n</div>\n\n<!-- vertical -->\n<div class=\"nv-vtabs\" role=\"tablist\" aria-orientation=\"vertical\" aria-label=\"Ways to partner\">\n  <button class=\"nv-vtab\" role=\"tab\" aria-selected=\"true\">Pray</button>\n</div>\n\n<!-- mobile scroll row -->\n<div class=\"nv-tabs-scroll\"><div class=\"nv-tabs\" role=\"tablist\">…</div></div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"nv-tabs\" role=\"tablist\" aria-label=\"Resource types\">\n  <button class=\"nv-tab\" role=\"tab\" id=\"t-all\" aria-selected=\"true\" aria-controls=\"p-all\">All resources <span class=\"nv-cnt\">24</span></button>\n  <button class=\"nv-tab\" role=\"tab\" id=\"t-apps\" aria-selected=\"false\" aria-controls=\"p-apps\" tabindex=\"-1\">Apps <span class=\"nv-cnt\">6</span></button>\n</div>\n<div role=\"tabpanel\" id=\"p-all\" aria-labelledby=\"t-all\">…</div>\n\n<!-- segmented -->\n<div class=\"nv-seg\" role=\"tablist\" aria-label=\"Gift frequency\">\n  <button role=\"tab\" aria-selected=\"false\">One-time</button>\n  <button role=\"tab\" aria-selected=\"true\">Monthly</button>\n</div>\n\n<!-- vertical -->\n<div class=\"nv-vtabs\" role=\"tablist\" aria-orientation=\"vertical\" aria-label=\"Ways to partner\">\n  <button class=\"nv-vtab\" role=\"tab\" aria-selected=\"true\">Pray</button>\n</div>\n\n<!-- mobile scroll row -->\n<div class=\"nv-tabs-scroll\"><div class=\"nv-tabs\" role=\"tablist\">…</div></div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/Tabs/README.md",
+    "spec": "components/Tabs/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

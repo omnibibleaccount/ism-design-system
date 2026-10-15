@@ -1,0 +1,257 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "PhoneInput",
+  "title": "PhoneInput",
+  "group": "Forms",
+  "version": "3.0.0",
+  "summary": "One 48px field that joins a country-code button and a number input, with a searchable country list that opens 6px below.",
+  "whenToUse": [
+    "Any phone number field: partner applications, church contact details, prayer line call-backs.",
+    "Use it wherever numbers may come from outside the US; ISM partners and listeners call from many countries."
+  ],
+  "whenNotToUse": [
+    "Do not use for SMS one-time codes (use a plain `.input` with `inputmode=\"numeric\"`) or for typing a country alone (use Combobox)."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { PhoneInput } from '@ism/ui'",
+    "source": "packages/react/src/components/PhoneInput.tsx",
+    "exports": [
+      "PhoneChange",
+      "PhoneCountry",
+      "PhoneInput",
+      "PhoneInputLabels",
+      "defaultPhoneCountries"
+    ],
+    "extends": [
+      "Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue' | 'onChange' | 'type' | 'size'>"
+    ],
+    "props": [
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Visible label."
+      },
+      {
+        "name": "optionalText",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Tag such as \"(optional)\" shown after the label."
+      },
+      {
+        "name": "hint",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Helper text under the field, linked with `aria-describedby`."
+      },
+      {
+        "name": "error",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Error message under the field. Sets `aria-invalid` and the error shell."
+      },
+      {
+        "name": "labels",
+        "type": "PhoneInputLabels",
+        "required": true,
+        "default": null,
+        "description": "Texts for the country list."
+      },
+      {
+        "name": "countries",
+        "type": "PhoneCountry[]",
+        "required": false,
+        "default": "defaultPhoneCountries (8 entries)",
+        "description": "Countries offered."
+      },
+      {
+        "name": "suggested",
+        "type": "string[]",
+        "required": false,
+        "default": null,
+        "description": "Codes (from `countries`) pinned in a \"Suggested\" group above the full list."
+      },
+      {
+        "name": "searchable",
+        "type": "boolean",
+        "required": false,
+        "default": "true when there are more than 10 countries",
+        "description": "Show the search field."
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Selected country code (controlled)."
+      },
+      {
+        "name": "defaultCountry",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Initial country code (uncontrolled). Never blank: falls back to the first country."
+      },
+      {
+        "name": "onCountryChange",
+        "type": "(country: PhoneCountry) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the country changes."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Phone number in E.164, for example \"+251911234567\" (controlled)."
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Initial E.164 number (uncontrolled)."
+      },
+      {
+        "name": "onChange",
+        "type": "(e164: string, details: PhoneChange) => void",
+        "required": false,
+        "default": null,
+        "description": "Called on every edit with the E.164 value (spaces, dashes and brackets stripped) and details."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Disable the whole group."
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Mark required (`required` on the number input)."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "err",
+    "field",
+    "fm-cc",
+    "fm-dial",
+    "fm-err",
+    "fm-flag",
+    "fm-focus",
+    "fm-menu",
+    "fm-menu-float",
+    "fm-menu-head",
+    "fm-menu-search",
+    "fm-num",
+    "fm-o",
+    "fm-phone",
+    "fm-tick",
+    "input",
+    "label",
+    "opt"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Default: country set from the site language or location, number empty with a placeholder.",
+    "Focus: `:focus-within` (or `.fm-focus` in static specs) gives the whole group the `--horizon-blue` border and `--shadow-focus`.",
+    "Error: `.fm-err` on the group (`--error` border on `--error-field-bg`), `aria-invalid=\"true\"` on the number and one `.err` line.",
+    "List open: `aria-expanded=\"true\"` tints the country button `--blue-tint` and turns the caret 180°.",
+    "Option hover / keyboard-active: `--blue-tint`. Selected: `--horizon-blue-dim` semibold with a blue tick in `.fm-tick`."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "The caret ⌄ means the list opens here; it rotates when open.",
+    "Never leave the country blank; default it and let people change it.",
+    "Show the flag as a two-letter code tile (`.fm-flag`), not an emoji or image, so it renders on every device.",
+    "Put the search field first when the list is longer than about 10 countries; pin a short \"Suggested\" group above \"All countries\".",
+    "Accept spaces, dashes and brackets while typing; store E.164 (+251911234567).",
+    "Keep the whole group 48px tall and the options 44px.",
+    "On phones, open the list as a full-height sheet with the search field focused."
+  ],
+  "do": [
+    "Any phone number field: partner applications, church contact details, prayer line call-backs.",
+    "Use it wherever numbers may come from outside the US; ISM partners and listeners call from many countries.",
+    "The caret ⌄ means the list opens here; it rotates when open.",
+    "Show the flag as a two-letter code tile (`.fm-flag`), not an emoji or image, so it renders on every device.",
+    "Put the search field first when the list is longer than about 10 countries; pin a short \"Suggested\" group above \"All countries\".",
+    "Accept spaces, dashes and brackets while typing; store E.164 (+251911234567).",
+    "Keep the whole group 48px tall and the options 44px.",
+    "On phones, open the list as a full-height sheet with the search field focused."
+  ],
+  "dont": [
+    "Do not use for SMS one-time codes (use a plain `.input` with `inputmode=\"numeric\"`) or for typing a country alone (use Combobox).",
+    "Never leave the country blank; default it and let people change it."
+  ],
+  "accessibility": [
+    "The country button's name includes country and code: \"Country code: Ethiopia +251\". Flag tiles are `aria-hidden`.",
+    "Button: `aria-haspopup=\"listbox\"`, `aria-expanded`. List: `role=\"listbox\"`, rows `role=\"option\"` with `aria-selected`.",
+    "Keys on the list: type to search, Up / Down to move, Enter picks and returns focus to the number, Esc closes.",
+    "Use `type=\"tel\"` and `autocomplete=\"tel-national\"` on the number (the country button sets the code).",
+    "Link errors with `aria-describedby`."
+  ],
+  "content": [
+    "Label: \"Phone\", with \"(optional)\" when it is.",
+    "Placeholder: a local example, \"(555) 123-4567\" for +1.",
+    "Search: \"Search countries\". Groups: \"Suggested\", \"All countries\".",
+    "Error: \"This number looks too short.\" / \"Enter a phone number, or leave it blank.\"",
+    "Numbers in examples are samples."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"field\">\n  <label class=\"label\" for=\"phone\">Phone <span class=\"opt\">(optional)</span></label>\n  <div class=\"fm-phone\">\n    <button class=\"fm-cc\" type=\"button\" aria-haspopup=\"listbox\" aria-expanded=\"false\"\n      aria-label=\"Country code: United States +1\">\n      <span class=\"fm-flag\" aria-hidden=\"true\">US</span><span>+1</span>\n      <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg>\n    </button>\n    <input class=\"fm-num\" id=\"phone\" type=\"tel\" autocomplete=\"tel-national\" placeholder=\"(555) 123-4567\">\n  </div>\n</div>\n\n<div class=\"fm-menu fm-menu-float\" role=\"listbox\" aria-label=\"Country code\">\n  <div class=\"fm-menu-search\"><input class=\"input\" type=\"search\" placeholder=\"Search countries\" aria-label=\"Search countries\"></div>\n  <div class=\"fm-menu-head\">Suggested</div>\n  <button class=\"fm-o\" type=\"button\" role=\"option\" aria-selected=\"true\">\n    <span class=\"fm-tick\"><svg …tick…/></span><span class=\"fm-flag\" aria-hidden=\"true\">PH</span>Philippines<span class=\"fm-dial\">+63</span>\n  </button>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"field\">\n  <label class=\"label\" for=\"phone\">Phone <span class=\"opt\">(optional)</span></label>\n  <div class=\"fm-phone\">\n    <button class=\"fm-cc\" type=\"button\" aria-haspopup=\"listbox\" aria-expanded=\"false\"\n      aria-label=\"Country code: United States +1\">\n      <span class=\"fm-flag\" aria-hidden=\"true\">US</span><span>+1</span>\n      <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg>\n    </button>\n    <input class=\"fm-num\" id=\"phone\" type=\"tel\" autocomplete=\"tel-national\" placeholder=\"(555) 123-4567\">\n  </div>\n</div>\n\n<div class=\"fm-menu fm-menu-float\" role=\"listbox\" aria-label=\"Country code\">\n  <div class=\"fm-menu-search\"><input class=\"input\" type=\"search\" placeholder=\"Search countries\" aria-label=\"Search countries\"></div>\n  <div class=\"fm-menu-head\">Suggested</div>\n  <button class=\"fm-o\" type=\"button\" role=\"option\" aria-selected=\"true\">\n    <span class=\"fm-tick\"><svg …tick…/></span><span class=\"fm-flag\" aria-hidden=\"true\">PH</span>Philippines<span class=\"fm-dial\">+63</span>\n  </button>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/PhoneInput/README.md",
+    "spec": "components/PhoneInput/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

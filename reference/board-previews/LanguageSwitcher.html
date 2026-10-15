@@ -1,0 +1,152 @@
+<!-- @dsCard group="Navigation" height=976 subtitle="Header globe, menu, footer, mobile sheet" -->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+body{margin:0}
+.pv{padding:24px;display:flex;flex-direction:column;gap:24px;background:var(--off-white);min-width:1180px;zoom:.8;font-family:var(--font-sans)}
+.pv p{margin:0}
+.pv-sec{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pv-lbl{font-size:12px;font-weight:600;color:var(--gray-600);letter-spacing:.02em}
+.pv-lbl-d{color:rgba(255,255,255,.6)}
+.pv-hdr{margin-bottom:290px;height:72px;background:var(--black);border-radius:12px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative;z-index:5}
+.pv-hdr .nv-logo img{height:34px}
+.pv-hdr nav{display:flex;align-items:center;gap:28px}
+.pv-grid{display:grid;grid-template-columns:minmax(0,1fr) 390px 340px;gap:32px;align-items:start}
+.pv-col{display:flex;flex-direction:column;gap:24px;min-width:0}
+.pv-dark{background:var(--black);border-radius:20px;padding:20px 24px}
+.pv-states{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.pv-states .pv-sec{align-items:flex-start}
+.pv-phone{width:390px;height:700px;border-radius:28px;overflow:hidden;border:1px solid var(--gray-200);background:var(--charcoal-900);position:relative}
+.pv-phone .nv-mhdr{opacity:.5}
+.pv-phone .nv-langbtn{min-height:36px}
+.pv-phone .nv-sheet{position:absolute;left:0;right:0;top:24px;bottom:0}
+.pv-note{padding:16px 4px;font-size:13px}
+.pv-empty{width:320px}
+</style>
+</head>
+<body>
+<div class="pv">
+  <div class="pv-sec">
+    <span class="pv-lbl">Header · globe "EN ⌄" left of Give · menu open · search filters by own or English name (try "amh") · hover on Español</span>
+    <header class="pv-hdr">
+      <a class="nv-logo" href="#" aria-label="International Scripture Ministries home"><img src="../../assets/logos/Logo%20Black.svg" alt="ISM"></a>
+      <nav aria-label="Main">
+        <a class="navlink" href="#">About ISM</a><a class="navlink" href="#">Resources</a><a class="navlink" href="#">Global Network</a><a class="navlink" href="#">Join The Mission</a><a class="navlink" href="#">Contact</a>
+      </nav>
+      <div class="nv-actions">
+        <span class="nv-lang-wrap">
+          <button type="button" class="nv-langbtn" id="pv-lbtn" aria-expanded="true" aria-haspopup="dialog" aria-controls="pv-lmenu" aria-label="Language: English"><svg class="nv-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>EN<svg class="nv-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="nv-langmenu" id="pv-lmenu" role="dialog" aria-label="Choose a language">
+            <div class="nv-lsearch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input class="input" id="pv-lq" type="search" placeholder="Search languages" aria-label="Search languages"></div>
+            <div class="overline nv-lhead">Site language</div>
+            <div class="nv-llist" role="listbox" aria-label="Languages" id="pv-llist">
+              <a class="nv-lopt" role="option" aria-selected="true" lang="en" href="#"><span><span class="nv-nm">English</span><span class="nv-en">English</span></span><svg class="nv-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></a>
+              <a class="nv-lopt nv-active" role="option" aria-selected="false" lang="es" href="#"><span><span class="nv-nm">Español</span><span class="nv-en">Spanish</span></span></a>
+              <a class="nv-lopt" role="option" aria-selected="false" lang="am" href="#"><span><span class="nv-nm">አማርኛ</span><span class="nv-en">Amharic</span></span></a>
+              <a class="nv-lopt" role="option" aria-selected="false" lang="vi" href="#"><span><span class="nv-nm">Tiếng Việt</span><span class="nv-en">Vietnamese</span></span></a>
+              <a class="nv-lopt" role="option" aria-selected="false" lang="sw" href="#"><span><span class="nv-nm">Kiswahili</span><span class="nv-en">Swahili</span></span></a>
+              <a class="nv-lopt" role="option" aria-selected="false" lang="ur" dir="rtl" href="#"><span><span class="nv-nm">اردو</span><span class="nv-en" dir="ltr" lang="en">Urdu</span></span></a>
+              <a class="nv-lopt" role="option" aria-selected="false" lang="my" href="#"><span><span class="nv-nm">မြန်မာ</span><span class="nv-en">Burmese</span></span></a>
+            </div>
+            <p class="nv-lempty" id="pv-lempty" hidden></p>
+            <div class="nv-lfoot"><span>Scripture in 500+ languages</span><a href="#">dot.Bible ↗</a></div>
+          </div>
+        </span>
+        <a class="btn btn-light btn-sm nv-give" href="#">Give</a>
+      </div>
+    </header>
+  </div>
+
+  <div class="pv-grid">
+    <div class="pv-col">
+      <div class="pv-sec">
+        <span class="pv-lbl">Header button states</span>
+        <div class="pv-dark pv-states">
+          <div class="pv-sec"><span class="nv-langbtn"><svg class="nv-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>EN<svg class="nv-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span><span class="pv-lbl pv-lbl-d">Default</span></div>
+          <div class="pv-sec"><span class="nv-langbtn nv-hover"><svg class="nv-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>EN<svg class="nv-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span><span class="pv-lbl pv-lbl-d">Hover</span></div>
+          <div class="pv-sec"><span class="nv-langbtn nv-focus"><svg class="nv-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>EN<svg class="nv-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span><span class="pv-lbl pv-lbl-d">Focus</span></div>
+          <div class="pv-sec"><span class="nv-langbtn"><svg class="nv-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>AM<svg class="nv-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span><span class="pv-lbl pv-lbl-d">Amharic chosen</span></div>
+        </div>
+      </div>
+      <div class="pv-sec">
+        <span class="pv-lbl">Footer inline · legal row · current is white 600 · "More ⌄" opens the same menu upward</span>
+        <div class="pv-dark">
+          <nav aria-label="Language" class="nv-finline">
+            <svg class="nv-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            <a href="#" lang="en" aria-current="true">English</a>
+            <a href="#" lang="es">Español</a>
+            <a href="#" lang="am">አማርኛ</a>
+            <a href="#" lang="vi">Tiếng Việt</a>
+            <a href="#" lang="sw">Kiswahili</a>
+            <a href="#" lang="ur" dir="rtl">اردو</a>
+            <a href="#" lang="my">မြန်မာ</a>
+            <a href="#" class="nv-finline-more" aria-haspopup="dialog">More<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+          </nav>
+        </div>
+      </div>
+      <div class="pv-sec">
+        <span class="pv-lbl">Search empty state · point to dot.Bible for Scripture in that language</span>
+        <div class="nv-langmenu nv-langmenu-static pv-empty">
+          <div class="nv-lsearch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input class="input nv-active" type="search" value="Oromo" aria-label="Search languages"></div>
+          <p class="nv-lempty" role="status">This site isn't in Oromo yet. <a href="#">Read the Bible in Afaan Oromoo on dot.Bible ↗</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pv-sec">
+      <span class="pv-lbl">Mobile · 390 wide · full sheet from the header globe · tap a row to switch</span>
+      <div class="pv-phone">
+        <div class="nv-mhdr">
+          <a class="nv-logo" href="#" aria-label="International Scripture Ministries home"><img src="../../assets/logos/Logo%20Black.svg" alt="ISM"></a>
+          <span class="nv-langbtn" aria-expanded="true">EN</span>
+        </div>
+        <div class="nv-sheet" role="dialog" aria-modal="true" aria-labelledby="pv-sheet-t">
+          <div class="nv-sheet-grip" aria-hidden="true"></div>
+          <div class="nv-sheet-head">
+            <p class="nv-sheet-title" id="pv-sheet-t">Choose a language</p>
+            <button class="nv-sheet-close" type="button" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          </div>
+          <div class="nv-lsearch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input class="input" type="search" placeholder="Search languages" aria-label="Search languages"></div>
+          <div role="listbox" aria-label="Languages">
+            <a class="nv-sheet-row" role="option" aria-selected="true" lang="en" href="#"><span><span class="nv-nm">English</span><span class="nv-en">English</span></span><svg class="nv-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></a>
+            <a class="nv-sheet-row" role="option" aria-selected="false" lang="es" href="#"><span><span class="nv-nm">Español</span><span class="nv-en">Spanish</span></span></a>
+            <a class="nv-sheet-row" role="option" aria-selected="false" lang="am" href="#"><span><span class="nv-nm">አማርኛ</span><span class="nv-en">Amharic</span></span></a>
+            <a class="nv-sheet-row" role="option" aria-selected="false" lang="vi" href="#"><span><span class="nv-nm">Tiếng Việt</span><span class="nv-en">Vietnamese</span></span></a>
+            <a class="nv-sheet-row" role="option" aria-selected="false" lang="sw" href="#"><span><span class="nv-nm">Kiswahili</span><span class="nv-en">Swahili</span></span></a>
+            <a class="nv-sheet-row" role="option" aria-selected="false" lang="ur" dir="rtl" href="#"><span><span class="nv-nm">اردو</span><span class="nv-en" dir="ltr" lang="en">Urdu</span></span></a>
+            <a class="nv-sheet-row" role="option" aria-selected="false" lang="my" href="#"><span><span class="nv-nm">မြန်မာ</span><span class="nv-en">Burmese</span></span></a>
+          </div>
+          <p class="hint pv-note">Reading the Bible in another language? Open the dot.Bible app ↗</p>
+        </div>
+      </div>
+    </div>
+    <div aria-hidden="true"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('pv-lbtn'),menu=document.getElementById('pv-lmenu'),q=document.getElementById('pv-lq'),list=document.getElementById('pv-llist'),empty=document.getElementById('pv-lempty');
+  function setOpen(o){btn.setAttribute('aria-expanded',o?'true':'false');menu.hidden=!o;if(o)q.focus();}
+  btn.addEventListener('click',function(){setOpen(btn.getAttribute('aria-expanded')!=='true');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!menu.hidden){setOpen(false);btn.focus();} });
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase(),n=0;
+    list.querySelectorAll('.nv-lopt').forEach(function(o){var hit=!v||o.textContent.toLowerCase().indexOf(v)>-1;o.hidden=!hit;if(hit)n++;});
+    if(n===0){empty.textContent='';empty.appendChild(document.createTextNode('This site isn’t in '+q.value.trim()+' yet. '));var a=document.createElement('a');a.href='#';a.textContent='Find it on dot.Bible ↗';empty.appendChild(a);empty.hidden=false;}else{empty.hidden=true;}
+  });
+  list.querySelectorAll('.nv-lopt').forEach(function(o){
+    o.addEventListener('click',function(e){e.preventDefault();
+      list.querySelectorAll('.nv-lopt').forEach(function(x){x.setAttribute('aria-selected','false');x.classList.remove('nv-active');var c=x.querySelector('.nv-check');if(c)c.remove();});
+      o.setAttribute('aria-selected','true');
+      o.insertAdjacentHTML('beforeend','<svg class="nv-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>');
+      var code=(o.getAttribute('lang')||'en').toUpperCase();
+      btn.childNodes[1].nodeValue=code;btn.setAttribute('aria-label','Language: '+o.querySelector('.nv-en').textContent);
+      setOpen(false);btn.focus();
+    });
+  });
+})();
+</script>
+</body>
+</html>

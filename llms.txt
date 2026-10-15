@@ -1,0 +1,35 @@
+# ISM Design System
+
+> Source of truth for International Scripture Ministries (ISM) and dot.Bible interfaces: design tokens, written rules, 79 component specs, and code libraries for HTML/CSS, React, Next.js, React Native, iOS (SwiftUI) and Android (Compose). Paths are relative to the repository root.
+
+## Start here
+- [AGENTS.md](AGENTS.md): order of authority, how to build a screen, non-negotiable rules
+- [README.md](README.md): overview and install
+
+## Machine-readable
+- [tokens/tokens.json](tokens/tokens.json): all design tokens (colour, type, spacing, radius, shadow, gradient, layout, z-index, motion, opacity, size, scripts)
+- [packages/tokens/tokens.flat.json](packages/tokens/tokens.flat.json): flat name/value list
+- [rules/rules.json](rules/rules.json): states, multilingual and RTL, layout, icons and links, accessibility (with approved contrast pairs), voice
+- [specs/index.json](specs/index.json): list of all components with group, summary and platform support
+- [specs/all.json](specs/all.json): every component spec in one file (anatomy, variants, props, states, do and don't, snippets)
+- components/<Name>/spec.json: one component spec; components/<Name>/README.md: the authored source
+
+## Rules (prose)
+- [rules/states.md](rules/states.md): default, hover, focus, pressed, disabled, loading, error
+- [rules/multilingual-rtl.md](rules/multilingual-rtl.md): Noto fallbacks, line-height per script, mirroring for Arabic, Urdu, Farsi
+- [rules/layout-motion.md](rules/layout-motion.md): breakpoints, containers, z-index, elevation, motion
+- [rules/icons-links.md](rules/icons-links.md): ⌄ opens, ↗ goes to another page, › drills in, → continues
+- [rules/accessibility.md](rules/accessibility.md): contrast, focus ring, 44px targets, alt text, semantics
+- [rules/voice-microcopy.md](rules/voice-microcopy.md): button verbs, error tone, referring to Scripture
+
+## Code
+- [packages/web/css/ism.css](packages/web/css/ism.css): all tokens and component CSS in one file; [packages/web/css/rtl.css](packages/web/css/rtl.css): RTL overrides
+- [packages/react/src/components](packages/react/src/components): React components (@ism/ui)
+- [packages/react-native/src/components](packages/react-native/src/components): React Native components (@ism/ui-native)
+- [packages/ios/Sources/ISMDesignSystem](packages/ios/Sources/ISMDesignSystem): SwiftUI package
+- [packages/android/ism-design-system/src/main/kotlin/bible/ism/design](packages/android/ism-design-system/src/main/kotlin/bible/ism/design): Jetpack Compose module
+- [examples/next-app](examples/next-app): minimal Next.js App Router example
+
+## Optional
+- [docs/design-system-overview.md](docs/design-system-overview.md): original overview
+- [reference](reference): legacy UI kits and templates, kept for reference only

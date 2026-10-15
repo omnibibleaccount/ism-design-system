@@ -1,0 +1,226 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Quote",
+  "title": "Quote",
+  "group": "Data display",
+  "version": "3.0.0",
+  "summary": "Three quotation blocks: a large Lora pull quote, a testimonial card with avatar, and a scripture quote with a gold rule, verse numbers and a full reference.",
+  "whenToUse": [
+    "Pull quote: one powerful listener or partner story inside a long page or between sections.",
+    "Testimonial card: partner and listener voices in a grid of two or three.",
+    "Scripture quote: any Bible verse shown on a page, light or dark."
+  ],
+  "whenNotToUse": [
+    "Do not use Lora anywhere else: Lora is for scripture and quotes only.",
+    "Do not put more than one pull quote on a screen."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Quote } from '@ism/ui'",
+    "source": "packages/react/src/components/Quote.tsx",
+    "exports": [
+      "PullQuote",
+      "ScriptureQuote",
+      "ScriptureVerse",
+      "Testimonial"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'children'>"
+    ],
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "The quote text, under about 35 words. Trim with an ellipsis rather than shrinking the type."
+      },
+      {
+        "name": "author",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Person's name, shown bold in the caption."
+      },
+      {
+        "name": "byline",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Role and place after the name (\"Radio Hope listener, Addis Ababa\")."
+      },
+      {
+        "name": "quoteLang",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Language of the quote when it is not the page language (`lang=\"am\"`)."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { Quote } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Quote.tsx",
+    "exports": [
+      "PullQuote",
+      "ScriptureQuote",
+      "ScriptureVerse",
+      "Testimonial"
+    ],
+    "props": [
+      {
+        "name": "children",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "The quote text, under about 35 words. Trim with an ellipsis rather than shrinking the type."
+      },
+      {
+        "name": "author",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Person's name, shown bold in the caption."
+      },
+      {
+        "name": "byline",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Role and place after the name (\"Radio Hope listener, Addis Ababa\")."
+      },
+      {
+        "name": "quoteLang",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "BCP-47 language of the quote when it is not the UI language (\"am\"). Drives line-height, direction and font fallback."
+      },
+      {
+        "name": "GradientComponent",
+        "type": "GradientComponent",
+        "required": false,
+        "default": null,
+        "description": "Gradient view such as `LinearGradient` for the 64dp thread rule; solid `gradient-violet` without it."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "card",
+    "dp-av",
+    "dp-av-56",
+    "dp-cite",
+    "dp-pull",
+    "dp-pull-thread",
+    "dp-pullfig",
+    "dp-qmark",
+    "dp-scrip",
+    "dp-scrip-body",
+    "dp-scrip-ref",
+    "dp-scrip-rule",
+    "dp-scripfig",
+    "dp-scripfig-dark",
+    "dp-sv",
+    "dp-testi",
+    "dp-testi-by",
+    "dp-testi-name",
+    "dp-testi-q",
+    "dp-testi-role",
+    "dp-testi-who",
+    "thread"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Pull quote: Lora 34px, gold “ mark (`--gradient-gold`), 64px `.thread` gradient rule, Inter caption.",
+    "Testimonial: base `.card` (20px radius, `--shadow-card-light`), 18px Inter quote, `.dp-av-56` avatar, name 16px/600, role · place 14px `--gray-600`.",
+    "Scripture light: white panel, `--gray-200` border, 3px `--gradient-gold` rule, Lora 22px, verse numbers `--horizon-blue-dim`.",
+    "Scripture dark `.dp-scripfig-dark`: `--charcoal-900` panel, `--leather-gold` rule, white text, verse numbers `--blue-on-dark`."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": false,
+      "focus": false,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Use `--font-serif` (Lora) for pull and scripture text only; captions and references stay in Inter.",
+    "Give the reference in full (book, chapter:verse) and the translation abbreviation (BSB).",
+    "Verse numbers are superscript `.dp-sv`, Inter 600, never Lora.",
+    "Quote a real person with consent; give name, role and place. Never invent a testimonial and present it as genuine.",
+    "Keep a pull quote under about 35 words; trim with an ellipsis rather than shrinking the type.",
+    "Do not italicise scripture; Lora regular is the house style."
+  ],
+  "do": [
+    "Pull quote: one powerful listener or partner story inside a long page or between sections.",
+    "Testimonial card: partner and listener voices in a grid of two or three.",
+    "Scripture quote: any Bible verse shown on a page, light or dark.",
+    "Use `--font-serif` (Lora) for pull and scripture text only; captions and references stay in Inter.",
+    "Give the reference in full (book, chapter:verse) and the translation abbreviation (BSB).",
+    "Verse numbers are superscript `.dp-sv`, Inter 600, never Lora.",
+    "Quote a real person with consent; give name, role and place. Never invent a testimonial and present it as genuine.",
+    "Keep a pull quote under about 35 words; trim with an ellipsis rather than shrinking the type."
+  ],
+  "dont": [
+    "Do not use Lora anywhere else: Lora is for scripture and quotes only.",
+    "Do not put more than one pull quote on a screen.",
+    "Do not italicise scripture; Lora regular is the house style."
+  ],
+  "accessibility": [
+    "Use `<figure>`, `<blockquote>` and `<figcaption>` so the source is tied to the quote.",
+    "The quote mark, gold rule and thread are decorative: `aria-hidden=\"true\"`.",
+    "Avatar beside the visible name uses `alt=\"\"`.",
+    "Set `lang` on the blockquote when it is not in the page language (`lang=\"am\"` for Amharic)."
+  ],
+  "content": [
+    "Warm, first-person, specific: who heard, where, in which language.",
+    "Scripture defaults to the Berean Standard Bible (BSB), free to share."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<!-- pull quote -->\n<figure class=\"dp-pullfig\">\n  <span class=\"dp-qmark\" aria-hidden=\"true\">“</span>\n  <blockquote class=\"dp-pull\">When my grandmother heard the Gospel of John in Amharic on the radio, she wept.</blockquote>\n  <div class=\"thread dp-pull-thread\" aria-hidden=\"true\"></div>\n  <figcaption class=\"dp-cite\"><strong>Dawit Alemu</strong> · Radio Hope listener, Addis Ababa</figcaption>\n</figure>\n\n<!-- testimonial -->\n<figure class=\"card dp-testi\">\n  <blockquote class=\"dp-testi-q\">“Our church hands out the NFC Bible cards after every service.”</blockquote>\n  <figcaption class=\"dp-testi-by\">\n    <span class=\"dp-av dp-av-56\"><img src=\"…\" alt=\"\"></span>\n    <span class=\"dp-testi-who\"><span class=\"dp-testi-name\">Maria Santos</span><span class=\"dp-testi-role\">Partner pastor · Lima, Peru</span></span>\n  </figcaption>\n</figure>\n\n<!-- scripture (add .dp-scripfig-dark on dark) -->\n<figure class=\"dp-scripfig\">\n  <span class=\"dp-scrip-rule\" aria-hidden=\"true\"></span>\n  <div class=\"dp-scrip-body\">\n    <blockquote class=\"dp-scrip\"><sup class=\"dp-sv\">16</sup>For God so loved the world…</blockquote>\n    <figcaption class=\"dp-scrip-ref\">John 3:16 <span>· BSB</span></figcaption>\n  </div>\n</figure>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<!-- pull quote -->\n<figure class=\"dp-pullfig\">\n  <span class=\"dp-qmark\" aria-hidden=\"true\">“</span>\n  <blockquote class=\"dp-pull\">When my grandmother heard the Gospel of John in Amharic on the radio, she wept.</blockquote>\n  <div class=\"thread dp-pull-thread\" aria-hidden=\"true\"></div>\n  <figcaption class=\"dp-cite\"><strong>Dawit Alemu</strong> · Radio Hope listener, Addis Ababa</figcaption>\n</figure>\n\n<!-- testimonial -->\n<figure class=\"card dp-testi\">\n  <blockquote class=\"dp-testi-q\">“Our church hands out the NFC Bible cards after every service.”</blockquote>\n  <figcaption class=\"dp-testi-by\">\n    <span class=\"dp-av dp-av-56\"><img src=\"…\" alt=\"\"></span>\n    <span class=\"dp-testi-who\"><span class=\"dp-testi-name\">Maria Santos</span><span class=\"dp-testi-role\">Partner pastor · Lima, Peru</span></span>\n  </figcaption>\n</figure>\n\n<!-- scripture (add .dp-scripfig-dark on dark) -->\n<figure class=\"dp-scripfig\">\n  <span class=\"dp-scrip-rule\" aria-hidden=\"true\"></span>\n  <div class=\"dp-scrip-body\">\n    <blockquote class=\"dp-scrip\"><sup class=\"dp-sv\">16</sup>For God so loved the world…</blockquote>\n    <figcaption class=\"dp-scrip-ref\">John 3:16 <span>· BSB</span></figcaption>\n  </div>\n</figure>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/Quote/README.md",
+    "spec": "components/Quote/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

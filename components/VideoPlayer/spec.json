@@ -1,0 +1,320 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "VideoPlayer",
+  "title": "VideoPlayer",
+  "group": "Ministry",
+  "version": "3.0.0",
+  "summary": "A 16:9 video frame: a poster with a large white play button, caption and duration chips, and while playing a bottom control bar with seek, time, captions, settings and full screen.",
+  "whenToUse": [
+    "Use for ISM stories, field reports and dot.Bible app explainers on ism.bible.",
+    "Use one featured video per section, with a title and summary under it."
+  ],
+  "whenNotToUse": [
+    "Do not use for audio-only Scripture; use AudioPlayer.",
+    "Do not use as a decorative background loop."
+  ],
+  "anatomy": {
+    "description": "Poster state: Playing state:",
+    "markup": null
+  },
+  "react": {
+    "import": "import { VideoPlayer } from '@ism/ui'",
+    "source": "packages/react/src/components/VideoPlayer.tsx",
+    "exports": [
+      "VideoPlayer",
+      "VideoPlayerLabels",
+      "VideoPlayerState",
+      "formatVideoTime"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'title'>"
+    ],
+    "props": [
+      {
+        "name": "posterSrc",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Poster image URL (decorative, `alt=\"\"`)."
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Video title. Rendered as the visible `.h4` under the frame and used in the play button name."
+      },
+      {
+        "name": "titleText",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Plain-text title for the accessible name of the play button. Falls back to `title` when it is a string."
+      },
+      {
+        "name": "summary",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "One-sentence summary under the title."
+      },
+      {
+        "name": "duration",
+        "type": "number",
+        "required": true,
+        "default": null,
+        "description": "Total length in seconds."
+      },
+      {
+        "name": "durationLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Spoken duration for the play button name, e.g. \"4 minutes 12 seconds\"."
+      },
+      {
+        "name": "captionsChip",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Poster chip next to CC, e.g. \"12 languages\". Omit when there are no captions."
+      },
+      {
+        "name": "state",
+        "type": "VideoPlayerState",
+        "required": false,
+        "default": null,
+        "description": "Controlled state: `poster` (play button), `playing` or `paused` (control bar)."
+      },
+      {
+        "name": "defaultState",
+        "type": "VideoPlayerState",
+        "required": false,
+        "default": "\"poster\"",
+        "description": "Initial state when uncontrolled."
+      },
+      {
+        "name": "onStateChange",
+        "type": "(state: VideoPlayerState) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the state changes. Start loading and playing the media here: this component renders no `<video>`."
+      },
+      {
+        "name": "currentTime",
+        "type": "number",
+        "required": false,
+        "default": "0",
+        "description": "Current position in seconds."
+      },
+      {
+        "name": "buffered",
+        "type": "number",
+        "required": false,
+        "default": "0",
+        "description": "Buffered position in seconds."
+      },
+      {
+        "name": "onSeek",
+        "type": "(seconds: number) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the reader seeks (click on the track, or arrow, Home and End keys)."
+      },
+      {
+        "name": "muted",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Muted toggle value."
+      },
+      {
+        "name": "onMutedChange",
+        "type": "(muted: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when Mute is pressed."
+      },
+      {
+        "name": "captionsOn",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Captions toggle value."
+      },
+      {
+        "name": "onCaptionsChange",
+        "type": "(on: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the CC button is pressed."
+      },
+      {
+        "name": "caption",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Caption line shown above the bar while captions are on."
+      },
+      {
+        "name": "onSettings",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when Settings is pressed."
+      },
+      {
+        "name": "onFullscreen",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when Full screen is pressed."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<VideoPlayerLabels>",
+        "required": false,
+        "default": null,
+        "description": "Override control names."
+      },
+      {
+        "name": "formatPlayLabel",
+        "type": "(title: string, durationLabel?: string) => string",
+        "required": false,
+        "default": "\"Play video: <title>, <durationLabel>\"",
+        "description": "Builds the poster play button name."
+      },
+      {
+        "name": "formatValueText",
+        "type": "(current: number, duration: number) => string",
+        "required": false,
+        "default": "\"1:24 of 4:12\"",
+        "description": "Builds the slider `aria-valuetext`."
+      },
+      {
+        "name": "hideAfter",
+        "type": "number",
+        "required": false,
+        "default": "3",
+        "description": "Seconds of inactivity before the bar hides while playing."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "h4",
+    "mn-buf",
+    "mn-caption",
+    "mn-cc",
+    "mn-fill",
+    "mn-knob",
+    "mn-playbtn",
+    "mn-playbtn-static",
+    "mn-scrim",
+    "mn-scrim-play",
+    "mn-vbtn",
+    "mn-vchip",
+    "mn-vchip-l",
+    "mn-vchip-r",
+    "mn-vctrl",
+    "mn-vid",
+    "mn-vrow",
+    "mn-vspacer",
+    "mn-vtime",
+    "mn-vtrack"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Poster: `.mn-scrim` (light bottom fade), centered `.mn-playbtn` (76px white circle), chips bottom-left (captions) and bottom-right (duration).",
+    "Playing: `.mn-scrim-play` (stronger fade), `.mn-caption` above the bar, `.mn-vctrl` controls. Controls show on hover, tap or focus and hide after a few seconds of play.",
+    "Play button: default (white, black icon), hover (Horizon Blue, white icon), focus (Horizon Blue ring). `.mn-playbtn-static` is a 56px specimen for spec sheets.",
+    "Control buttons `.mn-vbtn` (44px): hover white 14% fill; captions on (`aria-pressed=\"true\"`) shows a `--blue-on-dark` underline; focus `--blue-on-dark` outline.",
+    "Seek: track white 30%, buffered white 35%, played `--gradient-line`, 14px white knob."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Frame is 16:9, `--radius-lg`, `--charcoal-900` behind the poster.",
+    "The play button is white at rest; it turns Horizon Blue only on hover. No other blue in the frame.",
+    "Show the duration chip and a captions chip on every poster; captions are on by default when available.",
+    "Played progress uses `--gradient-line`, not Horizon Blue.",
+    "All controls are 44px. Keep them in one row: play, mute, time, spacer, captions, settings, full screen.",
+    "Never autoplay with sound. Load the video only after the play press.",
+    "Always pair the player with a visible title (`.h4`) and one-line summary."
+  ],
+  "do": [
+    "Use for ISM stories, field reports and dot.Bible app explainers on ism.bible.",
+    "Use one featured video per section, with a title and summary under it.",
+    "Frame is 16:9, `--radius-lg`, `--charcoal-900` behind the poster.",
+    "The play button is white at rest; it turns Horizon Blue only on hover. No other blue in the frame.",
+    "Show the duration chip and a captions chip on every poster; captions are on by default when available.",
+    "Played progress uses `--gradient-line`, not Horizon Blue.",
+    "All controls are 44px. Keep them in one row: play, mute, time, spacer, captions, settings, full screen.",
+    "Always pair the player with a visible title (`.h4`) and one-line summary."
+  ],
+  "dont": [
+    "Do not use for audio-only Scripture; use AudioPlayer.",
+    "Do not use as a decorative background loop.",
+    "Never autoplay with sound. Load the video only after the play press."
+  ],
+  "accessibility": [
+    "The play button's label includes the title and duration.",
+    "The seek bar is a focusable slider with `aria-valuetext` (\"1:24 of 4:12\").",
+    "Captions and Mute are toggles with `aria-pressed`; swap Play/Pause labels with the icon.",
+    "Provide captions for every video, and a transcript link for longer ones.",
+    "The poster image is decorative (`alt=\"\"`); the title names the video.",
+    "Controls stay visible while any of them has keyboard focus."
+  ],
+  "content": [
+    "Title states who and what: \"Reading John together, across three countries\".",
+    "Summary one sentence: \"Friends in Kenya, Peru and the Philippines meet on a video call to read John 3 in their own languages.\"",
+    "Captions chip: \"CC 12 languages\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"mn-vid\">\n  <img src=\"../../assets/imagery/print-photo-friends.jpg\" alt=\"\">\n  <div class=\"mn-scrim\"></div>\n  <button class=\"mn-playbtn\" type=\"button\" aria-label=\"Play video: Reading John together, across three countries, 4 minutes 12 seconds\"><svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M7 4.5v15l12-7.5z\"/></svg></button>\n  <span class=\"mn-vchip mn-vchip-l\"><span class=\"mn-cc\">CC</span>12 languages</span>\n  <span class=\"mn-vchip mn-vchip-r\">4:12</span>\n</div>\n<h3 class=\"h4\">Reading John together, across three countries</h3>",
+      "<div class=\"mn-vid\">\n  <img src=\"…\" alt=\"\">\n  <div class=\"mn-scrim mn-scrim-play\"></div>\n  <div class=\"mn-caption\">For God so loved the world…</div>\n  <div class=\"mn-vctrl\">\n    <div class=\"mn-vtrack\" role=\"slider\" tabindex=\"0\" aria-label=\"Seek\" aria-valuemin=\"0\" aria-valuemax=\"252\" aria-valuenow=\"84\" aria-valuetext=\"1:24 of 4:12\"><span class=\"mn-buf\"></span><span class=\"mn-fill\"></span><span class=\"mn-knob\"></span></div>\n    <div class=\"mn-vrow\">\n      <button class=\"mn-vbtn\" type=\"button\" aria-label=\"Pause\">…</button>\n      <button class=\"mn-vbtn\" type=\"button\" aria-label=\"Mute\">…</button>\n      <span class=\"mn-vtime\">1:24 / 4:12</span>\n      <span class=\"mn-vspacer\"></span>\n      <button class=\"mn-vbtn\" type=\"button\" aria-label=\"Captions\" aria-pressed=\"true\"><span class=\"mn-cc\">CC</span></button>\n      <button class=\"mn-vbtn\" type=\"button\" aria-label=\"Settings\">…</button>\n      <button class=\"mn-vbtn\" type=\"button\" aria-label=\"Full screen\">…</button>\n    </div>\n  </div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"mn-vid\">\n  <img src=\"../../assets/imagery/print-photo-friends.jpg\" alt=\"\">\n  <div class=\"mn-scrim\"></div>\n  <button class=\"mn-playbtn\" type=\"button\" aria-label=\"Play video: Reading John together, across three countries, 4 minutes 12 seconds\"><svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M7 4.5v15l12-7.5z\"/></svg></button>\n  <span class=\"mn-vchip mn-vchip-l\"><span class=\"mn-cc\">CC</span>12 languages</span>\n  <span class=\"mn-vchip mn-vchip-r\">4:12</span>\n</div>\n<h3 class=\"h4\">Reading John together, across three countries</h3>"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"mn-vid\">\n  <img src=\"…\" alt=\"\">\n  <div class=\"mn-scrim mn-scrim-play\"></div>\n  <div class=\"mn-caption\">For God so loved the world…</div>\n  <div class=\"mn-vctrl\">\n    <div class=\"mn-vtrack\" role=\"slider\" tabindex=\"0\" aria-label=\"Seek\" aria-valuemin=\"0\" aria-valuemax=\"252\" aria-valuenow=\"84\" aria-valuetext=\"1:24 of 4:12\"><span class=\"mn-buf\"></span><span class=\"mn-fill\"></span><span class=\"mn-knob\"></span></div>\n    <div class=\"mn-vrow\">\n      <button class=\"mn-vbtn\" type=\"button\" aria-label=\"Pause\">…</button>\n      <button class=\"mn-vbtn\" type=\"button\" aria-label=\"Mute\">…</button>\n      <span class=\"mn-vtime\">1:24 / 4:12</span>\n      <span class=\"mn-vspacer\"></span>\n      <button class=\"mn-vbtn\" type=\"button\" aria-label=\"Captions\" aria-pressed=\"true\"><span class=\"mn-cc\">CC</span></button>\n      <button class=\"mn-vbtn\" type=\"button\" aria-label=\"Settings\">…</button>\n      <button class=\"mn-vbtn\" type=\"button\" aria-label=\"Full screen\">…</button>\n    </div>\n  </div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/VideoPlayer/README.md",
+    "spec": "components/VideoPlayer/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

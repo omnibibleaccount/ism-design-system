@@ -1,0 +1,262 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "FileUpload",
+  "title": "FileUpload",
+  "group": "Forms",
+  "version": "3.0.0",
+  "summary": "A dashed drop zone with a \"browse\" link over a real file input, followed by a list of file rows that show upload progress, success or a plain-language error.",
+  "whenToUse": [
+    "Applications and orders that need a document or photo: Broadcast partner application (station licence, tower photo), publishing artwork, a church logo for NFC cards.",
+    "One or more files up to a stated size and type."
+  ],
+  "whenNotToUse": [
+    "Do not use for a profile avatar crop or a camera capture inside the dot.Bible app; use the platform picker there."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { FileUpload } from '@ism/ui'",
+    "source": "packages/react/src/components/FileUpload.tsx",
+    "exports": [
+      "FileUpload",
+      "FileUploadItem",
+      "FileUploadLabels",
+      "FileUploadStatus"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'children' | 'title'>"
+    ],
+    "props": [
+      {
+        "name": "prompt",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Text before the browse button, for example \"Drag your station licence here, or\"."
+      },
+      {
+        "name": "browseLabel",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Text of the browse button that opens the real file input, for example \"browse\"."
+      },
+      {
+        "name": "hint",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Accepted types and the size limit, for example \"PDF, JPG or PNG · up to 10 MB each\". Linked to the browse button."
+      },
+      {
+        "name": "dragOverLabel",
+        "type": "(count: number) => ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Title while files are dragged over, for example (n) => \"Drop to upload · 2 files\". Receives the file count (0 when unknown)."
+      },
+      {
+        "name": "onFiles",
+        "type": "(files: File[]) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the chosen or dropped files. The component does no uploading: update `items` yourself."
+      },
+      {
+        "name": "items",
+        "type": "FileUploadItem[]",
+        "required": false,
+        "default": null,
+        "description": "Rows shown under the drop zone, in the order given."
+      },
+      {
+        "name": "onCancel",
+        "type": "(id: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Cancel an uploading row."
+      },
+      {
+        "name": "onRemove",
+        "type": "(id: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Remove a done or failed row."
+      },
+      {
+        "name": "onRetry",
+        "type": "(id: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Retry a failed row."
+      },
+      {
+        "name": "retryLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Text of the Retry button, for example \"Retry\". Required for the retry action to show."
+      },
+      {
+        "name": "listLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Accessible name of the file list, for example \"Uploaded files\"."
+      },
+      {
+        "name": "labels",
+        "type": "FileUploadLabels",
+        "required": false,
+        "default": null,
+        "description": "Overrides for accessible names and announcements (English defaults)."
+      },
+      {
+        "name": "accept",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "`accept` attribute of the file input, for example \".pdf,.jpg,.jpeg,.png\"."
+      },
+      {
+        "name": "multiple",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Allow choosing several files."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Disable browsing and dropping."
+      },
+      {
+        "name": "inputId",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "`id` of the file input. Generated when omitted."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "`name` of the file input for native form posts."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn-secondary",
+    "fm-bar",
+    "fm-drop",
+    "fm-drop-ic",
+    "fm-drop-t",
+    "fm-file",
+    "fm-file-actions",
+    "fm-file-body",
+    "fm-file-ic",
+    "fm-file-meta",
+    "fm-file-nm",
+    "fm-files",
+    "fm-ib",
+    "fm-linkbtn",
+    "fm-over",
+    "fm-vh",
+    "hint"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Default: dashed border; hover darkens it to `--gray-600`.",
+    "Drag-over (`.fm-over`): solid `--horizon-blue` border on `--blue-tint`; icon tile turns solid blue, the arrow points down and the title reads \"Drop to upload\" with the file count.",
+    "Uploading: neutral icon tile, \"1.8 MB of 2.8 MB · 64%\" and the progress bar; action is cancel (×).",
+    "Done: `.fm-file-ic.fm-ok` green check tile, `.fm-file-meta.fm-ok` \"Uploaded · 2.4 MB\"; action is remove (bin).",
+    "Error: `.fm-file.fm-err` tinted row with `--error-line` border, `.fm-file-ic.fm-bad` and `.fm-file-meta.fm-bad`; actions are Retry (`.btn-ghost .btn-sm`) and remove."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": false,
+      "pressed": false,
+      "disabled": false,
+      "loading": true,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Always keep a real `<input type=\"file\">` behind the \"browse\" button; the drop zone is an extra, never the only way.",
+    "State accepted types and the size limit in the `.hint` line under the title.",
+    "Add rows under the drop zone in the order files were added; never reorder them.",
+    "Errors say what went wrong and what to do (\"14.2 MB is over the 10 MB limit. Try a smaller file.\").",
+    "Use status colours only for done (`--success`) and error (`--error`); progress is `--horizon-blue`.",
+    "Icon buttons are 44px round targets; never shrink them to the icon size.",
+    "On phones, hide \"Drag your … here\" and show a single \"Choose file\" `.btn-secondary`."
+  ],
+  "do": [
+    "Applications and orders that need a document or photo: Broadcast partner application (station licence, tower photo), publishing artwork, a church logo for NFC cards.",
+    "One or more files up to a stated size and type.",
+    "Always keep a real `<input type=\"file\">` behind the \"browse\" button; the drop zone is an extra, never the only way.",
+    "State accepted types and the size limit in the `.hint` line under the title.",
+    "Add rows under the drop zone in the order files were added; never reorder them.",
+    "Errors say what went wrong and what to do (\"14.2 MB is over the 10 MB limit. Try a smaller file.\").",
+    "Use status colours only for done (`--success`) and error (`--error`); progress is `--horizon-blue`.",
+    "Icon buttons are 44px round targets; never shrink them to the icon size.",
+    "On phones, hide \"Drag your … here\" and show a single \"Choose file\" `.btn-secondary`."
+  ],
+  "dont": [
+    "Do not use for a profile avatar crop or a camera capture inside the dot.Bible app; use the platform picker there."
+  ],
+  "accessibility": [
+    "The \"browse\" button opens the file input; the drop zone itself is not a tab stop.",
+    "Progress bars have `role=\"progressbar\"`, `aria-valuenow` and a name that includes the file name.",
+    "Announce each finished or failed file in a polite live region (\"tower-site-photo.jpg uploaded\").",
+    "Icon buttons are named with the file: \"Remove tower-site-photo.jpg\", \"Cancel upload\".",
+    "Do not rely on colour alone: the error row also has the alert icon and the reason text."
+  ],
+  "content": [
+    "Title: \"Drag your station licence here, or browse\". Hint: \"PDF, JPG or PNG · up to 10 MB each\".",
+    "Drag-over: \"Drop to upload\" / \"2 files\".",
+    "Meta: \"1.8 MB of 2.8 MB · 64%\", \"Uploaded · 2.4 MB\".",
+    "Error: \"14.2 MB is over the 10 MB limit. Try a smaller file.\"",
+    "File names in the examples are samples."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"fm-drop\" id=\"licence-drop\">\n  <span class=\"fm-drop-ic\"><svg …upload arrow…/></span>\n  <span class=\"fm-drop-t\">Drag your station licence here, or\n    <button class=\"fm-linkbtn\" type=\"button\" aria-describedby=\"licence-types\">browse</button></span>\n  <span class=\"hint\" id=\"licence-types\">PDF, JPG or PNG · up to 10 MB each</span>\n  <input class=\"fm-vh\" type=\"file\" id=\"licence\" accept=\".pdf,.jpg,.jpeg,.png\" multiple tabindex=\"-1\">\n</div>\n\n<ul class=\"fm-files\" aria-label=\"Uploaded files\">\n  <li class=\"fm-file\">\n    <span class=\"fm-file-ic\"><svg …document…/></span>\n    <span class=\"fm-file-body\">\n      <span class=\"fm-file-nm\">fcc-station-licence-2026.pdf</span>\n      <span class=\"fm-file-meta\">1.8 MB of 2.8 MB · 64%</span>\n      <span class=\"fm-bar\" role=\"progressbar\" aria-valuenow=\"64\" aria-valuemin=\"0\" aria-valuemax=\"100\"\n        aria-label=\"Uploading fcc-station-licence-2026.pdf\"><span style=\"width:64%\"></span></span>\n    </span>\n    <span class=\"fm-file-actions\"><button class=\"fm-ib\" type=\"button\" aria-label=\"Cancel upload\">…</button></span>\n  </li>\n</ul>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"fm-drop\" id=\"licence-drop\">\n  <span class=\"fm-drop-ic\"><svg …upload arrow…/></span>\n  <span class=\"fm-drop-t\">Drag your station licence here, or\n    <button class=\"fm-linkbtn\" type=\"button\" aria-describedby=\"licence-types\">browse</button></span>\n  <span class=\"hint\" id=\"licence-types\">PDF, JPG or PNG · up to 10 MB each</span>\n  <input class=\"fm-vh\" type=\"file\" id=\"licence\" accept=\".pdf,.jpg,.jpeg,.png\" multiple tabindex=\"-1\">\n</div>\n\n<ul class=\"fm-files\" aria-label=\"Uploaded files\">\n  <li class=\"fm-file\">\n    <span class=\"fm-file-ic\"><svg …document…/></span>\n    <span class=\"fm-file-body\">\n      <span class=\"fm-file-nm\">fcc-station-licence-2026.pdf</span>\n      <span class=\"fm-file-meta\">1.8 MB of 2.8 MB · 64%</span>\n      <span class=\"fm-bar\" role=\"progressbar\" aria-valuenow=\"64\" aria-valuemin=\"0\" aria-valuemax=\"100\"\n        aria-label=\"Uploading fcc-station-licence-2026.pdf\"><span style=\"width:64%\"></span></span>\n    </span>\n    <span class=\"fm-file-actions\"><button class=\"fm-ib\" type=\"button\" aria-label=\"Cancel upload\">…</button></span>\n  </li>\n</ul>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/FileUpload/README.md",
+    "spec": "components/FileUpload/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

@@ -1,0 +1,37 @@
+<!-- @dsCard group="Feedback" height=554 subtitle="Inline banners and announcement bar" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:flex;flex-direction:column;gap:24px}
+.pv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:640px){.pv-grid{grid-template-columns:1fr} }
+</style></head><body>
+<div class="pv">
+  <div class="pv-grid">
+    <div class="fb-cell"><span class="fb-lbl">Info · .alert-info</span>
+      <div class="alert alert-info fb-alert" role="status"><svg class="fb-alert-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.01"/></svg><div><strong class="fb-alert-title">Gifts are tax-deductible</strong>You’ll get a receipt by email after each gift. <a class="fb-alert-link" href="#">About giving ↗</a></div></div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">Warning · .alert-warn</span>
+      <div class="alert alert-warn fb-alert" role="status"><svg class="fb-alert-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4M12 17.5v.01"/></svg><div><strong class="fb-alert-title">Your card expires next month</strong>Update it to keep your monthly gift going. <a class="fb-alert-link" href="#">Update card</a></div></div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">Success · .alert-ok</span>
+      <div class="alert alert-ok fb-alert" role="status"><svg class="fb-alert-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg><div><strong class="fb-alert-title">You’re a partner now</strong>Thank you. Your welcome pack is on its way.</div></div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">Error · .alert-err</span>
+      <div class="alert alert-err fb-alert" role="alert"><svg class="fb-alert-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5M12 16v.01"/></svg><div><strong class="fb-alert-title">We couldn’t process your gift</strong>Your card wasn’t charged. Please check the details and try again.</div></div>
+    </div>
+  </div>
+  <div class="fb-cell"><span class="fb-lbl">Compact, one line · .alert-warn .small (draft notice)</span>
+    <p class="alert alert-warn small">Template text. Have it reviewed before publishing.</p>
+  </div>
+  <div class="fb-cell"><span class="fb-lbl">Announcement bar · above the header, dismissible</span>
+    <div class="fb-announce" id="ann" role="region" aria-label="Announcement">
+      <span>The Global Bible Network now reaches 500+ languages.</span>
+      <a class="fb-announce-link" href="#">See where we broadcast ↗</a>
+      <button class="fb-x" type="button" aria-label="Dismiss announcement"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+  </div>
+</div>
+<script>
+document.querySelector('#ann .fb-x').addEventListener('click',function(){var a=document.getElementById('ann');a.style.display='none';setTimeout(function(){a.style.display='';},1500);});
+</script>
+</body></html>

@@ -1,0 +1,14 @@
+/* Hand-written RTL additions that automatic mirroring cannot infer. Merged into rtl.css by the build.
+   Mirror: arrows and chevrons that point in the reading direction (back, next, drill-in).
+   Do NOT mirror: ↗ (goes to another page), the down caret, media transport controls (play, rewind), QR codes, logos, phone numbers. */
+[dir="rtl"] .ap-chv,
+[dir="rtl"] .ap-back svg,
+[dir="rtl"] .nv-pg-nav svg,
+[dir="rtl"] .cr-lr-end svg,
+[dir="rtl"] .ism-dir-icon { transform: scaleX(-1); }
+
+/* Opt a directional icon in or out explicitly */
+[dir="rtl"] .ism-no-flip { transform: none; }
+
+/* Numbers, Latin names and URLs inside RTL text keep their own direction */
+[dir="rtl"] .ism-ltr { direction: ltr; unicode-bidi: isolate; }

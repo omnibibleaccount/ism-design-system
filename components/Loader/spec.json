@@ -1,0 +1,260 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Loader",
+  "title": "Loader",
+  "group": "Feedback",
+  "version": "3.0.0",
+  "summary": "Spinners for short waits, a busy state for buttons, and shimmering skeletons that hold the shape of content while it loads.",
+  "whenToUse": [
+    "Use a spinner for a wait under about 2 seconds inside a control or a small area: sending a form, loading a menu.",
+    "Use the button loading state after a submit: Give, Send, Save.",
+    "Use skeletons when a page or list of content is loading: cards, list rows, a chapter of text.",
+    "Use Progress instead when you know how far along the work is (downloads, uploads, steps)."
+  ],
+  "whenNotToUse": [
+    "Do not show a full-page spinner. Show the page frame and skeletons for the parts still loading."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Loader } from '@ism/ui'",
+    "source": "packages/react/src/components/Loader.tsx",
+    "exports": [
+      "Loader",
+      "LoaderSize",
+      "LoaderTone",
+      "Skeleton",
+      "SkeletonCard",
+      "SkeletonList",
+      "SkeletonText"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLSpanElement>, 'children'>"
+    ],
+    "props": [
+      {
+        "name": "size",
+        "type": "LoaderSize",
+        "required": false,
+        "default": "\"m\"",
+        "description": "16px inside buttons and inputs, 24px inside menus and cards, 40px in an empty panel."
+      },
+      {
+        "name": "tone",
+        "type": "LoaderTone",
+        "required": false,
+        "default": "\"default\"",
+        "description": "`dark` for dark surfaces (white head), `ink` for light secondary buttons (black head)."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "default": "\"Loading\"",
+        "description": "Accessible name; say what is loading, for example \"Loading stations\"."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { Loader } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Loader.tsx",
+    "exports": [
+      "Skeleton",
+      "SkeletonCard",
+      "SkeletonGroup",
+      "SkeletonList",
+      "SkeletonText",
+      "Spinner",
+      "SpinnerSize",
+      "SpinnerTone"
+    ],
+    "props": [
+      {
+        "name": "size",
+        "type": "SpinnerSize",
+        "required": false,
+        "default": "\"m\"",
+        "description": "16, 24 or 40dp. S in buttons and inputs, M in menus and cards, L in an empty panel."
+      },
+      {
+        "name": "tone",
+        "type": "SpinnerTone",
+        "required": false,
+        "default": "\"default\"",
+        "description": "`default` Horizon Blue head; `onDark` white; `ink` black for secondary buttons. Never a status colour."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "default": "\"Loading\"",
+        "description": "Accessible name saying what is loading: \"Loading stations\"."
+      },
+      {
+        "name": "decorative",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Hide from screen readers when the surrounding control already says it is busy (e.g. inside a Button)."
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "btn",
+    "btn-primary",
+    "btn-secondary",
+    "fb-busy",
+    "fb-sk",
+    "fb-sk-avatar",
+    "fb-sk-lines",
+    "fb-sk-list",
+    "fb-sk-media",
+    "fb-sk-row",
+    "fb-sk-text",
+    "fb-sk-title",
+    "fb-spin",
+    "fb-spin-dk",
+    "fb-spin-ink",
+    "fb-spin-m",
+    "fb-spin-s",
+    "spin"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Spinner S / M / L",
+        "classes": ".fb-spin + .fb-spin-s (16) / -m (24) / -l (40)",
+        "notes": "--gray-200 track, --horizon-blue head"
+      },
+      {
+        "variant": "Spinner on dark",
+        "classes": "add .fb-spin-dk",
+        "notes": "white head on a 22% white track"
+      },
+      {
+        "variant": "Spinner on a light button",
+        "classes": "add .fb-spin-ink",
+        "notes": "black head, for .btn-secondary"
+      },
+      {
+        "variant": "Spinner on a primary button",
+        "classes": "base .spin",
+        "notes": "white, 16px"
+      },
+      {
+        "variant": "Button loading",
+        "classes": ".btn + .fb-busy + aria-busy=\"true\"",
+        "notes": "keeps its width; verb in -ing form"
+      },
+      {
+        "variant": "Skeleton card",
+        "classes": ".card .card-flat with .fb-sk-media + .fb-sk lines",
+        "notes": ""
+      },
+      {
+        "variant": "Skeleton list row",
+        "classes": ".fb-sk-list > .fb-sk-row (.fb-sk-avatar + .fb-sk-lines)",
+        "notes": "72px rows"
+      },
+      {
+        "variant": "Skeleton text",
+        "classes": ".fb-sk-text with .fb-sk-title + .fb-sk lines",
+        "notes": "vary line widths"
+      }
+    ]
+  ],
+  "variantNotes": [],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": false,
+      "focus": false,
+      "pressed": false,
+      "disabled": true,
+      "loading": true,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Spinner turns once every 0.8s. Never colour a spinner with a status colour.",
+    "Pick the size by context: S inside buttons and inputs, M inside menus and cards, L in an empty panel.",
+    "A loading button keeps its width (set `min-width` to its idle width), shows the spinner before the verb, and cannot be clicked again (`.fb-busy`).",
+    "Change only the clicked button; leave the rest of the group as is.",
+    "Skeleton shimmer runs `--gray-100` to `--gray-200` over 1.4s. Lines are 12px tall with 6px radius; media blocks use `--radius-md`.",
+    "Shape skeletons like the real layout: same card size, same row height, same number of lines (roughly).",
+    "Show a skeleton only after 300ms; if content arrives sooner, show nothing.",
+    "Replace skeletons with the content in one swap; never fade each line separately.",
+    "If loading fails, replace the loader with an EmptyState offline or error panel."
+  ],
+  "do": [
+    "Use a spinner for a wait under about 2 seconds inside a control or a small area: sending a form, loading a menu.",
+    "Use the button loading state after a submit: Give, Send, Save.",
+    "Use skeletons when a page or list of content is loading: cards, list rows, a chapter of text.",
+    "Use Progress instead when you know how far along the work is (downloads, uploads, steps).",
+    "Spinner turns once every 0.8s. Never colour a spinner with a status colour.",
+    "Pick the size by context: S inside buttons and inputs, M inside menus and cards, L in an empty panel.",
+    "A loading button keeps its width (set `min-width` to its idle width), shows the spinner before the verb, and cannot be clicked again (`.fb-busy`).",
+    "Change only the clicked button; leave the rest of the group as is.",
+    "Skeleton shimmer runs `--gray-100` to `--gray-200` over 1.4s. Lines are 12px tall with 6px radius; media blocks use `--radius-md`.",
+    "Shape skeletons like the real layout: same card size, same row height, same number of lines (roughly).",
+    "Show a skeleton only after 300ms; if content arrives sooner, show nothing.",
+    "Replace skeletons with the content in one swap; never fade each line separately.",
+    "If loading fails, replace the loader with an EmptyState offline or error panel."
+  ],
+  "dont": [
+    "Do not show a full-page spinner. Show the page frame and skeletons for the parts still loading."
+  ],
+  "accessibility": [
+    "A standalone spinner has `role=\"status\"` and `aria-label=\"Loading\"` (or a more specific label, \"Loading stations\").",
+    "Spinners inside a button are `aria-hidden=\"true\"`; the button text (\"Sending…\") carries the meaning. Add `aria-busy=\"true\"` and `aria-disabled=\"true\"`.",
+    "Skeleton containers have `aria-busy=\"true\"` and an `aria-label`; remove `aria-busy` when content arrives. Skeleton shapes are not announced.",
+    "When content finishes loading after a long wait, announce it with a polite live region (\"12 stations loaded\").",
+    "Reduced motion: the base layer stops the spin and shimmer; the static ring and grey blocks still read as loading."
+  ],
+  "content": [
+    "Button verbs in -ing form with an ellipsis: \"Sending…\", \"Saving…\", \"Giving…\", \"Downloading…\".",
+    "Labels say what is loading: \"Loading stations\", \"Loading Psalm 23\".",
+    "Never write \"Please wait\" on its own."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<!-- spinner -->\n<span class=\"fb-spin fb-spin-m\" role=\"status\" aria-label=\"Loading\"></span>\n\n<!-- button loading: keep the width, spinner + verb -->\n<button class=\"btn btn-primary fb-busy\" type=\"button\" aria-busy=\"true\" aria-disabled=\"true\" style=\"min-width:124px\">\n  <span class=\"spin\" aria-hidden=\"true\"></span>Sending…\n</button>\n\n<!-- skeleton list row -->\n<div class=\"fb-sk-list\" aria-busy=\"true\" aria-label=\"Loading stations\">\n  <div class=\"fb-sk-row\">\n    <span class=\"fb-sk fb-sk-avatar\"></span>\n    <span class=\"fb-sk-lines\"><span class=\"fb-sk\" style=\"width:60%\"></span><span class=\"fb-sk\" style=\"height:10px;width:40%\"></span></span>\n  </div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<!-- spinner -->\n<span class=\"fb-spin fb-spin-m\" role=\"status\" aria-label=\"Loading\"></span>\n\n<!-- button loading: keep the width, spinner + verb -->\n<button class=\"btn btn-primary fb-busy\" type=\"button\" aria-busy=\"true\" aria-disabled=\"true\" style=\"min-width:124px\">\n  <span class=\"spin\" aria-hidden=\"true\"></span>Sending…\n</button>\n\n<!-- skeleton list row -->\n<div class=\"fb-sk-list\" aria-busy=\"true\" aria-label=\"Loading stations\">\n  <div class=\"fb-sk-row\">\n    <span class=\"fb-sk fb-sk-avatar\"></span>\n    <span class=\"fb-sk-lines\"><span class=\"fb-sk\" style=\"width:60%\"></span><span class=\"fb-sk\" style=\"height:10px;width:40%\"></span></span>\n  </div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/Loader/README.md",
+    "spec": "components/Loader/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

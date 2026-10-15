@@ -1,0 +1,227 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "InlineSubscribe",
+  "title": "InlineSubscribe",
+  "group": "Forms",
+  "version": "3.0.0",
+  "summary": "A single-row newsletter sign-up: a 52px pill email field and a Subscribe pill button that wrap onto two lines on narrow screens, for light and dark sections.",
+  "whenToUse": [
+    "Inline email capture inside a section, footer or article end: the ISM newsletter, prayer updates, ISM Radio programme news.",
+    "Only an email is needed. If you also need a name, topics or a heading block, use NewsletterCard or a FormLayout."
+  ],
+  "whenNotToUse": [
+    "Do not use for search (SearchField) or for sign-in."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { InlineSubscribe } from '@ism/ui'",
+    "source": "packages/react/src/components/InlineSubscribe.tsx",
+    "exports": [
+      "InlineSubscribe"
+    ],
+    "extends": [
+      "Omit<FormHTMLAttributes<HTMLFormElement>, 'onSubmit' | 'children'>"
+    ],
+    "props": [
+      {
+        "name": "onSubmit",
+        "type": "(email: string) => void | Promise<void>",
+        "required": false,
+        "default": null,
+        "description": "Called with the trimmed email once it passes validation. Return a promise to show the sending state. No network code is included."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "default": "\"Email address\"",
+        "description": "Visually hidden label text."
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "default": "\"you@example.com\"",
+        "description": "Input placeholder, an example and never the label."
+      },
+      {
+        "name": "buttonLabel",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Submit button text; it is the consent action, for example \"Subscribe\"."
+      },
+      {
+        "name": "note",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Reassurance line (frequency, unsubscribe) shown under the row while there is no error."
+      },
+      {
+        "name": "emptyError",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Message when the field is empty on submit, for example \"Please enter your email address.\""
+      },
+      {
+        "name": "invalidError",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Message when the email is malformed, for example \"Enter a valid email, like name@example.com.\""
+      },
+      {
+        "name": "successMessage",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Text of the success state that replaces the form, for example \"You're in. Watch for our next letter.\""
+      },
+      {
+        "name": "error",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Externally supplied error (for example from the server). Overrides internal validation text."
+      },
+      {
+        "name": "done",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Show the success state (controlled). When omitted the component switches itself after a successful submit."
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Show the sending spinner and set `aria-disabled` on the button (controlled)."
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Initial email value."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "default": "\"email\"",
+        "description": "Field `name` for native form posts."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn",
+    "btn-lg",
+    "btn-primary",
+    "fm-sub",
+    "fm-sub-done",
+    "fm-sub-input",
+    "fm-sub-note",
+    "fm-sub-wrap",
+    "fm-vh",
+    "input",
+    "on-dark",
+    "sec-ink",
+    "spin"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Light: white field with the base border on `--off-white` or white.",
+    "Dark (inside `.on-dark` or `.sec-ink`): field turns `rgba(255,255,255,.06)` with a 30% white border and white text; placeholder `--text-tertiary-dark`; the note uses `--text-tertiary-dark`.",
+    "Focus: the base `--horizon-blue` border and `--shadow-focus` on both backgrounds.",
+    "Error: `aria-invalid=\"true\"` on the input and an `.err.fm-sub-err` line under the row. On dark the border and text use `--error-on-dark`.",
+    "Success: the form is replaced by `.fm-sub-done`, a 52px pill with a tick: `--success` on `--success-bg` on light, `--success-on-dark` on a translucent fill on dark.",
+    "Sending: the button shows `.spin` and is `aria-disabled=\"true\"` until the request returns."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": false,
+      "focus": true,
+      "pressed": false,
+      "disabled": true,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "One field, one button. The button is the one Horizon Blue primary in its group; do not add a second blue button beside it.",
+    "Always use `type=\"email\"` and `autocomplete=\"email\"`; validate on submit, then live once an error is showing.",
+    "Keep the field and button the same 52px height and pill shape; never square the corners.",
+    "Put the success message where the form was, so the layout does not jump; keep it until the page is left.",
+    "Never pre-tick or hide marketing consent; the button label is the consent action (\"Subscribe\").",
+    "Give the reassurance line (frequency, unsubscribe) next to the form, not in a tooltip.",
+    "On phones the button drops below the field at full width; both stay 52px tall."
+  ],
+  "do": [
+    "Inline email capture inside a section, footer or article end: the ISM newsletter, prayer updates, ISM Radio programme news.",
+    "Only an email is needed. If you also need a name, topics or a heading block, use NewsletterCard or a FormLayout.",
+    "One field, one button. The button is the one Horizon Blue primary in its group; do not add a second blue button beside it.",
+    "Always use `type=\"email\"` and `autocomplete=\"email\"`; validate on submit, then live once an error is showing.",
+    "Keep the field and button the same 52px height and pill shape; never square the corners.",
+    "Put the success message where the form was, so the layout does not jump; keep it until the page is left.",
+    "Give the reassurance line (frequency, unsubscribe) next to the form, not in a tooltip.",
+    "On phones the button drops below the field at full width; both stay 52px tall."
+  ],
+  "dont": [
+    "Do not use for search (SearchField) or for sign-in.",
+    "Never pre-tick or hide marketing consent; the button label is the consent action (\"Subscribe\")."
+  ],
+  "accessibility": [
+    "Visually hidden label \"Email address\" tied to the input with `for`.",
+    "The note and the error are linked with `aria-describedby`; switch it to the error id when invalid.",
+    "Success uses `role=\"status\"`; move focus to it only if the form had focus.",
+    "Error and success are carried by text and icon, not colour alone.",
+    "`--error-on-dark` and `--success-on-dark` keep contrast on black; never use `--error` text on dark."
+  ],
+  "content": [
+    "Placeholder: \"you@example.com\". Button: \"Subscribe\".",
+    "Note: \"Stories from the field, once a month. Unsubscribe anytime.\"",
+    "Errors: \"Please enter your email address.\" / \"Enter a valid email, like name@example.com.\"",
+    "Success: \"You're in. Watch for our next letter.\""
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"fm-sub-wrap\">\n  <form class=\"fm-sub\" novalidate>\n    <label class=\"fm-vh\" for=\"sub-email\">Email address</label>\n    <input class=\"input fm-sub-input\" id=\"sub-email\" type=\"email\" autocomplete=\"email\"\n      placeholder=\"you@example.com\" aria-describedby=\"sub-msg\">\n    <button class=\"btn btn-primary btn-lg\" type=\"submit\">Subscribe</button>\n  </form>\n  <p class=\"fm-sub-note\" id=\"sub-msg\">Stories from the field, once a month. Unsubscribe anytime.</p>\n</div>\n\n<!-- success replaces the form -->\n<p class=\"fm-sub-done\" role=\"status\"><svg …tick…/>You're in. Watch for our next letter.</p>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"fm-sub-wrap\">\n  <form class=\"fm-sub\" novalidate>\n    <label class=\"fm-vh\" for=\"sub-email\">Email address</label>\n    <input class=\"input fm-sub-input\" id=\"sub-email\" type=\"email\" autocomplete=\"email\"\n      placeholder=\"you@example.com\" aria-describedby=\"sub-msg\">\n    <button class=\"btn btn-primary btn-lg\" type=\"submit\">Subscribe</button>\n  </form>\n  <p class=\"fm-sub-note\" id=\"sub-msg\">Stories from the field, once a month. Unsubscribe anytime.</p>\n</div>\n\n<!-- success replaces the form -->\n<p class=\"fm-sub-done\" role=\"status\"><svg …tick…/>You're in. Watch for our next letter.</p>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/InlineSubscribe/README.md",
+    "spec": "components/InlineSubscribe/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

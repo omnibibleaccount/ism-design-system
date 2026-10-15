@@ -1,0 +1,50 @@
+<!-- @dsCard group="Ministry" height=482 subtitle="Dark signup with success state" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start}
+.col{display:flex;flex-direction:column;gap:10px;min-width:0}
+</style></head><body>
+<div class="grid">
+  <div class="col">
+    <span class="mn-st">Default · try it</span>
+    <form class="mn-nl on-dark" id="nl" novalidate>
+      <span class="eyebrow">Newsletter</span>
+      <h3 class="h3 mn-nl-title">Stories from the field, once a month.</h3>
+      <p class="mn-nl-lead">Answered prayers, new languages and ways to help. Short and worth reading.</p>
+      <div class="field" id="nl-fields">
+        <label class="label" for="nl-email">Email</label>
+        <input class="input" id="nl-email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="nl-err">
+        <span class="mn-nl-err" id="nl-err" style="display:none">Enter an email like name@example.com.</span>
+      </div>
+      <button class="btn btn-primary" type="submit" id="nl-btn" style="width:100%">Subscribe</button>
+      <p class="mn-nl-note" id="nl-note">No spam. Unsubscribe anytime. <a href="#">Privacy</a></p>
+      <p class="mn-nl-ok" id="nl-ok" role="status" style="display:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>You’re in. Watch for our next letter.</p>
+    </form>
+  </div>
+  <div class="col">
+    <span class="mn-st">Success state</span>
+    <div class="mn-nl on-dark">
+      <span class="eyebrow">Newsletter</span>
+      <h3 class="h3 mn-nl-title">Stories from the field, once a month.</h3>
+      <p class="mn-nl-lead">Answered prayers, new languages and ways to help. Short and worth reading.</p>
+      <div class="mn-nl-rule"></div>
+      <p class="mn-nl-ok" role="status"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>You’re in. Watch for our next letter.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var f=document.getElementById('nl');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var i=document.getElementById('nl-email');
+    var err=document.getElementById('nl-err');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(i.value)){i.setAttribute('aria-invalid','true');err.style.display='block';i.focus();return;}
+    ['nl-fields','nl-btn','nl-note'].forEach(function(id){document.getElementById(id).style.display='none';});
+    document.getElementById('nl-ok').style.display='flex';
+  });
+  document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();});});
+})();
+</script>
+</body></html>

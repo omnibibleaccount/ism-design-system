@@ -1,0 +1,156 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "BackToTop",
+  "title": "BackToTop",
+  "group": "Navigation",
+  "version": "3.0.0",
+  "summary": "A 48px round button fixed at the bottom-right of long pages that scrolls back to the top and returns focus to the start of the content.",
+  "whenToUse": [
+    "Use it on long pages: articles, stories, the Statement of Faith, policy pages, the resource library.",
+    "Show it only after the reader has scrolled about two screen heights."
+  ],
+  "whenNotToUse": [
+    "Do not use it on short pages or inside app screens and modals."
+  ],
+  "anatomy": {
+    "description": "One icon-only button: an up arrow in a white circle with a hairline and `var(--shadow-overlay)`. `.nv-btt-fixed` pins it 24px from the bottom-right corner (16px below 768px).",
+    "markup": null
+  },
+  "react": {
+    "import": "import { BackToTop } from '@ism/ui'",
+    "source": "packages/react/src/components/BackToTop.tsx",
+    "exports": [
+      "BackToTop"
+    ],
+    "extends": [
+      "Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'hidden'>"
+    ],
+    "props": [
+      {
+        "name": "threshold",
+        "type": "number",
+        "required": false,
+        "default": null,
+        "description": "Scroll distance in px after which the button appears. Defaults to two screen heights.\nSet `0` to always show it."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "default": "\"Back to top\"",
+        "description": "Accessible name (the button has no visible text)."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Charcoal variant for use over black sections (footer, dark heroes)."
+      },
+      {
+        "name": "fixed",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Pin to the bottom-right corner (`.nv-btt-fixed`). One per page."
+      },
+      {
+        "name": "focusTarget",
+        "type": "string",
+        "required": false,
+        "default": "\"main[tabindex='-1'], #main\"",
+        "description": "CSS selector of the element that receives focus after scrolling: the skip link target."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "cookie",
+    "nv-btt",
+    "nv-btt-dark",
+    "nv-btt-fixed",
+    "nv-hover"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "**Default:** `var(--white)`, 1px `rgba(0,0,0,.14)` border, `var(--black)` arrow.",
+    "**Hover:** `var(--gray-100)` fill. `.nv-hover` forces it for docs.",
+    "**Focus:** 2px `var(--horizon-blue)` outline, 2px offset, `var(--shadow-focus)` plus the overlay shadow.",
+    "**On dark (`.nv-btt-dark`):** `var(--charcoal-900)` fill, `rgba(255,255,255,.22)` border, white arrow; hover `var(--charcoal-800)`. Switch to it while the button sits over black sections (footer, dark heroes).",
+    "**Hidden:** `hidden` until the reader passes two screens; fade in over 150ms."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Keep it 48x48 (above the 44px minimum), round, bottom-right.",
+    "Use the up arrow only. Never use ⌄, ↗ or ›, and never add a text label beside it.",
+    "Never colour it Horizon Blue; it is a utility, not a primary action.",
+    "Stack it above the cookie banner (`z-index:72` vs `.cookie` 70) and keep clear of it: the banner is bottom-left, this is bottom-right.",
+    "Keep it clear of sticky app banners and chat widgets; move it up by their height if they share the corner.",
+    "One per page."
+  ],
+  "do": [
+    "Use it on long pages: articles, stories, the Statement of Faith, policy pages, the resource library.",
+    "Show it only after the reader has scrolled about two screen heights.",
+    "Keep it 48x48 (above the 44px minimum), round, bottom-right.",
+    "Use the up arrow only. Never use ⌄, ↗ or ›, and never add a text label beside it.",
+    "Stack it above the cookie banner (`z-index:72` vs `.cookie` 70) and keep clear of it: the banner is bottom-left, this is bottom-right.",
+    "Keep it clear of sticky app banners and chat widgets; move it up by their height if they share the corner.",
+    "One per page."
+  ],
+  "dont": [
+    "Do not use it on short pages or inside app screens and modals.",
+    "Never colour it Horizon Blue; it is a utility, not a primary action."
+  ],
+  "accessibility": [
+    "It is a `<button>` with `aria-label=\"Back to top\"`; the SVG is `aria-hidden`.",
+    "On click, scroll to the top and move focus to `main[tabindex=\"-1\"]` (the skip link target), so keyboard users restart at the content.",
+    "Respect `prefers-reduced-motion`: jump instead of smooth-scrolling.",
+    "When hidden use the `hidden` attribute, so it is not in the tab order."
+  ],
+  "content": [
+    "Accessible name: \"Back to top\". No visible text."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<button class=\"nv-btt nv-btt-fixed\" type=\"button\" aria-label=\"Back to top\" hidden>\n  <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 19V5M5 12l7-7 7 7\"/></svg>\n</button>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<button class=\"nv-btt nv-btt-fixed\" type=\"button\" aria-label=\"Back to top\" hidden>\n  <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 19V5M5 12l7-7 7 7\"/></svg>\n</button>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/BackToTop/README.md",
+    "spec": "components/BackToTop/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

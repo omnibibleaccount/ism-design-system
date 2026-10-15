@@ -1,0 +1,1216 @@
+{
+  "name": "ISM Design System component index",
+  "version": "3.0.0",
+  "count": 79,
+  "groups": {
+    "Brand": [
+      "Logos",
+      "Iconography"
+    ],
+    "Actions": [
+      "Button",
+      "IconButton",
+      "Chip",
+      "Link",
+      "Badge",
+      "Eyebrow"
+    ],
+    "Cards": [
+      "Card"
+    ],
+    "Data display": [
+      "Divider",
+      "AccentBar",
+      "ListRow",
+      "Table",
+      "Avatar",
+      "StatTile",
+      "Quote",
+      "DescriptionList",
+      "Accordion"
+    ],
+    "Forms": [
+      "Input",
+      "SearchField",
+      "Select",
+      "Combobox",
+      "Checkbox",
+      "Radio",
+      "Switch",
+      "SegmentedControl",
+      "DatePicker",
+      "FileUpload",
+      "PhoneInput",
+      "MultiSelect",
+      "FormLayout",
+      "InlineSubscribe"
+    ],
+    "Feedback": [
+      "Alert",
+      "Toast",
+      "Modal",
+      "Tooltip",
+      "Loader",
+      "Progress",
+      "EmptyState"
+    ],
+    "Navigation": [
+      "SiteHeader",
+      "Footer",
+      "Breadcrumbs",
+      "Tabs",
+      "Pagination",
+      "AnchorNav",
+      "BackToTop",
+      "LanguageSwitcher",
+      "CookieBanner",
+      "SkipLink"
+    ],
+    "Patterns": [
+      "Hero",
+      "PageIntro",
+      "SplitSection",
+      "NumberedList",
+      "CtaBand",
+      "CenteredCta"
+    ],
+    "Scripture": [
+      "VerseBlock",
+      "ReadingView",
+      "BookPicker",
+      "AudioPlayer",
+      "BibleCard",
+      "LanguageRow",
+      "QrShare"
+    ],
+    "Ministry": [
+      "StoreBadges",
+      "AppBanner",
+      "DonationWidget",
+      "NetworkMap",
+      "StationCard",
+      "PartnerCard",
+      "VideoPlayer",
+      "EventCard",
+      "NewsletterCard"
+    ],
+    "App UI": [
+      "AppBar",
+      "TabBar",
+      "BottomSheet",
+      "SettingsRow",
+      "SearchResults",
+      "DownloadState",
+      "Fab",
+      "AppHomeScreen"
+    ]
+  },
+  "components": [
+    {
+      "name": "AccentBar",
+      "group": "Data display",
+      "summary": "A thin 3px progress line filled with the signature gradient, available as the React `AccentBar` and as `.cr-accentbar` classes.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/AccentBar/spec.json",
+      "readme": "components/AccentBar/README.md"
+    },
+    {
+      "name": "Accordion",
+      "group": "Data display",
+      "summary": "The FAQ accordion: rounded, bordered rows built on native `<details>`/`<summary>` that open in place with a plus that turns to a cross.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Accordion/spec.json",
+      "readme": "components/Accordion/README.md"
+    },
+    {
+      "name": "Alert",
+      "group": "Feedback",
+      "summary": "Inline status banners (info, success, warning, error) that sit in the page flow, plus the dismissible dark announcement bar that sits above the header.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Alert/spec.json",
+      "readme": "components/Alert/README.md"
+    },
+    {
+      "name": "AnchorNav",
+      "group": "Navigation",
+      "summary": "In-page links for long pages: a sticky \"On this page\" list beside the content on desktop, and a horizontal sticky anchor bar under the header for product pages and phones.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/AnchorNav/spec.json",
+      "readme": "components/AnchorNav/README.md"
+    },
+    {
+      "name": "AppBanner",
+      "group": "Ministry",
+      "summary": "Promotes the dot.Bible app in three sizes: a dismissible \"Open in app\" smart banner on mobile, an inline promo card with QR and store badges on desktop, and a slim strip at the end of an article.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/AppBanner/spec.json",
+      "readme": "components/AppBanner/README.md"
+    },
+    {
+      "name": "AppBar",
+      "group": "App UI",
+      "summary": "The top bar of a mobile app screen: status bar, a 56px row with back, title and icon actions, and an optional large title or search field.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/AppBar/spec.json",
+      "readme": "components/AppBar/README.md"
+    },
+    {
+      "name": "AppHomeScreen",
+      "group": "App UI",
+      "summary": "The composed dot.Bible home screen, built only from App UI parts: app bar with the dot.Bible mark, search, continue-reading card, grouped language rows, mini player and tab bar.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/AppHomeScreen/spec.json",
+      "readme": "components/AppHomeScreen/README.md"
+    },
+    {
+      "name": "AudioPlayer",
+      "group": "Scripture",
+      "summary": "The audio Bible player: a full player with cover, seek bar, speed and transport controls, and a docked mini player in light and dark.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/AudioPlayer/spec.json",
+      "readme": "components/AudioPlayer/README.md"
+    },
+    {
+      "name": "Avatar",
+      "group": "Data display",
+      "summary": "A circular picture of a person or partner, shown as a photo, initials or a person icon, with an optional status dot and an overlapping group stack.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Avatar/spec.json",
+      "readme": "components/Avatar/README.md"
+    },
+    {
+      "name": "BackToTop",
+      "group": "Navigation",
+      "summary": "A 48px round button fixed at the bottom-right of long pages that scrolls back to the top and returns focus to the start of the content.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/BackToTop/spec.json",
+      "readme": "components/BackToTop/README.md"
+    },
+    {
+      "name": "Badge",
+      "group": "Actions",
+      "summary": "Small pill labels: the React `Badge` section tag in an outlined pill, `.badge` status badges, removable `.cr-tag` filters and the `.count` number dot.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Badge/spec.json",
+      "readme": "components/Badge/README.md"
+    },
+    {
+      "name": "BibleCard",
+      "group": "Scripture",
+      "summary": "A black-leather Bible cover with a gold tooled border that presents one language's Bible: native name, dot.bible address, Read / Listen / Order / Get the app tiles and a QR share, plus a compact row for lists.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/BibleCard/spec.json",
+      "readme": "components/BibleCard/README.md"
+    },
+    {
+      "name": "BookPicker",
+      "group": "Scripture",
+      "summary": "The book, chapter and verse chooser that opens from the reader's \"John 3 ⌄\" button: a two-pane panel on desktop and a bottom sheet with steps on mobile.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/BookPicker/spec.json",
+      "readme": "components/BookPicker/README.md"
+    },
+    {
+      "name": "BottomSheet",
+      "group": "App UI",
+      "summary": "A panel that slides up from the bottom of an app screen for sharing and quick options, plus the iOS-style action sheet for a short list of commands with Cancel.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/BottomSheet/spec.json",
+      "readme": "components/BottomSheet/README.md"
+    },
+    {
+      "name": "Breadcrumbs",
+      "group": "Navigation",
+      "summary": "A one-line trail under the hero of interior ism.bible pages that shows where the page sits and links back up each level.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Breadcrumbs/spec.json",
+      "readme": "components/Breadcrumbs/README.md"
+    },
+    {
+      "name": "Button",
+      "group": "Actions",
+      "summary": "Pill-shaped call-to-action button used across ISM's app, site, and print/email creative, available as the React `Button` and as `.btn` classes.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Button/spec.json",
+      "readme": "components/Button/README.md"
+    },
+    {
+      "name": "Card",
+      "group": "Cards",
+      "summary": "Rounded content containers: the React `Card` (a large, image-led tile) and the website `.card` family for programs, text, values, people, contact, books, steps and statements.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Card/spec.json",
+      "readme": "components/Card/README.md"
+    },
+    {
+      "name": "CenteredCta",
+      "group": "Patterns",
+      "summary": "Light, centred call to action (eyebrow, headline, two buttons) in a white card, plus a compact inline banner card for one question and one action.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/CenteredCta/spec.json",
+      "readme": "components/CenteredCta/README.md"
+    },
+    {
+      "name": "Checkbox",
+      "group": "Forms",
+      "summary": "A 20px checkbox with 6px corners for single yes/no choices, and full-width `.check` row cards for choosing several options from a short list.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Checkbox/spec.json",
+      "readme": "components/Checkbox/README.md"
+    },
+    {
+      "name": "Chip",
+      "group": "Actions",
+      "summary": "A pill toggle (`.chip` with `aria-pressed`) for filtering a list or picking a preset value such as a gift amount.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Chip/spec.json",
+      "readme": "components/Chip/README.md"
+    },
+    {
+      "name": "Combobox",
+      "group": "Forms",
+      "summary": "A search field joined to a dropdown list: type to filter a long list, or press the caret to see every option, in a 48px form size and a 64px homepage hero size.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Combobox/spec.json",
+      "readme": "components/Combobox/README.md"
+    },
+    {
+      "name": "CookieBanner",
+      "group": "Navigation",
+      "summary": "A small charcoal card at the bottom-left of ism.bible that asks for cookie consent on the first visit, with Accept All and Reject Non-Essential.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/CookieBanner/spec.json",
+      "readme": "components/CookieBanner/README.md"
+    },
+    {
+      "name": "CtaBand",
+      "group": "Patterns",
+      "summary": "Dark `.sec-ink` closing band with a centred eyebrow, headline and two buttons above three numbered columns of ways to take part.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/CtaBand/spec.json",
+      "readme": "components/CtaBand/README.md"
+    },
+    {
+      "name": "DatePicker",
+      "group": "Forms",
+      "summary": "A text field with a calendar button inside it that opens a 352px month popover for picking a single future date.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/DatePicker/spec.json",
+      "readme": "components/DatePicker/README.md"
+    },
+    {
+      "name": "DescriptionList",
+      "group": "Data display",
+      "summary": "Key-value rows for order and giving details, plus a stacked definition list for glossaries.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/DescriptionList/spec.json",
+      "readme": "components/DescriptionList/README.md"
+    },
+    {
+      "name": "Divider",
+      "group": "Data display",
+      "summary": "Separates content: the React `Divider` gradient accent, the `.thread` signature line, and quiet `.cr-rule` hairlines (strong, labelled \"or\", vertical).",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Divider/spec.json",
+      "readme": "components/Divider/README.md"
+    },
+    {
+      "name": "DonationWidget",
+      "group": "Ministry",
+      "summary": "The giving module: one-time or monthly switch, preset amount chips with Other, a live impact line, one Give button and a secure note, plus compact and goal-progress versions.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/DonationWidget/spec.json",
+      "readme": "components/DonationWidget/README.md"
+    },
+    {
+      "name": "DownloadState",
+      "group": "App UI",
+      "summary": "Offline and download indicators for ISM apps: the 44px download button in its four states, a storage usage row, and offline / back-online banners.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/DownloadState/spec.json",
+      "readme": "components/DownloadState/README.md"
+    },
+    {
+      "name": "EmptyState",
+      "group": "Feedback",
+      "summary": "A centred panel that explains why a list, search or screen has nothing to show and offers the one next step.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/EmptyState/spec.json",
+      "readme": "components/EmptyState/README.md"
+    },
+    {
+      "name": "EventCard",
+      "group": "Ministry",
+      "summary": "Two sibling cards for what is happening at ISM: an event card with a date tile, type badge, time and place, and a news card with a photo, category badge, date and Read the story link.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/EventCard/spec.json",
+      "readme": "components/EventCard/README.md"
+    },
+    {
+      "name": "Eyebrow",
+      "group": "Actions",
+      "summary": "Small uppercase section labels: the `.eyebrow` in a thin blue rectangle that introduces a headline, and the quieter `.overline` that heads a list, menu or table.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Eyebrow/spec.json",
+      "readme": "components/Eyebrow/README.md"
+    },
+    {
+      "name": "Fab",
+      "group": "App UI",
+      "summary": "The floating + button for a screen's one main create action, with the pull-to-refresh indicator and the snackbar that sits above the tab bar.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Fab/spec.json",
+      "readme": "components/Fab/README.md"
+    },
+    {
+      "name": "FileUpload",
+      "group": "Forms",
+      "summary": "A dashed drop zone with a \"browse\" link over a real file input, followed by a list of file rows that show upload progress, success or a plain-language error.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/FileUpload/spec.json",
+      "readme": "components/FileUpload/README.md"
+    },
+    {
+      "name": "Footer",
+      "group": "Navigation",
+      "summary": "The site-wide black footer for ism.bible: a gradient-bordered giving banner, the full ISM logo with tagline and socials, three link columns and a legal line.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Footer/spec.json",
+      "readme": "components/Footer/README.md"
+    },
+    {
+      "name": "FormLayout",
+      "group": "Forms",
+      "summary": "The frame for longer ISM forms: fieldsets with a legend column on the left and two-column fields on the right, required/optional marking, character counters, and a validation summary that links to each error.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/FormLayout/spec.json",
+      "readme": "components/FormLayout/README.md"
+    },
+    {
+      "name": "Hero",
+      "group": "Patterns",
+      "summary": "The dark, centred home-page hero: gradient photo under a dark overlay, eyebrow, H1 with one emphasised word, lead, two buttons and language chips.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Hero/spec.json",
+      "readme": "components/Hero/README.md"
+    },
+    {
+      "name": "IconButton",
+      "group": "Actions",
+      "summary": "A round, icon-only button (`.iconbtn`) for compact actions such as menu, search, close, share and play.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/IconButton/spec.json",
+      "readme": "components/IconButton/README.md"
+    },
+    {
+      "name": "Iconography",
+      "group": "Brand",
+      "summary": "Two icon sets: filled ministry icons for features and illustrations, and a thin line set for interface controls, plus the direction rule for carets and arrows.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Iconography/spec.json",
+      "readme": "components/Iconography/README.md"
+    },
+    {
+      "name": "InlineSubscribe",
+      "group": "Forms",
+      "summary": "A single-row newsletter sign-up: a 52px pill email field and a Subscribe pill button that wrap onto two lines on narrow screens, for light and dark sections.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/InlineSubscribe/spec.json",
+      "readme": "components/InlineSubscribe/README.md"
+    },
+    {
+      "name": "Input",
+      "group": "Forms",
+      "summary": "Rounded 48px text field with its label above, available as the React `Input` and as `.field` › `.label` + `.input` with hint, error and success messages.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Input/spec.json",
+      "readme": "components/Input/README.md"
+    },
+    {
+      "name": "LanguageRow",
+      "group": "Scripture",
+      "summary": "A language entry in the dot.bible directory: native-script name first, English name second, format badges (Read, Listen, Print, App) and a ↗, as a list row or as a card.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/LanguageRow/spec.json",
+      "readme": "components/LanguageRow/README.md"
+    },
+    {
+      "name": "LanguageSwitcher",
+      "group": "Navigation",
+      "summary": "Lets people read ism.bible in their own language: a globe \"EN ⌄\" button in the header opens a searchable list of language names in their own script, with a full-screen sheet on phones and an inline row in the footer.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/LanguageSwitcher/spec.json",
+      "readme": "components/LanguageSwitcher/README.md"
+    },
+    {
+      "name": "Link",
+      "group": "Actions",
+      "summary": "Text links for navigation: plain inline links in copy, the `.lnk` underline-reveal link, and the ghost \"see all\" link with ↗.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Link/spec.json",
+      "readme": "components/Link/README.md"
+    },
+    {
+      "name": "ListRow",
+      "group": "Data display",
+      "summary": "A 56px row of icon or avatar, title, meta and an end slot, grouped as a divided list or inset card, plus the React `ListRow` audio row with progress and play.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/ListRow/spec.json",
+      "readme": "components/ListRow/README.md"
+    },
+    {
+      "name": "Loader",
+      "group": "Feedback",
+      "summary": "Spinners for short waits, a busy state for buttons, and shimmering skeletons that hold the shape of content while it loads.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Loader/spec.json",
+      "readme": "components/Loader/README.md"
+    },
+    {
+      "name": "Logos",
+      "group": "Brand",
+      "summary": "The ISM and dot.Bible logos, marks and brand patterns, with the rules for placing them on light and dark surfaces.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Logos/spec.json",
+      "readme": "components/Logos/README.md"
+    },
+    {
+      "name": "Modal",
+      "group": "Feedback",
+      "summary": "A white dialog over a dimmed scrim that holds one short task or one decision, including the confirmation dialog for destructive and neutral choices.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Modal/spec.json",
+      "readme": "components/Modal/README.md"
+    },
+    {
+      "name": "MultiSelect",
+      "group": "Forms",
+      "summary": "A tag input that grows from 48px, holds removable chips for each pick, and opens a type-to-filter list with checkboxes that stays open while picking.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/MultiSelect/spec.json",
+      "readme": "components/MultiSelect/README.md"
+    },
+    {
+      "name": "NetworkMap",
+      "group": "Ministry",
+      "summary": "An abstract dot map of the Global Bible Network with a legend, gold partner-hub pins and a tooltip, beside a selectable list of regions with partner counts.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/NetworkMap/spec.json",
+      "readme": "components/NetworkMap/README.md"
+    },
+    {
+      "name": "NewsletterCard",
+      "group": "Ministry",
+      "summary": "A dark email sign-up card with an eyebrow, headline, one email field and a full-width Subscribe button, which turns into a one-line confirmation after sign-up.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/NewsletterCard/spec.json",
+      "readme": "components/NewsletterCard/README.md"
+    },
+    {
+      "name": "NumberedList",
+      "group": "Patterns",
+      "summary": "Ordered content in two forms: large numbered rows (01, 02) for programmes and beliefs, and compact numbered steps (1, 2) for how-it-works instructions.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/NumberedList/spec.json",
+      "readme": "components/NumberedList/README.md"
+    },
+    {
+      "name": "PageIntro",
+      "group": "Patterns",
+      "summary": "The opening block of an inner page (eyebrow, headline, lead) and the matching section heading row with an eyebrow, h2 and a ghost \"See all\" link.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/PageIntro/spec.json",
+      "readme": "components/PageIntro/README.md"
+    },
+    {
+      "name": "Pagination",
+      "group": "Navigation",
+      "summary": "Moves through a long list split into pages (news, resources, partner lists): numbered pages with Previous / Next, a compact \"Page 3 of 12\" form, or a Load more button.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Pagination/spec.json",
+      "readme": "components/Pagination/README.md"
+    },
+    {
+      "name": "PartnerCard",
+      "group": "Ministry",
+      "summary": "A linked card for one ISM partner: an initials tile, name, location, partner-type badges and a ↗ that fills black on hover.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/PartnerCard/spec.json",
+      "readme": "components/PartnerCard/README.md"
+    },
+    {
+      "name": "PhoneInput",
+      "group": "Forms",
+      "summary": "One 48px field that joins a country-code button and a number input, with a searchable country list that opens 6px below.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/PhoneInput/spec.json",
+      "readme": "components/PhoneInput/README.md"
+    },
+    {
+      "name": "Progress",
+      "group": "Feedback",
+      "summary": "Bars and rings that show how far along a task is, from a file download to day 15 of a reading plan to step 1 of 2 in a sign-up.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Progress/spec.json",
+      "readme": "components/Progress/README.md"
+    },
+    {
+      "name": "QrShare",
+      "group": "Scripture",
+      "summary": "A QR code beside a short prompt with Copy link and Share buttons, so someone can pass a dot.bible link to a person standing next to them.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/QrShare/spec.json",
+      "readme": "components/QrShare/README.md"
+    },
+    {
+      "name": "Quote",
+      "group": "Data display",
+      "summary": "Three quotation blocks: a large Lora pull quote, a testimonial card with avatar, and a scripture quote with a gold rule, verse numbers and a full reference.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Quote/spec.json",
+      "readme": "components/Quote/README.md"
+    },
+    {
+      "name": "Radio",
+      "group": "Forms",
+      "summary": "A 20px radio button with a 6px Horizon Blue ring when selected, used in a fieldset group where exactly one option can be picked.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Radio/spec.json",
+      "readme": "components/Radio/README.md"
+    },
+    {
+      "name": "ReadingView",
+      "group": "Scripture",
+      "summary": "The chapter reader: a sticky bar with book and translation pickers, text size and listen, over a single serif column with verse numbers, section headings, highlights and footnotes.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/ReadingView/spec.json",
+      "readme": "components/ReadingView/README.md"
+    },
+    {
+      "name": "SearchField",
+      "group": "Forms",
+      "summary": "A 48px search input with a magnifier on the left and a round clear button that appears once there is text.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/SearchField/spec.json",
+      "readme": "components/SearchField/README.md"
+    },
+    {
+      "name": "SearchResults",
+      "group": "App UI",
+      "summary": "The in-app search screen: focused field with Cancel, recent searches, results grouped by type with highlighted matches, and a helpful no-results state.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/SearchResults/spec.json",
+      "readme": "components/SearchResults/README.md"
+    },
+    {
+      "name": "SegmentedControl",
+      "group": "Forms",
+      "summary": "A pill-shaped two-option toggle, like One-time / Monthly on Give Online, where the chosen half fills charcoal (white on dark).",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/SegmentedControl/spec.json",
+      "readme": "components/SegmentedControl/README.md"
+    },
+    {
+      "name": "Select",
+      "group": "Forms",
+      "summary": "A field-styled dropdown button with a caret that opens a short listbox of fixed options 6px below the field.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Select/spec.json",
+      "readme": "components/Select/README.md"
+    },
+    {
+      "name": "SettingsRow",
+      "group": "App UI",
+      "summary": "Grouped inset settings for ISM apps: section headers, inset cards of 52px rows with toggles, values with ›, radio choices, a separate Sign out card and helper text.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/SettingsRow/spec.json",
+      "readme": "components/SettingsRow/README.md"
+    },
+    {
+      "name": "SiteHeader",
+      "group": "Navigation",
+      "summary": "The site-wide black header bar for ism.bible: ISM mark, five main links (three open submenus), a white Give pill and a menu button that opens the mobile drawer.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/SiteHeader/spec.json",
+      "readme": "components/SiteHeader/README.md"
+    },
+    {
+      "name": "SkipLink",
+      "group": "Navigation",
+      "summary": "The first focusable element on every page: an off-screen \"Skip to content\" link that appears as a white pill over the header on the first Tab press and jumps keyboard users past the navigation.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/SkipLink/spec.json",
+      "readme": "components/SkipLink/README.md"
+    },
+    {
+      "name": "SplitSection",
+      "group": "Patterns",
+      "summary": "Two-column section with a photo on one side and eyebrow, headline, lead and actions on the other; image-left/text-right by default, reversible.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/SplitSection/spec.json",
+      "readme": "components/SplitSection/README.md"
+    },
+    {
+      "name": "StatTile",
+      "group": "Data display",
+      "summary": "A metric tile with one big number, a short label, an optional up or down change and an optional sparkline, on light or dark.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/StatTile/spec.json",
+      "readme": "components/StatTile/README.md"
+    },
+    {
+      "name": "StationCard",
+      "group": "Ministry",
+      "summary": "A partner radio station card: photo, call sign and frequency, an On air or Off air pill, city and languages, what is playing now, and one action.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/StationCard/spec.json",
+      "readme": "components/StationCard/README.md"
+    },
+    {
+      "name": "StoreBadges",
+      "group": "Ministry",
+      "summary": "Black App Store and Google Play download badges for the dot.Bible app, in two sizes, for light and dark sections, with an optional QR for desktop.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/StoreBadges/spec.json",
+      "readme": "components/StoreBadges/README.md"
+    },
+    {
+      "name": "Switch",
+      "group": "Forms",
+      "summary": "A 46 × 28px toggle switch for settings that take effect at once, shown in a 44px row with a title and a one-line description.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Switch/spec.json",
+      "readme": "components/Switch/README.md"
+    },
+    {
+      "name": "TabBar",
+      "group": "App UI",
+      "summary": "The bottom tab bar of an ISM app: five equal tabs (Home, Bible, Listen, Saved, More) that switch between the app's top-level sections.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/TabBar/spec.json",
+      "readme": "components/TabBar/README.md"
+    },
+    {
+      "name": "Table",
+      "group": "Data display",
+      "summary": "A data table for admin and report screens, with sortable headers, row selection, status badges, a row menu, zebra and dense variants, and a stacked-card layout on mobile.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Table/spec.json",
+      "readme": "components/Table/README.md"
+    },
+    {
+      "name": "Tabs",
+      "group": "Navigation",
+      "summary": "Switches between panels of related content on the same page without a page load: underline tabs with counts, pill segmented tabs, vertical tabs and a scrollable mobile row.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Tabs/spec.json",
+      "readme": "components/Tabs/README.md"
+    },
+    {
+      "name": "Toast",
+      "group": "Feedback",
+      "summary": "A short dark message that confirms an action or reports a quiet failure, then hides itself, with at most one action such as Undo or Retry.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/Toast/spec.json",
+      "readme": "components/Toast/README.md"
+    },
+    {
+      "name": "Tooltip",
+      "group": "Feedback",
+      "summary": "A small dark label that names an icon-only control on hover or focus, and its light popover sibling that opens on click to explain something with a title and one link.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/Tooltip/spec.json",
+      "readme": "components/Tooltip/README.md"
+    },
+    {
+      "name": "VerseBlock",
+      "group": "Scripture",
+      "summary": "A single Bible verse set in Lora with its reference and Share, Copy and Bookmark tools, plus a dark Verse of the Day hero and an inline citation link.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": true,
+        "ios": true,
+        "android": true
+      },
+      "spec": "components/VerseBlock/spec.json",
+      "readme": "components/VerseBlock/README.md"
+    },
+    {
+      "name": "VideoPlayer",
+      "group": "Ministry",
+      "summary": "A 16:9 video frame: a poster with a large white play button, caption and duration chips, and while playing a bottom control bar with seek, time, captions, settings and full screen.",
+      "platforms": {
+        "web": true,
+        "react": true,
+        "reactNative": false,
+        "ios": false,
+        "android": false
+      },
+      "spec": "components/VideoPlayer/spec.json",
+      "readme": "components/VideoPlayer/README.md"
+    }
+  ]
+}

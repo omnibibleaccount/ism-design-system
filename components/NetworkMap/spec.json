@@ -1,0 +1,282 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "NetworkMap",
+  "title": "NetworkMap",
+  "group": "Ministry",
+  "version": "3.0.0",
+  "summary": "An abstract dot map of the Global Bible Network with a legend, gold partner-hub pins and a tooltip, beside a selectable list of regions with partner counts.",
+  "whenToUse": [
+    "Use on the Global Bible Network and About pages to show where ISM works with partners and stations.",
+    "Use the region list as the main control; the map illustrates it."
+  ],
+  "whenNotToUse": [
+    "Do not use for directions or exact locations; it is abstract on purpose.",
+    "Do not use for a single station; use StationCard."
+  ],
+  "anatomy": {
+    "description": "Two cards in `.mn-netmap`: the map card (spans 2 of 3 columns) and the regions card.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { NetworkMap } from '@ism/ui'",
+    "source": "packages/react/src/components/NetworkMap.tsx",
+    "exports": [
+      "NetworkMap",
+      "NetworkMapLegend",
+      "NetworkRegion",
+      "NetworkStation"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'title'>"
+    ],
+    "props": [
+      {
+        "name": "regions",
+        "type": "NetworkRegion[]",
+        "required": true,
+        "default": null,
+        "description": "Regions in list order. The list is the keyboard path; the map illustrates it."
+      },
+      {
+        "name": "stations",
+        "type": "NetworkStation[]",
+        "required": false,
+        "default": "[]",
+        "description": "Partner hub pins. Gold, never blue or red."
+      },
+      {
+        "name": "selectedRegion",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Controlled selected region id."
+      },
+      {
+        "name": "defaultSelectedRegion",
+        "type": "string",
+        "required": false,
+        "default": "the first active region",
+        "description": "Initial selected region when uncontrolled."
+      },
+      {
+        "name": "onSelectedRegionChange",
+        "type": "(regionId: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a region row is chosen (never for coming-soon rows)."
+      },
+      {
+        "name": "activeStationId",
+        "type": "string",
+        "required": false,
+        "default": "the first station of the selected region",
+        "description": "Station whose tooltip is shown."
+      },
+      {
+        "name": "offDots",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Path data for the grey \"not yet active\" background dots."
+      },
+      {
+        "name": "viewBox",
+        "type": "string",
+        "required": false,
+        "default": "\"0 12 720 292\"",
+        "description": "SVG viewBox."
+      },
+      {
+        "name": "mapLabel",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Accessible name of the map: one `role=\"img\"` that states the selection and where hubs are."
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Map card title, e.g. \"Global Bible Network\"."
+      },
+      {
+        "name": "legend",
+        "type": "Partial<NetworkMapLegend>",
+        "required": false,
+        "default": null,
+        "description": "Legend labels."
+      },
+      {
+        "name": "note",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Note under the map, e.g. \"Choose a region or a pin to see its stations, partners and languages.\""
+      },
+      {
+        "name": "regionsHeading",
+        "type": "ReactNode",
+        "required": false,
+        "default": "\"Regions\"",
+        "description": "Header of the region column."
+      },
+      {
+        "name": "partnersHeading",
+        "type": "ReactNode",
+        "required": false,
+        "default": "\"Partners\"",
+        "description": "Header of the count column."
+      },
+      {
+        "name": "formatTooltip",
+        "type": "(station: NetworkStation) => string",
+        "required": false,
+        "default": "\"Nairobi · 14 partners\" form: `${name} · ${partners} partners`",
+        "description": "Tooltip text."
+      },
+      {
+        "name": "summary",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Footer summary, e.g. `<><b>383</b> partners in 61 countries</>`."
+      },
+      {
+        "name": "joinLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Footer link label, e.g. \"Join\". Shown with ↗."
+      },
+      {
+        "name": "joinHref",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Footer link URL (the partner page)."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "arrow",
+    "btn",
+    "btn-ghost",
+    "btn-sm",
+    "card",
+    "card-flat",
+    "mn-c-off",
+    "mn-c-on",
+    "mn-c-pin",
+    "mn-c-sel",
+    "mn-legend",
+    "mn-map",
+    "mn-map-halo",
+    "mn-map-head",
+    "mn-map-note",
+    "mn-map-off",
+    "mn-map-on",
+    "mn-map-pins",
+    "mn-map-sel",
+    "mn-map-tip",
+    "mn-map-title",
+    "mn-netmap",
+    "mn-netmap-map",
+    "mn-regions",
+    "mn-regions-foot",
+    "mn-regions-head",
+    "mn-rrow",
+    "mn-rrow-ct",
+    "mn-rrow-dot",
+    "mn-rrow-nm",
+    "mn-rrow-soon",
+    "mn-rrow-u",
+    "mn-st"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Map dots: not active `.mn-map-off` (`--gray-200`), network region `.mn-map-on` (`--blue-on-dark`), selected region `.mn-map-sel` (`--horizon-blue`).",
+    "Pins `.mn-map-pins`: `--gradient-gold` with a white ring; the active pin is larger with a `.mn-map-halo`; its tooltip `.mn-map-tip` is `--charcoal-900` with white 12px text.",
+    "Region row `.mn-rrow` (52px): default, hover (`--off-white`), selected (`aria-pressed=\"true\"`, `--blue-tint`, dot `.mn-c-sel`), focus ring, coming soon (`.mn-rrow-soon`, `aria-disabled=\"true\"`, grey).",
+    "Under 768px the two cards stack, map first."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": true,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Selecting a row recolours its dot and the map region; only one region is selected at a time.",
+    "Horizon Blue marks only the selected region. Partner hubs are gold, never blue or red.",
+    "Keep the legend visible above the map; it explains every colour used.",
+    "Counts are tabular numbers, right-aligned. Mark the map as abstract and counts as samples until confirmed.",
+    "The footer link goes to the partner page, so it uses ↗.",
+    "Rows are at least 44px (52px here)."
+  ],
+  "do": [
+    "Use on the Global Bible Network and About pages to show where ISM works with partners and stations.",
+    "Use the region list as the main control; the map illustrates it.",
+    "Selecting a row recolours its dot and the map region; only one region is selected at a time.",
+    "Horizon Blue marks only the selected region. Partner hubs are gold, never blue or red.",
+    "Keep the legend visible above the map; it explains every colour used.",
+    "Counts are tabular numbers, right-aligned. Mark the map as abstract and counts as samples until confirmed.",
+    "The footer link goes to the partner page, so it uses ↗.",
+    "Rows are at least 44px (52px here)."
+  ],
+  "dont": [
+    "Do not use for directions or exact locations; it is abstract on purpose.",
+    "Do not use for a single station; use StationCard."
+  ],
+  "accessibility": [
+    "The SVG is one `role=\"img\"` with an `aria-label` that states the selection and where hubs are.",
+    "The region list is the keyboard path: real `<button>`s with `aria-pressed`. Do not make map dots the only control.",
+    "Coming-soon rows use `aria-disabled=\"true\"` and ignore clicks.",
+    "Colour dots are paired with names and the legend; never rely on colour alone."
+  ],
+  "content": [
+    "Title: \"Global Bible Network\".",
+    "Note: \"Choose a region or a pin to see its stations, partners and languages.\"",
+    "Tooltip: \"City · N partners\" (\"Nairobi · 14 partners\").",
+    "Footer: \"**383** partners in 61 countries\" (sample) + \"Join ↗\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"mn-netmap\">\n  <div class=\"card card-flat mn-netmap-map\">\n    <div class=\"mn-map-head\">\n      <p class=\"mn-map-title\">Global Bible Network</p>\n      <div class=\"mn-legend\">\n        <span><i class=\"mn-c-sel\"></i>Selected</span>\n        <span><i class=\"mn-c-on\"></i>Network region</span>\n        <span><i class=\"mn-c-off\"></i>Not yet active</span>\n        <span><i class=\"mn-c-pin\"></i>Partner hub</span>\n      </div>\n    </div>\n    <div class=\"mn-map\">\n      <svg viewBox=\"0 12 720 292\" role=\"img\" aria-label=\"Abstract world map with Africa selected and partner hubs in Africa, Asia, Latin America and the Middle East\">\n        <g fill=\"none\" stroke-linecap=\"round\" stroke-width=\"5.2\">\n          <path class=\"mn-map-off\" d=\"…\"/><path class=\"mn-map-on\" d=\"…\"/><path class=\"mn-map-sel\" d=\"…\"/>\n        </g>\n        <circle class=\"mn-map-halo\" cx=\"434\" cy=\"182\" r=\"14\"/>\n        <g class=\"mn-map-pins\" stroke-width=\"2.4\"><circle cx=\"434\" cy=\"182\" r=\"7\"/>…</g>\n        <g class=\"mn-map-tip\"><rect x=\"448\" y=\"170\" width=\"138\" height=\"26\" rx=\"8\"/><text x=\"458\" y=\"187\">Nairobi · 14 partners</text></g>\n      </svg>\n    </div>\n    <p class=\"mn-map-note\">Choose a region or a pin to see its stations, partners and languages.</p>\n  </div>\n  <div class=\"card card-flat mn-regions\">\n    <div class=\"mn-regions-head\"><span class=\"mn-st\">Regions</span><span>Partners</span></div>\n    <button class=\"mn-rrow\" type=\"button\" aria-pressed=\"true\"><span class=\"mn-rrow-dot mn-c-sel\"></span><span class=\"mn-rrow-nm\">Africa</span><span class=\"mn-rrow-ct\">142</span></button>\n    <button class=\"mn-rrow\" type=\"button\" aria-pressed=\"false\"><span class=\"mn-rrow-dot mn-c-on\"></span><span class=\"mn-rrow-nm\">Asia</span><span class=\"mn-rrow-ct\">118</span></button>\n    <button class=\"mn-rrow mn-rrow-soon\" type=\"button\" aria-pressed=\"false\" aria-disabled=\"true\"><span class=\"mn-rrow-dot mn-c-off\"></span><span class=\"mn-rrow-nm\">Oceania <span class=\"mn-rrow-u\">· coming soon</span></span><span class=\"mn-rrow-ct\">0</span></button>\n    <div class=\"mn-regions-foot\"><p><b>383</b> partners in 61 countries</p><a class=\"btn btn-ghost btn-sm\" href=\"/partners\">Join <span class=\"arrow\" aria-hidden=\"true\">↗</span></a></div>\n  </div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"mn-netmap\">\n  <div class=\"card card-flat mn-netmap-map\">\n    <div class=\"mn-map-head\">\n      <p class=\"mn-map-title\">Global Bible Network</p>\n      <div class=\"mn-legend\">\n        <span><i class=\"mn-c-sel\"></i>Selected</span>\n        <span><i class=\"mn-c-on\"></i>Network region</span>\n        <span><i class=\"mn-c-off\"></i>Not yet active</span>\n        <span><i class=\"mn-c-pin\"></i>Partner hub</span>\n      </div>\n    </div>\n    <div class=\"mn-map\">\n      <svg viewBox=\"0 12 720 292\" role=\"img\" aria-label=\"Abstract world map with Africa selected and partner hubs in Africa, Asia, Latin America and the Middle East\">\n        <g fill=\"none\" stroke-linecap=\"round\" stroke-width=\"5.2\">\n          <path class=\"mn-map-off\" d=\"…\"/><path class=\"mn-map-on\" d=\"…\"/><path class=\"mn-map-sel\" d=\"…\"/>\n        </g>\n        <circle class=\"mn-map-halo\" cx=\"434\" cy=\"182\" r=\"14\"/>\n        <g class=\"mn-map-pins\" stroke-width=\"2.4\"><circle cx=\"434\" cy=\"182\" r=\"7\"/>…</g>\n        <g class=\"mn-map-tip\"><rect x=\"448\" y=\"170\" width=\"138\" height=\"26\" rx=\"8\"/><text x=\"458\" y=\"187\">Nairobi · 14 partners</text></g>\n      </svg>\n    </div>\n    <p class=\"mn-map-note\">Choose a region or a pin to see its stations, partners and languages.</p>\n  </div>\n  <div class=\"card card-flat mn-regions\">\n    <div class=\"mn-regions-head\"><span class=\"mn-st\">Regions</span><span>Partners</span></div>\n    <button class=\"mn-rrow\" type=\"button\" aria-pressed=\"true\"><span class=\"mn-rrow-dot mn-c-sel\"></span><span class=\"mn-rrow-nm\">Africa</span><span class=\"mn-rrow-ct\">142</span></button>\n    <button class=\"mn-rrow\" type=\"button\" aria-pressed=\"false\"><span class=\"mn-rrow-dot mn-c-on\"></span><span class=\"mn-rrow-nm\">Asia</span><span class=\"mn-rrow-ct\">118</span></button>\n    <button class=\"mn-rrow mn-rrow-soon\" type=\"button\" aria-pressed=\"false\" aria-disabled=\"true\"><span class=\"mn-rrow-dot mn-c-off\"></span><span class=\"mn-rrow-nm\">Oceania <span class=\"mn-rrow-u\">· coming soon</span></span><span class=\"mn-rrow-ct\">0</span></button>\n    <div class=\"mn-regions-foot\"><p><b>383</b> partners in 61 countries</p><a class=\"btn btn-ghost btn-sm\" href=\"/partners\">Join <span class=\"arrow\" aria-hidden=\"true\">↗</span></a></div>\n  </div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/NetworkMap/README.md",
+    "spec": "components/NetworkMap/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

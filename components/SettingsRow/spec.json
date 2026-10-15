@@ -1,0 +1,337 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "SettingsRow",
+  "title": "SettingsRow",
+  "group": "App UI",
+  "version": "3.0.0",
+  "summary": "Grouped inset settings for ISM apps: section headers, inset cards of 52px rows with toggles, values with ›, radio choices, a separate Sign out card and helper text.",
+  "whenToUse": [
+    "Use on Settings and preference screens in dot.Bible and other ISM apps.",
+    "Use a toggle row for an on/off setting that applies at once.",
+    "Use a value row with › when the choice opens another screen (Language, Translation).",
+    "Use radio rows for picking one of two to five options in place (Default Bible)."
+  ],
+  "whenNotToUse": [
+    "Do not use these rows for content lists such as search results or episodes; use SearchResults or ListRow."
+  ],
+  "anatomy": {
+    "description": "Header `.ap-grp-h` above an inset card `.ap-grp` of `.ap-row`s, optional footer `.ap-grp-f`.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { SettingsRow } from '@ism/ui'",
+    "source": "packages/react/src/components/SettingsRow.tsx",
+    "exports": [
+      "SettingsGroup",
+      "SettingsRow",
+      "SettingsRowKind"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'onChange' | 'children'>"
+    ],
+    "props": [
+      {
+        "name": "kind",
+        "type": "SettingsRowKind",
+        "required": false,
+        "default": "\"action\"",
+        "description": "`action` acts at once, `value` shows a value and › and opens another screen, `toggle` is an on/off switch, `radio` picks one option in place."
+      },
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Short noun label, e.g. \"Language\"."
+      },
+      {
+        "name": "subtitle",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Second line (two-line row, 64px), e.g. \"Needs Wi‑Fi\"."
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Leading 30px icon tile (use on every row of a card or none), e.g. `<UiIcon name=\"language\" />`."
+      },
+      {
+        "name": "value",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "`value` rows: the current value, short, matching the next screen's selected option."
+      },
+      {
+        "name": "checked",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "`toggle` and `radio` rows: on / selected state (controlled)."
+      },
+      {
+        "name": "onCheckedChange",
+        "type": "(checked: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "`toggle` and `radio` rows: called with the next state. Toggles take effect at once; never pair with Save."
+      },
+      {
+        "name": "destructive",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "`action` rows: render in `--error`, alone in a `gap` group (Sign out)."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Dim the row and ignore input. Say why in `subtitle`."
+      },
+      {
+        "name": "onClick",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Click handler for `action` and `value` rows."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { SettingsRow } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/SettingsRow.tsx",
+    "exports": [
+      "SettingsGroup",
+      "SettingsRow"
+    ],
+    "props": [
+      {
+        "name": "type",
+        "type": "'value' | 'toggle' | 'radio' | 'action'",
+        "required": false,
+        "default": "\"action\"",
+        "description": "What the row does: `value` drills into another screen (value and chevron), `toggle` is an on/off switch, `radio` picks one in place, `action` acts at once with no trailing icon."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Short noun: \"Language\", \"Verse numbers\"."
+      },
+      {
+        "name": "sublabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Second line, which makes the row 64dp tall."
+      },
+      {
+        "name": "icon",
+        "type": "UiIconProps['name']",
+        "required": false,
+        "default": null,
+        "description": "Leading icon in a 30dp blue-tint tile. Use on every row in a card or on none."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "`value` rows: the current choice, short, matching the next screen's selected option."
+      },
+      {
+        "name": "checked",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "`toggle` rows: on or off. `radio` rows: this option is selected."
+      },
+      {
+        "name": "onCheckedChange",
+        "type": "(checked: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a toggle changes (with the new value) or a radio row is chosen. Toggles take effect at once; never pair with Save."
+      },
+      {
+        "name": "onPress",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "`value` and `action` rows: called on press."
+      },
+      {
+        "name": "danger",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Destructive row such as Sign out: `error` colour, 600 weight, alone in its own group."
+      },
+      {
+        "name": "disabledReason",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Says why a disabled row is unavailable (\"Needs Wi‑Fi\"); shown as the second line and read as the hint."
+      },
+      {
+        "name": "divider",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Draw the hairline above this row, starting 16dp in. `SettingsGroup` sets it after the first row."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "ap-chv",
+    "ap-grp",
+    "ap-grp-f",
+    "ap-grp-gap",
+    "ap-grp-h",
+    "ap-is-disabled",
+    "ap-is-focus",
+    "ap-is-pressed",
+    "ap-rad",
+    "ap-ri",
+    "ap-row",
+    "ap-row-danger",
+    "ap-row-tall",
+    "ap-s",
+    "ap-t",
+    "ap-tog",
+    "ap-tt",
+    "ap-val"
+  ],
+  "variants": [
+    [
+      {
+        "row": "Toggle",
+        "classes": ".ap-row + .ap-tog (51×31; on = Horizon Blue)"
+      },
+      {
+        "row": "Value ›",
+        "classes": "button.ap-row + .ap-val + .ap-chv"
+      },
+      {
+        "row": "Radio",
+        "classes": "button.ap-row[role=radio][aria-checked] + .ap-rad"
+      },
+      {
+        "row": "Two-line",
+        "classes": ".ap-tt > .ap-t + .ap-s"
+      },
+      {
+        "row": "Destructive",
+        "classes": ".ap-row-danger in its own .ap-grp.ap-grp-gap card"
+      },
+      {
+        "row": "Pressed / focus / disabled",
+        "classes": ":active / :focus-visible / aria-disabled=\"true\"; .ap-is-pressed .ap-is-focus .ap-is-disabled for specimens"
+      }
+    ]
+  ],
+  "variantNotes": [],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": false,
+      "focus": true,
+      "pressed": true,
+      "disabled": true,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Cards inset 16px, `--radius-md`, white with a `--gray-200` hairline; dividers start 16px in.",
+    "Rows are at least 52px; two-line rows 64px (`.ap-row-tall`).",
+    "Leading icon tiles `.ap-ri` are 30px, `--blue-tint` with Horizon Blue icons. Use them on every row in a card or on none.",
+    "› means the row drills into another app screen. Never use › on a toggle or radio row; never use ↗ inside settings unless the row leaves the app.",
+    "Values are `--gray-600`, short, and match the next screen's selected option.",
+    "Section headers: 12/600 caps, `--overline-tracking`, `--gray-600`. Footers: 13px `--gray-600`, under the card.",
+    "Sign out sits alone at the end in `--error`. No confirmation colour elsewhere.",
+    "Toggles take effect immediately; never pair them with a Save button."
+  ],
+  "do": [
+    "Use on Settings and preference screens in dot.Bible and other ISM apps.",
+    "Use a toggle row for an on/off setting that applies at once.",
+    "Use a value row with › when the choice opens another screen (Language, Translation).",
+    "Use radio rows for picking one of two to five options in place (Default Bible).",
+    "Cards inset 16px, `--radius-md`, white with a `--gray-200` hairline; dividers start 16px in.",
+    "Rows are at least 52px; two-line rows 64px (`.ap-row-tall`).",
+    "Leading icon tiles `.ap-ri` are 30px, `--blue-tint` with Horizon Blue icons. Use them on every row in a card or on none.",
+    "› means the row drills into another app screen. Never use › on a toggle or radio row; never use ↗ inside settings unless the row leaves the app.",
+    "Values are `--gray-600`, short, and match the next screen's selected option.",
+    "Section headers: 12/600 caps, `--overline-tracking`, `--gray-600`. Footers: 13px `--gray-600`, under the card.",
+    "Sign out sits alone at the end in `--error`. No confirmation colour elsewhere.",
+    "Toggles take effect immediately; never pair them with a Save button."
+  ],
+  "dont": [
+    "Do not use these rows for content lists such as search results or episodes; use SearchResults or ListRow."
+  ],
+  "accessibility": [
+    "Toggles are `role=\"switch\"` with `aria-checked` and a label via `aria-labelledby`.",
+    "Radio groups use `role=\"radiogroup\"` with a label; arrow keys move the selection.",
+    "Value rows announce both parts: \"Language, English, button\".",
+    "Disabled rows keep their text readable and say why (\"Needs Wi‑Fi\").",
+    "Focus ring: 2px Horizon Blue, inset on rows."
+  ],
+  "content": [
+    "Labels are short nouns: \"Language\", \"Verse numbers\", \"Wi‑Fi only\", \"Daily verse reminder\".",
+    "Footers explain consequences in one sentence: \"Downloaded Bibles work offline and stay on this phone after you sign out.\"",
+    "Translation names in full plus abbreviation: \"Berean Standard Bible BSB\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<p class=\"ap-grp-h\" id=\"g1\">Reading</p>\n<div class=\"ap-grp\" role=\"group\" aria-labelledby=\"g1\">\n  <button class=\"ap-row\" type=\"button\"><i class=\"ap-ri\">…</i><span>Language</span><span class=\"ap-val\">English</span><span class=\"ap-chv\">…</span></button>\n  <div class=\"ap-row\"><i class=\"ap-ri\">…</i><span id=\"t1\">Verse numbers</span>\n    <button class=\"ap-tog\" type=\"button\" role=\"switch\" aria-checked=\"true\" aria-labelledby=\"t1\"></button></div>\n</div>\n<p class=\"ap-grp-f\">Downloaded Bibles work offline and stay on this phone after you sign out.</p>\n<div class=\"ap-grp ap-grp-gap\"><button class=\"ap-row ap-row-danger\" type=\"button\">…<span>Sign out</span></button></div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<p class=\"ap-grp-h\" id=\"g1\">Reading</p>\n<div class=\"ap-grp\" role=\"group\" aria-labelledby=\"g1\">\n  <button class=\"ap-row\" type=\"button\"><i class=\"ap-ri\">…</i><span>Language</span><span class=\"ap-val\">English</span><span class=\"ap-chv\">…</span></button>\n  <div class=\"ap-row\"><i class=\"ap-ri\">…</i><span id=\"t1\">Verse numbers</span>\n    <button class=\"ap-tog\" type=\"button\" role=\"switch\" aria-checked=\"true\" aria-labelledby=\"t1\"></button></div>\n</div>\n<p class=\"ap-grp-f\">Downloaded Bibles work offline and stay on this phone after you sign out.</p>\n<div class=\"ap-grp ap-grp-gap\"><button class=\"ap-row ap-row-danger\" type=\"button\">…<span>Sign out</span></button></div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/SettingsRow/README.md",
+    "spec": "components/SettingsRow/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

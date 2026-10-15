@@ -1,0 +1,309 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "SiteHeader",
+  "title": "SiteHeader",
+  "group": "Navigation",
+  "version": "3.0.0",
+  "summary": "The site-wide black header bar for ism.bible: ISM mark, five main links (three open submenus), a white Give pill and a menu button that opens the mobile drawer.",
+  "whenToUse": [
+    "Use it once, at the top of every ism.bible page and every page built from the website kit."
+  ],
+  "whenNotToUse": [
+    "Do not use it inside apps (dot.Bible app screens have their own top bar) or in email.",
+    "Do not add a second header for a section. Section navigation belongs in Tabs or AnchorNav under the hero."
+  ],
+  "anatomy": {
+    "description": "Two parts: the bar (`header.hdr`) and the drawer (`.drawer` with `.drawer-scrim`). The bar is fixed, 72px tall, `var(--black)`.",
+    "markup": "Current main links, in order: About ISM ⌄, Resources ⌄, Global Network, Join The Mission ⌄, Contact. \"Download App\" was removed from the bar; the app lives under Resources."
+  },
+  "react": {
+    "import": "import { SiteHeader } from '@ism/ui'",
+    "source": "packages/react/src/components/SiteHeader.tsx",
+    "exports": [
+      "SiteHeader",
+      "SiteHeaderChild",
+      "SiteHeaderNavItem"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'children'>"
+    ],
+    "props": [
+      {
+        "name": "navigation",
+        "type": "SiteHeaderNavItem[]",
+        "required": true,
+        "default": null,
+        "description": "Main navigation, in order. Keep to five items; put new pages in a submenu."
+      },
+      {
+        "name": "linkComponent",
+        "type": "ElementType",
+        "required": false,
+        "default": "\"a\"",
+        "description": "Component used to render every internal link. Defaults to `'a'`.\nPass `next/link` (or any component that accepts `href`, `className`, `onClick` and `children`)\nso client-side routing works."
+      },
+      {
+        "name": "logo",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Logo slot for the bar. Defaults to an `<img>` using `logoSrc`. The CSS inverts black artwork to white."
+      },
+      {
+        "name": "drawerLogo",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Logo slot for the top of the drawer. Defaults to a decorative `<img>` using `logoSrc`."
+      },
+      {
+        "name": "logoSrc",
+        "type": "string",
+        "required": false,
+        "default": "\"/ism/assets/logos/Logo%20Black.svg\"",
+        "description": "Path of the default logo image."
+      },
+      {
+        "name": "logoAlt",
+        "type": "string",
+        "required": false,
+        "default": "\"ISM\"",
+        "description": "Alt text of the default bar logo image."
+      },
+      {
+        "name": "logoHref",
+        "type": "string",
+        "required": false,
+        "default": "\"/\"",
+        "description": "Where the logo links to."
+      },
+      {
+        "name": "logoLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"International Scripture Ministries home\"",
+        "description": "Accessible name of the logo link."
+      },
+      {
+        "name": "give",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Slot for the Give button. Use a white pill: `<a className=\"btn btn-light btn-sm nv-give\" href=\"/give\">`. It is the only button in the bar."
+      },
+      {
+        "name": "languageSwitcher",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Slot placed before Give, for example a `LanguageSwitcher`."
+      },
+      {
+        "name": "drawerActions",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Slot for the drawer call-to-action area (`.nv-dcta`): \"Give online\" (`btn-primary btn-lg`) and \"Partner with us\" (`btn-outline-light btn-lg`)."
+      },
+      {
+        "name": "skipLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Text of the skip link. When omitted no skip link is rendered; render your own as the first focusable element."
+      },
+      {
+        "name": "skipHref",
+        "type": "string",
+        "required": false,
+        "default": "\"#main\"",
+        "description": "Target of the skip link."
+      },
+      {
+        "name": "navLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Main\"",
+        "description": "Accessible name of the main `<nav>`."
+      },
+      {
+        "name": "openMenuLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Open menu\"",
+        "description": "Accessible name of the menu button."
+      },
+      {
+        "name": "closeMenuLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Close menu\"",
+        "description": "Accessible name of the drawer close button."
+      },
+      {
+        "name": "drawerLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Menu\"",
+        "description": "Accessible name of the drawer dialog."
+      },
+      {
+        "name": "drawerOpen",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Controlled open state of the mobile drawer."
+      },
+      {
+        "name": "defaultDrawerOpen",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Initial open state of the drawer when uncontrolled."
+      },
+      {
+        "name": "onDrawerOpenChange",
+        "type": "(open: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the drawer wants to open or close."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": "The bundle exposes `window.ISMDesignSystem_106e83.SiteHeader`. It takes no props (`SiteHeaderProps` is empty) and draws a static bar: logo, link row, Give pill, menu icon. The React component still shows an older link set (it includes \"Download App\", \"Stories of Impact\" and \"Bible\") and its logo points at `Logo White.svg`. Use it for quick mock-ups only. For production pages use the HTML below, which matches the current website."
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn",
+    "btn-lg",
+    "btn-light",
+    "btn-outline-light",
+    "btn-primary",
+    "btn-sm",
+    "dlink",
+    "drawer",
+    "drawer-scrim",
+    "hdr",
+    "iconbtn",
+    "is-scrolled",
+    "ism-burger",
+    "ism-desk",
+    "navlink",
+    "nv-actions",
+    "nv-burger",
+    "nv-caret",
+    "nv-dcta",
+    "nv-dgo",
+    "nv-dparent",
+    "nv-dsub",
+    "nv-dtop",
+    "nv-give",
+    "nv-has-sub",
+    "nv-hdr-in",
+    "nv-links",
+    "nv-logo",
+    "nv-overview",
+    "nv-skip",
+    "nv-static",
+    "nv-sub-wrap",
+    "nv-subitem",
+    "nv-subitem-d",
+    "nv-subitem-go",
+    "nv-subitem-t",
+    "nv-subitem-txt",
+    "nv-subpanel",
+    "skip"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "**Top of page:** `.hdr` with a transparent bottom border.",
+    "**Scrolled (>8px):** add `.is-scrolled` for the shadow and white hairline.",
+    "**Current section:** `aria-current=\"page\"` on the link or caret button shows the gradient underline.",
+    "**Submenu open:** caret button `aria-expanded=\"true\"`, caret rotates 180°, `.nv-subpanel` drops 14px below the bar. Row hover is `rgba(255,255,255,.07)`.",
+    "**Below 1024px:** `.ism-desk` hides the links; the menu button opens the drawer. Caret rows (`.nv-dparent`) expand in place, one at a time; open row turns `var(--blue-on-dark)`.",
+    "**Static preview:** add `.nv-static` to `.hdr` or `.drawer` to drop fixed positioning (docs and boards only)."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Keep the bar `var(--black)` with the white logo (`filter: brightness(0) invert(1)`). Never put the header on white.",
+    "Use the icon rule: caret ⌄ = opens a submenu here; ↗ = goes to another page; › = drills into an app screen (never in the website header).",
+    "The first row of every submenu links to the section's own page (`.nv-overview`).",
+    "Give is the only button in the bar and stays `.btn-light` (white pill). In the drawer, the one Horizon Blue primary is \"Give online\"; \"Partner with us\" is `.btn-outline-light`.",
+    "Max five main links. Add new pages to a submenu, not to the bar.",
+    "Every tap target is at least 44px (`.navlink`, `.iconbtn`, `.nv-dsub a`).",
+    "Submenu panel: `var(--charcoal-900)`, `var(--radius-ml)`, 340px wide."
+  ],
+  "do": [
+    "Use it once, at the top of every ism.bible page and every page built from the website kit.",
+    "Keep the bar `var(--black)` with the white logo (`filter: brightness(0) invert(1)`). Never put the header on white.",
+    "Use the icon rule: caret ⌄ = opens a submenu here; ↗ = goes to another page; › = drills into an app screen (never in the website header).",
+    "The first row of every submenu links to the section's own page (`.nv-overview`).",
+    "Give is the only button in the bar and stays `.btn-light` (white pill). In the drawer, the one Horizon Blue primary is \"Give online\"; \"Partner with us\" is `.btn-outline-light`.",
+    "Max five main links. Add new pages to a submenu, not to the bar.",
+    "Every tap target is at least 44px (`.navlink`, `.iconbtn`, `.nv-dsub a`).",
+    "Submenu panel: `var(--charcoal-900)`, `var(--radius-ml)`, 340px wide."
+  ],
+  "dont": [
+    "Do not use it inside apps (dot.Bible app screens have their own top bar) or in email.",
+    "Do not add a second header for a section. Section navigation belongs in Tabs or AnchorNav under the hero."
+  ],
+  "accessibility": [
+    "Make the skip link the first focusable element.",
+    "Caret items are `<button>`s with `aria-expanded` and `aria-controls`; plain items are links.",
+    "Open submenus on click and on hover; close on Esc and on click outside, and return focus to the caret button.",
+    "The drawer is `role=\"dialog\" aria-modal=\"true\"`; trap focus inside, close on Esc and scrim click, and return focus to the menu button.",
+    "The heart icon is `aria-hidden`; the visible \"Give\" text is the label."
+  ],
+  "content": [
+    "Link labels are short nouns in Title Case: \"About ISM\", \"Join The Mission\".",
+    "Submenu rows have a title and a one-line description: \"dot.Bible App · Free Bible apps in 500+ languages\", \"HD Radio Broadcast · Scripture on the airwaves\".",
+    "The Give pill always says \"Give\". Drawer buttons say \"Give online\" and \"Partner with us\"."
+  ],
+  "snippets": {
+    "react": [
+      "<SiteHeader />"
+    ],
+    "html": [
+      "<a class=\"skip nv-skip\" href=\"#main\">Skip to content</a>\n<header class=\"hdr\">\n  <div class=\"nv-hdr-in\">\n    <a class=\"nv-logo\" href=\"/\" aria-label=\"International Scripture Ministries home\"><img src=\"assets/logos/Logo%20Black.svg\" alt=\"ISM\"></a>\n    <nav class=\"nv-links ism-desk\" aria-label=\"Main\">\n      <span class=\"nv-sub-wrap\">\n        <button class=\"navlink nv-has-sub\" type=\"button\" aria-expanded=\"false\" aria-controls=\"sub-about\">About ISM<svg class=\"nv-caret\" …><path d=\"M6 9l6 6 6-6\"/></svg></button>\n        <div class=\"nv-subpanel\" id=\"sub-about\" hidden>\n          <a class=\"nv-subitem nv-overview\" href=\"/about\"><span class=\"nv-subitem-txt\"><span class=\"nv-subitem-t\">About ISM overview</span><span class=\"nv-subitem-d\">Who we are and why</span></span><span class=\"nv-subitem-go\" aria-hidden=\"true\">↗</span></a>\n          <a class=\"nv-subitem\" href=\"/mission\">…</a>\n        </div>\n      </span>\n      <!-- Resources ⌄ · Global Network · Join The Mission ⌄ · Contact -->\n      <a class=\"navlink\" href=\"/global-network\">Global Network</a>\n    </nav>\n    <div class=\"nv-actions\">\n      <a class=\"btn btn-light btn-sm nv-give\" href=\"/give\"><svg …heart/>Give</a>\n      <button class=\"iconbtn nv-burger ism-burger\" type=\"button\" aria-label=\"Open menu\" aria-expanded=\"false\" aria-controls=\"ism-drawer\"><svg …/></button>\n    </div>\n  </div>\n</header>\n\n<!-- mobile drawer (rendered when open) -->\n<div class=\"drawer-scrim\"></div>\n<div class=\"drawer\" id=\"ism-drawer\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Menu\">\n  <div class=\"nv-dtop\"><img src=\"assets/logos/Logo%20Black.svg\" alt=\"\"><button class=\"iconbtn\" aria-label=\"Close menu\">…</button></div>\n  <a class=\"dlink\" href=\"/\"><span>Home</span><span class=\"nv-dgo\" aria-hidden=\"true\">↗</span></a>\n  <button class=\"nv-dparent\" type=\"button\" aria-expanded=\"true\" aria-controls=\"d-about\"><span>About ISM</span><svg class=\"nv-caret\" …/></button>\n  <div class=\"nv-dsub\" id=\"d-about\"><a href=\"/about\"><span>About ISM overview</span><span aria-hidden=\"true\">↗</span></a> …</div>\n  <div class=\"nv-dcta\"><a class=\"btn btn-primary btn-lg\" href=\"/give\">Give online</a><a class=\"btn btn-outline-light btn-lg\" href=\"/partner\">Partner with us</a></div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "jsx",
+        "code": "<SiteHeader />"
+      },
+      {
+        "lang": "html",
+        "code": "<a class=\"skip nv-skip\" href=\"#main\">Skip to content</a>\n<header class=\"hdr\">\n  <div class=\"nv-hdr-in\">\n    <a class=\"nv-logo\" href=\"/\" aria-label=\"International Scripture Ministries home\"><img src=\"assets/logos/Logo%20Black.svg\" alt=\"ISM\"></a>\n    <nav class=\"nv-links ism-desk\" aria-label=\"Main\">\n      <span class=\"nv-sub-wrap\">\n        <button class=\"navlink nv-has-sub\" type=\"button\" aria-expanded=\"false\" aria-controls=\"sub-about\">About ISM<svg class=\"nv-caret\" …><path d=\"M6 9l6 6 6-6\"/></svg></button>\n        <div class=\"nv-subpanel\" id=\"sub-about\" hidden>\n          <a class=\"nv-subitem nv-overview\" href=\"/about\"><span class=\"nv-subitem-txt\"><span class=\"nv-subitem-t\">About ISM overview</span><span class=\"nv-subitem-d\">Who we are and why</span></span><span class=\"nv-subitem-go\" aria-hidden=\"true\">↗</span></a>\n          <a class=\"nv-subitem\" href=\"/mission\">…</a>\n        </div>\n      </span>\n      <!-- Resources ⌄ · Global Network · Join The Mission ⌄ · Contact -->\n      <a class=\"navlink\" href=\"/global-network\">Global Network</a>\n    </nav>\n    <div class=\"nv-actions\">\n      <a class=\"btn btn-light btn-sm nv-give\" href=\"/give\"><svg …heart/>Give</a>\n      <button class=\"iconbtn nv-burger ism-burger\" type=\"button\" aria-label=\"Open menu\" aria-expanded=\"false\" aria-controls=\"ism-drawer\"><svg …/></button>\n    </div>\n  </div>\n</header>\n\n<!-- mobile drawer (rendered when open) -->\n<div class=\"drawer-scrim\"></div>\n<div class=\"drawer\" id=\"ism-drawer\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Menu\">\n  <div class=\"nv-dtop\"><img src=\"assets/logos/Logo%20Black.svg\" alt=\"\"><button class=\"iconbtn\" aria-label=\"Close menu\">…</button></div>\n  <a class=\"dlink\" href=\"/\"><span>Home</span><span class=\"nv-dgo\" aria-hidden=\"true\">↗</span></a>\n  <button class=\"nv-dparent\" type=\"button\" aria-expanded=\"true\" aria-controls=\"d-about\"><span>About ISM</span><svg class=\"nv-caret\" …/></button>\n  <div class=\"nv-dsub\" id=\"d-about\"><a href=\"/about\"><span>About ISM overview</span><span aria-hidden=\"true\">↗</span></a> …</div>\n  <div class=\"nv-dcta\"><a class=\"btn btn-primary btn-lg\" href=\"/give\">Give online</a><a class=\"btn btn-outline-light btn-lg\" href=\"/partner\">Partner with us</a></div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/SiteHeader/README.md",
+    "spec": "components/SiteHeader/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

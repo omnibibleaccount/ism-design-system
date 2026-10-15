@@ -1,0 +1,49 @@
+<!-- @dsCard group="Data display" height=778 subtitle="Pull quote, testimonial, scripture" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
+.pv-col{display:flex;flex-direction:column;gap:12px;min-width:0}
+@media (max-width:760px){.pv{grid-template-columns:minmax(0,1fr)} }
+</style></head><body>
+<div class="pv">
+  <div class="pv-col">
+    <span class="overline">Pull quote</span>
+    <figure class="dp-pullfig">
+      <span class="dp-qmark" aria-hidden="true">“</span>
+      <blockquote class="dp-pull">When my grandmother heard the Gospel of John in Amharic on the radio, she wept. It was the first time God spoke her language.</blockquote>
+      <div class="thread dp-pull-thread" aria-hidden="true"></div>
+      <figcaption class="dp-cite"><strong>Dawit Alemu</strong> · Radio Hope listener, Addis Ababa</figcaption>
+    </figure>
+  </div>
+  <div class="pv-col">
+    <span class="overline">Testimonial card</span>
+    <figure class="card dp-testi">
+      <blockquote class="dp-testi-q">“Our church hands out the NFC Bible cards after every service. People tap them on the bus home and keep reading in the dot.Bible app. It is the simplest thing we have ever given away.”</blockquote>
+      <figcaption class="dp-testi-by">
+        <span class="dp-av dp-av-56"><img src="../../assets/imagery/print-photo-listener.jpg" alt=""></span>
+        <span class="dp-testi-who"><span class="dp-testi-name">Maria Santos</span><span class="dp-testi-role">Partner pastor · Lima, Peru</span></span>
+      </figcaption>
+    </figure>
+  </div>
+  <div class="pv-col">
+    <span class="overline">Scripture · light</span>
+    <figure class="dp-scripfig">
+      <span class="dp-scrip-rule" aria-hidden="true"></span>
+      <div class="dp-scrip-body">
+        <blockquote class="dp-scrip"><sup class="dp-sv">16</sup>For God so loved the world that He gave His one and only Son, that everyone who believes in Him shall not perish but have eternal life.</blockquote>
+        <figcaption class="dp-scrip-ref">John 3:16 <span>· BSB</span></figcaption>
+      </div>
+    </figure>
+  </div>
+  <div class="pv-col">
+    <span class="overline">Scripture · dark</span>
+    <figure class="dp-scripfig dp-scripfig-dark">
+      <span class="dp-scrip-rule" aria-hidden="true"></span>
+      <div class="dp-scrip-body">
+        <blockquote class="dp-scrip"><sup class="dp-sv">105</sup>Your word is a lamp to my feet and a light to my path.</blockquote>
+        <figcaption class="dp-scrip-ref">Psalm 119:105 <span>· BSB</span></figcaption>
+      </div>
+    </figure>
+  </div>
+</div>
+</body></html>

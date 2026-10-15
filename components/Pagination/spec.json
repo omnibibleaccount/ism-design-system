@@ -1,0 +1,230 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Pagination",
+  "title": "Pagination",
+  "group": "Navigation",
+  "version": "3.0.0",
+  "summary": "Moves through a long list split into pages (news, resources, partner lists): numbered pages with Previous / Next, a compact \"Page 3 of 12\" form, or a Load more button.",
+  "whenToUse": [
+    "Use numbered pagination for lists people browse and return to, where the URL should hold the page: news, stories, the resource library.",
+    "Use compact pagination on phones and in tight spaces such as cards and side panels.",
+    "Use Load more for feeds people scan once, such as partner stories or radio episodes."
+  ],
+  "whenNotToUse": [
+    "Do not paginate lists under about 12 items; show them all."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Pagination } from '@ism/ui'",
+    "source": "packages/react/src/components/Pagination.tsx",
+    "exports": [
+      "LoadMore",
+      "Pagination",
+      "PaginationVariant",
+      "paginationRange"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'onChange' | 'children'>"
+    ],
+    "props": [
+      {
+        "name": "page",
+        "type": "number",
+        "required": true,
+        "default": null,
+        "description": "Current page, 1-based."
+      },
+      {
+        "name": "pageCount",
+        "type": "number",
+        "required": true,
+        "default": null,
+        "description": "Total number of pages."
+      },
+      {
+        "name": "variant",
+        "type": "PaginationVariant",
+        "required": false,
+        "default": "\"numbered\"",
+        "description": "`numbered` shows page buttons with Previous / Next; `compact` shows round arrows around \"Page 3 of 12\"."
+      },
+      {
+        "name": "hrefFor",
+        "type": "(page: number) => string",
+        "required": false,
+        "default": "(n) => `?page=${n}`",
+        "description": "Builds the URL of a page. Use real `?page=` URLs so pages can be shared."
+      },
+      {
+        "name": "onPageChange",
+        "type": "(page: number, event: MouseEvent<HTMLAnchorElement>) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a page link is clicked, with the target page and the click event.\nCall `event.preventDefault()` for client-side paging without a navigation."
+      },
+      {
+        "name": "linkComponent",
+        "type": "ElementType",
+        "required": false,
+        "default": "\"a\"",
+        "description": "Component used to render page links. Defaults to `'a'`.\nPass `next/link` (or any component accepting `href`, `className`, `onClick`, `aria-*` and `children`)."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "default": "\"Pagination\"",
+        "description": "Accessible name of the `<nav>`."
+      },
+      {
+        "name": "previousLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": "\"Previous\"",
+        "description": "Visible text of the Previous link (numbered). Leave empty for an arrow-only look."
+      },
+      {
+        "name": "nextLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": "\"Next\"",
+        "description": "Visible text of the Next link (numbered)."
+      },
+      {
+        "name": "previousAriaLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Previous page\"",
+        "description": "Accessible name of the round Previous arrow (compact)."
+      },
+      {
+        "name": "nextAriaLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Next page\"",
+        "description": "Accessible name of the round Next arrow (compact)."
+      },
+      {
+        "name": "renderStatus",
+        "type": "(page: number, pageCount: number) => ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Renders the compact status (\"Page 3 of 12\", current number bold). Receives the page and the count.\nWithout it only the bold current number and the total are shown, separated by a slash."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn",
+    "btn-secondary",
+    "muted",
+    "nv-bar",
+    "nv-done",
+    "nv-ico",
+    "nv-more",
+    "nv-pg",
+    "nv-pg-btn",
+    "nv-pg-compact",
+    "nv-pg-gap",
+    "nv-pg-nav",
+    "nv-pg-round",
+    "nv-pg-space",
+    "nv-pg-status",
+    "nv-spin-dark",
+    "small"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "**Page button (`.nv-pg-btn`):** 44px round, 15px/500 `var(--charcoal-900)`. Hover `var(--gray-100)`. Focus: blue outline + `var(--shadow-focus)`. Current: filled `var(--charcoal-900)`, white 600, `aria-current=\"page\"`.",
+    "**Gap (`.nv-pg-gap`):** an `…` that is not clickable.",
+    "**Previous / Next (`.nv-pg-nav`):** outlined 44px pills with arrows. At the ends: `aria-disabled=\"true\"` (opacity .45, not clickable).",
+    "**First page:** Previous disabled; show 1 2 3 … 12.",
+    "**Compact (`.nv-pg-compact`):** 44px round arrow buttons (`.nv-pg-round`) either side of \"Page 3 of 12\".",
+    "**Load more:** default `.btn-secondary`; loading adds `aria-busy=\"true\"` and a `.nv-spin-dark` spinner with \"Loading\"; all loaded swaps the button for `.nv-done` \"You've seen them all\". The `.nv-bar` uses `var(--gradient-line)` to show progress."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": true,
+      "loading": true,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Show first, last, current ±1, and `…` for gaps. Never show more than 7 page numbers.",
+    "The current page is filled charcoal, not Horizon Blue. Pagination never takes the group's blue primary.",
+    "Keep every target at 44px (`.nv-pg-btn`, `.nv-pg-nav`, `.nv-pg-round`).",
+    "Keep Previous and Next in place at the ends; disable them, never hide them, so the row does not jump.",
+    "Use real links with `?page=` URLs for numbered pagination so pages can be shared.",
+    "Use `→`-style arrows only (inline SVG). Never use ↗ or › here.",
+    "Load more: always say how many are shown (\"Showing 12 of 48\"), and append in place without moving scroll.",
+    "Centre numbered pagination under the list, 40–48px below the last item."
+  ],
+  "do": [
+    "Use numbered pagination for lists people browse and return to, where the URL should hold the page: news, stories, the resource library.",
+    "Use compact pagination on phones and in tight spaces such as cards and side panels.",
+    "Use Load more for feeds people scan once, such as partner stories or radio episodes.",
+    "Show first, last, current ±1, and `…` for gaps. Never show more than 7 page numbers.",
+    "The current page is filled charcoal, not Horizon Blue. Pagination never takes the group's blue primary.",
+    "Keep every target at 44px (`.nv-pg-btn`, `.nv-pg-nav`, `.nv-pg-round`).",
+    "Keep Previous and Next in place at the ends; disable them, never hide them, so the row does not jump.",
+    "Use real links with `?page=` URLs for numbered pagination so pages can be shared.",
+    "Use `→`-style arrows only (inline SVG). Never use ↗ or › here.",
+    "Load more: always say how many are shown (\"Showing 12 of 48\"), and append in place without moving scroll.",
+    "Centre numbered pagination under the list, 40–48px below the last item."
+  ],
+  "dont": [
+    "Do not paginate lists under about 12 items; show them all."
+  ],
+  "accessibility": [
+    "Wrap in `nav aria-label=\"Pagination\"`.",
+    "Mark the current page with `aria-current=\"page\"`; give arrow-only buttons `aria-label=\"Previous page\"` / `\"Next page\"`.",
+    "Hide `…` gaps with `aria-hidden=\"true\"`.",
+    "Compact status uses `aria-live=\"polite\"` so the new page is announced.",
+    "After Load more, move focus to the first new item and announce \"12 more stories loaded\"."
+  ],
+  "content": [
+    "Labels: \"Previous\", \"Next\", \"Load more\", \"Loading\", \"You've seen them all\".",
+    "Counts are real (\"Showing 12 of 48\" in the preview is a sample).",
+    "Status: \"Page 3 of 12\", with the current number in bold."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<nav class=\"nv-pg\" aria-label=\"Pagination\">\n  <a class=\"nv-pg-nav\" href=\"?page=4\"><svg class=\"nv-ico\" …><path d=\"M19 12H5M12 19l-7-7 7-7\"/></svg>Previous</a>\n  <span class=\"nv-pg-space\"></span>\n  <a class=\"nv-pg-btn\" href=\"?page=1\">1</a>\n  <span class=\"nv-pg-gap\" aria-hidden=\"true\">…</span>\n  <a class=\"nv-pg-btn\" href=\"?page=4\">4</a>\n  <a class=\"nv-pg-btn\" href=\"?page=5\" aria-current=\"page\">5</a>\n  <a class=\"nv-pg-btn\" href=\"?page=6\">6</a>\n  <span class=\"nv-pg-gap\" aria-hidden=\"true\">…</span>\n  <a class=\"nv-pg-btn\" href=\"?page=12\">12</a>\n  <span class=\"nv-pg-space\"></span>\n  <a class=\"nv-pg-nav\" href=\"?page=6\">Next<svg class=\"nv-ico\" …><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg></a>\n</nav>\n\n<!-- compact -->\n<nav class=\"nv-pg-compact\" aria-label=\"Pagination\">\n  <a class=\"nv-pg-round\" href=\"?page=2\" aria-label=\"Previous page\">…</a>\n  <span class=\"nv-pg-status\" aria-live=\"polite\">Page <b>3</b> of 12</span>\n  <a class=\"nv-pg-round\" href=\"?page=4\" aria-label=\"Next page\">…</a>\n</nav>\n\n<!-- load more -->\n<div class=\"nv-more\">\n  <span class=\"small muted\">Showing 12 of 48</span>\n  <div class=\"nv-bar\"><span style=\"width:25%\"></span></div>\n  <button class=\"btn btn-secondary\" type=\"button\">Load more</button>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<nav class=\"nv-pg\" aria-label=\"Pagination\">\n  <a class=\"nv-pg-nav\" href=\"?page=4\"><svg class=\"nv-ico\" …><path d=\"M19 12H5M12 19l-7-7 7-7\"/></svg>Previous</a>\n  <span class=\"nv-pg-space\"></span>\n  <a class=\"nv-pg-btn\" href=\"?page=1\">1</a>\n  <span class=\"nv-pg-gap\" aria-hidden=\"true\">…</span>\n  <a class=\"nv-pg-btn\" href=\"?page=4\">4</a>\n  <a class=\"nv-pg-btn\" href=\"?page=5\" aria-current=\"page\">5</a>\n  <a class=\"nv-pg-btn\" href=\"?page=6\">6</a>\n  <span class=\"nv-pg-gap\" aria-hidden=\"true\">…</span>\n  <a class=\"nv-pg-btn\" href=\"?page=12\">12</a>\n  <span class=\"nv-pg-space\"></span>\n  <a class=\"nv-pg-nav\" href=\"?page=6\">Next<svg class=\"nv-ico\" …><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg></a>\n</nav>\n\n<!-- compact -->\n<nav class=\"nv-pg-compact\" aria-label=\"Pagination\">\n  <a class=\"nv-pg-round\" href=\"?page=2\" aria-label=\"Previous page\">…</a>\n  <span class=\"nv-pg-status\" aria-live=\"polite\">Page <b>3</b> of 12</span>\n  <a class=\"nv-pg-round\" href=\"?page=4\" aria-label=\"Next page\">…</a>\n</nav>\n\n<!-- load more -->\n<div class=\"nv-more\">\n  <span class=\"small muted\">Showing 12 of 48</span>\n  <div class=\"nv-bar\"><span style=\"width:25%\"></span></div>\n  <button class=\"btn btn-secondary\" type=\"button\">Load more</button>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/Pagination/README.md",
+    "spec": "components/Pagination/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

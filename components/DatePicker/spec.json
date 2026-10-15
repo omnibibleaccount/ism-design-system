@@ -1,0 +1,295 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "DatePicker",
+  "title": "DatePicker",
+  "group": "Forms",
+  "version": "3.0.0",
+  "summary": "A text field with a calendar button inside it that opens a 352px month popover for picking a single future date.",
+  "whenToUse": [
+    "Scheduling: a partner call, an event sign-up, the start of a report range.",
+    "Typed entry is always allowed; the calendar is a helper, not the only way in.",
+    "Birthdays and dates far in the past: use three plain fields (month, day, year), not a calendar.",
+    "Picking a time slot from a short fixed list: use Select or Radio."
+  ],
+  "whenNotToUse": [],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { DatePicker } from '@ism/ui'",
+    "source": "packages/react/src/components/DatePicker.tsx",
+    "exports": [
+      "DatePicker",
+      "DatePickerLabels"
+    ],
+    "extends": [],
+    "props": [
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Visible label, for example \"Preferred call date\"."
+      },
+      {
+        "name": "value",
+        "type": "Date | null",
+        "required": false,
+        "default": null,
+        "description": "Selected date (controlled). `null` is empty. Dates are local calendar days; the time is ignored."
+      },
+      {
+        "name": "defaultValue",
+        "type": "Date | null",
+        "required": false,
+        "default": null,
+        "description": "Initial date (uncontrolled)."
+      },
+      {
+        "name": "onChange",
+        "type": "(date: Date | null) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a date is committed (Done, or valid typed text on blur) or cleared (`null`)."
+      },
+      {
+        "name": "onInvalidText",
+        "type": "(text: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called on blur when the typed text cannot be read as a date. Show your own `error` in response."
+      },
+      {
+        "name": "locale",
+        "type": "string",
+        "required": false,
+        "default": "\"en-US\"",
+        "description": "BCP 47 locale for month and weekday names, field order, the long date and the first weekday."
+      },
+      {
+        "name": "min",
+        "type": "Date",
+        "required": false,
+        "default": null,
+        "description": "Earliest selectable day. Earlier days stay in the grid but are disabled."
+      },
+      {
+        "name": "max",
+        "type": "Date",
+        "required": false,
+        "default": null,
+        "description": "Latest selectable day."
+      },
+      {
+        "name": "weekStart",
+        "type": "number",
+        "required": false,
+        "default": "from the locale (Intl week info), else Sunday for US and Monday elsewhere",
+        "description": "First weekday, 0 = Sunday to 6 = Saturday."
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "default": "\"MM / DD / YYYY\"",
+        "description": "Placeholder for the text field."
+      },
+      {
+        "name": "optionalText",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Tag such as \"(optional)\" shown after the label."
+      },
+      {
+        "name": "hint",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Helper line under the field, linked with `aria-describedby`."
+      },
+      {
+        "name": "error",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Error under the field. Sets `aria-invalid`."
+      },
+      {
+        "name": "labels",
+        "type": "DatePickerLabels",
+        "required": false,
+        "default": null,
+        "description": "Overrides for accessible names and button texts (English defaults)."
+      },
+      {
+        "name": "defaultOpen",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Open the calendar initially (for previews and tests)."
+      },
+      {
+        "name": "today",
+        "type": "Date",
+        "required": false,
+        "default": "the current day",
+        "description": "Treat this day as \"today\" (testing and previews)."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Disable the field and the calendar."
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Mark the input required."
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "`id` of the text input. Generated when omitted."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "`name` of the text input; the posted value is the long date text."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Extra class on the outer `.field`."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn",
+    "btn-ghost",
+    "btn-primary",
+    "btn-secondary",
+    "btn-sm",
+    "err",
+    "field",
+    "fm-adorn",
+    "fm-calbtn",
+    "fm-day",
+    "fm-focus",
+    "fm-grid",
+    "fm-nav",
+    "fm-on",
+    "fm-pop",
+    "fm-pop-actions",
+    "fm-pop-foot",
+    "fm-pop-head",
+    "fm-pop-month",
+    "fm-today",
+    "fm-wd",
+    "hint",
+    "input",
+    "label"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Empty: placeholder \"MM / DD / YYYY\" and a `.hint` line.",
+    "Filled: the date written out in full (\"Sunday, October 18, 2026\"); button label becomes \"Change date, October 18, 2026\".",
+    "Error: `aria-invalid=\"true\"` on the input and one `.err` line (\"Choose today or a later date.\").",
+    "Open: field shows the focus ring (`.fm-focus` in static specs) and the button gets `.fm-on` (`--blue-tint` fill, `--horizon-blue` icon).",
+    "Day hover: `--blue-tint`. Today: 1.5px inset `--horizon-blue` ring, `--horizon-blue-dim` text (`.fm-today`).",
+    "Selected: `aria-selected=\"true\"`, `--horizon-blue` fill, white semibold number.",
+    "Disabled (past or unavailable): `disabled`, `--gray-300` text, no hover.",
+    "Previous-month arrow is disabled when the earlier month has no open dates."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": true,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Always let people type the date; parse common formats and rewrite to the long form on blur.",
+    "Disable past dates for scheduling; never hide them, so the grid keeps its shape.",
+    "Mark today with the ring and the selection with the fill; they can sit on the same day.",
+    "The popover footer holds exactly one Horizon Blue primary (Done); Cancel is `.btn-secondary`, Today is `.btn-ghost`.",
+    "Week starts on Sunday for US English; follow the locale elsewhere.",
+    "Keep every day cell and nav arrow at least 44px; never shrink the grid below 320px.",
+    "On phones, open the calendar as a bottom sheet with the same grid."
+  ],
+  "do": [
+    "Scheduling: a partner call, an event sign-up, the start of a report range.",
+    "Typed entry is always allowed; the calendar is a helper, not the only way in.",
+    "Birthdays and dates far in the past: use three plain fields (month, day, year), not a calendar.",
+    "Picking a time slot from a short fixed list: use Select or Radio.",
+    "Always let people type the date; parse common formats and rewrite to the long form on blur.",
+    "Disable past dates for scheduling; never hide them, so the grid keeps its shape.",
+    "Mark today with the ring and the selection with the fill; they can sit on the same day.",
+    "The popover footer holds exactly one Horizon Blue primary (Done); Cancel is `.btn-secondary`, Today is `.btn-ghost`.",
+    "Week starts on Sunday for US English; follow the locale elsewhere.",
+    "Keep every day cell and nav arrow at least 44px; never shrink the grid below 320px.",
+    "On phones, open the calendar as a bottom sheet with the same grid."
+  ],
+  "dont": [],
+  "accessibility": [
+    "Calendar button: `aria-label` (\"Choose date\" or \"Change date, October 18, 2026\"), `aria-haspopup=\"dialog\"`, `aria-expanded`.",
+    "Popover: `role=\"dialog\"` with `aria-label`; month name in a polite live region.",
+    "Days: today gets `aria-current=\"date\"`; the selected day `aria-selected=\"true\"` and a full label (\"October 18, selected\").",
+    "Keys: arrows move a day / a week, PgUp / PgDn change month, Home / End go to week start / end, Enter picks, Esc closes and returns focus to the calendar button.",
+    "Errors are linked with `aria-describedby` and repeated in the form's validation summary."
+  ],
+  "content": [
+    "Label: \"Preferred call date\". Hint: \"Type a date or pick one from the calendar.\"",
+    "Filled value: \"Sunday, October 18, 2026\" (day, month and year spelled out).",
+    "Errors: \"Choose today or a later date.\" / \"Enter a date like 10 / 18 / 2026.\"",
+    "Footer: Today, Cancel, Done."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"field\">\n  <label class=\"label\" for=\"call-date\">Preferred call date</label>\n  <div class=\"fm-adorn\">\n    <input class=\"input\" id=\"call-date\" type=\"text\" inputmode=\"numeric\"\n      placeholder=\"MM / DD / YYYY\" aria-describedby=\"call-date-hint\">\n    <button class=\"fm-calbtn\" type=\"button\" aria-label=\"Choose date\" aria-haspopup=\"dialog\" aria-expanded=\"false\">\n      <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3.5\" y=\"5\" width=\"17\" height=\"15.5\" rx=\"2.5\"/><path d=\"M3.5 10h17M8 3v4M16 3v4\"/></svg>\n    </button>\n  </div>\n  <p class=\"hint\" id=\"call-date-hint\">Type a date or pick one from the calendar.</p>\n</div>\n\n<div class=\"fm-pop\" role=\"dialog\" aria-label=\"Choose date\">\n  <div class=\"fm-pop-head\">\n    <button class=\"fm-nav\" type=\"button\" aria-label=\"Previous month\" disabled>…</button>\n    <span class=\"fm-pop-month\" aria-live=\"polite\">October 2026</span>\n    <button class=\"fm-nav\" type=\"button\" aria-label=\"Next month\">…</button>\n  </div>\n  <div class=\"fm-grid\" role=\"grid\" aria-label=\"October 2026\">\n    <span class=\"fm-wd\" aria-hidden=\"true\">Su</span> …\n    <button class=\"fm-day\" type=\"button\" disabled>13</button>\n    <button class=\"fm-day fm-today\" type=\"button\" aria-current=\"date\" aria-label=\"Today, October 14\">14</button>\n    <button class=\"fm-day\" type=\"button\" aria-selected=\"true\" aria-label=\"October 18, selected\">18</button>\n  </div>\n  <div class=\"fm-pop-foot\">\n    <button class=\"btn btn-ghost btn-sm\" type=\"button\">Today</button>\n    <span class=\"fm-pop-actions\">\n      <button class=\"btn btn-secondary btn-sm\" type=\"button\">Cancel</button>\n      <button class=\"btn btn-primary btn-sm\" type=\"button\">Done</button>\n    </span>\n  </div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"field\">\n  <label class=\"label\" for=\"call-date\">Preferred call date</label>\n  <div class=\"fm-adorn\">\n    <input class=\"input\" id=\"call-date\" type=\"text\" inputmode=\"numeric\"\n      placeholder=\"MM / DD / YYYY\" aria-describedby=\"call-date-hint\">\n    <button class=\"fm-calbtn\" type=\"button\" aria-label=\"Choose date\" aria-haspopup=\"dialog\" aria-expanded=\"false\">\n      <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3.5\" y=\"5\" width=\"17\" height=\"15.5\" rx=\"2.5\"/><path d=\"M3.5 10h17M8 3v4M16 3v4\"/></svg>\n    </button>\n  </div>\n  <p class=\"hint\" id=\"call-date-hint\">Type a date or pick one from the calendar.</p>\n</div>\n\n<div class=\"fm-pop\" role=\"dialog\" aria-label=\"Choose date\">\n  <div class=\"fm-pop-head\">\n    <button class=\"fm-nav\" type=\"button\" aria-label=\"Previous month\" disabled>…</button>\n    <span class=\"fm-pop-month\" aria-live=\"polite\">October 2026</span>\n    <button class=\"fm-nav\" type=\"button\" aria-label=\"Next month\">…</button>\n  </div>\n  <div class=\"fm-grid\" role=\"grid\" aria-label=\"October 2026\">\n    <span class=\"fm-wd\" aria-hidden=\"true\">Su</span> …\n    <button class=\"fm-day\" type=\"button\" disabled>13</button>\n    <button class=\"fm-day fm-today\" type=\"button\" aria-current=\"date\" aria-label=\"Today, October 14\">14</button>\n    <button class=\"fm-day\" type=\"button\" aria-selected=\"true\" aria-label=\"October 18, selected\">18</button>\n  </div>\n  <div class=\"fm-pop-foot\">\n    <button class=\"btn btn-ghost btn-sm\" type=\"button\">Today</button>\n    <span class=\"fm-pop-actions\">\n      <button class=\"btn btn-secondary btn-sm\" type=\"button\">Cancel</button>\n      <button class=\"btn btn-primary btn-sm\" type=\"button\">Done</button>\n    </span>\n  </div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/DatePicker/README.md",
+    "spec": "components/DatePicker/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

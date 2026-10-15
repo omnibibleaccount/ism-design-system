@@ -1,0 +1,427 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "AppHomeScreen",
+  "title": "AppHomeScreen",
+  "group": "App UI",
+  "version": "3.0.0",
+  "summary": "The composed dot.Bible home screen, built only from App UI parts: app bar with the dot.Bible mark, search, continue-reading card, grouped language rows, mini player and tab bar.",
+  "whenToUse": [
+    "Use as the reference layout for the dot.Bible Home tab and as the pattern for other ISM app home screens.",
+    "Copy its order and spacing; swap the content blocks for the app in question."
+  ],
+  "whenNotToUse": [
+    "Do not add a hero image or marketing banner above Continue reading."
+  ],
+  "anatomy": {
+    "description": "Top to bottom inside `.ap-screen`: 1. `.ap-sb` status bar + `.ap-bar` with `.ap-wm` (dot.Bible icon + wordmark), notifications `.ap-tb`, account `.ap-avatar`. 2. Search field `.ap-px` > `.ap-field` (\"Search 500+ languages\"), opens SearchResults. 3. Continue card `.ap-cont`: `.ap-kicker.ap-kicker-blue`, `.ap-cont-t`, progress `.ap-ring-sm`, Lora preview `.ap-cont-v`, `.ap-cont-acts`. 4. `.ap-res-h` \"Your languages\" + See all ›, then `.ap-grp` rows with `.ap-lt` tiles and › or `.ap-dl`. 5. Mini player `.ap-mini` with `.ap-mini-line` progress. 6. `.ap-tabbar`, Home active.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { AppHomeScreen } from '@ism/ui'",
+    "source": "packages/react/src/components/AppHomeScreen.tsx",
+    "exports": [
+      "AppHomeScreen",
+      "HomeContinueCard",
+      "HomeLanguage",
+      "HomeMiniPlayer"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'title'>"
+    ],
+    "props": [
+      {
+        "name": "brand",
+        "type": "ReactNode",
+        "required": false,
+        "default": "dot.Bible with a blue dot",
+        "description": "Wordmark text next to the icon. The dot is Horizon Blue."
+      },
+      {
+        "name": "brandIconSrc",
+        "type": "string",
+        "required": false,
+        "default": "\"/ism/assets/logos/dot.bible%20Icon%20Black.svg\"",
+        "description": "dot.Bible icon URL (black; inverted on dark by the CSS)."
+      },
+      {
+        "name": "pageTitle",
+        "type": "string",
+        "required": false,
+        "default": "\"Home\"",
+        "description": "Visually hidden `h1` for assistive tech, the tab name."
+      },
+      {
+        "name": "statusBar",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Decorative status bar content for phone-frame previews, e.g. the time. Hidden from assistive tech."
+      },
+      {
+        "name": "notificationsLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Notifications\"",
+        "description": "Accessible name of the notifications button."
+      },
+      {
+        "name": "notificationsDot",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Show the Horizon Blue dot on notifications (never red)."
+      },
+      {
+        "name": "onNotifications",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when notifications is pressed."
+      },
+      {
+        "name": "accountInitial",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Initial letter(s) in the account avatar."
+      },
+      {
+        "name": "accountLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Account\"",
+        "description": "Accessible name of the account button."
+      },
+      {
+        "name": "onAccount",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the avatar is pressed."
+      },
+      {
+        "name": "searchPlaceholder",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Search field text, e.g. \"Search 500+ languages\"."
+      },
+      {
+        "name": "onSearchOpen",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the search field is activated (opens SearchResults)."
+      },
+      {
+        "name": "continueCard",
+        "type": "HomeContinueCard",
+        "required": false,
+        "default": null,
+        "description": "Continue-reading card, or the \"Start reading\" card on first run (omit `percent`)."
+      },
+      {
+        "name": "languagesHeading",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Header of the language group, e.g. \"Your languages\"."
+      },
+      {
+        "name": "seeAllLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "\"See all\" link text (› is added), e.g. \"See all\"."
+      },
+      {
+        "name": "seeAllHref",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "\"See all\" destination."
+      },
+      {
+        "name": "languages",
+        "type": "HomeLanguage[]",
+        "required": false,
+        "default": null,
+        "description": "Language rows."
+      },
+      {
+        "name": "player",
+        "type": "HomeMiniPlayer",
+        "required": false,
+        "default": null,
+        "description": "Mini player. Omit when nothing is playing."
+      },
+      {
+        "name": "tabs",
+        "type": "TabBarItem[]",
+        "required": true,
+        "default": null,
+        "description": "Tab bar items; Home active by default. dot.Bible uses Home, Bible, Listen, Saved, More."
+      },
+      {
+        "name": "activeTab",
+        "type": "string",
+        "required": false,
+        "default": "\"home\"",
+        "description": "Active tab id."
+      },
+      {
+        "name": "onTabChange",
+        "type": "(id: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a tab is chosen."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Dark mode (`.ap-dark` on the screen and tab bar)."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { AppHomeScreen } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/AppHomeScreen.tsx",
+    "exports": [
+      "AppHomeScreen",
+      "HomeContinueReading",
+      "HomeLanguage",
+      "HomeStartReading"
+    ],
+    "props": [
+      {
+        "name": "screenTitle",
+        "type": "string",
+        "required": false,
+        "default": "\"Home\"",
+        "description": "Screen title for assistive technology (the wordmark is decorative): \"Home\"."
+      },
+      {
+        "name": "wordmark",
+        "type": "string",
+        "required": false,
+        "default": "\"dot.Bible\"",
+        "description": "Text of the wordmark. Shown with a Horizon Blue dot after \"dot\"."
+      },
+      {
+        "name": "notifications",
+        "type": "{ label: string; dot?: boolean; onPress?: () => void }",
+        "required": false,
+        "default": null,
+        "description": "Notifications button; the dot is Horizon Blue, never red."
+      },
+      {
+        "name": "account",
+        "type": "{ label: string; initial: string; onPress?: () => void }",
+        "required": false,
+        "default": null,
+        "description": "Account avatar button."
+      },
+      {
+        "name": "searchPlaceholder",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Search field text: \"Search 500+ languages\"."
+      },
+      {
+        "name": "onPressSearch",
+        "type": "() => void",
+        "required": true,
+        "default": null,
+        "description": "Opens SearchResults."
+      },
+      {
+        "name": "continueReading",
+        "type": "HomeContinueReading",
+        "required": false,
+        "default": null,
+        "description": "Continue card. Replaced by `startReading` on first run."
+      },
+      {
+        "name": "startReading",
+        "type": "HomeStartReading",
+        "required": false,
+        "default": null,
+        "description": "First-run card."
+      },
+      {
+        "name": "languages",
+        "type": "{ title: string; seeAllLabel?: string; onSeeAll?: () => void; items: HomeLanguage[] }",
+        "required": false,
+        "default": null,
+        "description": "Group of language rows under a header."
+      },
+      {
+        "name": "player",
+        "type": "Omit<AudioMiniPlayerProps, 'dark'>",
+        "required": false,
+        "default": null,
+        "description": "Mini player; leave out when nothing is playing (content then scrolls straight under the tab bar)."
+      },
+      {
+        "name": "tabs",
+        "type": "TabBarItem[]",
+        "required": true,
+        "default": null,
+        "description": "Tabs, with `activeTabKey` set to Home."
+      },
+      {
+        "name": "activeTabKey",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Current tab."
+      },
+      {
+        "name": "onTabChange",
+        "type": "(key: string) => void",
+        "required": true,
+        "default": null,
+        "description": "Tab pressed."
+      },
+      {
+        "name": "safeAreaInsets",
+        "type": "AppBarSafeAreaInsets",
+        "required": false,
+        "default": null,
+        "description": "Safe-area insets: top pads the bar, bottom pads the tab bar."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Extra content between the language group and the bottom, for app-specific blocks."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "ap-avatar",
+    "ap-bar",
+    "ap-cont",
+    "ap-cont-acts",
+    "ap-cont-t",
+    "ap-cont-top",
+    "ap-cont-v",
+    "ap-dl",
+    "ap-dl-idle",
+    "ap-field",
+    "ap-grp",
+    "ap-kicker",
+    "ap-kicker-blue",
+    "ap-lt",
+    "ap-mini",
+    "ap-mini-line",
+    "ap-px",
+    "ap-res-h",
+    "ap-ring-sm",
+    "ap-sb",
+    "ap-screen",
+    "ap-tabbar",
+    "ap-tb",
+    "ap-vn",
+    "ap-wm",
+    "btn",
+    "btn-primary",
+    "btn-secondary",
+    "btn-sm"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "First run (no reading yet): replace the continue card with \"Start reading\" (Genesis 1 or John 1) and keep one primary.",
+    "No languages downloaded: rows show `.ap-dl-idle` buttons and sizes.",
+    "Nothing playing: drop `.ap-mini`; content scrolls straight under the tab bar.",
+    "Dark mode: use `.ap-screen.ap-dark` and `.ap-tabbar.ap-dark`; the mark gets `filter: brightness(0) invert(1)`."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": false,
+      "focus": false,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "One Horizon Blue primary on the screen: Continue. Everything else is secondary, ghost or a row.",
+    "The dot in the wordmark is Horizon Blue; the icon renders black (inverted on dark).",
+    "Downloaded languages show ›; languages not on the phone show the download button, so people see what works offline.",
+    "Mini player: `--charcoal-900`, `--radius-md`, 8px above the tab bar, `--gradient-line` progress on top.",
+    "Notification and update dots are Horizon Blue, never red.",
+    "Keep 16px side margins throughout; cards `--radius-lg`, rows `--radius-md`."
+  ],
+  "do": [
+    "Use as the reference layout for the dot.Bible Home tab and as the pattern for other ISM app home screens.",
+    "Copy its order and spacing; swap the content blocks for the app in question.",
+    "One Horizon Blue primary on the screen: Continue. Everything else is secondary, ghost or a row.",
+    "The dot in the wordmark is Horizon Blue; the icon renders black (inverted on dark).",
+    "Downloaded languages show ›; languages not on the phone show the download button, so people see what works offline.",
+    "Mini player: `--charcoal-900`, `--radius-md`, 8px above the tab bar, `--gradient-line` progress on top.",
+    "Notification and update dots are Horizon Blue, never red.",
+    "Keep 16px side margins throughout; cards `--radius-lg`, rows `--radius-md`."
+  ],
+  "dont": [
+    "Do not add a hero image or marketing banner above Continue reading."
+  ],
+  "accessibility": [
+    "Screen title is \"Home\" for assistive tech even though the wordmark is shown (a visually hidden `h1` or the tab name).",
+    "Progress ring and mini-player line have text equivalents (\"42 percent read\", \"2:14 of 5:40\").",
+    "Reading order follows the visual order; the mini player comes before the tab bar.",
+    "All tap targets are 44px or more."
+  ],
+  "content": [
+    "Search: \"Search 500+ languages\".",
+    "Kicker: \"Continue reading · BSB\"; title is the chapter, preview is the next verse in Lora.",
+    "Language rows: English name + native script, then \"Bible + audio · Downloaded\" or size.",
+    "Mini player: \"John 3 · Amharic\" / \"2:14 / 5:40\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"ap-bar\">\n  <span class=\"ap-wm\"><img src=\"assets/logos/dot.bible%20Icon%20Black.svg\" alt=\"\"><span>dot<b>.</b>Bible</span></span>\n  <span style=\"flex:1\"></span>\n  <button class=\"ap-tb\" type=\"button\" aria-label=\"Notifications\">…</button>\n  <button class=\"ap-avatar\" type=\"button\" aria-label=\"Account\">M</button>\n</div>\n<div class=\"ap-cont\">\n  <div class=\"ap-cont-top\"><div><span class=\"ap-kicker ap-kicker-blue\">Continue reading · BSB</span><p class=\"ap-cont-t\">John 3</p></div>\n    <span class=\"ap-ring-sm\" role=\"img\" aria-label=\"42 percent read\">42%</span></div>\n  <p class=\"ap-cont-v\"><sup class=\"ap-vn\">16</sup>For God so loved the world…</p>\n  <div class=\"ap-cont-acts\"><button class=\"btn btn-primary btn-sm\">Continue</button><button class=\"btn btn-secondary btn-sm\">Listen</button></div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"ap-bar\">\n  <span class=\"ap-wm\"><img src=\"assets/logos/dot.bible%20Icon%20Black.svg\" alt=\"\"><span>dot<b>.</b>Bible</span></span>\n  <span style=\"flex:1\"></span>\n  <button class=\"ap-tb\" type=\"button\" aria-label=\"Notifications\">…</button>\n  <button class=\"ap-avatar\" type=\"button\" aria-label=\"Account\">M</button>\n</div>\n<div class=\"ap-cont\">\n  <div class=\"ap-cont-top\"><div><span class=\"ap-kicker ap-kicker-blue\">Continue reading · BSB</span><p class=\"ap-cont-t\">John 3</p></div>\n    <span class=\"ap-ring-sm\" role=\"img\" aria-label=\"42 percent read\">42%</span></div>\n  <p class=\"ap-cont-v\"><sup class=\"ap-vn\">16</sup>For God so loved the world…</p>\n  <div class=\"ap-cont-acts\"><button class=\"btn btn-primary btn-sm\">Continue</button><button class=\"btn btn-secondary btn-sm\">Listen</button></div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/AppHomeScreen/README.md",
+    "spec": "components/AppHomeScreen/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

@@ -1,0 +1,50 @@
+<!-- @dsCard group="Feedback" height=326 subtitle="Linear, circular and step progress" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 56px;padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg)}
+.pv-col{display:flex;flex-direction:column;gap:28px}
+.pv-rings{display:flex;align-items:center;flex-wrap:wrap;gap:32px}
+@media (max-width:760px){.pv{grid-template-columns:1fr} }
+</style></head><body>
+<div class="pv">
+  <div class="pv-col">
+    <div class="fb-cell"><span class="fb-lbl">Linear · determinate</span>
+      <div class="fb-track" role="progressbar" aria-label="Uploading photo" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"><span class="fb-fill" style="width:40%"></span></div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">Linear · indeterminate</span>
+      <div class="fb-track" role="progressbar" aria-label="Loading"><span class="fb-indet"></span></div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">With label and percent</span>
+      <div class="fb-prog">
+        <div class="fb-prog-head"><span class="fb-prog-name" id="dl">Downloading Amharic audio Bible</span><span class="fb-prog-val" id="dlv">68%</span></div>
+        <div class="fb-track fb-track-lg" role="progressbar" aria-labelledby="dl" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"><span class="fb-fill" id="dlf" style="width:68%"></span></div>
+        <span class="hint">412 MB of 600 MB · about 2 minutes left (sample)</span>
+      </div>
+    </div>
+  </div>
+  <div class="pv-col">
+    <div class="fb-cell"><span class="fb-lbl">Circular · 64px with value · 24px inline</span>
+      <div class="pv-rings">
+        <span class="fb-ring" style="width:64px;height:64px" role="progressbar" aria-label="Upload" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
+          <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle class="fb-ring-track" cx="32" cy="32" r="28" stroke-width="6"/><circle class="fb-ring-bar" cx="32" cy="32" r="28" stroke-width="6" stroke-dasharray="175.9" stroke-dashoffset="49.3"/></svg>
+          <span class="fb-ring-val">72%</span>
+        </span>
+        <span class="fb-ring-inline">
+          <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle class="fb-ring-track" cx="12" cy="12" r="9.5" stroke-width="3"/><circle class="fb-ring-bar" cx="12" cy="12" r="9.5" stroke-width="3" stroke-dasharray="59.7" stroke-dashoffset="29.8"/></svg>
+          Reading plan · day 15 of 30
+        </span>
+      </div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">Step progress · partner sign-up</span>
+      <div class="fb-steps">
+        <span class="fb-steps-label" id="st">Step 1 of 2</span>
+        <span class="fb-track" role="progressbar" aria-labelledby="st" aria-valuenow="1" aria-valuemin="0" aria-valuemax="2"><span class="fb-fill" style="width:50%"></span></span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){var v=68,f=document.getElementById('dlf'),t=document.getElementById('dlv'),b=f.parentNode;
+setInterval(function(){v=v>=100?12:v+4;f.style.width=v+'%';t.textContent=v+'%';b.setAttribute('aria-valuenow',v);},900);})();
+</script>
+</body></html>

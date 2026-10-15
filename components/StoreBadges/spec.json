@@ -1,0 +1,303 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "StoreBadges",
+  "title": "StoreBadges",
+  "group": "Ministry",
+  "version": "3.0.0",
+  "summary": "Black App Store and Google Play download badges for the dot.Bible app, in two sizes, for light and dark sections, with an optional QR for desktop.",
+  "whenToUse": [
+    "Use wherever the reader can install the dot.Bible app: app pages, AppBanner, footers, language pages.",
+    "Use the QR + badges combo on desktop, where the reader is not on a phone."
+  ],
+  "whenNotToUse": [
+    "Do not use for links to the web reader; use a Button (\"Read online\").",
+    "Do not restyle the badges as Horizon Blue buttons."
+  ],
+  "anatomy": {
+    "description": "Store icon + two-line label (\"Download on the\" / \"App Store\"). QR combo (desktop):",
+    "markup": null
+  },
+  "react": {
+    "import": "import { StoreBadges } from '@ism/ui'",
+    "source": "packages/react/src/components/StoreBadges.tsx",
+    "exports": [
+      "StoreBadgeLabels",
+      "StoreBadgeLink",
+      "StoreBadgeSize",
+      "StoreBadges",
+      "StoreName",
+      "defaultStoreBadgeLabels"
+    ],
+    "extends": [
+      "HTMLAttributes<HTMLDivElement>"
+    ],
+    "props": [
+      {
+        "name": "appStoreHref",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "App Store URL."
+      },
+      {
+        "name": "playStoreHref",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Google Play URL."
+      },
+      {
+        "name": "size",
+        "type": "StoreBadgeSize",
+        "required": false,
+        "default": "\"md\"",
+        "description": "Badge size; `sm` is the QR combo size."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<StoreBadgeLabels>",
+        "required": false,
+        "default": null,
+        "description": "Override badge text and accessible names."
+      },
+      {
+        "name": "qr",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "QR code element (an `<svg>` or `<img>`) for desktop. When given, the combo layout `.mn-qrcombo` is\nrendered with the QR beside the prompt and badges. Show it on desktop only."
+      },
+      {
+        "name": "qrLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"QR code to download dot.Bible\"",
+        "description": "Accessible name of the QR (rendered `role=\"img\"` wrapper)."
+      },
+      {
+        "name": "qrPrompt",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Prompt next to the QR, e.g. \"Scan to get dot.Bible on your phone\". Required text when `qr` is set."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { StoreBadges } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/StoreBadges.tsx",
+    "exports": [
+      "StoreBadge",
+      "StoreBadgeLabels",
+      "StoreBadgeSize",
+      "StoreBadges",
+      "StoreName",
+      "defaultStoreBadgeLabels"
+    ],
+    "props": [
+      {
+        "name": "appStoreUrl",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "App Store URL."
+      },
+      {
+        "name": "playStoreUrl",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Google Play URL."
+      },
+      {
+        "name": "onPressAppStore",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Overrides opening `appStoreUrl`."
+      },
+      {
+        "name": "onPressGooglePlay",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Overrides opening `playStoreUrl`."
+      },
+      {
+        "name": "size",
+        "type": "StoreBadgeSize",
+        "required": false,
+        "default": "\"md\"",
+        "description": "`sm` is the size used beside a QR code."
+      },
+      {
+        "name": "onDark",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "On a dark section."
+      },
+      {
+        "name": "icons",
+        "type": "{ appStore?: ImageSourcePropType; googlePlay?: ImageSourcePropType }",
+        "required": false,
+        "default": null,
+        "description": "Custom glyphs, e.g. bundled images. Decorative."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<StoreBadgeLabels>",
+        "required": false,
+        "default": null,
+        "description": "Override badge text and accessible names."
+      },
+      {
+        "name": "qr",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "QR code element for desktop, drawn on a white tile beside the prompt and badges. Show only on desktop and tablets."
+      },
+      {
+        "name": "qrLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"QR code to download dot.Bible\"",
+        "description": "Accessible name of the QR."
+      },
+      {
+        "name": "qrPrompt",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Prompt next to the QR: \"Scan to get dot.Bible on your phone\"."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "mn-panel-dark",
+    "mn-qr",
+    "mn-qrcombo",
+    "mn-s1",
+    "mn-s2",
+    "mn-store",
+    "mn-store-sm",
+    "mn-stores",
+    "on-dark",
+    "sec-ink"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Default",
+        "classes": ".mn-store",
+        "size": "52px tall, min 172px, --radius-md"
+      },
+      {
+        "variant": "Small",
+        "classes": ".mn-store mn-store-sm",
+        "size": "44px tall, min 150px, --radius-sm"
+      },
+      {
+        "variant": "On dark",
+        "classes": "inside .mn-panel-dark, .on-dark or .sec-ink",
+        "size": "adds a 1px white 40% border"
+      },
+      {
+        "variant": "QR combo",
+        "classes": ".mn-qrcombo + .mn-qr",
+        "size": "QR 112px on a white tile"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "States: default (`--black`), hover (`--charcoal-800`; on dark the border brightens to white 70%), focus (2px Horizon Blue outline + `--shadow-focus`)."
+  ],
+  "states": {
+    "documented": "default (`--black`), hover (`--charcoal-800`; on dark the border brightens to white 70%), focus (2px Horizon Blue outline + `--shadow-focus`).",
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Badges are always black with white text, on light and dark. On dark sections add the white 40% border (automatic in `.mn-panel-dark`, `.on-dark`, `.sec-ink`).",
+    "App Store first, Google Play second; group them in `.mn-stores` with `--space-3` gap.",
+    "Use the same size for both badges in a pair. Never go below `.mn-store-sm` (44px).",
+    "Show the QR only on desktop; hide it on phones.",
+    "These open a store outside ISM, but do not add ↗; the badge shape already says it.",
+    "Do not use the official Apple or Google artwork files here; this system draws its own black badges."
+  ],
+  "do": [
+    "Use wherever the reader can install the dot.Bible app: app pages, AppBanner, footers, language pages.",
+    "Use the QR + badges combo on desktop, where the reader is not on a phone.",
+    "Badges are always black with white text, on light and dark. On dark sections add the white 40% border (automatic in `.mn-panel-dark`, `.on-dark`, `.sec-ink`).",
+    "App Store first, Google Play second; group them in `.mn-stores` with `--space-3` gap.",
+    "Use the same size for both badges in a pair. Never go below `.mn-store-sm` (44px).",
+    "Show the QR only on desktop; hide it on phones.",
+    "These open a store outside ISM, but do not add ↗; the badge shape already says it."
+  ],
+  "dont": [
+    "Do not use for links to the web reader; use a Button (\"Read online\").",
+    "Do not restyle the badges as Horizon Blue buttons.",
+    "Do not use the official Apple or Google artwork files here; this system draws its own black badges."
+  ],
+  "accessibility": [
+    "Each badge is a link with a full `aria-label` (\"Download dot.Bible on the App Store\").",
+    "Store icons are `aria-hidden=\"true\"`.",
+    "The QR is `role=\"img\"` with `aria-label=\"QR code to download dot.Bible\"`; the badges beside it are the accessible path."
+  ],
+  "content": [
+    "Fixed labels: \"Download on the / App Store\", \"Get it on / Google Play\".",
+    "QR prompt: \"Scan to get dot.Bible on your phone\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"mn-stores\">\n  <a class=\"mn-store\" href=\"https://apps.apple.com/…\" aria-label=\"Download dot.Bible on the App Store\">\n    <svg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\">…</svg>\n    <span><span class=\"mn-s1\">Download on the</span><span class=\"mn-s2\">App Store</span></span>\n  </a>\n  <a class=\"mn-store\" href=\"https://play.google.com/…\" aria-label=\"Get dot.Bible on Google Play\">\n    <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\">…</svg>\n    <span><span class=\"mn-s1\">Get it on</span><span class=\"mn-s2\">Google Play</span></span>\n  </a>\n</div>",
+      "<div class=\"mn-qrcombo\">\n  <div class=\"mn-qr\"><svg width=\"112\" height=\"112\" role=\"img\" aria-label=\"QR code to download dot.Bible\">…</svg></div>\n  <div>\n    <p>Scan to get dot.Bible on your phone</p>\n    <div class=\"mn-stores\">\n      <a class=\"mn-store mn-store-sm\" href=\"…\" aria-label=\"Download dot.Bible on the App Store\">…</a>\n      <a class=\"mn-store mn-store-sm\" href=\"…\" aria-label=\"Get dot.Bible on Google Play\">…</a>\n    </div>\n  </div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"mn-stores\">\n  <a class=\"mn-store\" href=\"https://apps.apple.com/…\" aria-label=\"Download dot.Bible on the App Store\">\n    <svg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\">…</svg>\n    <span><span class=\"mn-s1\">Download on the</span><span class=\"mn-s2\">App Store</span></span>\n  </a>\n  <a class=\"mn-store\" href=\"https://play.google.com/…\" aria-label=\"Get dot.Bible on Google Play\">\n    <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\">…</svg>\n    <span><span class=\"mn-s1\">Get it on</span><span class=\"mn-s2\">Google Play</span></span>\n  </a>\n</div>"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"mn-qrcombo\">\n  <div class=\"mn-qr\"><svg width=\"112\" height=\"112\" role=\"img\" aria-label=\"QR code to download dot.Bible\">…</svg></div>\n  <div>\n    <p>Scan to get dot.Bible on your phone</p>\n    <div class=\"mn-stores\">\n      <a class=\"mn-store mn-store-sm\" href=\"…\" aria-label=\"Download dot.Bible on the App Store\">…</a>\n      <a class=\"mn-store mn-store-sm\" href=\"…\" aria-label=\"Get dot.Bible on Google Play\">…</a>\n    </div>\n  </div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/StoreBadges/README.md",
+    "spec": "components/StoreBadges/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

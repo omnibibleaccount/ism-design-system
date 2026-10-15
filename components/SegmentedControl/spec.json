@@ -1,0 +1,223 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "SegmentedControl",
+  "title": "SegmentedControl",
+  "group": "Forms",
+  "version": "3.0.0",
+  "summary": "A pill-shaped two-option toggle, like One-time / Monthly on Give Online, where the chosen half fills charcoal (white on dark).",
+  "whenToUse": [
+    "Switching between two or three equal, mutually exclusive modes that change what is shown below: gift frequency, Listen / Read, Radio / Podcasts."
+  ],
+  "whenNotToUse": [
+    "Not for settings that apply on their own: use Switch.",
+    "Not for 4+ options or options that need explanation: use Radio or Select.",
+    "Not for navigation between pages: use tabs or links."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { SegmentedControl } from '@ism/ui'",
+    "source": "packages/react/src/components/SegmentedControl.tsx",
+    "exports": [
+      "SegmentedControl",
+      "SegmentedControlOption"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'>"
+    ],
+    "props": [
+      {
+        "name": "options",
+        "type": "SegmentedControlOption[]",
+        "required": true,
+        "default": null,
+        "description": "The two (at most three) segments, in display order."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Selected value (controlled). Exactly one segment is always pressed."
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Initially selected value (uncontrolled). Defaults to the first option."
+      },
+      {
+        "name": "onChange",
+        "type": "(value: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the new value when a different segment is chosen. Never submits a form."
+      },
+      {
+        "name": "'aria-label'",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Accessible name of the group, for example \"Gift frequency\". Required unless `aria-labelledby` is set."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Use on dark sections (`.on-dark`, `.sec-ink`, black): translucent track, white selected segment."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { SegmentedControl } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/SegmentedControl.tsx",
+    "exports": [
+      "SegmentOption",
+      "SegmentedControl"
+    ],
+    "props": [
+      {
+        "name": "options",
+        "type": "readonly SegmentOption[]",
+        "required": true,
+        "default": null,
+        "description": "Two (or at most three) equal options."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Selected value. Exactly one segment is always selected: pre-select the default."
+      },
+      {
+        "name": "onValueChange",
+        "type": "(value: string) => void",
+        "required": true,
+        "default": null,
+        "description": "Called with the chosen value. Updates content at once; never submits a form."
+      },
+      {
+        "name": "accessibilityLabel",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Accessible name of the group, e.g. \"Gift frequency\"."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Use on black or ink surfaces: translucent track, white selected segment."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      },
+      {
+        "name": "testID",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "chip",
+    "fm-seg",
+    "fm-seg-dark",
+    "on-dark",
+    "sec-ink"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Light: selected segment `--charcoal-900` fill, white text; unselected `--charcoal-900` text on the track.",
+    "Dark (`.fm-seg-dark`, inside `.on-dark` / `.sec-ink` or on `--black`): track `rgba(255,255,255,.1)`; selected segment white with black text; unselected white text.",
+    "Hover: base `.chip` border darkens on the unselected segment.",
+    "Focus: base `.chip:focus-visible` ring (2px `--horizon-blue`, 2px offset)."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Exactly one segment is pressed at all times; pre-select the default (Monthly on Give Online).",
+    "Selection is charcoal, not Horizon Blue: the blue primary belongs to the Give button below it.",
+    "Keep labels to one or two words, same length where possible.",
+    "Use two segments; three at most. Equal widths always.",
+    "Changing the segment updates content right away; it never submits a form.",
+    "Do not add icons or counts inside segments."
+  ],
+  "do": [
+    "Switching between two or three equal, mutually exclusive modes that change what is shown below: gift frequency, Listen / Read, Radio / Podcasts.",
+    "Exactly one segment is pressed at all times; pre-select the default (Monthly on Give Online).",
+    "Selection is charcoal, not Horizon Blue: the blue primary belongs to the Give button below it.",
+    "Keep labels to one or two words, same length where possible.",
+    "Use two segments; three at most. Equal widths always.",
+    "Changing the segment updates content right away; it never submits a form."
+  ],
+  "dont": [
+    "Not for settings that apply on their own: use Switch.",
+    "Not for 4+ options or options that need explanation: use Radio or Select.",
+    "Not for navigation between pages: use tabs or links.",
+    "Do not add icons or counts inside segments."
+  ],
+  "accessibility": [
+    "Use `role=\"group\"` with an `aria-label`, and `aria-pressed` on each button. For a true single-choice form value, a radio group styled the same way is also fine.",
+    "Each segment is at least 44px tall.",
+    "Announce the effect if content below changes a lot (e.g. the amount options) in a polite live region."
+  ],
+  "content": [
+    "\"One-time\" / \"Monthly\". \"Listen\" / \"Read\".",
+    "Follow-up line under the control: \"Monthly gifts help plan HD Radio and app work a year ahead.\""
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"fm-seg\" role=\"group\" aria-label=\"Gift frequency\">\n  <button type=\"button\" class=\"chip\" aria-pressed=\"false\">One-time</button>\n  <button type=\"button\" class=\"chip\" aria-pressed=\"true\">Monthly</button>\n</div>\n\n<!-- on dark sections -->\n<div class=\"fm-seg fm-seg-dark\" role=\"group\" aria-label=\"Gift frequency\">…</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"fm-seg\" role=\"group\" aria-label=\"Gift frequency\">\n  <button type=\"button\" class=\"chip\" aria-pressed=\"false\">One-time</button>\n  <button type=\"button\" class=\"chip\" aria-pressed=\"true\">Monthly</button>\n</div>\n\n<!-- on dark sections -->\n<div class=\"fm-seg fm-seg-dark\" role=\"group\" aria-label=\"Gift frequency\">…</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/SegmentedControl/README.md",
+    "spec": "components/SegmentedControl/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

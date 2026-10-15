@@ -1,0 +1,39 @@
+<!-- @dsCard height=288 -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;background:var(--off-white)}
+.cv{position:relative;width:960px;height:288px;overflow:hidden;background:var(--off-white)}
+.cv svg{position:absolute;left:0;top:0}
+.blue{fill:var(--horizon-blue)}
+.ink{fill:var(--black)}
+.violet{fill:var(--gradient-violet)}
+.gold{fill:var(--gradient-gold)}
+.tint{fill:var(--blue-tint)}
+.ring{fill:none;stroke:var(--white);stroke-width:2}
+.ring-gold{fill:none;stroke:var(--gradient-gold);stroke-width:2}
+.tile{rx:var(--radius-lg)}
+.nm{position:absolute;left:40px;bottom:54px;max-width:440px;margin:0;font-family:var(--font-sans);font-weight:700;font-size:72px;line-height:.95;letter-spacing:-.03em;color:var(--black)}
+.tg{position:absolute;left:40px;bottom:24px;max-width:440px;margin:0;font-family:var(--font-sans);font-size:14px;color:var(--gray-600)}
+</style></head><body><div class="cv">
+<svg width="960" height="288" viewBox="0 0 960 288" aria-hidden="true">
+<!--
+blocks: horizon-blue slab 192x320 (space-9 x2, bleeds top/bottom); black 176x160 + gradient-violet 176x112 bleeding right; gradient-gold disc r48 (space-7); blue-tint 64x96 (space-8 x space-9) for relief.
+arrangement: one tall blue slab with satellites, the dark and violet blocks bleeding off the right edge, all right of x=480.
+pattern: literal motif, the ISM circle symbol (nested circles sharing a bottom tangent) drawn as 2px rings; ISM's patterns and mark are built from those rings, so the cover uses them.
+scales: tiles rx = radius-lg (20); gaps = space-4 (16); ring radii 32/56/80/104 step space-5 (24).
+-->
+<defs><clipPath id="cs"><rect class="tile" x="576" y="-16" width="192" height="320"/></clipPath><clipPath id="ck"><rect class="tile" x="784" y="0" width="200" height="160"/></clipPath></defs>
+<rect class="tint tile" x="496" y="176" width="64" height="96"/>
+<rect class="blue tile" x="576" y="-16" width="192" height="320"/>
+<g clip-path="url(#cs)">
+<circle class="ring" cx="672" cy="232" r="32"/><circle class="ring" cx="672" cy="208" r="56"/><circle class="ring" cx="672" cy="184" r="80"/><circle class="ring" cx="672" cy="160" r="104"/>
+</g>
+<rect class="ink tile" x="784" y="0" width="200" height="160"/>
+<g clip-path="url(#ck)">
+<circle class="gold" cx="872" cy="96" r="48"/>
+<circle class="ring-gold" cx="872" cy="72" r="72"/>
+</g>
+<rect class="violet tile" x="784" y="176" width="200" height="128"/>
+</svg>
+<h1 class="nm">ISM Design<br>System</h1>
+<p class="tg">One source of truth for ISM websites, apps and print.</p>
+</div></body></html>

@@ -1,0 +1,243 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "QrShare",
+  "title": "QrShare",
+  "group": "Scripture",
+  "version": "3.0.0",
+  "summary": "A QR code beside a short prompt with Copy link and Share buttons, so someone can pass a dot.bible link to a person standing next to them.",
+  "whenToUse": [
+    "Use on language pages, TAP/NFC card pages and event screens where people share in person.",
+    "Use the dark variant on dark sections and kiosks.",
+    "Inside a BibleCard, use the card's built-in share block (same `.sx-qr`)."
+  ],
+  "whenNotToUse": [
+    "Do not use as the only way to reach a link; the Copy link button is required."
+  ],
+  "anatomy": {
+    "description": "`.sx-qr` (128px, white, 6px padding) + text column (title, copy, buttons, status).",
+    "markup": null
+  },
+  "react": {
+    "import": "import { QrShare } from '@ism/ui'",
+    "source": "packages/react/src/components/QrShare.tsx",
+    "exports": [
+      "QrShare",
+      "QrShareVariant"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'title'>"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "QrShareVariant",
+        "required": false,
+        "default": "\"light\"",
+        "description": "`light`: secondary buttons on a white card. `dark`: outline-light buttons on charcoal."
+      },
+      {
+        "name": "qrSrc",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "URL of a precomputed QR code image (black on white, with its own quiet zone). Use this or `children`. No QR library is bundled."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "A precomputed QR as an inline `<svg>` (or any node), used instead of `qrSrc`."
+      },
+      {
+        "name": "qrLabel",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Accessible name of the QR naming the address it opens, for example \"QR code for dot.bible/burmese\"."
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Title, for example \"Share with someone nearby\"."
+      },
+      {
+        "name": "text",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Short prompt naming the language and the short address."
+      },
+      {
+        "name": "copyLabel",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Visible label of the Copy link button."
+      },
+      {
+        "name": "copiedLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Visible label of the Copy link button after copying, for example \"Copied\". Defaults to `copyLabel`."
+      },
+      {
+        "name": "shareLabel",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Visible label of the Share button, for example \"Share…\"."
+      },
+      {
+        "name": "hideShare",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Hide the Share button where the system share sheet is unavailable."
+      },
+      {
+        "name": "copied",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "The link was just copied: swaps the Copy icon to a check and the label to `copiedLabel`."
+      },
+      {
+        "name": "onCopy",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when Copy link is pressed. Keep focus on the button."
+      },
+      {
+        "name": "onShare",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when Share is pressed."
+      },
+      {
+        "name": "status",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Status message announced politely, for example \"Link copied: dot.bible/urdu\". Keeps its height when empty."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn",
+    "btn-secondary",
+    "btn-sm",
+    "small",
+    "sx-btnrow",
+    "sx-qr",
+    "sx-qr-line",
+    "sx-share",
+    "sx-share-copy",
+    "sx-share-status",
+    "sx-share-text",
+    "sx-share-title"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "On light",
+        "classes": ".sx-share + .sx-qr sx-qr-line (1px --gray-200 frame)",
+        "buttons": ".btn btn-secondary btn-sm"
+      },
+      {
+        "variant": "On dark",
+        "classes": ".sx-share sx-share-dark (--charcoal-900) + .sx-qr",
+        "buttons": ".btn btn-outline-light btn-sm"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "States: default (empty status line); copied (Copy link swaps its icon to a check and its label to \"Copied\"; status reads \"Link copied: dot.bible/urdu\" in `--horizon-blue-dim`, or `--blue-on-dark` on dark). Under 480px the block stacks: QR above the text, padding `--space-5`."
+  ],
+  "states": {
+    "documented": "default (empty status line); copied (Copy link swaps its icon to a check and its label to \"Copied\"; status reads \"Link copied: dot.bible/urdu\" in `--horizon-blue-dim`, or `--blue-on-dark` on dark).",
+    "coverage": {
+      "default": true,
+      "hover": false,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "QR is always black on a white tile, even on dark sections, with a quiet zone (the 6px padding plus the code's own margin).",
+    "Keep the QR at least 128px on screen; never below 120px.",
+    "Two buttons only, both secondary: Copy link, then Share…. No Horizon Blue button here.",
+    "Share… opens the system share sheet where available; the ellipsis signals a further step.",
+    "The status line keeps its height (`min-height:1.5em`) so the layout does not jump.",
+    "Card: `--radius-lg`, 1px `--border-hairline-light`, padding 28px.",
+    "Buttons meet the 44px tap target on touch screens; `.btn-sm` is acceptable on desktop only."
+  ],
+  "do": [
+    "Use on language pages, TAP/NFC card pages and event screens where people share in person.",
+    "Use the dark variant on dark sections and kiosks.",
+    "Inside a BibleCard, use the card's built-in share block (same `.sx-qr`).",
+    "QR is always black on a white tile, even on dark sections, with a quiet zone (the 6px padding plus the code's own margin).",
+    "Keep the QR at least 128px on screen; never below 120px.",
+    "Two buttons only, both secondary: Copy link, then Share…. No Horizon Blue button here.",
+    "Share… opens the system share sheet where available; the ellipsis signals a further step.",
+    "The status line keeps its height (`min-height:1.5em`) so the layout does not jump.",
+    "Card: `--radius-lg`, 1px `--border-hairline-light`, padding 28px.",
+    "Buttons meet the 44px tap target on touch screens; `.btn-sm` is acceptable on desktop only."
+  ],
+  "dont": [
+    "Do not use as the only way to reach a link; the Copy link button is required."
+  ],
+  "accessibility": [
+    "The QR is `role=\"img\"` with an `aria-label` that names the address it opens.",
+    "The copy confirmation is in `role=\"status\"` so screen readers announce it.",
+    "Button icons are `aria-hidden=\"true\"`; the text names the action.",
+    "After copying, keep focus on the button.",
+    "Write the short URL visibly in the copy or status so people can type it."
+  ],
+  "content": [
+    "Title: \"Share with someone nearby\".",
+    "Copy: \"Point a phone camera at the code to open the Burmese Bible on dot.bible.\"",
+    "Status: \"Link copied: dot.bible/burmese\". Short addresses only, no https://."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"sx-share\">\n  <div class=\"sx-qr sx-qr-line\"><svg viewBox=\"-1 -1 27 27\" role=\"img\" aria-label=\"QR code for dot.bible/burmese\" shape-rendering=\"crispEdges\">…</svg></div>\n  <div class=\"sx-share-text\">\n    <p class=\"sx-share-title\">Share with someone nearby</p>\n    <p class=\"small sx-share-copy\">Point a phone camera at the code to open the Burmese Bible on dot.bible.</p>\n    <div class=\"sx-btnrow\">\n      <button type=\"button\" class=\"btn btn-secondary btn-sm\"><svg width=\"16\" height=\"16\" …aria-hidden=\"true\">…</svg><span>Copy link</span></button>\n      <button type=\"button\" class=\"btn btn-secondary btn-sm\"><svg …>…</svg>Share…</button>\n    </div>\n    <p class=\"sx-share-status\" role=\"status\"></p>\n  </div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"sx-share\">\n  <div class=\"sx-qr sx-qr-line\"><svg viewBox=\"-1 -1 27 27\" role=\"img\" aria-label=\"QR code for dot.bible/burmese\" shape-rendering=\"crispEdges\">…</svg></div>\n  <div class=\"sx-share-text\">\n    <p class=\"sx-share-title\">Share with someone nearby</p>\n    <p class=\"small sx-share-copy\">Point a phone camera at the code to open the Burmese Bible on dot.bible.</p>\n    <div class=\"sx-btnrow\">\n      <button type=\"button\" class=\"btn btn-secondary btn-sm\"><svg width=\"16\" height=\"16\" …aria-hidden=\"true\">…</svg><span>Copy link</span></button>\n      <button type=\"button\" class=\"btn btn-secondary btn-sm\"><svg …>…</svg>Share…</button>\n    </div>\n    <p class=\"sx-share-status\" role=\"status\"></p>\n  </div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/QrShare/README.md",
+    "spec": "components/QrShare/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

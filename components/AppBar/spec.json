@@ -1,0 +1,381 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "AppBar",
+  "title": "AppBar",
+  "group": "App UI",
+  "version": "3.0.0",
+  "summary": "The top bar of a mobile app screen: status bar, a 56px row with back, title and icon actions, and an optional large title or search field.",
+  "whenToUse": [
+    "Use at the top of every screen in ISM apps such as dot.Bible.",
+    "Use the large title on root screens (Bible, Saved, Settings); collapse it to the centred 17px title once the content scrolls.",
+    "Use the back ‹ variant on any screen reached by drilling in (a chapter, a setting).",
+    "Use search mode when the reader taps the search field; it replaces the whole bar until Cancel."
+  ],
+  "whenNotToUse": [
+    "Do not use it on websites; use SiteHeader there."
+  ],
+  "anatomy": {
+    "description": "Status bar `.ap-sb` (40px) + `.ap-bar` row (56px). Inside a phone frame use `.ap-screen`; for isolated specimens use `.ap-iso`. Large title: `.ap-bar.ap-bar-end` (actions only) + `<h1 class=\"ap-large\">Bible</h1>` + `.ap-px` wrapping an `.ap-field` search field.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { AppBar } from '@ism/ui'",
+    "source": "packages/react/src/components/AppBar.tsx",
+    "exports": [
+      "AppBar",
+      "AppBarAction",
+      "AppBarVariant"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'title' | 'onChange'>"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "AppBarVariant",
+        "required": false,
+        "default": "\"standard\"",
+        "description": "`standard` is the 56px row, `large` adds a 32px title (and optional search field) for root screens, `search` replaces the bar with a search field and Cancel."
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Screen title that names the place (\"Bible\", \"John 3\"). One line, under 20 characters."
+      },
+      {
+        "name": "back",
+        "type": "{ label: ReactNode; onClick?: () => void }",
+        "required": false,
+        "default": null,
+        "description": "Back button: shows ‹ plus the parent screen name, never \"Back\". Used on drilled-in screens."
+      },
+      {
+        "name": "actions",
+        "type": "AppBarAction[]",
+        "required": false,
+        "default": null,
+        "description": "Trailing icon actions, at most three (extras are dropped; move them into More). Primary first, More last."
+      },
+      {
+        "name": "scrolled",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Collapsed state after scroll: glass white with a hairline, centred title."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Dark reader surface (`.ap-dark`)."
+      },
+      {
+        "name": "glass",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Use translucent glass action buttons for placing the bar over imagery (add your own scrim)."
+      },
+      {
+        "name": "statusBar",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Decorative status bar content (for phone-frame previews), e.g. a time and icons. Hidden from assistive tech."
+      },
+      {
+        "name": "searchPlaceholder",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Large variant: placeholder of the search field under the title, e.g. \"Search books and verses\". Omit for no field."
+      },
+      {
+        "name": "onSearchOpen",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the search field under the large title or a search action is focused or tapped."
+      },
+      {
+        "name": "searchLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Search\"",
+        "description": "Accessible name of the search input."
+      },
+      {
+        "name": "searchValue",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Search variant: input value."
+      },
+      {
+        "name": "onSearchChange",
+        "type": "(value: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Search variant: called as the reader types."
+      },
+      {
+        "name": "onCancel",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Search variant: called on Cancel (return focus to the search trigger)."
+      },
+      {
+        "name": "cancelLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": "\"Cancel\"",
+        "description": "Search variant: Cancel text."
+      },
+      {
+        "name": "clearLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Clear search\"",
+        "description": "Search variant: accessible name of the Clear button."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { AppBar } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/AppBar.tsx",
+    "exports": [
+      "AppBar",
+      "AppBarAction",
+      "AppBarButton",
+      "AppBarSafeAreaInsets",
+      "AppBarSearch"
+    ],
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Screen title. One line; keep under 20 characters. Becomes the screen heading."
+      },
+      {
+        "name": "variant",
+        "type": "'bar' | 'large'",
+        "required": false,
+        "default": "\"bar\"",
+        "description": "`bar` is the 56dp row with centred title; `large` adds a 32dp title below (root screens)."
+      },
+      {
+        "name": "backLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Back button text: the parent screen's name, never \"Back\". Shows the back button when set together with `onBack`."
+      },
+      {
+        "name": "onBack",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called by the back button."
+      },
+      {
+        "name": "actions",
+        "type": "AppBarAction[]",
+        "required": false,
+        "default": null,
+        "description": "Up to three trailing actions. Primary first (Share), More last. Extra actions are dropped: move them into More."
+      },
+      {
+        "name": "scrolled",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "The content has scrolled: glass background and hairline. A root screen at rest has no border."
+      },
+      {
+        "name": "overImage",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Draw on imagery: transparent bar, white title and glass action buttons. Add your own scrim behind."
+      },
+      {
+        "name": "searchPlaceholder",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Large variant: show a search field under the title that calls `onPressSearch`."
+      },
+      {
+        "name": "onPressSearch",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the search field in the large variant is pressed; swap to `search` mode in response."
+      },
+      {
+        "name": "search",
+        "type": "AppBarSearch",
+        "required": false,
+        "default": null,
+        "description": "Replace the bar by the search bar (field, Clear, Cancel)."
+      },
+      {
+        "name": "safeAreaInsets",
+        "type": "AppBarSafeAreaInsets",
+        "required": false,
+        "default": null,
+        "description": "Safe-area insets; the bar pads its top by `top`. No extra dependency needed."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "ap-back",
+    "ap-bar",
+    "ap-bar-end",
+    "ap-bar-scrolled",
+    "ap-bar-title",
+    "ap-cancel",
+    "ap-clear",
+    "ap-dark",
+    "ap-field",
+    "ap-img",
+    "ap-img-scrim",
+    "ap-iso",
+    "ap-large",
+    "ap-px",
+    "ap-sb",
+    "ap-screen",
+    "ap-tb",
+    "ap-tb-ghost",
+    "ap-tb-glass"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Large title",
+        "classes": ".ap-bar-end + .ap-large (32/600)"
+      },
+      {
+        "variant": "Collapsed",
+        "classes": "wrap status bar and bar in .ap-bar-scrolled (glass white + hairline); balance the title with .ap-tb-ghost"
+      },
+      {
+        "variant": "Back + actions",
+        "classes": ".ap-back (Horizon Blue, --blue-on-dark on dark) + up to three .ap-tb"
+      },
+      {
+        "variant": "Search mode",
+        "classes": ".ap-bar.ap-bar-search + .ap-field.ap-is-focus + .ap-clear + .ap-cancel"
+      },
+      {
+        "variant": "Dark reader",
+        "classes": "parent .ap-dark; back turns --blue-on-dark, reader text white 88%"
+      },
+      {
+        "variant": "Over imagery",
+        "classes": ".ap-iso.ap-dark.ap-over + .ap-img + .ap-img-scrim; icons .ap-tb-glass"
+      }
+    ]
+  ],
+  "variantNotes": [],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": false,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Every icon button is a 44×44 `.ap-tb`. Never shrink tap targets to fit more icons; move extras into More (⋯).",
+    "At most three trailing actions. Order: primary action first (Share), More last.",
+    "Back shows ‹ plus the parent screen name, never \"Back\".",
+    "The hairline and glass appear only after scroll. A root screen at rest has no border.",
+    "Over imagery, always add `.ap-img-scrim` and glass buttons; never put bare white icons on a photo.",
+    "Titles are one line and ellipsize; keep them under 20 characters.",
+    "Search field: 48px, `--radius-md`, `--gray-100` at rest, white with the Horizon Blue focus ring when active."
+  ],
+  "do": [
+    "Use at the top of every screen in ISM apps such as dot.Bible.",
+    "Use the large title on root screens (Bible, Saved, Settings); collapse it to the centred 17px title once the content scrolls.",
+    "Use the back ‹ variant on any screen reached by drilling in (a chapter, a setting).",
+    "Use search mode when the reader taps the search field; it replaces the whole bar until Cancel.",
+    "Every icon button is a 44×44 `.ap-tb`. Never shrink tap targets to fit more icons; move extras into More (⋯).",
+    "At most three trailing actions. Order: primary action first (Share), More last.",
+    "Back shows ‹ plus the parent screen name, never \"Back\".",
+    "The hairline and glass appear only after scroll. A root screen at rest has no border.",
+    "Over imagery, always add `.ap-img-scrim` and glass buttons; never put bare white icons on a photo.",
+    "Titles are one line and ellipsize; keep them under 20 characters.",
+    "Search field: 48px, `--radius-md`, `--gray-100` at rest, white with the Horizon Blue focus ring when active."
+  ],
+  "dont": [
+    "Do not use it on websites; use SiteHeader there."
+  ],
+  "accessibility": [
+    "Make the title the screen's heading (`h1` for large titles; announce screen changes).",
+    "Give every icon-only `.ap-tb` an `aria-label` (\"Share\", \"More\", \"Search\").",
+    "Back must be a real button with its visible label; screen readers read \"Books, button\".",
+    "Put `role=\"search\"` on the search bar; Clear has `aria-label=\"Clear search\"`.",
+    "Keep the status bar decorative (`aria-hidden` icons)."
+  ],
+  "content": [
+    "Titles name the place: \"Bible\", \"John 3\", \"Settings\", \"Saved\".",
+    "Search placeholder says what can be found: \"Search books and verses\", \"Search 500+ languages\".",
+    "Over-image kicker + title: \"Reading plan\" / \"7 days in the Psalms\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"ap-sb\"><span>9:41</span>…</div>\n<div class=\"ap-bar\">\n  <button class=\"ap-back\" type=\"button\"><svg …><path d=\"M15 18l-6-6 6-6\"/></svg><span>Books</span></button>\n  <span class=\"ap-bar-title\">John 3</span>\n  <button class=\"ap-tb\" type=\"button\" aria-label=\"Share\">…</button>\n  <button class=\"ap-tb\" type=\"button\" aria-label=\"More\">…</button>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"ap-sb\"><span>9:41</span>…</div>\n<div class=\"ap-bar\">\n  <button class=\"ap-back\" type=\"button\"><svg …><path d=\"M15 18l-6-6 6-6\"/></svg><span>Books</span></button>\n  <span class=\"ap-bar-title\">John 3</span>\n  <button class=\"ap-tb\" type=\"button\" aria-label=\"Share\">…</button>\n  <button class=\"ap-tb\" type=\"button\" aria-label=\"More\">…</button>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/AppBar/README.md",
+    "spec": "components/AppBar/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

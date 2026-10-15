@@ -1,0 +1,50 @@
+<!-- @dsCard group="Forms" height=620 subtitle="States, group, card rows" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.panel{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg)}
+.c{display:flex;flex-direction:column;gap:8px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;margin-top:24px;align-items:start}
+.rows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.lbl{display:block;margin:28px 0 10px}
+@media (max-width:767px){.panel{grid-template-columns:repeat(2,minmax(0,1fr))}.two,.rows{grid-template-columns:minmax(0,1fr)} }
+</style></head><body>
+<div>
+  <div class="panel">
+    <div class="c"><span class="fm-st">Default</span><label class="fm-row"><input class="fm-radio" type="radio" name="r1">One-time gift</label></div>
+    <div class="c"><span class="fm-st">Selected</span><label class="fm-row"><input class="fm-radio" type="radio" name="r2" checked>Monthly gift</label></div>
+    <div class="c"><span class="fm-st">Focus (keyboard)</span><label class="fm-row"><input class="fm-radio fm-focus" type="radio" name="r3" checked>Monthly gift</label></div>
+    <div class="c"><span class="fm-st">Disabled</span><label class="fm-row fm-disabled"><input class="fm-radio" type="radio" name="r4" disabled>Annual gift</label></div>
+    <div class="c"><span class="fm-st">Error</span><label class="fm-row"><input class="fm-radio" type="radio" name="r5" aria-invalid="true">One-time gift</label></div>
+  </div>
+  <div class="two">
+    <div class="c">
+      <span class="fm-st">Group with legend</span>
+      <fieldset class="fm-fieldset">
+        <legend class="fm-legend">How often would you like to give?</legend>
+        <label class="fm-row"><input class="fm-radio" type="radio" name="g1">One-time</label>
+        <label class="fm-row"><input class="fm-radio" type="radio" name="g1" checked>Monthly</label>
+        <label class="fm-row fm-disabled"><input class="fm-radio" type="radio" name="g1" disabled>Annually <span class="hint">(coming soon)</span></label>
+      </fieldset>
+    </div>
+    <div class="c">
+      <span class="fm-st">Group · error</span>
+      <fieldset class="fm-fieldset" aria-describedby="g2-err">
+        <legend class="fm-legend">How did you hear about ISM?</legend>
+        <label class="fm-row"><input class="fm-radio" type="radio" name="g2" aria-invalid="true">HD Radio broadcast</label>
+        <label class="fm-row"><input class="fm-radio" type="radio" name="g2" aria-invalid="true">The dot.Bible app</label>
+        <label class="fm-row"><input class="fm-radio" type="radio" name="g2" aria-invalid="true">A friend or church</label>
+        <p class="err" id="g2-err" style="margin-top:4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>Please choose one option.</p>
+      </fieldset>
+    </div>
+  </div>
+  <span class="fm-st lbl">Card-style radio rows · .check + .fm-radio · Partner sign-up</span>
+  <fieldset class="fm-fieldset">
+    <legend class="fm-legend">Choose a partnership</legend>
+    <div class="rows">
+      <label class="check"><input class="fm-radio" type="radio" name="card" checked><span class="fm-check-body"><span class="fm-check-t">Church partner</span><span class="hint">Equip your congregation and community</span></span></label>
+      <label class="check"><input class="fm-radio" type="radio" name="card"><span class="fm-check-body"><span class="fm-check-t">Broadcast partner</span><span class="hint">Carry scripture on your HD channel</span></span></label>
+      <label class="check fm-disabled"><input class="fm-radio" type="radio" name="card" disabled><span class="fm-check-body"><span class="fm-check-t">Publishing partner</span><span class="hint">Opens in 2027</span></span></label>
+    </div>
+  </fieldset>
+</div>
+</body></html>

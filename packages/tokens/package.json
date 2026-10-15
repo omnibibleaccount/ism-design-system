@@ -1,0 +1,52 @@
+{
+  "name": "@ism/tokens",
+  "version": "3.0.0",
+  "description": "ISM Design System tokens as typed JavaScript objects (web values and React Native values) plus language/script helpers.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./native": {
+      "types": "./dist/native.d.ts",
+      "import": "./dist/native.js"
+    },
+    "./script": {
+      "types": "./dist/script.d.ts",
+      "import": "./dist/script.js"
+    },
+    "./tokens.flat.json": "./tokens.flat.json",
+    "./icons": {
+      "types": "./dist/icons.d.ts",
+      "import": "./dist/icons.js"
+    },
+    "./logos": {
+      "types": "./dist/logos.d.ts",
+      "import": "./dist/logos.js"
+    },
+    "./icons-all": {
+      "types": "./dist/icons-all.d.ts",
+      "import": "./dist/icons-all.js"
+    }
+  },
+  "files": [
+    "dist",
+    "tokens.flat.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

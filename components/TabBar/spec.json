@@ -1,0 +1,249 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "TabBar",
+  "title": "TabBar",
+  "group": "App UI",
+  "version": "3.0.0",
+  "summary": "The bottom tab bar of an ISM app: five equal tabs (Home, Bible, Listen, Saved, More) that switch between the app's top-level sections.",
+  "whenToUse": [
+    "Use on every root screen of dot.Bible and other ISM apps with three to five top-level sections.",
+    "Keep it visible on drilled-in screens unless the screen is full-screen reading or a modal flow."
+  ],
+  "whenNotToUse": [
+    "Do not use it for in-page filters; use SegmentedControl or chips.",
+    "Do not put actions (Share, Give) in the tab bar; tabs only navigate."
+  ],
+  "anatomy": {
+    "description": "84px including the home indicator area. Each tab is a 24px icon over an 11/600 label.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { TabBar } from '@ism/ui'",
+    "source": "packages/react/src/components/TabBar.tsx",
+    "exports": [
+      "TabBar",
+      "TabBarItem"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'onChange' | 'defaultValue'>"
+    ],
+    "props": [
+      {
+        "name": "tabs",
+        "type": "TabBarItem[]",
+        "required": true,
+        "default": null,
+        "description": "The tabs, in order. dot.Bible uses exactly five: Home, Bible, Listen, Saved, More."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Controlled id of the active tab."
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "required": false,
+        "default": "the first tab",
+        "description": "Initial active tab when uncontrolled."
+      },
+      {
+        "name": "onChange",
+        "type": "(id: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a tab is pressed."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Dark bar (`--charcoal-900`, active `--blue-on-dark`)."
+      },
+      {
+        "name": "'aria-label'",
+        "type": "string",
+        "required": false,
+        "default": "\"Main\"",
+        "description": "Accessible name of the `<nav>`."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { TabBar } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/TabBar.tsx",
+    "exports": [
+      "TabBar",
+      "TabBarItem"
+    ],
+    "props": [
+      {
+        "name": "tabs",
+        "type": "TabBarItem[]",
+        "required": true,
+        "default": null,
+        "description": "Three to five tabs. dot.Bible uses exactly five in this order: Home, Bible, Listen, Saved, More."
+      },
+      {
+        "name": "activeKey",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Key of the current tab. Exactly one is active at all times."
+      },
+      {
+        "name": "onChange",
+        "type": "(key: string) => void",
+        "required": true,
+        "default": null,
+        "description": "Called with the key of the tab pressed. Tabs only navigate; never put actions here."
+      },
+      {
+        "name": "safeAreaInsets",
+        "type": "{ top?: number; bottom?: number }",
+        "required": false,
+        "default": null,
+        "description": "Safe-area insets. The bar adds `bottom` below the tabs so the home indicator never overlaps them."
+      },
+      {
+        "name": "accessibilityLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Main\"",
+        "description": "Accessible name of the navigation region."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "ap-dot",
+    "ap-is-active",
+    "ap-is-focus",
+    "ap-is-pressed",
+    "ap-tab",
+    "ap-tab-ico",
+    "ap-tabbar"
+  ],
+  "variants": [
+    [
+      {
+        "state": "Default",
+        "how": "--gray-600 icon and label"
+      },
+      {
+        "state": "Active",
+        "how": "aria-current=\"page\" (or .ap-is-active): Horizon Blue icon and label"
+      },
+      {
+        "state": "Pressed",
+        "how": ":active / .ap-is-pressed: --gray-100 tile"
+      },
+      {
+        "state": "Badge",
+        "how": ".ap-dot 9px Horizon Blue with a 2px ring in the bar colour"
+      },
+      {
+        "state": "Focus",
+        "how": "keyboard focus ring inset (.ap-is-focus for specimens)"
+      },
+      {
+        "state": "Dark",
+        "how": ".ap-tabbar.ap-dark: --charcoal-900 bar, active --blue-on-dark"
+      }
+    ]
+  ],
+  "variantNotes": [],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": false,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Exactly five tabs in dot.Bible, always in this order: Home, Bible, Listen, Saved, More.",
+    "One active tab at all times. Colour alone is not the cue: the label stays visible on every tab.",
+    "Badge dots and counts are Horizon Blue (`--blue-on-dark` on dark), never red. Red is reserved for errors.",
+    "Use the dot for \"something new\"; never show a number above 9 in a tab.",
+    "Tabs are at least 44px tall (52px here) and share the width equally.",
+    "Use outline icons at stroke 1.8; do not swap to filled icons for the active tab.",
+    "The bar sits on white with a top hairline (`--gray-200`); content scrolls under it."
+  ],
+  "do": [
+    "Use on every root screen of dot.Bible and other ISM apps with three to five top-level sections.",
+    "Keep it visible on drilled-in screens unless the screen is full-screen reading or a modal flow.",
+    "Exactly five tabs in dot.Bible, always in this order: Home, Bible, Listen, Saved, More.",
+    "One active tab at all times. Colour alone is not the cue: the label stays visible on every tab.",
+    "Badge dots and counts are Horizon Blue (`--blue-on-dark` on dark), never red. Red is reserved for errors.",
+    "Use the dot for \"something new\"; never show a number above 9 in a tab.",
+    "Tabs are at least 44px tall (52px here) and share the width equally.",
+    "Use outline icons at stroke 1.8; do not swap to filled icons for the active tab.",
+    "The bar sits on white with a top hairline (`--gray-200`); content scrolls under it."
+  ],
+  "dont": [
+    "Do not use it for in-page filters; use SegmentedControl or chips.",
+    "Do not put actions (Share, Give) in the tab bar; tabs only navigate."
+  ],
+  "accessibility": [
+    "Wrap in `<nav aria-label=\"Main\">`; mark the current tab with `aria-current=\"page\"`.",
+    "When a tab has a dot, extend its name: `aria-label=\"More, new item\"`.",
+    "Do not trap focus; Tab moves through the five tabs in order.",
+    "Labels never truncate; keep them to one short word."
+  ],
+  "content": [
+    "Labels are one word, title case: Home, Bible, Listen, Saved, More.",
+    "Translate labels with the app; keep them short in every language."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<nav class=\"ap-tabbar\" aria-label=\"Main\">\n  <button class=\"ap-tab\" type=\"button\" aria-current=\"page\"><span class=\"ap-tab-ico\"><svg …/></span>Home</button>\n  <button class=\"ap-tab\" type=\"button\"><span class=\"ap-tab-ico\"><svg …/></span>Bible</button>\n  <button class=\"ap-tab\" type=\"button\"><span class=\"ap-tab-ico\"><svg …/></span>Listen</button>\n  <button class=\"ap-tab\" type=\"button\"><span class=\"ap-tab-ico\"><svg …/></span>Saved</button>\n  <button class=\"ap-tab\" type=\"button\" aria-label=\"More, new item\"><span class=\"ap-tab-ico\"><svg …/><span class=\"ap-dot\" aria-hidden=\"true\"></span></span>More</button>\n</nav>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<nav class=\"ap-tabbar\" aria-label=\"Main\">\n  <button class=\"ap-tab\" type=\"button\" aria-current=\"page\"><span class=\"ap-tab-ico\"><svg …/></span>Home</button>\n  <button class=\"ap-tab\" type=\"button\"><span class=\"ap-tab-ico\"><svg …/></span>Bible</button>\n  <button class=\"ap-tab\" type=\"button\"><span class=\"ap-tab-ico\"><svg …/></span>Listen</button>\n  <button class=\"ap-tab\" type=\"button\"><span class=\"ap-tab-ico\"><svg …/></span>Saved</button>\n  <button class=\"ap-tab\" type=\"button\" aria-label=\"More, new item\"><span class=\"ap-tab-ico\"><svg …/><span class=\"ap-dot\" aria-hidden=\"true\"></span></span>More</button>\n</nav>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/TabBar/README.md",
+    "spec": "components/TabBar/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

@@ -1,0 +1,61 @@
+<!-- @dsCard group="Data display" height=449 subtitle="Image, initials, icon, status, stack" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.pv .card{gap:18px}
+.pv-line{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.pv-cap{display:flex;gap:14px;font-size:12px;color:var(--gray-600)}
+.pv-st{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--gray-600)}
+@media (max-width:640px){.pv{grid-template-columns:minmax(0,1fr)} }
+</style></head><body>
+<div class="pv">
+  <div class="card card-flat">
+    <span class="overline">Sizes · image</span>
+    <div class="pv-line">
+      <span class="dp-av dp-av-24"><img src="../../assets/imagery/print-photo-listener.jpg" alt=""></span>
+      <span class="dp-av dp-av-32"><img src="../../assets/imagery/print-photo-listener.jpg" alt=""></span>
+      <span class="dp-av dp-av-40"><img src="../../assets/imagery/print-photo-listener.jpg" alt=""></span>
+      <span class="dp-av dp-av-56"><img src="../../assets/imagery/print-photo-listener.jpg" alt=""></span>
+      <span class="dp-av dp-av-80"><img src="../../assets/imagery/print-photo-listener.jpg" alt="Maria Santos"></span>
+    </div>
+    <div class="pv-cap"><span style="width:24px">24</span><span style="width:32px">32</span><span style="width:40px">40</span><span style="width:56px">56</span><span>80</span></div>
+  </div>
+  <div class="card card-flat">
+    <span class="overline">Initials · brand colours</span>
+    <div class="pv-line" style="align-items:center">
+      <span class="dp-av dp-av-56 dp-av-blue">DA</span>
+      <span class="dp-av dp-av-56 dp-av-violet">MS</span>
+      <span class="dp-av dp-av-56 dp-av-gold">JK</span>
+      <span class="dp-av dp-av-40 dp-av-ink">TO</span>
+      <span class="dp-av dp-av-40 dp-av-peach">RL</span>
+      <span class="dp-av dp-av-32 dp-av-blue">A</span>
+      <span class="dp-av dp-av-24 dp-av-violet">E</span>
+    </div>
+  </div>
+  <div class="card card-flat">
+    <span class="overline">Icon fallback · status dot</span>
+    <div class="pv-line" style="align-items:center;gap:20px">
+      <span class="dp-av dp-av-56 dp-av-ic" role="img" aria-label="No photo"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>
+      <span class="pv-st"><span class="dp-av dp-av-56"><img src="../../assets/imagery/print-photo-friends.jpg" alt="Dawit Alemu, online"><span class="dp-pres"></span></span>Online</span>
+      <span class="pv-st"><span class="dp-av dp-av-56 dp-av-blue">DA<span class="dp-pres dp-pres-away"></span></span>Away</span>
+      <span class="pv-st"><span class="dp-av dp-av-40 dp-av-violet">MS<span class="dp-pres dp-pres-off"></span></span>Offline</span>
+    </div>
+  </div>
+  <div class="card card-flat">
+    <span class="overline">Group stack · max 4 + count</span>
+    <div class="dp-stack" role="img" aria-label="Maria, Dawit, Musa, Joy and 5 more partners">
+      <span class="dp-av dp-av-40"><img src="../../assets/imagery/print-photo-listener.jpg" alt=""></span>
+      <span class="dp-av dp-av-40"><img src="../../assets/imagery/print-photo-friends.jpg" alt=""></span>
+      <span class="dp-av dp-av-40 dp-av-violet">MS</span>
+      <span class="dp-av dp-av-40 dp-av-gold">JK</span>
+      <span class="dp-av dp-av-40 dp-av-more">+5</span>
+    </div>
+    <div class="dp-stack" role="img" aria-label="Dawit, Tomas, Ruth and 5 more listeners">
+      <span class="dp-av dp-av-32 dp-av-blue">DA</span>
+      <span class="dp-av dp-av-32 dp-av-ink">TO</span>
+      <span class="dp-av dp-av-32"><img src="../../assets/imagery/print-photo-phone-street.jpg" alt=""></span>
+      <span class="dp-av dp-av-32 dp-av-more">+5</span>
+    </div>
+  </div>
+</div>
+</body></html>

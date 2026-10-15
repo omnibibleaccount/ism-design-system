@@ -1,0 +1,437 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "AudioPlayer",
+  "title": "AudioPlayer",
+  "group": "Scripture",
+  "version": "3.0.0",
+  "summary": "The audio Bible player: a full player with cover, seek bar, speed and transport controls, and a docked mini player in light and dark.",
+  "whenToUse": [
+    "Use the full player `.sx-player` on a listen page or when the reader taps Listen in ReadingView.",
+    "Use the mini player `.sx-mini` docked at the bottom of the screen while audio keeps playing as the reader moves around."
+  ],
+  "whenNotToUse": [
+    "Do not use for ISM Radio live streams; use StationCard and its live player.",
+    "Do not use for video; use VideoPlayer."
+  ],
+  "anatomy": {
+    "description": "Full player: square cover (240px) beside the title, seek track, times and controls. Mini player:",
+    "markup": null
+  },
+  "react": {
+    "import": "import { AudioPlayer } from '@ism/ui'",
+    "source": "packages/react/src/components/AudioPlayer.tsx",
+    "exports": [
+      "AudioPlayer",
+      "AudioPlayerLabels",
+      "AudioPlayerVariant",
+      "formatAudioTime"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'title'>"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "AudioPlayerVariant",
+        "required": false,
+        "default": "\"full\"",
+        "description": "`full`: cover, seek bar and transport. `mini`: docked light bar. `miniDark`: docked dark bar."
+      },
+      {
+        "name": "playing",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Whether audio is playing. Drives the play/pause icon and label."
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Show the loading spinner in the play button."
+      },
+      {
+        "name": "position",
+        "type": "number",
+        "required": false,
+        "default": "0",
+        "description": "Current position in seconds."
+      },
+      {
+        "name": "duration",
+        "type": "number",
+        "required": false,
+        "default": "0",
+        "description": "Total duration in seconds."
+      },
+      {
+        "name": "speed",
+        "type": "number",
+        "required": false,
+        "default": "1",
+        "description": "Playback speed multiplier."
+      },
+      {
+        "name": "speeds",
+        "type": "number[]",
+        "required": false,
+        "default": "[1, 1.25, 1.5, 0.75]",
+        "description": "Speeds the speed button cycles through."
+      },
+      {
+        "name": "skipSeconds",
+        "type": "number",
+        "required": false,
+        "default": "15",
+        "description": "Seconds the skip buttons jump."
+      },
+      {
+        "name": "seekStep",
+        "type": "number",
+        "required": false,
+        "default": "5",
+        "description": "Seconds one arrow key moves the seek slider."
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Title, for example \"John 3 · Amharic\"."
+      },
+      {
+        "name": "subtitle",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Full variant subtitle: native name then \"Narrated Bible\"."
+      },
+      {
+        "name": "subtitleLang",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Language of the subtitle's native-script text (BCP 47), for example \"am\". Set on the subtitle paragraph."
+      },
+      {
+        "name": "nowPlaying",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Overline of the full variant, for example \"Now playing · dot.Bible Audio\"."
+      },
+      {
+        "name": "coverSrc",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Cover image URL (decorative)."
+      },
+      {
+        "name": "meta",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Mini player meta line. Defaults to \"2:14 / 5:52\" built from `position` and `duration`."
+      },
+      {
+        "name": "pausedLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Text shown before the default meta while paused, for example \"Paused\". Omit for none."
+      },
+      {
+        "name": "onPlayPause",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the play/pause button is pressed. Never autoplay."
+      },
+      {
+        "name": "onSeek",
+        "type": "(seconds: number) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the new position in seconds when the reader seeks (keyboard or pointer) or skips."
+      },
+      {
+        "name": "onSpeedChange",
+        "type": "(speed: number) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the next speed when the speed button is pressed. The button is shown only when given."
+      },
+      {
+        "name": "onPrevious",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Previous chapter. The button is shown only when given."
+      },
+      {
+        "name": "onNext",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Next chapter. The button is shown only when given."
+      },
+      {
+        "name": "onChapterList",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Chapter list. The button is shown only when given."
+      },
+      {
+        "name": "onClose",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Closes the mini player; shown in place of the skip button while paused."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<AudioPlayerLabels>",
+        "required": false,
+        "default": null,
+        "description": "Accessible names."
+      },
+      {
+        "name": "formatTime",
+        "type": "(seconds: number) => string",
+        "required": false,
+        "default": "formatAudioTime",
+        "description": "Format a number of seconds for display."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { AudioPlayer } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/AudioPlayer.tsx",
+    "exports": [
+      "AUDIO_SPEEDS",
+      "AudioMiniPlayer",
+      "AudioPlayer",
+      "AudioPlayerLabels",
+      "AudioSeekBar",
+      "formatAudioTime"
+    ],
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Title, \"Book chapter · Language\", e.g. \"John 3 · Amharic\"."
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Native-name subtitle, e.g. \"ዮሐንስ 3 · Narrated Bible\"."
+      },
+      {
+        "name": "subtitleLang",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Language of the subtitle (sets `lang` behaviour: script line-height and direction), e.g. \"am\"."
+      },
+      {
+        "name": "overline",
+        "type": "string",
+        "required": false,
+        "default": "none",
+        "description": "Small caption above the title."
+      },
+      {
+        "name": "speed",
+        "type": "number",
+        "required": false,
+        "default": "1",
+        "description": "Current speed multiplier."
+      },
+      {
+        "name": "onSpeedChange",
+        "type": "(speed: number) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the next speed in the cycle 1x, 1.25x, 1.5x, 0.75x."
+      },
+      {
+        "name": "onSeek",
+        "type": "(seconds: number) => void",
+        "required": false,
+        "default": null,
+        "description": "Called while dragging or adjusting the seek bar, with seconds."
+      },
+      {
+        "name": "onPrevious",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Previous chapter. Hides the button when omitted."
+      },
+      {
+        "name": "onNext",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Next chapter. Hides the button when omitted."
+      },
+      {
+        "name": "onOpenChapters",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Opens the chapter list. Hides the button when omitted."
+      },
+      {
+        "name": "formatValueText",
+        "type": "(seconds: number) => string",
+        "required": false,
+        "default": null,
+        "description": "Spoken form of a position for the slider. Defaults to English \"2 minutes 14 seconds\"."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "spin",
+    "sx-big",
+    "sx-big-md",
+    "sx-big-sm",
+    "sx-controls",
+    "sx-cover",
+    "sx-ctrl",
+    "sx-ibtn",
+    "sx-lbl",
+    "sx-mini",
+    "sx-mini-meta",
+    "sx-mini-text",
+    "sx-mini-title",
+    "sx-player",
+    "sx-player-main",
+    "sx-player-sub",
+    "sx-player-title",
+    "sx-speed",
+    "sx-time",
+    "sx-track",
+    "sx-transport"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Full player",
+        "classes": ".sx-player (stacks under 768px, cover goes full width square)"
+      },
+      {
+        "variant": "Mini, light",
+        "classes": ".sx-mini (72px, --shadow-overlay, 3px progress line on top via --sx-progress)"
+      },
+      {
+        "variant": "Mini, dark",
+        "classes": ".sx-mini sx-mini-dark (--charcoal-900; play button turns white with black icon; progress --blue-on-dark)"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "Play button `.sx-big` (68px; `.sx-big-md` 52px, `.sx-big-sm` 44px): playing (pause icon), paused (play icon), hover (`--horizon-blue-dim`), loading (`.spin` inside, `role=\"img\" aria-label=\"Loading\"`). Speed `.sx-speed` cycles 1x → 1.25x → 1.5x → 0.75x. Paused mini player swaps the skip button for \"Close player\"."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": true,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "One Horizon Blue control: the play/pause button. Everything else is quiet (`.sx-ctrl` transparent, `.sx-ibtn` outlined).",
+    "Seek track is 6px, fill `--horizon-blue`, 18px white knob with a blue ring.",
+    "Show elapsed on the left and remaining (with −) on the right, in tabular numbers.",
+    "Skip buttons jump 15 seconds and show \"15\" inside the icon.",
+    "Transport buttons are 48px; mini player controls are 44px. Never smaller.",
+    "Cover radius `--radius-ml`; player card `--radius-lg` with `--shadow-card-light`.",
+    "The chapter list button drills into a list, so it uses the list icon, not a caret."
+  ],
+  "do": [
+    "Use the full player `.sx-player` on a listen page or when the reader taps Listen in ReadingView.",
+    "Use the mini player `.sx-mini` docked at the bottom of the screen while audio keeps playing as the reader moves around.",
+    "One Horizon Blue control: the play/pause button. Everything else is quiet (`.sx-ctrl` transparent, `.sx-ibtn` outlined).",
+    "Seek track is 6px, fill `--horizon-blue`, 18px white knob with a blue ring.",
+    "Show elapsed on the left and remaining (with −) on the right, in tabular numbers.",
+    "Skip buttons jump 15 seconds and show \"15\" inside the icon.",
+    "Transport buttons are 48px; mini player controls are 44px. Never smaller.",
+    "Cover radius `--radius-ml`; player card `--radius-lg` with `--shadow-card-light`.",
+    "The chapter list button drills into a list, so it uses the list icon, not a caret."
+  ],
+  "dont": [
+    "Do not use for ISM Radio live streams; use StationCard and its live player.",
+    "Do not use for video; use VideoPlayer."
+  ],
+  "accessibility": [
+    "Name the region (`aria-label=\"Audio player\"`).",
+    "The seek track is a focusable `role=\"slider\"` with min, max, now and a spoken `aria-valuetext` (\"2 minutes 14 seconds\"); arrow keys move 5 seconds.",
+    "Swap the play button's `aria-label` between \"Play\" and \"Pause\" with its icon.",
+    "The speed button's label includes the value (\"Playback speed, 1.25x\").",
+    "Cover images are decorative (`alt=\"\"`); the title carries the meaning.",
+    "Mark the native-script subtitle with `lang` (`lang=\"am\"`).",
+    "Never autoplay."
+  ],
+  "content": [
+    "Title: \"Book chapter · Language\" (\"John 3 · Amharic\"). Subtitle: native name, then \"Narrated Bible\".",
+    "Overline: \"Now playing · dot.Bible Audio\".",
+    "Mini meta: \"2:14 / 5:52\", or \"Paused · 2:14 / 5:52\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<section class=\"sx-player\" aria-label=\"Audio player\">\n  <div class=\"sx-cover\"><img src=\"…/deck-photo-headphones.jpg\" alt=\"\"></div>\n  <div class=\"sx-player-main\">\n    <div>\n      <span class=\"sx-lbl\">Now playing · dot.Bible Audio</span>\n      <p class=\"sx-player-title\">John 3 · Amharic</p>\n      <p class=\"sx-player-sub\"><span lang=\"am\">ዮሐንስ 3</span> · Narrated Bible</p>\n    </div>\n    <div class=\"sx-track\" tabindex=\"0\" role=\"slider\" aria-label=\"Seek\" aria-valuemin=\"0\" aria-valuemax=\"352\" aria-valuenow=\"134\" aria-valuetext=\"2 minutes 14 seconds\"><i style=\"width:38%\"></i><b style=\"left:38%\"></b></div>\n    <div class=\"sx-time\"><span>2:14</span><span>−3:38</span></div>\n    <div class=\"sx-controls\">\n      <button type=\"button\" class=\"sx-speed\" aria-label=\"Playback speed, 1x\">1x</button>\n      <div class=\"sx-transport\">\n        <button type=\"button\" class=\"sx-ctrl\" aria-label=\"Previous chapter\">…</button>\n        <button type=\"button\" class=\"sx-ctrl\" aria-label=\"Back 15 seconds\">…<small aria-hidden=\"true\">15</small></button>\n        <button type=\"button\" class=\"sx-big\" aria-label=\"Pause\">…</button>\n        <button type=\"button\" class=\"sx-ctrl\" aria-label=\"Forward 15 seconds\">…<small aria-hidden=\"true\">15</small></button>\n        <button type=\"button\" class=\"sx-ctrl\" aria-label=\"Next chapter\">…</button>\n      </div>\n      <button type=\"button\" class=\"sx-ibtn\" aria-label=\"Chapter list\">…</button>\n    </div>\n  </div>\n</section>",
+      "<div class=\"sx-mini\" style=\"--sx-progress:38%\">\n  <img src=\"…/deck-photo-headphones.jpg\" alt=\"\">\n  <div class=\"sx-mini-text\"><span class=\"sx-mini-title\">John 3 · Amharic</span><span class=\"sx-mini-meta\">2:14 / 5:52</span></div>\n  <button type=\"button\" class=\"sx-ctrl\" aria-label=\"Back 15 seconds\">…<small aria-hidden=\"true\">15</small></button>\n  <button type=\"button\" class=\"sx-big sx-big-sm\" aria-label=\"Pause\">…</button>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<section class=\"sx-player\" aria-label=\"Audio player\">\n  <div class=\"sx-cover\"><img src=\"…/deck-photo-headphones.jpg\" alt=\"\"></div>\n  <div class=\"sx-player-main\">\n    <div>\n      <span class=\"sx-lbl\">Now playing · dot.Bible Audio</span>\n      <p class=\"sx-player-title\">John 3 · Amharic</p>\n      <p class=\"sx-player-sub\"><span lang=\"am\">ዮሐንስ 3</span> · Narrated Bible</p>\n    </div>\n    <div class=\"sx-track\" tabindex=\"0\" role=\"slider\" aria-label=\"Seek\" aria-valuemin=\"0\" aria-valuemax=\"352\" aria-valuenow=\"134\" aria-valuetext=\"2 minutes 14 seconds\"><i style=\"width:38%\"></i><b style=\"left:38%\"></b></div>\n    <div class=\"sx-time\"><span>2:14</span><span>−3:38</span></div>\n    <div class=\"sx-controls\">\n      <button type=\"button\" class=\"sx-speed\" aria-label=\"Playback speed, 1x\">1x</button>\n      <div class=\"sx-transport\">\n        <button type=\"button\" class=\"sx-ctrl\" aria-label=\"Previous chapter\">…</button>\n        <button type=\"button\" class=\"sx-ctrl\" aria-label=\"Back 15 seconds\">…<small aria-hidden=\"true\">15</small></button>\n        <button type=\"button\" class=\"sx-big\" aria-label=\"Pause\">…</button>\n        <button type=\"button\" class=\"sx-ctrl\" aria-label=\"Forward 15 seconds\">…<small aria-hidden=\"true\">15</small></button>\n        <button type=\"button\" class=\"sx-ctrl\" aria-label=\"Next chapter\">…</button>\n      </div>\n      <button type=\"button\" class=\"sx-ibtn\" aria-label=\"Chapter list\">…</button>\n    </div>\n  </div>\n</section>"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"sx-mini\" style=\"--sx-progress:38%\">\n  <img src=\"…/deck-photo-headphones.jpg\" alt=\"\">\n  <div class=\"sx-mini-text\"><span class=\"sx-mini-title\">John 3 · Amharic</span><span class=\"sx-mini-meta\">2:14 / 5:52</span></div>\n  <button type=\"button\" class=\"sx-ctrl\" aria-label=\"Back 15 seconds\">…<small aria-hidden=\"true\">15</small></button>\n  <button type=\"button\" class=\"sx-big sx-big-sm\" aria-label=\"Pause\">…</button>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/AudioPlayer/README.md",
+    "spec": "components/AudioPlayer/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

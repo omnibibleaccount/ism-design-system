@@ -1,0 +1,161 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Iconography",
+  "title": "Iconography",
+  "group": "Brand",
+  "version": "3.0.0",
+  "summary": "Two icon sets: filled ministry icons for features and illustrations, and a thin line set for interface controls, plus the direction rule for carets and arrows.",
+  "whenToUse": [
+    "**Ministry icons** (`assets/icons/*.svg`, filled, 24dp Material-style): feature lists, stat tiles, \"how it works\" steps, partner and outreach content. Examples: bible, radio, satellite, translate, folded-hands, church, handshake, qr-code.",
+    "**UI line icons** (inline SVG): buttons, fields, navigation, app bars, list rows, toasts. Search, close, menu, chevrons, arrows, play, share, download, check."
+  ],
+  "whenNotToUse": [
+    "Do not mix the two sets inside one control or one row of features."
+  ],
+  "anatomy": {
+    "description": "Ministry icon as an image (renders black; invert on dark): UI line icon, inline:",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Iconography } from '@ism/ui'",
+    "source": "packages/react/src/components/Iconography.tsx",
+    "exports": [
+      "IconTile",
+      "Iconography"
+    ],
+    "extends": [
+      "HTMLAttributes<HTMLDivElement>"
+    ],
+    "props": [
+      {
+        "name": "set",
+        "type": "'ui' | 'ministry'",
+        "required": false,
+        "default": "\"ui\"",
+        "description": "Which set to list: the thin UI line icons or the filled ministry icons."
+      },
+      {
+        "name": "size",
+        "type": "number",
+        "required": false,
+        "default": "24",
+        "description": "Icon size in px. UI: 16, 20 or 24. Ministry: 24, 32 or 48."
+      },
+      {
+        "name": "showNames",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Show the icon name under each icon."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { Iconography } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Iconography.tsx",
+    "exports": [
+      "IconTile"
+    ],
+    "props": []
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "count",
+    "icon"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "**Sizes:** UI icons 16 (inline with small text), 20 (buttons, fields, nav), 24 (app bars, tab bars). Ministry icons 24, 32, 48.",
+    "**Colour:** UI icons inherit `currentColor`. Ministry icons are black on light and inverted on dark. Inside a tinted tile, place the icon on `--blue-tint` with the tile at `--radius-md`.",
+    "**Interactive:** an icon-only control is an IconButton: 44px tap target, visible focus ring."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": false,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "**Direction rule (always):**",
+    "Down caret ⌄ means it **opens or expands here** (menus, selects, accordions, sub-navigation).",
+    "Diagonal arrow ↗ means it **goes to another page** or site.",
+    "Right chevron › means it **drills into a screen inside an app** (list rows, settings).",
+    "A plain right arrow → is for a primary \"continue\" action only.",
+    "UI line icons: 24 viewBox, `stroke=\"currentColor\"`, stroke-width 1.8 (1.6–2.2), round caps and joins, no fill.",
+    "Never colour icons with status colours unless the icon IS the status (alert, toast, field error).",
+    "Notification dots and counts on icons are Horizon Blue (`.count`, `--horizon-blue`), never red.",
+    "No emoji as icons."
+  ],
+  "do": [
+    "**Ministry icons** (`assets/icons/*.svg`, filled, 24dp Material-style): feature lists, stat tiles, \"how it works\" steps, partner and outreach content. Examples: bible, radio, satellite, translate, folded-hands, church, handshake, qr-code.",
+    "**UI line icons** (inline SVG): buttons, fields, navigation, app bars, list rows, toasts. Search, close, menu, chevrons, arrows, play, share, download, check.",
+    "**Direction rule (always):**",
+    "Down caret ⌄ means it **opens or expands here** (menus, selects, accordions, sub-navigation).",
+    "Diagonal arrow ↗ means it **goes to another page** or site.",
+    "Right chevron › means it **drills into a screen inside an app** (list rows, settings).",
+    "A plain right arrow → is for a primary \"continue\" action only.",
+    "UI line icons: 24 viewBox, `stroke=\"currentColor\"`, stroke-width 1.8 (1.6–2.2), round caps and joins, no fill.",
+    "Notification dots and counts on icons are Horizon Blue (`.count`, `--horizon-blue`), never red."
+  ],
+  "dont": [
+    "Do not mix the two sets inside one control or one row of features.",
+    "Never colour icons with status colours unless the icon IS the status (alert, toast, field error).",
+    "No emoji as icons."
+  ],
+  "accessibility": [
+    "Decorative icons: `aria-hidden=\"true\"` or `alt=\"\"`.",
+    "Icon-only buttons need an `aria-label` (\"Search\", \"Close\", \"Open menu\").",
+    "Never use an icon as the only signal of state; pair it with text."
+  ],
+  "content": [
+    "Pair ministry icons with short labels: \"500+ languages\", \"HD Radio\", \"Offline audio\", \"Share with a TAP card\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<img class=\"icon\" src=\"assets/icons/translate.svg\" width=\"32\" height=\"32\" alt=\"\">\n<img class=\"icon\" src=\"assets/icons/translate.svg\" width=\"32\" height=\"32\" alt=\"\" style=\"filter:brightness(0) invert(1)\">",
+      "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n     stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\n  <path d=\"M6 9l6 6 6-6\"/>\n</svg>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<img class=\"icon\" src=\"assets/icons/translate.svg\" width=\"32\" height=\"32\" alt=\"\">\n<img class=\"icon\" src=\"assets/icons/translate.svg\" width=\"32\" height=\"32\" alt=\"\" style=\"filter:brightness(0) invert(1)\">"
+      },
+      {
+        "lang": "html",
+        "code": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n     stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\n  <path d=\"M6 9l6 6 6-6\"/>\n</svg>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/Iconography/README.md",
+    "spec": "components/Iconography/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

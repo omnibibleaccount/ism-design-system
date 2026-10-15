@@ -1,0 +1,225 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Switch",
+  "title": "Switch",
+  "group": "Forms",
+  "version": "3.0.0",
+  "summary": "A 46 × 28px toggle switch for settings that take effect at once, shown in a 44px row with a title and a one-line description.",
+  "whenToUse": [
+    "App and account settings that apply immediately: Verse of the day, Download on Wi-Fi only, Play audio automatically."
+  ],
+  "whenNotToUse": [
+    "Not inside a form that has a Save or Submit button: use Checkbox there.",
+    "Not for choosing between two named options (one-time / monthly): use SegmentedControl."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Switch } from '@ism/ui'",
+    "source": "packages/react/src/components/Switch.tsx",
+    "exports": [
+      "Switch",
+      "SwitchGroup"
+    ],
+    "extends": [
+      "Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'role' | 'children' | 'onChange' | 'defaultChecked'>"
+    ],
+    "props": [
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Title of the setting: says what is on (\"Verse of the day\"), not the action."
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "One plain line on what happens. When the switch is disabled, say why (\"Turn on notifications first\")."
+      },
+      {
+        "name": "checked",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Controlled on/off state."
+      },
+      {
+        "name": "defaultChecked",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Initial state when uncontrolled."
+      },
+      {
+        "name": "onCheckedChange",
+        "type": "(checked: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the new state. A switch acts at once: revert it and show an alert if saving fails."
+      },
+      {
+        "name": "rowClassName",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Class on the row (`.fm-swrow`). `className` goes on the switch button."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { Switch } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Switch.tsx",
+    "exports": [
+      "Switch",
+      "SwitchGroup"
+    ],
+    "props": [
+      {
+        "name": "value",
+        "type": "boolean",
+        "required": true,
+        "default": null,
+        "description": "On or off (controlled)."
+      },
+      {
+        "name": "onValueChange",
+        "type": "(next: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the next value. A switch acts at once: never pair it with a Save button."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Title of the setting: what is on (\"Verse of the day\"), not the action. Rendered with the row layout."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "One plain line on what happens. Say why when disabled (\"Turn on notifications first\")."
+      },
+      {
+        "name": "bare",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Show only the 46x28dp track, without a row. Give it an `accessibilityLabel`."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": "Draw the row without its own bottom divider (use inside `SwitchGroup`, which adds dividers)."
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "alert-err",
+    "fm-disabled",
+    "fm-focus",
+    "fm-settings",
+    "fm-sw-d",
+    "fm-sw-t",
+    "fm-sw-text",
+    "fm-switch",
+    "fm-swrow"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Off: `--gray-300` track; hover `--gray-500`.",
+    "On: `aria-checked=\"true\"`, `--horizon-blue` track; hover `--horizon-blue-dim`.",
+    "Focus: 2px `--horizon-blue` outline, 2px offset, `--shadow-focus` (`.fm-focus` for static specs).",
+    "Disabled: `disabled` on the button (45% opacity); add `.fm-disabled` to the row so the title turns `--gray-600`, and say why in the description (\"Turn on notifications first\")."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": true,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "A switch acts at once. Never pair it with a Save button; if the change can fail, revert the switch and show an `.alert-err` or toast.",
+    "Put the switch on the right, after its label, in every row.",
+    "Label says what is on, not the action: \"Verse of the day\", not \"Turn on verse of the day\".",
+    "On is always Horizon Blue; never green, never red for off.",
+    "Make the whole row the 44px tap target.",
+    "Use `.fm-settings` to group related settings; keep groups to about 3–6 rows."
+  ],
+  "do": [
+    "App and account settings that apply immediately: Verse of the day, Download on Wi-Fi only, Play audio automatically.",
+    "A switch acts at once. Never pair it with a Save button; if the change can fail, revert the switch and show an `.alert-err` or toast.",
+    "Put the switch on the right, after its label, in every row.",
+    "Label says what is on, not the action: \"Verse of the day\", not \"Turn on verse of the day\".",
+    "On is always Horizon Blue; never green, never red for off.",
+    "Make the whole row the 44px tap target.",
+    "Use `.fm-settings` to group related settings; keep groups to about 3–6 rows."
+  ],
+  "dont": [
+    "Not inside a form that has a Save or Submit button: use Checkbox there.",
+    "Not for choosing between two named options (one-time / monthly): use SegmentedControl."
+  ],
+  "accessibility": [
+    "`<button role=\"switch\" aria-checked>`; Space and Enter toggle.",
+    "Name with `aria-labelledby` pointing at the title; add the description with `aria-describedby` when it matters.",
+    "Do not rely on the knob position alone: the track colour changes too.",
+    "Announce failures (e.g. could not save) in a polite live region."
+  ],
+  "content": [
+    "Titles: \"Verse of the day\", \"Download on Wi-Fi only\", \"Play audio automatically\".",
+    "Descriptions: one plain line on what happens (\"Save mobile data when adding languages\")."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"fm-settings\">\n  <div class=\"fm-swrow\">\n    <span class=\"fm-sw-text\">\n      <span class=\"fm-sw-t\" id=\"votd\">Verse of the day</span>\n      <span class=\"fm-sw-d\">Get one verse each morning at 7:00</span>\n    </span>\n    <button class=\"fm-switch\" type=\"button\" role=\"switch\" aria-checked=\"true\" aria-labelledby=\"votd\"></button>\n  </div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"fm-settings\">\n  <div class=\"fm-swrow\">\n    <span class=\"fm-sw-text\">\n      <span class=\"fm-sw-t\" id=\"votd\">Verse of the day</span>\n      <span class=\"fm-sw-d\">Get one verse each morning at 7:00</span>\n    </span>\n    <button class=\"fm-switch\" type=\"button\" role=\"switch\" aria-checked=\"true\" aria-labelledby=\"votd\"></button>\n  </div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/Switch/README.md",
+    "spec": "components/Switch/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

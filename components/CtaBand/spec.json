@@ -1,0 +1,171 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "CtaBand",
+  "title": "CtaBand",
+  "group": "Patterns",
+  "version": "3.0.0",
+  "summary": "Dark `.sec-ink` closing band with a centred eyebrow, headline and two buttons above three numbered columns of ways to take part.",
+  "whenToUse": [
+    "Use once near the end of the home page and Join the Mission, to turn interest into action (pray, give, share).",
+    "Use it as the dark beat in the light/dark rhythm of a page.",
+    "Use CenteredCta for a lighter, single-message call to action."
+  ],
+  "whenNotToUse": [
+    "Do not use more than once per page or directly next to the Hero or Footer without a light section between."
+  ],
+  "anatomy": {
+    "description": "Reset list styles on the `<ol>` if your page CSS does not (`list-style:none;margin:0;padding-left:0`).",
+    "markup": null
+  },
+  "react": {
+    "import": "import { CtaBand } from '@ism/ui'",
+    "source": "packages/react/src/components/CtaBand.tsx",
+    "exports": [
+      "CtaBand",
+      "CtaBandColumn"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'title'>"
+    ],
+    "props": [
+      {
+        "name": "eyebrow",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Eyebrow label, for example \"Join the Mission\"."
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Headline (h2). Wrap one word in `<span className=\"em\">`."
+      },
+      {
+        "name": "actions",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Two buttons: a `solidWhite` and an `outlineDark`, both size lg."
+      },
+      {
+        "name": "columns",
+        "type": "[CtaBandColumn, CtaBandColumn, CtaBandColumn] | CtaBandColumn[]",
+        "required": true,
+        "default": null,
+        "description": "Exactly three columns; numerals cycle sky blue, gold, violet."
+      },
+      {
+        "name": "headingId",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Id of the h2; generated when omitted."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn",
+    "btn-lg",
+    "btn-light",
+    "btn-outline-light",
+    "dp-ctaband",
+    "dp-ctaband-actions",
+    "dp-ctaband-col",
+    "dp-ctaband-cols",
+    "dp-ctaband-head",
+    "dp-ctaband-n",
+    "dp-ctaband-n-gold",
+    "dp-ctaband-n-violet",
+    "dp-ctaband-text",
+    "em",
+    "eyebrow",
+    "h2",
+    "h3",
+    "sec-ink"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Inset (default): `--radius-lg` corners, 64px × 48px padding, inside the page frame.",
+    "Full-bleed: drop the radius when the band spans the viewport.",
+    "Column numerals cycle `--sky-blue` → `.dp-ctaband-n-gold` → `.dp-ctaband-n-violet`.",
+    "Columns sit under a 14% white hairline. Under 768px they stack and padding drops to 48px × 24px.",
+    "Static; buttons carry their own hover and focus states."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Always pair with `.sec-ink` so the background glow, `.em`, `.eyebrow` and headings switch to dark styles.",
+    "Buttons: `.btn-light` for the main action and `.btn-outline-light` for the second, both `.btn-lg`. Do not add a Horizon Blue button here if the page already has its primary elsewhere; never two blues.",
+    "Exactly three columns, each a title and one sentence. No links inside the columns.",
+    "One `.em` word in the headline.",
+    "Numerals are text in brand colours, not blue fills or badges."
+  ],
+  "do": [
+    "Use once near the end of the home page and Join the Mission, to turn interest into action (pray, give, share).",
+    "Use it as the dark beat in the light/dark rhythm of a page.",
+    "Use CenteredCta for a lighter, single-message call to action.",
+    "Always pair with `.sec-ink` so the background glow, `.em`, `.eyebrow` and headings switch to dark styles.",
+    "Buttons: `.btn-light` for the main action and `.btn-outline-light` for the second, both `.btn-lg`. Do not add a Horizon Blue button here if the page already has its primary elsewhere; never two blues.",
+    "Exactly three columns, each a title and one sentence. No links inside the columns.",
+    "One `.em` word in the headline.",
+    "Numerals are text in brand colours, not blue fills or badges."
+  ],
+  "dont": [
+    "Do not use more than once per page or directly next to the Hero or Footer without a light section between."
+  ],
+  "accessibility": [
+    "Label the band with its `h2` via `aria-labelledby`.",
+    "Use an `<ol>` for the three columns and hide the numerals from screen readers.",
+    "Text on `.sec-ink` uses white and 72% white (`.dp-ctaband-text`), both AA on black.",
+    "Keep visible focus rings on the light buttons."
+  ],
+  "content": [
+    "Eyebrow \"Join the Mission\"; headline \"Put scripture in someone’s hands today.\"",
+    "Columns: \"Pray with us\" / \"Join a community praying for translators and listeners.\"; \"Give with purpose\" / \"Fund apps, airtime and printed Bibles.\"; \"Share the Word\" / \"Hand out NFC cards and recommend the app.\""
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<section class=\"sec-ink dp-ctaband\" aria-labelledby=\"join-h\">\n  <div class=\"dp-ctaband-head\">\n    <span class=\"eyebrow\">Join the Mission</span>\n    <h2 class=\"h2\" id=\"join-h\">Put scripture in someone’s hands <span class=\"em\">today</span>.</h2>\n    <div class=\"dp-ctaband-actions\">\n      <a class=\"btn btn-light btn-lg\" href=\"/give\">Give online</a>\n      <a class=\"btn btn-outline-light btn-lg\" href=\"/partner\">Become a partner</a>\n    </div>\n  </div>\n  <ol class=\"dp-ctaband-cols\">\n    <li class=\"dp-ctaband-col\">\n      <span class=\"dp-ctaband-n\" aria-hidden=\"true\">01</span>\n      <h3 class=\"h3\">Pray with us</h3>\n      <p class=\"dp-ctaband-text\">Join a community praying for translators and listeners.</p>\n    </li>\n    <!-- 02 .dp-ctaband-n-gold, 03 .dp-ctaband-n-violet -->\n  </ol>\n</section>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<section class=\"sec-ink dp-ctaband\" aria-labelledby=\"join-h\">\n  <div class=\"dp-ctaband-head\">\n    <span class=\"eyebrow\">Join the Mission</span>\n    <h2 class=\"h2\" id=\"join-h\">Put scripture in someone’s hands <span class=\"em\">today</span>.</h2>\n    <div class=\"dp-ctaband-actions\">\n      <a class=\"btn btn-light btn-lg\" href=\"/give\">Give online</a>\n      <a class=\"btn btn-outline-light btn-lg\" href=\"/partner\">Become a partner</a>\n    </div>\n  </div>\n  <ol class=\"dp-ctaband-cols\">\n    <li class=\"dp-ctaband-col\">\n      <span class=\"dp-ctaband-n\" aria-hidden=\"true\">01</span>\n      <h3 class=\"h3\">Pray with us</h3>\n      <p class=\"dp-ctaband-text\">Join a community praying for translators and listeners.</p>\n    </li>\n    <!-- 02 .dp-ctaband-n-gold, 03 .dp-ctaband-n-violet -->\n  </ol>\n</section>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/CtaBand/README.md",
+    "spec": "components/CtaBand/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

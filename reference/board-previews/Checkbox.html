@@ -1,0 +1,32 @@
+<!-- @dsCard group="Forms" height=458 subtitle="Inline box and check-row cards" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.panel{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);align-items:start}
+.c{display:flex;flex-direction:column;gap:4px}
+.rows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:10px}
+.lbl{display:block;margin-top:28px}
+@media (max-width:767px){.panel{grid-template-columns:repeat(2,minmax(0,1fr))}.rows{grid-template-columns:minmax(0,1fr)} }
+</style></head><body>
+<div>
+  <span class="fm-st">Single inline checkbox · .fm-inline + .fm-check</span>
+  <div class="panel" style="margin-top:10px">
+    <div class="c"><span class="fm-st">Unchecked</span><label class="fm-inline"><input class="fm-check" type="checkbox"><span>I agree to the <a href="#">Terms</a></span></label></div>
+    <div class="c"><span class="fm-st">Checked</span><label class="fm-inline"><input class="fm-check" type="checkbox" checked><span>I agree to the <a href="#">Terms</a></span></label></div>
+    <div class="c"><span class="fm-st">Indeterminate</span><label class="fm-inline"><input class="fm-check" id="ck-mixed" type="checkbox"><span>All languages <span class="hint">(3 of 12)</span></span></label></div>
+    <div class="c"><span class="fm-st">Disabled</span><label class="fm-inline fm-disabled"><input class="fm-check" type="checkbox" checked disabled><span>Email receipts (required)</span></label></div>
+    <div class="c"><span class="fm-st">Error</span><label class="fm-inline"><input class="fm-check" type="checkbox" aria-invalid="true" aria-describedby="ck-err"><span>I agree to the <a href="#">Terms</a></span></label><p class="err" id="ck-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>Please accept the Terms.</p></div>
+  </div>
+  <span class="fm-st lbl">Check rows · .check · selected rows turn blue · live</span>
+  <fieldset class="fm-fieldset">
+    <legend class="fm-legend" style="margin-top:10px">How would you like to partner with ISM?</legend>
+    <div class="rows">
+      <label class="check"><input type="checkbox" checked><span class="fm-check-body"><span class="fm-check-t">Church partner</span><span class="hint">Equip your congregation and community</span></span></label>
+      <label class="check"><input type="checkbox"><span class="fm-check-body"><span class="fm-check-t">Broadcast partner</span><span class="hint">Carry scripture on your HD channel</span></span></label>
+      <label class="check"><input type="checkbox"><span class="fm-check-body"><span class="fm-check-t">Prayer partner</span><span class="hint">Pray with us each month</span></span></label>
+    </div>
+  </fieldset>
+</div>
+<script>
+(function(){var m=document.getElementById('ck-mixed');m.indeterminate=true;m.setAttribute('aria-checked','mixed');m.addEventListener('change',function(){m.removeAttribute('aria-checked');});})();
+</script>
+</body></html>
