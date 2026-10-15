@@ -6,6 +6,14 @@
 - [AGENTS.md](AGENTS.md): order of authority, how to build a screen, non-negotiable rules
 - [README.md](README.md): overview and install
 
+## Hosted copy and tools
+- [integrations/README.md](integrations/README.md): ChatGPT, Perplexity, Replit, Figma and generic setup; hosted base URL and Pages setup
+- [prompts/ism-system-prompt.md](prompts/ism-system-prompt.md): paste-ready system prompt (short version: prompts/ism-system-prompt-short.md)
+- [RECREATE.md](RECREATE.md): prompts to rebuild the reference page or a new screen from this repo
+- [docs/screenshots/README.md](docs/screenshots/README.md): one PNG per component, the visual target
+- [rules/enforcement.md](rules/enforcement.md): what is checked automatically; the usage linter (scripts/lint-usage.mjs)
+- [packages/tokens/tokens.dtcg.json](packages/tokens/tokens.dtcg.json): tokens in W3C DTCG format (Figma, Tokens Studio)
+
 ## Machine-readable
 - [tokens/tokens.json](tokens/tokens.json): all design tokens (colour, type, spacing, radius, shadow, gradient, layout, z-index, motion, opacity, size, scripts)
 - [packages/tokens/tokens.flat.json](packages/tokens/tokens.flat.json): flat name/value list

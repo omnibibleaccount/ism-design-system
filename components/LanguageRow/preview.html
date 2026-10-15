@@ -1,0 +1,71 @@
+<!-- @dsCard group="Scripture" height=600 subtitle="Native-script rows and language cards" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:flex;flex-direction:column;gap:12px}
+.pv-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+</style></head><body>
+<div class="pv">
+  <span class="sx-lbl">Language rows · default, hover, right-to-left</span>
+  <div class="sx-langlist">
+    <a class="sx-lang" href="#">
+      <div class="sx-lang-name"><span class="sx-native" lang="am">አማርኛ</span><span class="sx-eng">Amharic</span></div>
+      <div class="sx-badges">
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h14"/></svg>Read</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/></svg>Listen</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7h-2"/><path d="M6 14h12v7H6z"/></svg>Print</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>App</span>
+      </div>
+      <span class="sx-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="sx-lang is-hover" href="#">
+      <div class="sx-lang-name"><span class="sx-native" lang="my">မြန်မာဘာသာ</span><span class="sx-eng">Burmese · hover</span></div>
+      <div class="sx-badges">
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h14"/></svg>Read</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/></svg>Listen</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>App</span>
+      </div>
+      <span class="sx-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="sx-lang" href="#">
+      <div class="sx-lang-name"><span class="sx-native" lang="ur" dir="rtl">اردو</span><span class="sx-eng">Urdu</span></div>
+      <div class="sx-badges">
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h14"/></svg>Read</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7h-2"/><path d="M6 14h12v7H6z"/></svg>Print</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>App</span>
+      </div>
+      <span class="sx-go" aria-hidden="true">↗</span>
+    </a>
+  </div>
+  <span class="sx-lbl" style="margin-top:12px">Language cards</span>
+  <div class="pv-cards">
+    <a class="sx-lcard" href="#">
+      <div class="sx-lcard-top"><span class="sx-native" lang="am">አማርኛ</span><span class="sx-go" aria-hidden="true">↗</span></div>
+      <span class="sx-eng">Amharic · Ethiopia · 57M speakers (sample)</span>
+      <div class="sx-badges">
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h14"/></svg>Read</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/></svg>Listen</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7h-2"/><path d="M6 14h12v7H6z"/></svg>Print</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>App</span>
+      </div>
+    </a>
+    <a class="sx-lcard" href="#">
+      <div class="sx-lcard-top"><span class="sx-native" lang="my">မြန်မာဘာသာ</span><span class="sx-go" aria-hidden="true">↗</span></div>
+      <span class="sx-eng">Burmese · Myanmar · 33M speakers (sample)</span>
+      <div class="sx-badges">
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h14"/></svg>Read</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/></svg>Listen</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>App</span>
+      </div>
+    </a>
+    <a class="sx-lcard" href="#">
+      <div class="sx-lcard-top"><span class="sx-native" lang="ur" dir="rtl">اردو</span><span class="sx-go" aria-hidden="true">↗</span></div>
+      <span class="sx-eng">Urdu · Pakistan, India · 70M speakers (sample)</span>
+      <div class="sx-badges">
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h14"/></svg>Read</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7h-2"/><path d="M6 14h12v7H6z"/></svg>Print</span>
+        <span class="sx-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>App</span>
+      </div>
+    </a>
+  </div>
+</div>
+</body></html>

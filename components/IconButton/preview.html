@@ -1,0 +1,49 @@
+<!-- @dsCard group="Actions" height=300 subtitle="Round icon-only buttons" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.pv-box{background:var(--white);border:1px solid var(--gray-200);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.pv-dk{background:var(--black);border-color:rgba(255,255,255,.16);color:var(--white)}
+.pv-h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-600)}
+.pv-dk .pv-h,.pv-dk .pv-c{color:rgba(255,255,255,.6)}
+.pv-row{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end}
+.pv-it{display:flex;flex-direction:column;align-items:center;gap:8px}
+.pv-c{font-size:12px;color:var(--gray-600);font-family:ui-monospace,Menlo,monospace}
+</style></head><body>
+<div class="pv">
+  <div class="pv-box pv-dk">
+    <span class="pv-h">HTML / CSS · on dark</span>
+    <div class="pv-row">
+      <span class="pv-it"><button class="iconbtn" type="button" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><span class="pv-c">.iconbtn</span></span>
+      <span class="pv-it"><button class="iconbtn cr-iconbtn-dark cr-iconbtn-focus" type="button" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button><span class="pv-c">focus</span></span>
+      <span class="pv-it"><button class="iconbtn cr-iconbtn-sm" type="button" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><span class="pv-c">.cr-iconbtn-sm</span></span>
+      <span class="pv-it"><button class="iconbtn cr-iconbtn-lg cr-iconbtn-solid" type="button" aria-label="Play ISM Radio"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button><span class="pv-c">-lg -solid</span></span>
+    </div>
+  </div>
+  <div class="pv-box">
+    <span class="pv-h">HTML / CSS · on light</span>
+    <div class="pv-row">
+      <span class="pv-it"><button class="iconbtn cr-iconbtn-light" type="button" aria-label="Share"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg></button><span class="pv-c">-light</span></span>
+      <span class="pv-it"><button class="iconbtn cr-iconbtn-light cr-iconbtn-focus" type="button" aria-label="Bookmark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button><span class="pv-c">focus</span></span>
+      <span class="pv-it"><button class="iconbtn cr-iconbtn-light cr-iconbtn-sm" type="button" aria-label="More options"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg></button><span class="pv-c">sm</span></span>
+      <span class="pv-it"><button class="iconbtn cr-iconbtn-light" type="button" aria-label="Next chapter" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><span class="pv-c">disabled</span></span>
+    </div>
+  </div>
+  <div class="pv-box">
+    <span class="pv-h">React · className</span>
+    <div class="pv-row" id="r-icon"></div>
+    <span class="pv-c">no dedicated component: render a button with the classes</span>
+  </div>
+</div>
+<script>
+(function(){
+  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var h = React.createElement;
+  function ic(d){ return h('svg',{width:20,height:20,viewBox:'0 0 24 24',fill:'none',stroke:'currentColor',strokeWidth:1.8,strokeLinecap:'round',strokeLinejoin:'round','aria-hidden':true},h('path',{d:d})); }
+  ReactDOM.createRoot(document.getElementById('r-icon')).render(h(React.Fragment,null,
+    h('button',{type:'button',className:'iconbtn cr-iconbtn-light','aria-label':'Previous chapter'},ic('M15 6l-6 6 6 6')),
+    h('button',{type:'button',className:'iconbtn cr-iconbtn-lg cr-iconbtn-solid','aria-label':'Play'},ic('M8 5v14l11-7z')),
+    h('button',{type:'button',className:'iconbtn cr-iconbtn-light','aria-label':'Next chapter'},ic('M9 6l6 6-6 6'))));
+})();
+</script>
+</body></html>

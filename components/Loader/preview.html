@@ -1,0 +1,66 @@
+<!-- @dsCard group="Feedback" height=640 subtitle="Spinners, busy buttons, skeletons" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:flex;flex-direction:column;gap:24px}
+.pv-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:860px){.pv-three{grid-template-columns:1fr} }
+.pv-btns{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:20px 24px;border-radius:var(--radius-md);background:var(--white);border:1px solid var(--gray-200)}
+.pv-row{display:flex;gap:12px;flex-wrap:wrap}
+</style></head><body>
+<div class="pv">
+  <div class="pv-three">
+    <div class="fb-cell"><span class="fb-lbl">Spinner · on light</span>
+      <div class="fb-spinrow">
+        <div><span class="fb-spin fb-spin-s" role="status" aria-label="Loading"></span>S · 16</div>
+        <div><span class="fb-spin fb-spin-m" aria-hidden="true"></span>M · 24</div>
+        <div><span class="fb-spin fb-spin-l" aria-hidden="true"></span>L · 40</div>
+      </div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">Spinner · on dark</span>
+      <div class="fb-spinrow fb-spinrow-dk">
+        <div><span class="fb-spin fb-spin-s fb-spin-dk" aria-hidden="true"></span>S · 16</div>
+        <div><span class="fb-spin fb-spin-m fb-spin-dk" aria-hidden="true"></span>M · 24</div>
+        <div><span class="fb-spin fb-spin-l fb-spin-dk" aria-hidden="true"></span>L · 40</div>
+      </div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">Button loading · keeps its width</span>
+      <div class="pv-btns">
+        <span class="pv-row">
+          <button class="btn btn-primary" type="button">Give $50</button>
+          <button class="btn btn-primary fb-busy" type="button" aria-busy="true" style="min-width:124px"><span class="spin" aria-hidden="true"></span>Sending…</button>
+        </span>
+        <button class="btn btn-secondary btn-sm fb-busy" type="button" aria-busy="true"><span class="fb-spin fb-spin-s fb-spin-ink" aria-hidden="true"></span>Saving…</button>
+      </div>
+    </div>
+  </div>
+  <div class="pv-three">
+    <div class="fb-cell"><span class="fb-lbl">Skeleton · card</span>
+      <div class="card card-flat" aria-busy="true" aria-label="Loading" style="gap:14px">
+        <span class="fb-sk fb-sk-media"></span>
+        <span class="fb-sk" style="width:30%"></span>
+        <span class="fb-sk" style="height:20px;width:80%"></span>
+        <span class="fb-sk" style="width:95%"></span>
+        <span class="fb-sk" style="width:70%"></span>
+      </div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">Skeleton · list rows</span>
+      <div class="fb-sk-list" aria-busy="true" aria-label="Loading">
+        <div class="fb-sk-row"><span class="fb-sk fb-sk-avatar"></span><span class="fb-sk-lines"><span class="fb-sk" style="height:14px;width:60%"></span><span class="fb-sk" style="height:10px;width:40%"></span></span></div>
+        <div class="fb-sk-row"><span class="fb-sk fb-sk-avatar"></span><span class="fb-sk-lines"><span class="fb-sk" style="height:14px;width:72%"></span><span class="fb-sk" style="height:10px;width:34%"></span></span></div>
+        <div class="fb-sk-row"><span class="fb-sk fb-sk-avatar"></span><span class="fb-sk-lines"><span class="fb-sk" style="height:14px;width:52%"></span><span class="fb-sk" style="height:10px;width:45%"></span></span></div>
+      </div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">Skeleton · text block</span>
+      <div class="fb-sk-text" aria-busy="true" aria-label="Loading">
+        <span class="fb-sk fb-sk-title" style="width:65%;margin-bottom:6px"></span>
+        <span class="fb-sk"></span>
+        <span class="fb-sk"></span>
+        <span class="fb-sk" style="width:92%"></span>
+        <span class="fb-sk" style="width:60%"></span>
+        <span class="fb-sk" style="margin-top:10px"></span>
+        <span class="fb-sk" style="width:85%"></span>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

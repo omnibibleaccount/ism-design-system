@@ -1,0 +1,94 @@
+<!-- @dsCard group="Ministry" height=820 subtitle="Frequency, amounts, impact, goal" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:24px;align-items:start}
+.col{display:flex;flex-direction:column;gap:24px;min-width:0}
+.chips5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.chips5 .chip{min-width:0;padding:0 8px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.sel{background:var(--black);border-color:var(--black);color:var(--white)}
+.otherfocus{border-color:var(--horizon-blue);box-shadow:var(--shadow-focus)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+</style></head><body>
+<div class="grid">
+  <div class="col">
+    <div class="card card-lg card-flat mn-give" id="give">
+      <div class="mn-give-head">
+        <h3 class="h4">Give to the mission</h3>
+        <p class="muted" style="font-size:15px">Your gift puts Scripture in the hands of people still waiting for it.</p>
+      </div>
+      <div class="mn-seg" role="group" aria-label="Gift frequency">
+        <button type="button" data-freq="one-time" aria-pressed="false">One-time</button>
+        <button type="button" data-freq="monthly" aria-pressed="true">Monthly</button>
+      </div>
+      <div class="field">
+        <span class="label" id="amt-l">Amount (USD)</span>
+        <div class="mn-amts" role="group" aria-labelledby="amt-l">
+          <button class="chip" type="button" data-amt="25" aria-pressed="false">$25</button>
+          <button class="chip" type="button" data-amt="50" aria-pressed="true">$50</button>
+          <button class="chip" type="button" data-amt="100" aria-pressed="false">$100</button>
+          <button class="chip" type="button" data-amt="250" aria-pressed="false">$250</button>
+          <button class="chip" type="button" data-amt="other" aria-pressed="false">Other</button>
+        </div>
+      </div>
+      <p class="mn-impact" aria-live="polite"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 21H20v-3"/><path d="M12 7v6M9 10h6"/></svg><span id="impact"><b>$50 places 10 Bibles</b> with new readers every month.</span></p>
+      <a class="btn btn-primary btn-lg" href="#" id="cta" style="width:100%">Give $50 monthly</a>
+      <p class="mn-secure"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Secure, encrypted payment · cancel monthly gifts anytime</p>
+    </div>
+    <div class="mn-panel mn-panel-dark" style="gap:12px;padding:24px 28px">
+      <div class="row"><span class="mn-st">Goal progress · on dark</span><a class="btn btn-light btn-sm" href="#">Give now</a></div>
+      <div class="mn-bar" role="progressbar" aria-valuemin="0" aria-valuemax="25000" aria-valuenow="18400" aria-label="Raised toward goal"><span style="width:74%"></span></div>
+      <p class="mn-goal-sum"><b>$18,400</b> of $25,000 raised · 74% <span class="mn-st mn-st-sm">· sample</span></p>
+    </div>
+  </div>
+  <div class="col">
+    <div class="mn-panel mn-panel-light" style="gap:14px">
+      <span class="mn-st">Amount chip states</span>
+      <div class="chips5">
+        <div class="mn-spec"><span class="mn-st mn-st-sm">Default</span><span class="chip">$25</span></div>
+        <div class="mn-spec"><span class="mn-st mn-st-sm">Hover</span><span class="chip mn-is-hover">$25</span></div>
+        <div class="mn-spec"><span class="mn-st mn-st-sm">Focus</span><span class="chip mn-focus">$25</span></div>
+        <div class="mn-spec"><span class="mn-st mn-st-sm">Selected</span><span class="chip sel">$50</span></div>
+        <div class="mn-spec"><span class="mn-st mn-st-sm">Disabled</span><span class="chip mn-is-disabled">$250</span></div>
+      </div>
+      <div class="two" style="margin-top:6px">
+        <div class="mn-spec"><span class="mn-st mn-st-sm">Other · custom amount</span><div class="mn-other"><span aria-hidden="true">$</span><input class="input otherfocus" type="text" inputmode="decimal" value="75" aria-label="Other amount"></div></div>
+        <div class="mn-spec"><span class="mn-st mn-st-sm">Submitting</span><span class="btn btn-primary" style="pointer-events:none"><span class="spin"></span>Processing…</span></div>
+      </div>
+    </div>
+    <div class="mn-panel mn-panel-light" style="gap:14px">
+      <div class="row"><span class="mn-st">Compact · sidebar, article end</span><span class="mn-goal-meta">Monthly</span></div>
+      <div class="mn-compact mn-amts-sm">
+        <span class="chip">$25</span><span class="chip sel">$50</span><span class="chip">$100</span>
+        <a class="btn btn-primary" href="#">Give $50 monthly</a>
+      </div>
+      <p class="mn-impact-text">$50 places 10 Bibles each month.</p>
+    </div>
+    <div class="mn-panel mn-panel-light" style="gap:12px">
+      <span class="mn-st">Goal progress · on light</span>
+      <div class="mn-goal-row"><p class="mn-goal-title">Year-end Bible drive</p><p class="mn-goal-meta">18 days left</p></div>
+      <div class="mn-bar" role="progressbar" aria-valuemin="0" aria-valuemax="25000" aria-valuenow="18400" aria-label="Raised toward goal"><span style="width:74%"></span></div>
+      <p class="mn-goal-sum"><b>$18,400</b> of $25,000 raised · 74%</p>
+      <p class="mn-goal-meta">Figures and impact rates on this card are samples.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var g=document.getElementById('give'),freq='monthly',amt='50';
+  function render(){
+    var m=freq==='monthly',n=amt==='other'?null:parseInt(amt,10);
+    var cta=document.getElementById('cta'),im=document.getElementById('impact');
+    if(n===null){cta.textContent='Give '+(m?'monthly':'now');im.innerHTML='<b>Every $5 places a Bible</b> with a new reader.';return;}
+    cta.textContent='Give $'+n+(m?' monthly':'');
+    im.innerHTML='<b>$'+n+' places '+Math.round(n/5)+' Bibles</b> with new readers'+(m?' every month.':'.');
+  }
+  g.querySelectorAll('[data-freq]').forEach(function(b){b.addEventListener('click',function(){
+    g.querySelectorAll('[data-freq]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});freq=b.dataset.freq;render();});});
+  g.querySelectorAll('[data-amt]').forEach(function(b){b.addEventListener('click',function(){
+    g.querySelectorAll('[data-amt]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});amt=b.dataset.amt;render();});});
+  document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();});});
+})();
+</script>
+</body></html>

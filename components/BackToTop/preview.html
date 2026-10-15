@@ -1,0 +1,46 @@
+<!-- @dsCard group="Navigation" height=300 subtitle="In place, hover, focus, on dark" -->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+.pv{padding:24px;display:grid;grid-template-columns:minmax(0,2fr) repeat(4,minmax(0,1fr));gap:24px;align-items:end;background:var(--off-white)}
+.pv-sec{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pv-c{align-items:center}
+.pv-lbl{font-size:12px;font-weight:600;color:var(--gray-600);letter-spacing:.02em}
+.pv-panel{background:var(--white);border:1px solid var(--gray-200);border-radius:20px;padding:24px}
+.pv-box{width:100%;display:grid;place-items:center;height:120px}
+.pv-dark{background:var(--black);border-radius:20px;border:0}
+.pv-article{position:relative;height:200px;padding:28px;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.pv-article .nv-btt{position:absolute;right:24px;bottom:24px}
+.pv-line{height:10px;border-radius:999px;background:var(--gray-200)}
+</style>
+</head>
+<body>
+<div class="pv">
+  <div class="pv-sec">
+    <span class="pv-lbl">In place · long article · bottom-right 24px</span>
+    <div class="pv-panel pv-article">
+      <div class="pv-line" style="width:50%;height:14px;background:var(--gray-300)"></div><div class="pv-line" style="width:90%"></div><div class="pv-line" style="width:84%"></div><div class="pv-line" style="width:88%"></div><div class="pv-line" style="width:60%"></div>
+      <button class="nv-btt" type="button" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+    </div>
+  </div>
+  <div class="pv-sec pv-c">
+    <div class="pv-panel pv-box"><span class="nv-btt"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span></div>
+    <span class="pv-lbl">Default</span>
+  </div>
+  <div class="pv-sec pv-c">
+    <div class="pv-panel pv-box"><span class="nv-btt nv-hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span></div>
+    <span class="pv-lbl">Hover · gray-100</span>
+  </div>
+  <div class="pv-sec pv-c">
+    <div class="pv-panel pv-box"><span class="nv-btt nv-focus"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span></div>
+    <span class="pv-lbl">Focus · ring</span>
+  </div>
+  <div class="pv-sec pv-c">
+    <div class="pv-panel pv-box pv-dark"><span class="nv-btt nv-btt-dark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span></div>
+    <span class="pv-lbl">Over dark · .nv-btt-dark</span>
+  </div>
+</div>
+</body>
+</html>
