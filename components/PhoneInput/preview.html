@@ -1,0 +1,60 @@
+<!-- @dsCard group="Forms" height=560 subtitle="Country code, number, country list" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;align-items:start}
+.c{display:flex;flex-direction:column;gap:24px}
+.s{display:flex;flex-direction:column;gap:8px;min-width:0}
+@media (max-width:767px){.g{grid-template-columns:minmax(0,1fr)} }
+</style></head><body>
+<div class="g">
+  <div class="c">
+    <div class="s">
+      <span class="fm-st">Default</span>
+      <div class="field"><label class="label" for="ph1">Phone <span class="opt">(optional)</span></label>
+        <div class="fm-phone"><button class="fm-cc" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Country code: United States +1"><span class="fm-flag" aria-hidden="true">US</span><span>+1</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><input class="fm-num" id="ph1" type="tel" autocomplete="tel-national" placeholder="(555) 123-4567"></div>
+      </div>
+    </div>
+    <div class="s">
+      <span class="fm-st">Focus · filled</span>
+      <div class="field"><label class="label" for="ph2">Phone</label>
+        <div class="fm-phone fm-focus"><button class="fm-cc" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Country code: Ethiopia +251"><span class="fm-flag" aria-hidden="true">ET</span><span>+251</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><input class="fm-num" id="ph2" type="tel" value="91 123 4567"></div>
+      </div>
+    </div>
+    <div class="s">
+      <span class="fm-st">Error</span>
+      <div class="field"><label class="label" for="ph3">Phone</label>
+        <div class="fm-phone fm-err"><button class="fm-cc" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Country code: Nigeria +234"><span class="fm-flag" aria-hidden="true">NG</span><span>+234</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><input class="fm-num" id="ph3" type="tel" value="803 12" aria-invalid="true" aria-describedby="ph3-e"></div>
+        <p class="err" id="ph3-e"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>This number looks too short.</p>
+      </div>
+    </div>
+  </div>
+  <div class="s">
+    <span class="fm-st">Country list open · type to search</span>
+    <div class="field"><span class="label">Phone</span>
+      <div class="fm-phone fm-focus"><span class="fm-cc" aria-expanded="true"><span class="fm-flag" aria-hidden="true">PH</span><span>+63</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span><span class="fm-num fm-ph">917 123 4567</span></div>
+    </div>
+    <div class="fm-menu fm-menu-static" role="listbox" aria-label="Country code" id="ph-list">
+      <div class="fm-menu-search"><input class="input" type="search" id="ph-q" placeholder="Search countries" aria-label="Search countries" autocomplete="off"></div>
+      <div class="fm-menu-head" id="ph-head">Suggested</div>
+      <button class="fm-o" type="button" role="option" aria-selected="false"><span class="fm-tick"></span><span class="fm-flag" aria-hidden="true">US</span>United States<span class="fm-dial">+1</span></button>
+      <button class="fm-o fm-active" type="button" role="option" aria-selected="false"><span class="fm-tick"></span><span class="fm-flag" aria-hidden="true">ET</span>Ethiopia<span class="fm-dial">+251</span></button>
+      <button class="fm-o" type="button" role="option" aria-selected="false"><span class="fm-tick"></span><span class="fm-flag" aria-hidden="true">HT</span>Haiti<span class="fm-dial">+509</span></button>
+      <button class="fm-o" type="button" role="option" aria-selected="false"><span class="fm-tick"></span><span class="fm-flag" aria-hidden="true">KE</span>Kenya<span class="fm-dial">+254</span></button>
+      <button class="fm-o" type="button" role="option" aria-selected="false"><span class="fm-tick"></span><span class="fm-flag" aria-hidden="true">NG</span>Nigeria<span class="fm-dial">+234</span></button>
+      <button class="fm-o" type="button" role="option" aria-selected="true"><span class="fm-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><span class="fm-flag" aria-hidden="true">PH</span>Philippines<span class="fm-dial">+63</span></button>
+      <div class="fm-menu-empty" id="ph-empty" hidden>No countries match. Try another spelling.</div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var q=document.getElementById('ph-q'),opts=document.querySelectorAll('#ph-list .fm-o'),head=document.getElementById('ph-head'),empty=document.getElementById('ph-empty');
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase(),n=0;
+    opts.forEach(function(o){var hit=!v||o.textContent.toLowerCase().indexOf(v)>-1;o.style.display=hit?'':'none';if(hit)n++;});
+    head.textContent=v?(n+(n===1?' match':' matches')):'Suggested';
+    empty.hidden=n>0;
+  });
+})();
+</script>
+</body></html>

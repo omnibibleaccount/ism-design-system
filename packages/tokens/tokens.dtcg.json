@@ -1,0 +1,1177 @@
+{
+  "$description": "ISM Design System tokens in DTCG format. Generated from tokens/tokens.json (version 3). Do not edit by hand.",
+  "color": {
+    "black": {
+      "$type": "color",
+      "$value": "#000000",
+      "$description": "Header bar, dark sections and the footer; primary text on light surfaces."
+    },
+    "charcoal-900": {
+      "$type": "color",
+      "$value": "#161819",
+      "$description": "Cards and panels on dark, mobile drawer, app chrome; default text colour on light pages."
+    },
+    "charcoal-800": {
+      "$type": "color",
+      "$value": "#232527",
+      "$description": "Raised surfaces and hover fills on dark."
+    },
+    "charcoal-700": {
+      "$type": "color",
+      "$value": "#373737",
+      "$description": "Deep neutral for print and illustration; not used for UI text."
+    },
+    "gray-700": {
+      "$type": "color",
+      "$value": "#4d5054",
+      "$description": "Body and lead copy on off-white and white (7.6:1 on off-white)."
+    },
+    "gray-600": {
+      "$type": "color",
+      "$value": "#5f6266",
+      "$description": "Secondary text, hints, captions and metadata on white (6.1:1) and off-white (5.7:1)."
+    },
+    "gray-placeholder": {
+      "$type": "color",
+      "$value": "#6b6e72",
+      "$description": "Input placeholder text only, on white (5.1:1)."
+    },
+    "gray-500": {
+      "$type": "color",
+      "$value": "#7c7f83",
+      "$description": "Disabled text and decorative marks; never body copy (4.0:1 on white, use for 18px+ or non-text)."
+    },
+    "gray-300": {
+      "$type": "color",
+      "$value": "#c7c8cb",
+      "$description": "Strong borders: field outlines on hover, segmented tracks, chip borders."
+    },
+    "gray-200": {
+      "$type": "color",
+      "$value": "#e1e1e4",
+      "$description": "Hairlines, dividers, table rules, light hover fill on white buttons."
+    },
+    "gray-100": {
+      "$type": "color",
+      "$value": "#f0f0f1",
+      "$description": "Sand sections, input tracks, skeleton loaders, list hover on light."
+    },
+    "off-white": {
+      "$type": "color",
+      "$value": "#f7f7f5",
+      "$description": "Page background for light sections."
+    },
+    "white": {
+      "$type": "color",
+      "$value": "#ffffff",
+      "$description": "Cards, inputs, menus and text on dark."
+    },
+    "horizon-blue": {
+      "$type": "color",
+      "$value": "#046de3",
+      "$description": "THE action colour: one primary button per group, links, focus ring, selected states. Text on white 4.9:1; white on it 4.9:1."
+    },
+    "horizon-blue-dim": {
+      "$type": "color",
+      "$value": "#0455ad",
+      "$description": "Hover/pressed primary, eyebrow text, info text, verse numbers (7.2:1 on white)."
+    },
+    "sky-blue": {
+      "$type": "color",
+      "$value": "#3f8bf0",
+      "$description": "Accent fills: progress, charts, avatar initials, illustration. Not for text on white."
+    },
+    "blue-on-dark": {
+      "$type": "color",
+      "$value": "#7fa6f7",
+      "$description": "Links, active tabs and eyebrow text on black/charcoal (8.7:1 on black)."
+    },
+    "blue-tint": {
+      "$type": "color",
+      "$value": "#f0f4fd",
+      "$description": "Selected rows, checked check-rows, info banner background, menu hover."
+    },
+    "blue-tint-line": {
+      "$type": "color",
+      "$value": "#c9dbf8",
+      "$description": "Border of info banners and selected tiles on blue-tint."
+    },
+    "gradient-blue": {
+      "$type": "color",
+      "$value": "{color.horizon-blue}",
+      "$description": "First stop of the signature gradient."
+    },
+    "gradient-violet": {
+      "$type": "color",
+      "$value": "#8f7de0",
+      "$description": "Middle stop of the signature gradient; violet accent fills."
+    },
+    "gradient-gold": {
+      "$type": "color",
+      "$value": "#f3b25a",
+      "$description": "Last stop of the signature gradient; stat numerals on dark."
+    },
+    "gradient-peach": {
+      "$type": "color",
+      "$value": "#f6d9ad",
+      "$description": "Soft warm accent for print washes and illustration."
+    },
+    "violet-ink": {
+      "$type": "color",
+      "$value": "#5a47b8",
+      "$description": "Partner badge text on violet-tint (6.1:1)."
+    },
+    "violet-tint": {
+      "$type": "color",
+      "$value": "#f1eefb",
+      "$description": "Partner badge background."
+    },
+    "gold-tint": {
+      "$type": "color",
+      "$value": "#fdf3e4",
+      "$description": "Brand/featured badge background; warm tint panels."
+    },
+    "leather-gold": {
+      "$type": "color",
+      "$value": "#e8c987",
+      "$description": "Bible card only: gold inset border, eyebrow and accents on the leather texture."
+    },
+    "surface-primary-dark": {
+      "$type": "color",
+      "$value": "{color.black}",
+      "$description": "Dark section background."
+    },
+    "surface-primary-light": {
+      "$type": "color",
+      "$value": "{color.off-white}",
+      "$description": "Light section background."
+    },
+    "surface-card-dark": {
+      "$type": "color",
+      "$value": "{color.charcoal-900}",
+      "$description": "Card surface on dark sections."
+    },
+    "surface-card-light": {
+      "$type": "color",
+      "$value": "{color.white}",
+      "$description": "Card surface on light sections."
+    },
+    "surface-muted": {
+      "$type": "color",
+      "$value": "{color.gray-200}",
+      "$description": "Muted fills and dividers."
+    },
+    "border-hairline-dark": {
+      "$type": "color",
+      "$value": "#ffffff29",
+      "$description": "1px card and divider borders on dark."
+    },
+    "border-hairline-light": {
+      "$type": "color",
+      "$value": "#0000001f",
+      "$description": "1px card and divider borders on light."
+    },
+    "text-primary-dark": {
+      "$type": "color",
+      "$value": "{color.white}",
+      "$description": "Headlines and primary text on dark."
+    },
+    "text-secondary-dark": {
+      "$type": "color",
+      "$value": "#ffffffad",
+      "$description": "Supporting text on black and charcoal (9.4:1 on black)."
+    },
+    "text-tertiary-dark": {
+      "$type": "color",
+      "$value": "#ffffff80",
+      "$description": "Captions, legal lines and footer meta on black (5.3:1)."
+    },
+    "text-primary-light": {
+      "$type": "color",
+      "$value": "{color.black}",
+      "$description": "Headlines and primary text on light."
+    },
+    "text-secondary-light": {
+      "$type": "color",
+      "$value": "#0000009e",
+      "$description": "Supporting text on white and off-white."
+    },
+    "text-body-light": {
+      "$type": "color",
+      "$value": "{color.gray-700}",
+      "$description": "Body and lead paragraphs on light."
+    },
+    "action-primary": {
+      "$type": "color",
+      "$value": "{color.horizon-blue}",
+      "$description": "Primary button fill."
+    },
+    "action-primary-hover": {
+      "$type": "color",
+      "$value": "{color.horizon-blue-dim}",
+      "$description": "Primary button hover and pressed."
+    },
+    "success": {
+      "$type": "color",
+      "$value": "#1e7a46",
+      "$description": "Success text and icons on white or success-bg (5.4:1 on white, 4.8:1 on success-bg)."
+    },
+    "success-bg": {
+      "$type": "color",
+      "$value": "#e8f5ee",
+      "$description": "Success banner and badge background."
+    },
+    "success-line": {
+      "$type": "color",
+      "$value": "#b7e1c8",
+      "$description": "Success banner border."
+    },
+    "success-on-dark": {
+      "$type": "color",
+      "$value": "#7fd6a3",
+      "$description": "Positive deltas and success marks on dark."
+    },
+    "error": {
+      "$type": "color",
+      "$value": "#b42318",
+      "$description": "Error text, invalid borders and destructive buttons (6.5:1 on white). Never for counts or live states."
+    },
+    "error-bg": {
+      "$type": "color",
+      "$value": "#fdecea",
+      "$description": "Error banner and badge background."
+    },
+    "error-line": {
+      "$type": "color",
+      "$value": "#f5c9c4",
+      "$description": "Error banner border."
+    },
+    "error-on-dark": {
+      "$type": "color",
+      "$value": "#f5a39b",
+      "$description": "Negative deltas and error marks on dark."
+    },
+    "error-field-bg": {
+      "$type": "color",
+      "$value": "#fffbfa",
+      "$description": "Background of an invalid input."
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "#6b4306",
+      "$description": "Warning text and icons on warning-bg (8.1:1)."
+    },
+    "warning-bg": {
+      "$type": "color",
+      "$value": "#fef6ea",
+      "$description": "Warning and draft banner background."
+    },
+    "warning-line": {
+      "$type": "color",
+      "$value": "#f6ddb4",
+      "$description": "Warning banner border."
+    },
+    "info": {
+      "$type": "color",
+      "$value": "{color.horizon-blue-dim}",
+      "$description": "Info text and icons on info-bg."
+    },
+    "info-bg": {
+      "$type": "color",
+      "$value": "{color.blue-tint}",
+      "$description": "Info banner background."
+    },
+    "info-line": {
+      "$type": "color",
+      "$value": "{color.blue-tint-line}",
+      "$description": "Info banner border."
+    },
+    "live": {
+      "$type": "color",
+      "$value": "#e5484d",
+      "$description": "On-air / live dot only (radio, streams). Pair with the word Live or On air."
+    }
+  },
+  "spacing": {
+    "space-1": {
+      "$type": "dimension",
+      "$value": "4px",
+      "$description": "Icon gaps, tight inline spacing."
+    },
+    "space-2": {
+      "$type": "dimension",
+      "$value": "8px",
+      "$description": "Chip and button-group gaps."
+    },
+    "space-3": {
+      "$type": "dimension",
+      "$value": "12px",
+      "$description": "Field-to-hint, list item gaps."
+    },
+    "space-4": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$description": "Card internal gaps, mobile gutter."
+    },
+    "space-5": {
+      "$type": "dimension",
+      "$value": "24px",
+      "$description": "Card padding, desktop gutter."
+    },
+    "space-6": {
+      "$type": "dimension",
+      "$value": "32px",
+      "$description": "Large card padding, column gaps."
+    },
+    "space-7": {
+      "$type": "dimension",
+      "$value": "48px",
+      "$description": "Gaps between section blocks."
+    },
+    "space-8": {
+      "$type": "dimension",
+      "$value": "64px",
+      "$description": "Library board padding, large gaps."
+    },
+    "space-9": {
+      "$type": "dimension",
+      "$value": "96px",
+      "$description": "Section padding (compact)."
+    },
+    "space-10": {
+      "$type": "dimension",
+      "$value": "128px",
+      "$description": "Hero and section padding (generous)."
+    }
+  },
+  "radius": {
+    "radius-xs": {
+      "$type": "dimension",
+      "$value": "4px",
+      "$description": "Tags, small marks, progress bars."
+    },
+    "radius-sm": {
+      "$type": "dimension",
+      "$value": "8px",
+      "$description": "Small tiles, menu rows, avatars-square, thumbnails. (Was 6px before v2.)"
+    },
+    "radius-md": {
+      "$type": "dimension",
+      "$value": "12px",
+      "$description": "Inputs, alerts, menus, dropdowns, toasts."
+    },
+    "radius-ml": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$description": "Accordion rows, app icon tiles, popovers."
+    },
+    "radius-lg": {
+      "$type": "dimension",
+      "$value": "20px",
+      "$description": "Cards, panels, media, modals."
+    },
+    "radius-xl": {
+      "$type": "dimension",
+      "$value": "28px",
+      "$description": "Bottom sheets and phone screens."
+    },
+    "radius-pill": {
+      "$type": "dimension",
+      "$value": "999px",
+      "$description": "Buttons, chips, badges, search fields, segmented controls."
+    }
+  },
+  "shadow": {
+    "shadow-card-light": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#00000014",
+        "offsetX": "0px",
+        "offsetY": "8px",
+        "blur": "30px",
+        "spread": "0px"
+      },
+      "$description": "Cards at rest on light surfaces."
+    },
+    "shadow-lift": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#0000001f",
+        "offsetX": "0px",
+        "offsetY": "14px",
+        "blur": "40px",
+        "spread": "0px"
+      },
+      "$description": "Card hover on light surfaces."
+    },
+    "shadow-overlay": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#00000047",
+        "offsetX": "0px",
+        "offsetY": "18px",
+        "blur": "44px",
+        "spread": "-12px"
+      },
+      "$description": "Menus, dropdowns, popovers, modals, toasts."
+    },
+    "shadow-card-dark": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#00000073",
+        "offsetX": "0px",
+        "offsetY": "20px",
+        "blur": "60px",
+        "spread": "0px"
+      },
+      "$description": "Drawer, cookie banner, dark sheets and panels."
+    },
+    "shadow-focus": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#046de359",
+        "offsetX": "0px",
+        "offsetY": "0px",
+        "blur": "0px",
+        "spread": "3px"
+      },
+      "$description": "Focus halo, always with a 2px horizon-blue outline (4.9:1 on white)."
+    }
+  },
+  "gradient": {
+    "gradient-signature": {
+      "$type": "string",
+      "$value": "linear-gradient(120deg, #046de3 0%, #8f7de0 55%, #f3b25a 100%)",
+      "$description": "Icon medallions, accent words on dark (.em), gradient panels.",
+      "$extensions": {
+        "ism.kind": "css-gradient"
+      }
+    },
+    "gradient-line": {
+      "$type": "string",
+      "$value": "linear-gradient(90deg, #046de3 0%, #8f7de0 55%, #f3b25a 100%)",
+      "$description": "Hairline dividers (.thread), nav underline, gradient borders (footer CTA, app tiles).",
+      "$extensions": {
+        "ism.kind": "css-gradient"
+      }
+    },
+    "gradient-marker": {
+      "$type": "string",
+      "$value": "linear-gradient(90deg, rgba(4,109,227,0.30), rgba(143,125,224,0.38))",
+      "$description": "Highlighter behind one headline word on light (.em).",
+      "$extensions": {
+        "ism.kind": "css-gradient"
+      }
+    },
+    "gradient-signature-soft": {
+      "$type": "string",
+      "$value": "linear-gradient(135deg, rgba(4,109,227,0.55), rgba(143,125,224,0.45), rgba(243,178,90,0.35))",
+      "$description": "Soft washes over photography in print and decks.",
+      "$extensions": {
+        "ism.kind": "css-gradient"
+      }
+    }
+  },
+  "layout": {
+    "frame-max": {
+      "$type": "dimension",
+      "$value": "1280px",
+      "$description": "Widest page frame and design artboard."
+    },
+    "container-max": {
+      "$type": "dimension",
+      "$value": "1200px",
+      "$description": "Content container (.wrap) inside the frame. (Was 1280px before v2.)"
+    },
+    "gutter": {
+      "$type": "dimension",
+      "$value": "24px",
+      "$description": "Container side padding; 16px under 390px."
+    },
+    "measure-reading": {
+      "$type": "dimension",
+      "$value": "760px",
+      "$description": "Long-form text column (.narrow)."
+    },
+    "measure-scripture": {
+      "$type": "dimension",
+      "$value": "680px",
+      "$description": "Bible reading column."
+    },
+    "breakpoint-mobile": {
+      "$type": "dimension",
+      "$value": "767px",
+      "$description": "Max width of the mobile layout."
+    },
+    "breakpoint-desktop": {
+      "$type": "dimension",
+      "$value": "1024px",
+      "$description": "Min width for the full desktop nav."
+    },
+    "tap-target": {
+      "$type": "dimension",
+      "$value": "44px",
+      "$description": "Minimum touch target for any control."
+    },
+    "breakpoint-compact": {
+      "$type": "dimension",
+      "$value": "480px",
+      "$description": "Max width of compact phones: single-column modal grids, 2-up share tiles."
+    }
+  },
+  "tracking": {
+    "eyebrow-tracking": {
+      "$type": "string",
+      "$value": "0.2em",
+      "$description": "Letter-spacing of the uppercase eyebrow. (Was 0.14em before v2.)",
+      "$extensions": {
+        "ism.unit": "em"
+      }
+    },
+    "overline-tracking": {
+      "$type": "string",
+      "$value": "0.06em",
+      "$description": "Letter-spacing of the overline label.",
+      "$extensions": {
+        "ism.unit": "em"
+      }
+    }
+  },
+  "blur": {
+    "blur-glass": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$description": "Backdrop blur behind translucent bars (sticky CTA, overlays)."
+    }
+  },
+  "zIndex": {
+    "z-behind": {
+      "$type": "number",
+      "$value": -1,
+      "$description": "Decorative layers behind content (hero glow, texture, gradient washes)."
+    },
+    "z-raised": {
+      "$type": "number",
+      "$value": 2,
+      "$description": "Overlap inside one component: badge over an image, selected tab over its track, in-cell tooltip."
+    },
+    "z-dropdown": {
+      "$type": "number",
+      "$value": 20,
+      "$description": "Menus, select lists and autocomplete results anchored to a field."
+    },
+    "z-sticky": {
+      "$type": "number",
+      "$value": 40,
+      "$description": "Sticky in-page bars such as AnchorNav."
+    },
+    "z-header": {
+      "$type": "number",
+      "$value": 50,
+      "$description": "Site header (fixed)."
+    },
+    "z-scrim": {
+      "$type": "number",
+      "$value": 60,
+      "$description": "Drawer scrim."
+    },
+    "z-drawer": {
+      "$type": "number",
+      "$value": 61,
+      "$description": "Mobile navigation drawer."
+    },
+    "z-cookie": {
+      "$type": "number",
+      "$value": 70,
+      "$description": "Cookie banner."
+    },
+    "z-float": {
+      "$type": "number",
+      "$value": 72,
+      "$description": "Floating controls: BackToTop, Fab."
+    },
+    "z-modal": {
+      "$type": "number",
+      "$value": 90,
+      "$description": "Modal scrim and dialog."
+    },
+    "z-toast": {
+      "$type": "number",
+      "$value": 95,
+      "$description": "Toast region. Above modals so confirmations are never hidden. (Was 80 before v3.)"
+    },
+    "z-tooltip": {
+      "$type": "number",
+      "$value": 96,
+      "$description": "Tooltips that escape their container (portalled)."
+    },
+    "z-skip": {
+      "$type": "number",
+      "$value": 100,
+      "$description": "Skip link when focused. Always the top layer."
+    }
+  },
+  "motion": {
+    "duration": {
+      "duration-fast": {
+        "$type": "duration",
+        "$value": "150ms",
+        "$description": "Hover, focus, pressed colour and border changes on controls."
+      },
+      "duration-base": {
+        "$type": "duration",
+        "$value": "200ms",
+        "$description": "Card elevation, scrim fades, accordion icon rotation."
+      },
+      "duration-drawer": {
+        "$type": "duration",
+        "$value": "260ms",
+        "$description": "Drawer and sheet slide-in."
+      },
+      "duration-slow": {
+        "$type": "duration",
+        "$value": "300ms",
+        "$description": "Progress bar width changes."
+      },
+      "duration-enter": {
+        "$type": "duration",
+        "$value": "400ms",
+        "$description": "Entrance rise of sections and the cookie banner."
+      },
+      "duration-media": {
+        "$type": "duration",
+        "$value": "500ms",
+        "$description": "Photo zoom on card hover (scale 1.03)."
+      },
+      "duration-spin": {
+        "$type": "duration",
+        "$value": "800ms",
+        "$description": "One rotation of the loading spinner."
+      },
+      "duration-pulse": {
+        "$type": "duration",
+        "$value": "1600ms",
+        "$description": "On-air live dot pulse (the only looping decoration)."
+      }
+    },
+    "easing": {
+      "ease-standard": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.25,
+          0.1,
+          0.25,
+          1
+        ],
+        "$description": "Default for state changes.",
+        "$extensions": {
+          "ism.css": "ease"
+        }
+      },
+      "ease-drawer": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.2,
+          0.8,
+          0.2,
+          1
+        ],
+        "$description": "Drawers and sheets: fast start, soft landing.",
+        "$extensions": {
+          "ism.css": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+        }
+      },
+      "ease-rise": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.2,
+          0.7,
+          0.2,
+          1
+        ],
+        "$description": "Entrance rise.",
+        "$extensions": {
+          "ism.css": "cubic-bezier(0.2, 0.7, 0.2, 1)"
+        }
+      },
+      "ease-linear": {
+        "$type": "cubicBezier",
+        "$value": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "$description": "Spinners and indeterminate progress only.",
+        "$extensions": {
+          "ism.css": "linear"
+        }
+      }
+    }
+  },
+  "opacity": {
+    "opacity-disabled": {
+      "$type": "number",
+      "$value": 0.45,
+      "$description": "Disabled controls. Text also keeps a 4.5:1 contrast only where it is not decorative; disabled text is exempt from WCAG contrast but must not be the only signal."
+    },
+    "scrim-peek": {
+      "$type": "color",
+      "$value": "#00000047",
+      "$description": "App bottom sheet at peek height.",
+      "$extensions": {
+        "ism.kind": "scrim"
+      }
+    },
+    "scrim-sheet": {
+      "$type": "color",
+      "$value": "#0000006b",
+      "$description": "App bottom sheet expanded, action sheet.",
+      "$extensions": {
+        "ism.kind": "scrim"
+      }
+    },
+    "scrim-drawer": {
+      "$type": "color",
+      "$value": "#0000008c",
+      "$description": "Website mobile drawer.",
+      "$extensions": {
+        "ism.kind": "scrim"
+      }
+    },
+    "scrim-modal": {
+      "$type": "color",
+      "$value": "#16181999",
+      "$description": "Modal dialog backdrop.",
+      "$extensions": {
+        "ism.kind": "scrim"
+      }
+    },
+    "overlay-photo": {
+      "$type": "color",
+      "$value": "#00000066",
+      "$description": "Minimum dark overlay before placing text or a logo on a photo.",
+      "$extensions": {
+        "ism.kind": "scrim"
+      }
+    }
+  },
+  "size": {
+    "control-sm": {
+      "$type": "dimension",
+      "$value": "36px",
+      "$description": "Dense desktop toolbars only (.btn-sm). Never on touch layouts."
+    },
+    "control-md": {
+      "$type": "dimension",
+      "$value": "44px",
+      "$description": "Default height of buttons, chips, icon buttons and list rows (equals tap-target)."
+    },
+    "control-lg": {
+      "$type": "dimension",
+      "$value": "52px",
+      "$description": "Large buttons (.btn-lg), hero and form submit."
+    },
+    "field": {
+      "$type": "dimension",
+      "$value": "48px",
+      "$description": "Text inputs, selects, search fields, tabs and vertical tabs."
+    },
+    "field-lg": {
+      "$type": "dimension",
+      "$value": "60px",
+      "$description": "Hero and directory search input (.input-lg)."
+    },
+    "row-app": {
+      "$type": "dimension",
+      "$value": "52px",
+      "$description": "Minimum app list row and sheet row."
+    },
+    "row-action": {
+      "$type": "dimension",
+      "$value": "56px",
+      "$description": "Action sheet row and share tile."
+    },
+    "icon-sm": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$description": "Inline with small text."
+    },
+    "icon-md": {
+      "$type": "dimension",
+      "$value": "20px",
+      "$description": "Buttons, fields, navigation."
+    },
+    "icon-lg": {
+      "$type": "dimension",
+      "$value": "24px",
+      "$description": "App bars, tab bars, ministry icons at base size."
+    },
+    "icon-stroke": {
+      "$type": "dimension",
+      "$value": "1.8",
+      "$description": "Stroke width of UI line icons (1.6 to 2.2 allowed). Unitless."
+    },
+    "focus-width": {
+      "$type": "dimension",
+      "$value": "2px",
+      "$description": "Focus outline width."
+    },
+    "focus-offset": {
+      "$type": "dimension",
+      "$value": "2px",
+      "$description": "Focus outline offset."
+    }
+  },
+  "font": {
+    "family": {
+      "sans": {
+        "$type": "fontFamily",
+        "$value": [
+          "Inter",
+          "Noto Sans Ethiopic",
+          "Noto Sans Myanmar",
+          "Noto Naskh Arabic",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Arial",
+          "sans-serif"
+        ]
+      },
+      "serif": {
+        "$type": "fontFamily",
+        "$value": [
+          "Lora",
+          "Noto Sans Ethiopic",
+          "Noto Sans Myanmar",
+          "Noto Naskh Arabic",
+          "Georgia",
+          "serif"
+        ]
+      },
+      "display-alt": {
+        "$type": "fontFamily",
+        "$value": [
+          "Neue Power",
+          "Inter",
+          "sans-serif"
+        ]
+      },
+      "script-accent": {
+        "$type": "fontFamily",
+        "$value": [
+          "Miss Noteworthy",
+          "cursive"
+        ]
+      },
+      "print-serif": {
+        "$type": "fontFamily",
+        "$value": [
+          "Procerus",
+          "Georgia",
+          "serif"
+        ]
+      }
+    }
+  },
+  "typography": {
+    "web": {
+      "web-h1": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "64px",
+          "fontWeight": 700,
+          "lineHeight": 1.1,
+          "letterSpacing": "-0.025em"
+        },
+        "$description": "Page H1 (.h1). 40px on mobile, fluid between. Bold 700.",
+        "$extensions": {
+          "ism.sample": "Scripture for every language"
+        }
+      },
+      "web-h2": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "44px",
+          "fontWeight": 600,
+          "lineHeight": 1.12,
+          "letterSpacing": "-0.02em"
+        },
+        "$description": "Section headings (.h2). 30px on mobile.",
+        "$extensions": {
+          "ism.sample": "A ministry built on one simple conviction."
+        }
+      },
+      "web-h3": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "24px",
+          "fontWeight": 600,
+          "lineHeight": 1.25,
+          "letterSpacing": "-0.01em"
+        },
+        "$description": "Card and sub-section titles (.h3). 21px on mobile."
+      },
+      "web-h4": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "19px",
+          "fontWeight": 600,
+          "lineHeight": 1.3
+        },
+        "$description": "Small titles, list headings (.h4)."
+      },
+      "web-lead": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "20px",
+          "fontWeight": 400,
+          "lineHeight": 1.5
+        },
+        "$description": "Intro paragraph under a headline (.lead), gray-700. 18px on mobile."
+      },
+      "web-body": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "18px",
+          "fontWeight": 400,
+          "lineHeight": 1.5
+        },
+        "$description": "Default body copy."
+      },
+      "web-small": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "15px",
+          "fontWeight": 400,
+          "lineHeight": 1.5
+        },
+        "$description": "Card descriptions, meta, hints (.small)."
+      },
+      "web-label": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "14px",
+          "fontWeight": 600,
+          "lineHeight": 1.3
+        },
+        "$description": "Form labels (.label)."
+      },
+      "web-eyebrow": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "12px",
+          "fontWeight": 600,
+          "lineHeight": 1,
+          "letterSpacing": "0.2em"
+        },
+        "$description": "Uppercase eyebrow in a 1px blue rectangle (.eyebrow) above a section headline.",
+        "$extensions": {
+          "ism.sample": "WHAT WE DO"
+        }
+      },
+      "web-overline": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "12px",
+          "fontWeight": 600,
+          "lineHeight": 1.2,
+          "letterSpacing": "0.06em"
+        },
+        "$description": "Uppercase list, menu and table headers (.overline), gray-600. Not a section eyebrow.",
+        "$extensions": {
+          "ism.sample": "ALL LANGUAGES · 32"
+        }
+      }
+    },
+    "display-&-print": {
+      "display-1": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "64px",
+          "fontWeight": 600,
+          "lineHeight": 1.1
+        },
+        "$description": "Print and deck display headlines."
+      },
+      "display-2": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "56px",
+          "fontWeight": 600,
+          "lineHeight": 1.1
+        },
+        "$description": "Print and deck display headlines."
+      },
+      "print-h1": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "48px",
+          "fontWeight": 600,
+          "lineHeight": 1.1
+        },
+        "$description": "Print/brochure H1 (var --text-h1)."
+      },
+      "print-h2": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "40px",
+          "fontWeight": 600,
+          "lineHeight": 1.15
+        },
+        "$description": "Print/brochure H2."
+      },
+      "print-h3": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "32px",
+          "fontWeight": 600,
+          "lineHeight": 1.2
+        },
+        "$description": "Print/brochure H3."
+      },
+      "print-h4": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "24px",
+          "fontWeight": 600,
+          "lineHeight": 1.25
+        },
+        "$description": "Print/brochure H4."
+      },
+      "body-lg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "20px",
+          "fontWeight": 400,
+          "lineHeight": 1.4
+        },
+        "$description": "Large print body."
+      },
+      "print-body": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "18px",
+          "fontWeight": 400,
+          "lineHeight": 1.45
+        },
+        "$description": "Print and email body."
+      },
+      "body-sm": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontSize": "14px",
+          "fontWeight": 400,
+          "lineHeight": 1.45
+        },
+        "$description": "Print captions and email small print."
+      }
+    },
+    "scripture-&-editorial": {
+      "scripture": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.serif}",
+          "fontSize": "19px",
+          "fontWeight": 400,
+          "lineHeight": 1.7
+        },
+        "$description": "Bible text in the reading view and verse cards; max 680px measure. Steps 17/19/22/25px.",
+        "$extensions": {
+          "ism.sample": "For God so loved the world…"
+        }
+      },
+      "pull-quote": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.serif}",
+          "fontSize": "26px",
+          "fontWeight": 400,
+          "lineHeight": 1.3
+        },
+        "$description": "Testimonials and pull quotes on the web."
+      },
+      "editorial-quote": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.serif}",
+          "fontSize": "32px",
+          "fontWeight": 400,
+          "lineHeight": 1.3
+        },
+        "$description": "Scripture-title and editorial quote treatments; never UI copy."
+      }
+    }
+  },
+  "script": {
+    "latin": {
+      "lineHeightBody": {
+        "$type": "number",
+        "$value": 1.5,
+        "$description": "Body line height for en, vi, yo, ht, ceb, sw, fr, es, pt. Status: shipped."
+      },
+      "lineHeightHeading": {
+        "$type": "number",
+        "$value": 1.12,
+        "$description": "Heading line height for en, vi, yo, ht, ceb, sw, fr, es, pt."
+      }
+    },
+    "ethiopic": {
+      "lineHeightBody": {
+        "$type": "number",
+        "$value": 1.65,
+        "$description": "Body line height for am, ti. Status: recommended."
+      },
+      "lineHeightHeading": {
+        "$type": "number",
+        "$value": 1.25,
+        "$description": "Heading line height for am, ti."
+      }
+    },
+    "myanmar": {
+      "lineHeightBody": {
+        "$type": "number",
+        "$value": 1.9,
+        "$description": "Body line height for my. Status: recommended."
+      },
+      "lineHeightHeading": {
+        "$type": "number",
+        "$value": 1.5,
+        "$description": "Heading line height for my."
+      }
+    },
+    "arabic": {
+      "lineHeightBody": {
+        "$type": "number",
+        "$value": 1.9,
+        "$description": "Body line height for ar, fa, ur. Status: recommended."
+      },
+      "lineHeightHeading": {
+        "$type": "number",
+        "$value": 1.4,
+        "$description": "Heading line height for ar, fa, ur."
+      }
+    }
+  }
+}

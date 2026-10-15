@@ -1,0 +1,86 @@
+<!-- @dsCard group="Navigation" height=989 subtitle="On this page list, sticky bar" -->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+.pv{padding:24px;display:flex;flex-direction:column;gap:24px;background:var(--off-white)}
+.pv-sec{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pv-lbl{font-size:12px;font-weight:600;color:var(--gray-600);letter-spacing:.02em}
+.pv-panel{background:var(--white);border:1px solid var(--gray-200);border-radius:20px;padding:40px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:64px}
+.pv-copy{display:flex;flex-direction:column;gap:14px;max-width:680px}
+.pv-copy p{margin:0;font-size:16px;line-height:1.7;color:var(--gray-700)}
+.pv-copy .h4{margin:18px 0 0}
+.pv-ref{font-size:14px;font-weight:500;color:var(--horizon-blue-dim)}
+.pv-verse{font-family:var(--font-serif);font-size:18px!important;color:var(--charcoal-900)!important;border-left:2px solid var(--leather-gold);padding-left:18px}
+.pv-verse span{font-family:var(--font-sans);font-size:14px;color:var(--gray-600)}
+.pv-frame{border-radius:20px;overflow:hidden;border:1px solid var(--gray-200);background:var(--white)}
+.pv-top{height:56px;background:var(--black);padding:0 24px;display:flex;align-items:center}
+.pv-top img{height:26px;width:auto;filter:brightness(0) invert(1)}
+.pv-frame .nv-abar{position:relative;top:auto}
+.pv-lines{padding:28px 24px;display:flex;flex-direction:column;gap:10px}
+.pv-line{height:10px;border-radius:999px;background:var(--gray-200)}
+</style>
+</head>
+<body>
+<div class="pv">
+  <div class="pv-sec">
+    <span class="pv-lbl">"On this page" · sticky beside content (top: 96px) · active = Jesus Christ · hover on The Holy Spirit · click to move</span>
+    <div class="pv-panel">
+      <div class="nv-otp-wrap">
+        <nav aria-label="On this page">
+          <p class="overline nv-otp-h">On this page</p>
+          <ul class="nv-otp" id="pv-otp">
+            <li><a href="#">The Scriptures</a></li>
+            <li><a href="#">God</a></li>
+            <li><a href="#" aria-current="true">Jesus Christ</a></li>
+            <li><a href="#" class="nv-hover">The Holy Spirit</a></li>
+            <li><a href="#">Salvation</a></li>
+            <li><a href="#">The Church</a></li>
+            <li><a href="#">Last Things</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pv-copy">
+        <span class="eyebrow">Statement of Faith</span>
+        <h3 class="h4">God</h3>
+        <p>We believe in one God, eternally existing in three persons: Father, Son and Holy Spirit.</p>
+        <span class="pv-ref">Deuteronomy 6:4 · Matthew 28:19</span>
+        <h3 class="h4">Jesus Christ</h3>
+        <p>We believe that Jesus Christ is fully God and fully man. He was born of a virgin, lived without sin, died for our sins and rose bodily from the dead.</p>
+        <p class="pv-verse">“In the beginning was the Word, and the Word was with God, and the Word was God.” <span>John 1:1 BSB</span></p>
+        <h3 class="h4">The Holy Spirit</h3>
+        <p>We believe the Holy Spirit lives in every believer, giving understanding of the Scriptures and power to live them.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pv-sec">
+    <span class="pv-lbl">Horizontal sticky anchor bar · .nv-abar.nv-stuck · sticks under the 72px header · active = 2px blue underline</span>
+    <div class="pv-frame">
+      <div class="pv-top"><img src="../../assets/logos/Logo%20Black.svg" alt="ISM"></div>
+      <div class="nv-abar nv-stuck">
+        <span class="nv-abar-title">dot.Bible App</span>
+        <nav class="nv-abar-links" aria-label="On this page" id="pv-abar">
+          <a class="nv-alink" href="#">Overview</a>
+          <a class="nv-alink" href="#" aria-current="true">Features</a>
+          <a class="nv-alink" href="#">Languages</a>
+          <a class="nv-alink" href="#">Offline reading</a>
+          <a class="nv-alink" href="#">FAQ</a>
+        </nav>
+        <a class="btn btn-primary btn-sm" href="#">Get the app</a>
+      </div>
+      <div class="pv-lines"><div class="pv-line" style="width:40%;height:14px;background:var(--gray-300)"></div><div class="pv-line" style="width:85%"></div><div class="pv-line" style="width:70%"></div></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  ['pv-otp','pv-abar'].forEach(function(id){
+    var links=document.getElementById(id).querySelectorAll('a');
+    links.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();links.forEach(function(o){o.removeAttribute('aria-current');o.classList.remove('nv-hover');});a.setAttribute('aria-current','true');});});
+  });
+})();
+</script>
+</body>
+</html>

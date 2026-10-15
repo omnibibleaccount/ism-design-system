@@ -1,0 +1,113 @@
+<!-- @dsCard group="Forms" height=1687 subtitle="Fieldsets, counters, error summary" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.top{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;align-items:start;margin-bottom:24px}
+.s{display:flex;flex-direction:column;gap:8px;min-width:0}
+.s .field + .field{margin-top:12px}
+.s textarea.input{min-height:96px}
+@media (max-width:1023px){.top{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:767px){.top{grid-template-columns:minmax(0,1fr)} }
+</style></head><body>
+<div>
+  <div class="top">
+    <div class="s">
+      <span class="fm-st">Required / optional</span>
+      <p class="hint">Fields marked <span class="fm-req" aria-hidden="true">*</span> are required.</p>
+      <div class="field"><label class="label" for="fl-name">Full name<span class="fm-req" aria-hidden="true">*</span></label><input class="input" id="fl-name" type="text" required value="Maria Santos"></div>
+      <div class="field"><label class="label" for="fl-church">Church or ministry <span class="opt">(optional)</span></label><input class="input" id="fl-church" type="text" placeholder="e.g. Grace Community Church"></div>
+    </div>
+    <div class="s">
+      <span class="fm-st">Counter · normal · type to try</span>
+      <div class="field"><label class="label" for="fl-story">Share your story <span class="opt">(optional)</span></label>
+        <textarea class="input" id="fl-story" aria-describedby="fl-story-c">Our church began a reading group with the Amharic app.</textarea>
+        <div class="fm-count"><span>How has the Bible in your language helped?</span><span class="fm-count-n" id="fl-story-c" aria-live="polite">55 / 500</span></div>
+      </div>
+    </div>
+    <div class="s">
+      <span class="fm-st">Near the limit (90%+)</span>
+      <div class="field"><label class="label" for="fl-pr1">Prayer request</label>
+        <textarea class="input" id="fl-pr1" aria-describedby="fl-pr1-c">Please pray for the HD Radio team in Kenya as they set up the new transmitter this month, and for every listener.</textarea>
+        <div class="fm-count"><span class="fm-count-n fm-warn" id="fl-pr1-c">462 / 500 · 38 left</span></div>
+      </div>
+    </div>
+    <div class="s">
+      <span class="fm-st">Over the limit</span>
+      <div class="field"><label class="label" for="fl-pr2">Prayer request</label>
+        <textarea class="input" id="fl-pr2" aria-invalid="true" aria-describedby="fl-pr2-e fl-pr2-c">Please pray for the HD Radio team in Kenya as they set up the new transmitter this month, and for every listener.</textarea>
+        <div class="fm-count"><p class="err" id="fl-pr2-e"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>Please shorten this a little.</p><span class="fm-count-n fm-over" id="fl-pr2-c">512 / 500</span></div>
+      </div>
+    </div>
+  </div>
+
+  <form class="fm-form" novalidate aria-label="Become a church partner (example)" id="fl-form">
+    <div class="alert fm-sum" role="alert" tabindex="-1">
+      <span class="fm-sum-t"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg><span>Please fix 3 things before sending</span></span>
+      <ul class="fm-sum-list">
+        <li><a href="#fl-email">Email: enter a full email, like name@example.com</a></li>
+        <li><a href="#fl-cname">Church name: please enter your church's name</a></li>
+        <li><a href="#fl-terms">Terms: please accept the Terms to continue</a></li>
+      </ul>
+    </div>
+
+    <fieldset class="fm-set">
+      <legend><span class="fm-set-lg">About you</span><span class="fm-set-ld">So our partnership team knows who to contact.</span></legend>
+      <div class="fm-cols">
+        <div class="field"><label class="label" for="fl-first">First name</label><input class="input" id="fl-first" type="text" value="Maria" autocomplete="given-name"></div>
+        <div class="field"><label class="label" for="fl-last">Last name</label><input class="input" id="fl-last" type="text" value="Santos" autocomplete="family-name"></div>
+        <div class="field"><label class="label" for="fl-email">Email</label><input class="input" id="fl-email" type="email" value="maria@gracechurch" aria-invalid="true" aria-describedby="fl-email-e" autocomplete="email"><p class="err" id="fl-email-e"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>Enter a full email, like name@example.com.</p></div>
+        <div class="field"><label class="label" for="fl-phone">Phone <span class="opt">(optional)</span></label>
+          <div class="fm-phone"><button class="fm-cc" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Country code: United States +1"><span class="fm-flag" aria-hidden="true">US</span><span>+1</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><input class="fm-num" id="fl-phone" type="tel" autocomplete="tel-national" placeholder="(555) 123-4567"></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="fm-set">
+      <legend><span class="fm-set-lg">Your church</span><span class="fm-set-ld">We use this to send the right Bibles, NFC cards and app links.</span></legend>
+      <div class="fm-cols">
+        <div class="field fm-full"><label class="label" for="fl-cname">Church name</label><input class="input" id="fl-cname" type="text" aria-invalid="true" aria-describedby="fl-cname-e"><p class="err" id="fl-cname-e"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>Please enter your church's name.</p></div>
+        <div class="field"><label class="label" for="fl-city">City</label><input class="input" id="fl-city" type="text" value="Port-au-Prince"></div>
+        <div class="field"><label class="label" for="fl-size">Weekly attendance <span class="opt">(optional)</span></label><input class="input" id="fl-size" type="text" inputmode="numeric" value="250"></div>
+        <fieldset class="fm-fieldset fm-full">
+          <legend class="fm-legend">Main language of your services</legend>
+          <div class="fm-radios">
+            <label class="fm-row"><input class="fm-radio" type="radio" name="fl-lang" checked>Haitian Creole</label>
+            <label class="fm-row"><input class="fm-radio" type="radio" name="fl-lang">French</label>
+            <label class="fm-row"><input class="fm-radio" type="radio" name="fl-lang">Another language</label>
+          </div>
+        </fieldset>
+      </div>
+    </fieldset>
+
+    <fieldset class="fm-set">
+      <legend><span class="fm-set-lg">Agreement</span><span class="fm-set-ld">Read once, agree once. You can change email settings any time.</span></legend>
+      <div class="fm-cols">
+        <div class="fm-full">
+          <label class="fm-inline" style="padding-top:0"><input class="fm-check" id="fl-terms" type="checkbox" aria-invalid="true" aria-describedby="fl-terms-e"><span>I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a></span></label>
+          <p class="err fm-check-err" id="fl-terms-e"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>Please accept the Terms to continue.</p>
+          <label class="fm-inline"><input class="fm-check" type="checkbox" checked><span>Send me partner news and prayer updates <span class="hint">(optional)</span></span></label>
+        </div>
+        <div class="fm-actions fm-full">
+          <button class="btn btn-primary btn-lg" type="submit">Send application</button>
+          <button class="btn btn-secondary btn-lg" type="button">Save for later</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<script>
+(function(){
+  var story=document.getElementById('fl-story'),c=document.getElementById('fl-story-c'),max=500;
+  story.addEventListener('input',function(){
+    var n=story.value.length;
+    c.textContent=n+' / '+max+(n>=max*.9&&n<=max?' · '+(max-n)+' left':'');
+    c.className='fm-count-n'+(n>max?' fm-over':n>=max*.9?' fm-warn':'');
+    if(n>max){story.setAttribute('aria-invalid','true');}else{story.removeAttribute('aria-invalid');}
+  });
+  document.querySelectorAll('.fm-sum-list a').forEach(function(a){
+    a.addEventListener('click',function(e){e.preventDefault();var f=document.getElementById(a.getAttribute('href').slice(1));if(f)f.focus();});
+  });
+  document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();});});
+  document.getElementById('fl-form').addEventListener('submit',function(e){e.preventDefault();this.querySelector('.fm-sum').focus();});
+})();
+</script>
+</body></html>

@@ -1,0 +1,65 @@
+<!-- @dsCard group="Forms" height=620 subtitle="Field, calendar button, month popover" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;align-items:start}
+.c{display:flex;flex-direction:column;gap:24px}
+.s{display:flex;flex-direction:column;gap:8px}
+@media (max-width:767px){.g{grid-template-columns:minmax(0,1fr)} }
+</style></head><body>
+<div class="g">
+  <div class="c">
+    <div class="s">
+      <span class="fm-st">Closed · empty</span>
+      <div class="field"><label class="label" for="dp1">Preferred call date</label><div class="fm-adorn"><input class="input" id="dp1" type="text" inputmode="numeric" placeholder="MM / DD / YYYY" aria-describedby="dp1-h"><button class="fm-calbtn" type="button" aria-label="Choose date" aria-haspopup="dialog" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></button></div><p class="hint" id="dp1-h">Type a date or pick one from the calendar.</p></div>
+    </div>
+    <div class="s">
+      <span class="fm-st">Filled</span>
+      <div class="field"><label class="label" for="dp2">Preferred call date</label><div class="fm-adorn"><input class="input" id="dp2" type="text" value="Sunday, October 18, 2026"><button class="fm-calbtn" type="button" aria-label="Change date, October 18, 2026" aria-haspopup="dialog" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></button></div></div>
+    </div>
+    <div class="s">
+      <span class="fm-st">Error · past date</span>
+      <div class="field"><label class="label" for="dp3">Preferred call date</label><div class="fm-adorn"><input class="input" id="dp3" type="text" value="10 / 02 / 2026" aria-invalid="true" aria-describedby="dp3-e"><button class="fm-calbtn" type="button" aria-label="Choose date" aria-haspopup="dialog" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></button></div><p class="err" id="dp3-e"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>Choose today or a later date.</p></div>
+    </div>
+  </div>
+  <div class="s">
+    <span class="fm-st">Open · today Oct 14 · Oct 18 selected · click a day</span>
+    <div class="field"><span class="label">Preferred call date</span><div class="fm-adorn"><div class="input fm-focus" id="dp-val" style="display:flex;align-items:center">Sunday, October 18, 2026</div><span class="fm-calbtn fm-on" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span></div></div>
+    <div class="fm-pop" role="dialog" aria-label="Choose date">
+      <div class="fm-pop-head">
+        <button class="fm-nav" type="button" aria-label="Previous month" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="fm-pop-month" aria-live="polite">October 2026</span>
+        <button class="fm-nav" type="button" aria-label="Next month"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="fm-grid" role="grid" aria-label="October 2026" id="dp-grid">
+        <span class="fm-wd" aria-hidden="true">Su</span><span class="fm-wd" aria-hidden="true">Mo</span><span class="fm-wd" aria-hidden="true">Tu</span><span class="fm-wd" aria-hidden="true">We</span><span class="fm-wd" aria-hidden="true">Th</span><span class="fm-wd" aria-hidden="true">Fr</span><span class="fm-wd" aria-hidden="true">Sa</span>
+        <span></span><span></span><span></span><span></span>
+        <button class="fm-day" type="button" disabled>1</button><button class="fm-day" type="button" disabled>2</button><button class="fm-day" type="button" disabled>3</button>
+        <button class="fm-day" type="button" disabled>4</button><button class="fm-day" type="button" disabled>5</button><button class="fm-day" type="button" disabled>6</button><button class="fm-day" type="button" disabled>7</button><button class="fm-day" type="button" disabled>8</button><button class="fm-day" type="button" disabled>9</button><button class="fm-day" type="button" disabled>10</button>
+        <button class="fm-day" type="button" disabled>11</button><button class="fm-day" type="button" disabled>12</button><button class="fm-day" type="button" disabled>13</button><button class="fm-day fm-today" type="button" aria-current="date" aria-label="Today, October 14">14</button><button class="fm-day" type="button">15</button><button class="fm-day" type="button">16</button><button class="fm-day" type="button">17</button>
+        <button class="fm-day" type="button" aria-selected="true" aria-label="October 18, selected">18</button><button class="fm-day" type="button">19</button><button class="fm-day" type="button">20</button><button class="fm-day" type="button">21</button><button class="fm-day" type="button">22</button><button class="fm-day" type="button">23</button><button class="fm-day" type="button">24</button>
+        <button class="fm-day" type="button">25</button><button class="fm-day" type="button">26</button><button class="fm-day" type="button">27</button><button class="fm-day" type="button">28</button><button class="fm-day" type="button">29</button><button class="fm-day" type="button">30</button><button class="fm-day" type="button">31</button>
+      </div>
+      <div class="fm-pop-foot">
+        <button class="btn btn-ghost btn-sm" type="button" id="dp-today">Today</button>
+        <span class="fm-pop-actions"><button class="btn btn-secondary btn-sm" type="button">Cancel</button><button class="btn btn-primary btn-sm" type="button">Done</button></span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var names=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var grid=document.getElementById('dp-grid'),val=document.getElementById('dp-val');
+  function pick(n){
+    grid.querySelectorAll('.fm-day').forEach(function(d){
+      var on=+d.textContent===n;
+      if(on){d.setAttribute('aria-selected','true');}else{d.removeAttribute('aria-selected');}
+      if(!d.disabled){d.setAttribute('aria-label',(+d.textContent===14?'Today, ':'')+'October '+d.textContent+(on?', selected':''));}
+    });
+    val.textContent=names[(n+3)%7]+', October '+n+', 2026';
+  }
+  grid.addEventListener('click',function(e){var d=e.target.closest('.fm-day');if(d&&!d.disabled)pick(+d.textContent);});
+  document.getElementById('dp-today').addEventListener('click',function(){pick(14);});
+})();
+</script>
+</body></html>

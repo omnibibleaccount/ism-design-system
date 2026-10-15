@@ -1,0 +1,41 @@
+<!-- @dsCard group="Feedback" height=458 subtitle="Snackbars and placement" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:32px;align-items:start}
+.pv-col{display:flex;flex-direction:column;gap:16px}
+.pv-frames{display:grid;grid-template-columns:2fr 3fr;gap:20px}
+@media (max-width:760px){.pv,.pv-frames{grid-template-columns:1fr} }
+</style></head><body>
+<div class="pv">
+  <div class="pv-col">
+    <div class="fb-cell"><span class="fb-lbl">Success</span>
+      <div class="fb-toast" role="status"><span class="fb-tdot fb-tdot-ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><span class="fb-toast-msg">Verse saved to your library.</span><button class="fb-toast-x" type="button" aria-label="Dismiss"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">Error · with Retry</span>
+      <div class="fb-toast" role="alert"><span class="fb-tdot fb-tdot-err"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 6v8M12 18v.01"/></svg></span><span class="fb-toast-msg">Couldn’t send your message. Check your connection.</span><button class="fb-toast-act" type="button">Retry</button></div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">Info</span>
+      <div class="fb-toast" role="status"><span class="fb-tdot fb-tdot-info"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 11v7M12 6.5v.01"/></svg></span><span class="fb-toast-msg">Amharic Bible downloading for offline use.</span><button class="fb-toast-x" type="button" aria-label="Dismiss"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">With action · Undo</span>
+      <div class="fb-toast" role="status"><span class="fb-tdot fb-tdot-ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><span class="fb-toast-msg">Link copied</span><button class="fb-toast-act" type="button">Undo</button></div>
+    </div>
+  </div>
+  <div class="pv-frames">
+    <div class="fb-cell"><span class="fb-lbl">Mobile · bottom-center, 16px up</span>
+      <div class="fb-frame fb-frame-phone" style="height:340px">
+        <div class="fb-frame-bar"><img src="../../assets/logos/Logo%20Black.svg" alt=""></div>
+        <div class="fb-frame-body"><span class="fb-line" style="width:70%;height:12px"></span><span class="fb-line"></span><span class="fb-line"></span><span class="fb-line" style="width:80%"></span></div>
+        <div class="fb-toast fb-toast-sm" role="status"><span class="fb-tdot fb-tdot-ok"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><span class="fb-toast-msg">Link copied</span><button class="fb-toast-act" type="button">Undo</button></div>
+      </div>
+    </div>
+    <div class="fb-cell"><span class="fb-lbl">Desktop · bottom-right, 24px in</span>
+      <div class="fb-frame fb-frame-desk" style="height:340px">
+        <div class="fb-frame-bar"><img src="../../assets/logos/Logo%20Black.svg" alt=""><span style="display:flex;gap:14px"><span style="width:36px;height:6px;border-radius:4px;background:rgba(255,255,255,.4)"></span><span style="width:36px;height:6px;border-radius:4px;background:rgba(255,255,255,.4)"></span><span style="width:36px;height:6px;border-radius:4px;background:rgba(255,255,255,.4)"></span></span></div>
+        <div class="fb-frame-body" style="padding:24px"><span class="fb-line" style="width:50%;height:14px"></span><span class="fb-line" style="width:80%"></span><span class="fb-line" style="width:72%"></span></div>
+        <div class="fb-toast fb-toast-sm" role="status"><span class="fb-tdot fb-tdot-ok"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><span class="fb-toast-msg">Link copied</span><button class="fb-toast-act" type="button">Undo</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

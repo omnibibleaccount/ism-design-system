@@ -1,0 +1,56 @@
+<!-- @dsCard group="Data display" height=598 subtitle="Number, label, delta, sparkline" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:flex;flex-direction:column;gap:16px}
+.pv-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.pv-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+</style></head><body>
+<div class="pv">
+  <span class="overline">Light · sample figures</span>
+  <div class="pv-grid">
+    <div class="dp-stat">
+      <span class="dp-stat-n">500+</span><span class="dp-stat-l">Bible languages</span>
+      <div class="dp-stat-row"><span class="dp-delta dp-delta-up"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>+24 <span class="dp-delta-vs">this year</span></span></div>
+    </div>
+    <div class="dp-stat">
+      <span class="dp-stat-n">1.2M</span><span class="dp-stat-l">dot.Bible app installs</span>
+      <div class="dp-stat-row"><span class="dp-delta dp-delta-up"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>18% <span class="dp-delta-vs">vs last year</span></span>
+        <svg class="dp-spark" width="88" height="32" viewBox="0 0 120 36" preserveAspectRatio="none" fill="none" aria-hidden="true"><polyline points="2,30 18,28 34,24 50,25 66,18 82,14 98,10 116,5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="116" cy="5" r="3" fill="currentColor"/></svg></div>
+    </div>
+    <div class="dp-stat">
+      <span class="dp-stat-n">38</span><span class="dp-stat-l">HD Radio stations</span>
+      <div class="dp-stat-row"><span class="dp-delta dp-delta-up"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>+3 <span class="dp-delta-vs">this quarter</span></span>
+        <svg class="dp-spark" width="88" height="32" viewBox="0 0 120 36" preserveAspectRatio="none" fill="none" aria-hidden="true"><polyline points="2,26 18,26 34,22 50,22 66,20 82,16 98,16 116,10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="116" cy="10" r="3" fill="currentColor"/></svg></div>
+    </div>
+    <div class="dp-stat">
+      <span class="dp-stat-n">64</span><span class="dp-stat-l">Partner churches</span>
+      <div class="dp-stat-row"><span class="dp-delta dp-delta-down"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>−2 <span class="dp-delta-vs">this quarter</span></span>
+        <svg class="dp-spark dp-spark-flat" width="88" height="32" viewBox="0 0 120 36" preserveAspectRatio="none" fill="none" aria-hidden="true"><polyline points="2,12 18,10 34,8 50,9 66,8 82,12 98,14 116,17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="116" cy="17" r="3" fill="currentColor"/></svg></div>
+    </div>
+  </div>
+  <div class="dp-dk">
+    <div class="pv-grid">
+      <div class="dp-stat">
+        <span class="dp-stat-n">500+</span><span class="dp-stat-l">Bible languages</span>
+        <div class="dp-stat-row"><span class="dp-delta dp-delta-up"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>+24 <span class="dp-delta-vs">this year</span></span></div>
+      </div>
+      <div class="dp-stat">
+        <span class="dp-stat-n">1.2M</span><span class="dp-stat-l">dot.Bible app installs</span>
+        <div class="dp-stat-row"><span class="dp-delta dp-delta-up"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>18% <span class="dp-delta-vs">vs last year</span></span>
+          <svg class="dp-spark" width="88" height="32" viewBox="0 0 120 36" preserveAspectRatio="none" fill="none" aria-hidden="true"><polyline points="2,30 18,28 34,24 50,25 66,18 82,14 98,10 116,5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="116" cy="5" r="3" fill="currentColor"/></svg></div>
+      </div>
+      <div class="dp-stat">
+        <span class="dp-stat-n">38</span><span class="dp-stat-l">HD Radio stations</span>
+        <div class="dp-stat-row"><span class="dp-delta dp-delta-up"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>+3 <span class="dp-delta-vs">this quarter</span></span>
+          <svg class="dp-spark" width="88" height="32" viewBox="0 0 120 36" preserveAspectRatio="none" fill="none" aria-hidden="true"><polyline points="2,26 18,26 34,22 50,22 66,20 82,16 98,16 116,10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="116" cy="10" r="3" fill="currentColor"/></svg></div>
+      </div>
+      <div class="dp-stat">
+        <span class="dp-stat-n">64</span><span class="dp-stat-l">Partner churches</span>
+        <div class="dp-stat-row"><span class="dp-delta dp-delta-down"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>−2 <span class="dp-delta-vs">this quarter</span></span>
+          <svg class="dp-spark dp-spark-flat" width="88" height="32" viewBox="0 0 120 36" preserveAspectRatio="none" fill="none" aria-hidden="true"><polyline points="2,12 18,10 34,8 50,9 66,8 82,12 98,14 116,17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="116" cy="17" r="3" fill="currentColor"/></svg></div>
+      </div>
+    </div>
+  </div>
+  <span class="dp-sample">Installs, station, partner and delta figures are samples, not reported numbers.</span>
+</div>
+</body></html>

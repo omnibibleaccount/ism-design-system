@@ -1,0 +1,47 @@
+<!-- @dsCard group="Actions" height=554 subtitle="Eyebrow vs overline labels" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.pv-box{background:var(--white);border:1px solid var(--gray-200);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.pv-box.pv-dk{background:var(--black);border-color:rgba(255,255,255,.16);color:var(--white);overflow:hidden}
+.pv-h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:none;color:var(--gray-600);font-family:ui-monospace,Menlo,monospace}
+.pv-dk .pv-h,.pv-dk .pv-c{color:rgba(255,255,255,.6)}
+.pv-c{font-size:12px;color:var(--gray-600)}
+.pv-menu{display:flex;flex-direction:column;gap:2px;font-size:15px}
+.pv-menu span{padding:8px 0;border-bottom:1px solid var(--gray-100)}
+</style></head><body>
+<div class="pv">
+  <div class="pv-box">
+    <span class="pv-h">.eyebrow · light</span>
+    <span class="eyebrow">About ISM</span>
+    <h3 class="h3">Scripture for every heart language</h3>
+    <span class="pv-c">Use: above a section or card headline.</span>
+  </div>
+  <div class="pv-box sec-ink pv-dk">
+    <span class="pv-h">.eyebrow · inside .sec-ink</span>
+    <span class="eyebrow">Join the Mission</span>
+    <h3 class="h3">Become a partner</h3>
+    <span class="pv-c">Switches to --blue-on-dark automatically.</span>
+  </div>
+  <div class="pv-box">
+    <span class="pv-h">.overline · list header</span>
+    <span class="overline">Reading</span>
+    <div class="pv-menu"><span>Language</span><span>Downloaded Bibles</span><span>Daily verse</span></div>
+    <span class="pv-c">Use: above a list, menu, table or form group.</span>
+  </div>
+  <div class="pv-box sec-ink pv-dk">
+    <span class="pv-h">React · Badge (app tag)</span>
+    <div id="r-eb" style="display:flex;gap:10px;flex-wrap:wrap"></div>
+    <span class="pv-c">The in-app pill tag; on the website use .eyebrow.</span>
+  </div>
+</div>
+<script>
+(function(){
+  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('r-eb')).render(h(React.Fragment,null,
+    h(NS.Badge,{tone:'outlineDark'},'Get a sneak peek'),
+    h(NS.Badge,{tone:'accentText'},"You're almost done!")));
+})();
+</script>
+</body></html>

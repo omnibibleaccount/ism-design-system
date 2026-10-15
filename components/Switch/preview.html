@@ -1,0 +1,37 @@
+<!-- @dsCard group="Forms" height=380 subtitle="States and settings rows" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;align-items:start}
+.panel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg)}
+.c{display:flex;flex-direction:column;gap:8px}
+@media (max-width:767px){.g,.panel{grid-template-columns:minmax(0,1fr)} }
+</style></head><body>
+<div class="g">
+  <div class="panel">
+    <div class="c"><span class="fm-st">Off</span>
+      <div class="fm-swrow"><span class="fm-sw-text"><span class="fm-sw-t" id="s1">Daily verse</span><span class="fm-sw-d">A short reading each morning</span></span><button class="fm-switch" type="button" role="switch" aria-checked="false" aria-labelledby="s1"></button></div></div>
+    <div class="c"><span class="fm-st">On</span>
+      <div class="fm-swrow"><span class="fm-sw-text"><span class="fm-sw-t" id="s2">Daily verse</span><span class="fm-sw-d">A short reading each morning</span></span><button class="fm-switch" type="button" role="switch" aria-checked="true" aria-labelledby="s2"></button></div></div>
+    <div class="c"><span class="fm-st">Focus (keyboard)</span>
+      <div class="fm-swrow"><span class="fm-sw-text"><span class="fm-sw-t" id="s3">Daily verse</span><span class="fm-sw-d">A short reading each morning</span></span><button class="fm-switch fm-focus" type="button" role="switch" aria-checked="true" aria-labelledby="s3"></button></div></div>
+    <div class="c"><span class="fm-st">Disabled</span>
+      <div class="fm-swrow fm-disabled"><span class="fm-sw-text"><span class="fm-sw-t" id="s4">Daily verse</span><span class="fm-sw-d">Turn on notifications first</span></span><button class="fm-switch" type="button" role="switch" aria-checked="false" aria-labelledby="s4" disabled></button></div></div>
+  </div>
+  <div class="c">
+    <span class="fm-st">Settings rows · .fm-settings · dot.Bible app · live</span>
+    <div class="fm-settings">
+      <div class="fm-swrow"><span class="fm-sw-text"><span class="fm-sw-t" id="set1">Verse of the day</span><span class="fm-sw-d">Get one verse each morning at 7:00</span></span><button class="fm-switch" type="button" role="switch" aria-checked="true" aria-labelledby="set1"></button></div>
+      <div class="fm-swrow"><span class="fm-sw-text"><span class="fm-sw-t" id="set2">Download on Wi-Fi only</span><span class="fm-sw-d">Save mobile data when adding languages</span></span><button class="fm-switch" type="button" role="switch" aria-checked="true" aria-labelledby="set2"></button></div>
+      <div class="fm-swrow"><span class="fm-sw-text"><span class="fm-sw-t" id="set3">Play audio automatically</span><span class="fm-sw-d">Start the audio Bible when a chapter opens</span></span><button class="fm-switch" type="button" role="switch" aria-checked="false" aria-labelledby="set3"></button></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  document.querySelectorAll('.fm-settings .fm-swrow').forEach(function(row){
+    var sw=row.querySelector('.fm-switch');
+    row.addEventListener('click',function(){sw.setAttribute('aria-checked',sw.getAttribute('aria-checked')==='true'?'false':'true');if(document.activeElement!==sw)sw.focus({preventScroll:true});});
+  });
+})();
+</script>
+</body></html>

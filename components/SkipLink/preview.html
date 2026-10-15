@@ -1,0 +1,42 @@
+<!-- @dsCard group="Navigation" height=260 subtitle="Hidden, then shown on Tab" -->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+.pv{padding:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;background:var(--off-white)}
+.pv-sec{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pv-lbl{font-size:12px;font-weight:600;color:var(--gray-600);letter-spacing:.02em}
+.pv-frame{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--gray-200);background:var(--white)}
+.pv-frame .nv-mhdr .nv-logo img{height:26px}
+.pv-lines{padding:20px 16px;display:flex;flex-direction:column;gap:10px}
+.pv-line{height:10px;border-radius:999px;background:var(--gray-200)}
+</style>
+</head>
+<body>
+<div class="pv">
+  <div class="pv-sec">
+    <span class="pv-lbl">Page load · hidden off-screen · click in this frame and press Tab to see it</span>
+    <div class="pv-frame">
+      <a class="skip nv-skip" href="#pv-main">Skip to content</a>
+      <div class="nv-mhdr">
+        <a class="nv-logo" href="#" aria-label="International Scripture Ministries home"><img src="../../assets/logos/Logo%20Black.svg" alt="ISM"></a>
+        <a class="btn btn-light btn-sm nv-give" href="#">Give</a>
+      </div>
+      <main id="pv-main" tabindex="-1" class="pv-lines"><div class="pv-line" style="width:60%;height:14px;background:var(--gray-300)"></div><div class="pv-line" style="width:90%"></div><div class="pv-line" style="width:75%"></div></main>
+    </div>
+  </div>
+  <div class="pv-sec">
+    <span class="pv-lbl">First Tab press · white pill top-left 16px over the header · focus ring</span>
+    <div class="pv-frame">
+      <a class="skip nv-skip nv-shown" href="#pv-main2">Skip to content</a>
+      <div class="nv-mhdr">
+        <a class="nv-logo" href="#" aria-label="International Scripture Ministries home"><img src="../../assets/logos/Logo%20Black.svg" alt="ISM"></a>
+        <a class="btn btn-light btn-sm nv-give" href="#">Give</a>
+      </div>
+      <div id="pv-main2" class="pv-lines"><div class="pv-line" style="width:60%;height:14px;background:var(--gray-300)"></div><div class="pv-line" style="width:90%"></div><div class="pv-line" style="width:75%"></div></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
