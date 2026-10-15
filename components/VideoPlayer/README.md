@@ -12,7 +12,7 @@ Poster state:
 
 ```html
 <div class="mn-vid">
-  <img src="../../assets/imagery/print-photo-friends.jpg" alt="">
+  <img src="../../assets/imagery/photo-friends.jpg" alt="">
   <div class="mn-scrim"></div>
   <button class="mn-playbtn" type="button" aria-label="Play video: Reading John together, across three countries, 4 minutes 12 seconds"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg></button>
   <span class="mn-vchip mn-vchip-l"><span class="mn-cc">CC</span>12 languages</span>

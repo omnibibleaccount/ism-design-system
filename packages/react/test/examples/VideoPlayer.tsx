@@ -4,7 +4,7 @@ export default function Example() {
   return (
     <>
       <VideoPlayer
-        posterSrc="/ism/assets/imagery/print-photo-friends.jpg"
+        posterSrc="/ism/assets/imagery/photo-friends.jpg"
         title="Reading John together, across three countries"
         summary="Friends in Kenya, Peru and the Philippines meet on a video call to read John 3 in their own languages."
         duration={252}
@@ -12,7 +12,7 @@ export default function Example() {
         captionsChip="12 languages"
       />
       <VideoPlayer
-        posterSrc="/ism/assets/imagery/print-photo-friends.jpg"
+        posterSrc="/ism/assets/imagery/photo-friends.jpg"
         title="Reading John together, across three countries"
         duration={252}
         defaultState="playing"
