@@ -1,0 +1,409 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "BookPicker",
+  "title": "BookPicker",
+  "group": "Scripture",
+  "version": "3.0.0",
+  "summary": "The book, chapter and verse chooser that opens from the reader's \"John 3 ⌄\" button: a two-pane panel on desktop and a bottom sheet with steps on mobile.",
+  "whenToUse": [
+    "Use to move around Scripture inside ReadingView and the dot.Bible app."
+  ],
+  "whenNotToUse": [
+    "Do not use to choose a language; use LanguageRow or a Combobox.",
+    "Do not use as a page-level table of contents for ISM content."
+  ],
+  "anatomy": {
+    "description": "Desktop panel: header (testament segmented control + breadcrumb), then books list on the left and chapter grid on the right. Mobile sheet (verse step):",
+    "markup": null
+  },
+  "react": {
+    "import": "import { BookPicker } from '@ism/ui'",
+    "source": "packages/react/src/components/BookPicker.tsx",
+    "exports": [
+      "BookPicker",
+      "BookPickerBook",
+      "BookPickerLabels",
+      "BookPickerStep",
+      "BookPickerTestament",
+      "BookPickerValue",
+      "BookPickerVariant"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue' | 'onSelect'>"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "BookPickerVariant",
+        "required": false,
+        "default": "\"panel\"",
+        "description": "`panel`: two-pane desktop popover. `sheet`: mobile bottom sheet with Book, Chapter and Verse steps."
+      },
+      {
+        "name": "testaments",
+        "type": "BookPickerTestament[]",
+        "required": true,
+        "default": null,
+        "description": "Testaments with their books."
+      },
+      {
+        "name": "value",
+        "type": "BookPickerValue",
+        "required": false,
+        "default": null,
+        "description": "Controlled selection."
+      },
+      {
+        "name": "defaultValue",
+        "type": "BookPickerValue",
+        "required": false,
+        "default": null,
+        "description": "Initial selection when uncontrolled."
+      },
+      {
+        "name": "onChange",
+        "type": "(value: BookPickerValue) => void",
+        "required": false,
+        "default": null,
+        "description": "Called whenever the selection changes (book, chapter or verse)."
+      },
+      {
+        "name": "onSelect",
+        "type": "(value: BookPickerValue) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the reader commits a destination: a chapter in the panel, or the confirm button in the sheet."
+      },
+      {
+        "name": "onClose",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called on Esc, the Close button, or a click outside. The text does not change."
+      },
+      {
+        "name": "readChapters",
+        "type": "Record<string, number[]>",
+        "required": false,
+        "default": null,
+        "description": "Chapters already read, by book id. Shown quietly, never coloured."
+      },
+      {
+        "name": "getVerseCount",
+        "type": "(book: string, chapter: number) => number",
+        "required": false,
+        "default": null,
+        "description": "Returns the number of verses in a chapter. When given, the sheet adds the Verse step."
+      },
+      {
+        "name": "labels",
+        "type": "BookPickerLabels",
+        "required": true,
+        "default": null,
+        "description": "Text and accessible names. Visible strings are supplied by you so they can be translated."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { BookPicker } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/BookPicker.tsx",
+    "exports": [
+      "BookPicker",
+      "BookPickerBook",
+      "BookPickerLabels",
+      "BookPickerStep",
+      "BookPickerTestament"
+    ],
+    "props": [
+      {
+        "name": "books",
+        "type": "BookPickerBook[]",
+        "required": true,
+        "default": null,
+        "description": "All books, in canon order."
+      },
+      {
+        "name": "variant",
+        "type": "'panel' | 'sheet'",
+        "required": false,
+        "default": "\"panel\"",
+        "description": "`panel` is the two-pane desktop/tablet popover; `sheet` is the three-step mobile sheet content. Under 768dp the panel stacks."
+      },
+      {
+        "name": "testament",
+        "type": "BookPickerTestament",
+        "required": true,
+        "default": null,
+        "description": "Active testament tab."
+      },
+      {
+        "name": "onTestamentChange",
+        "type": "(testament: BookPickerTestament) => void",
+        "required": true,
+        "default": null,
+        "description": "Called when a testament tab is chosen."
+      },
+      {
+        "name": "bookId",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Selected book id."
+      },
+      {
+        "name": "onSelectBook",
+        "type": "(book: BookPickerBook) => void",
+        "required": true,
+        "default": null,
+        "description": "Called when a book is chosen; loads its chapters."
+      },
+      {
+        "name": "chapter",
+        "type": "number",
+        "required": false,
+        "default": null,
+        "description": "Current chapter of the selected book (marked current)."
+      },
+      {
+        "name": "onSelectChapter",
+        "type": "(chapter: number) => void",
+        "required": true,
+        "default": null,
+        "description": "Called when a chapter is chosen. In the sheet this moves to the verse step when `verseCount` is set."
+      },
+      {
+        "name": "readChapters",
+        "type": "number[]",
+        "required": false,
+        "default": null,
+        "description": "Chapters already read in the selected book; shown quiet."
+      },
+      {
+        "name": "step",
+        "type": "BookPickerStep",
+        "required": false,
+        "default": "\"book\"",
+        "description": "Sheet only: active step."
+      },
+      {
+        "name": "onStepChange",
+        "type": "(step: BookPickerStep) => void",
+        "required": false,
+        "default": null,
+        "description": "Sheet only: called when a step tab or Back is used."
+      },
+      {
+        "name": "verseCount",
+        "type": "number",
+        "required": false,
+        "default": null,
+        "description": "Sheet only: number of verses in the chosen chapter (verse step)."
+      },
+      {
+        "name": "verse",
+        "type": "number",
+        "required": false,
+        "default": null,
+        "description": "Sheet only: picked verse."
+      },
+      {
+        "name": "onSelectVerse",
+        "type": "(verse: number) => void",
+        "required": false,
+        "default": null,
+        "description": "Sheet only: called when a verse is picked."
+      },
+      {
+        "name": "confirmLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Sheet only: label of the confirm button, naming the destination, e.g. \"Go to John 3:16\". Shown on the verse step."
+      },
+      {
+        "name": "onConfirm",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Sheet only: called by the confirm button."
+      },
+      {
+        "name": "onClose",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Close button (sheet) action. Hidden when omitted."
+      },
+      {
+        "name": "sheetTitle",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Header title in the sheet, e.g. \"John 3\"."
+      },
+      {
+        "name": "chapterCaption",
+        "type": "(book: BookPickerBook) => string",
+        "required": false,
+        "default": null,
+        "description": "Text of the chapter grid caption, e.g. \"John · 21 chapters\". Defaults to name and count."
+      },
+      {
+        "name": "chapterCellLabel",
+        "type": "(book: BookPickerBook, chapter: number) => string",
+        "required": false,
+        "default": null,
+        "description": "Accessible name of a chapter cell, e.g. \"John chapter 3\"."
+      },
+      {
+        "name": "verseCellLabel",
+        "type": "(verse: number) => string",
+        "required": false,
+        "default": null,
+        "description": "Accessible name of a verse cell, e.g. \"Verse 16\"."
+      },
+      {
+        "name": "breadcrumb",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Breadcrumb for the panel header, e.g. `<><Text>John</Text>...</>`. Optional."
+      },
+      {
+        "name": "labels",
+        "type": "BookPickerLabels",
+        "required": false,
+        "default": null,
+        "description": "Visible and accessible strings; override for translation."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn",
+    "btn-primary",
+    "is-read",
+    "k-hover",
+    "k-on",
+    "k-read",
+    "n",
+    "sx-book",
+    "sx-books",
+    "sx-chapters",
+    "sx-crumb",
+    "sx-grid",
+    "sx-handle",
+    "sx-ibtn",
+    "sx-lbl",
+    "sx-legend",
+    "sx-num",
+    "sx-picker",
+    "sx-picker-body",
+    "sx-picker-head",
+    "sx-scrim",
+    "sx-seg",
+    "sx-seg-full",
+    "sx-sel",
+    "sx-sheet",
+    "sx-sheet-head"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Desktop panel `.sx-picker` (white, `--radius-lg`, `--shadow-overlay`); books column 240px, scrolls at 384px.",
+    "Mobile sheet `.sx-sheet` over a `.sx-scrim`, with grab handle and a three-step `.sx-seg-full`.",
+    "Book row `.sx-book`: default, hover (`--gray-100`), selected (`aria-selected=\"true\"`: `--blue-tint`, `--horizon-blue-dim`, 600).",
+    "Number cell `.sx-num` (48px tall, 6 per row): default, hover, read (`.is-read`, `--off-white`, muted), current/picked (`aria-current=\"true\"` or `aria-pressed=\"true\"`: solid Horizon Blue, white text).",
+    "Testament and step tabs (`.sx-seg`): selected tab is `--charcoal-900` with white text.",
+    "Under 768px the panel stacks: books above chapters, books list 220px tall."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "The trigger is a `.sx-sel` in the reader bar with a caret ⌄, because the picker opens here.",
+    "The breadcrumb uses › between steps, because each step drills into the next screen.",
+    "Show the chapter count beside each book (`.n`) and above the grid (\"John · 21 chapters\").",
+    "Picking a book loads its chapters; picking a chapter goes to the text (verse step is optional). On mobile, the verse step ends with one full-width `.btn-primary` \"Go to John 3:16\".",
+    "Only the current chapter or picked verse is Horizon Blue. Read chapters are quiet, never coloured.",
+    "Esc, the Close button or a click outside closes without changing the text.",
+    "Every row and cell is at least 44px tall."
+  ],
+  "do": [
+    "Use to move around Scripture inside ReadingView and the dot.Bible app.",
+    "The trigger is a `.sx-sel` in the reader bar with a caret ⌄, because the picker opens here.",
+    "The breadcrumb uses › between steps, because each step drills into the next screen.",
+    "Show the chapter count beside each book (`.n`) and above the grid (\"John · 21 chapters\").",
+    "Picking a book loads its chapters; picking a chapter goes to the text (verse step is optional). On mobile, the verse step ends with one full-width `.btn-primary` \"Go to John 3:16\".",
+    "Only the current chapter or picked verse is Horizon Blue. Read chapters are quiet, never coloured.",
+    "Esc, the Close button or a click outside closes without changing the text.",
+    "Every row and cell is at least 44px tall."
+  ],
+  "dont": [
+    "Do not use to choose a language; use LanguageRow or a Combobox.",
+    "Do not use as a page-level table of contents for ISM content."
+  ],
+  "accessibility": [
+    "The panel and sheet are `role=\"dialog\"` with an `aria-label`; move focus into them on open and back to the trigger on close.",
+    "Books are a `listbox` of `option`s with `aria-selected`; testament and step switches are `tablist`/`tab`.",
+    "Number cells have full labels (\"John chapter 3\", \"Verse 16\"); mark the current one with `aria-current=\"true\"`.",
+    "The legend explains colour; never rely on colour alone (current is also bold).",
+    "The sheet's handle is `aria-hidden`; the Back and Close buttons carry the actions."
+  ],
+  "content": [
+    "Book names in the reader's language, full form (\"1 Corinthians\", not \"1 Cor\").",
+    "Tab labels: \"Old Testament\" / \"New Testament\"; steps \"Book\", \"Chapter\", \"Verse\".",
+    "Confirm button names the destination: \"Go to John 3:16\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"sx-picker\" role=\"dialog\" aria-label=\"Choose a book and chapter\">\n  <div class=\"sx-picker-head\">\n    <div class=\"sx-seg\" role=\"tablist\" aria-label=\"Testament\">\n      <button type=\"button\" role=\"tab\" aria-selected=\"false\">Old Testament</button>\n      <button type=\"button\" role=\"tab\" aria-selected=\"true\">New Testament</button>\n    </div>\n    <div class=\"sx-crumb\" aria-label=\"Current selection\"><b>John</b><span aria-hidden=\"true\">›</span><b>3</b><span aria-hidden=\"true\">›</span><span>Verse</span></div>\n  </div>\n  <div class=\"sx-picker-body\">\n    <div class=\"sx-books\" role=\"listbox\" aria-label=\"Books\">\n      <button type=\"button\" class=\"sx-book\" role=\"option\" aria-selected=\"true\"><span>John</span><span class=\"n\">21</span></button>\n    </div>\n    <div class=\"sx-chapters\">\n      <span class=\"sx-lbl\">John · 21 chapters</span>\n      <div class=\"sx-grid\" role=\"group\" aria-label=\"Chapters\">\n        <button type=\"button\" class=\"sx-num is-read\" aria-label=\"John chapter 1\">1</button>\n        <button type=\"button\" class=\"sx-num\" aria-current=\"true\" aria-label=\"John chapter 3\">3</button>\n      </div>\n      <div class=\"sx-legend\"><span><i class=\"k-on\"></i>Current</span><span><i class=\"k-hover\"></i>Hover</span><span><i class=\"k-read\"></i>Read</span></div>\n    </div>\n  </div>\n</div>",
+      "<div class=\"sx-sheet\" role=\"dialog\" aria-label=\"Choose a verse\">\n  <div class=\"sx-handle\" aria-hidden=\"true\"></div>\n  <div class=\"sx-sheet-head\">\n    <button type=\"button\" class=\"sx-ibtn\" aria-label=\"Back to chapters\">…</button>\n    <span>John 3</span>\n    <button type=\"button\" class=\"sx-ibtn\" aria-label=\"Close\">…</button>\n  </div>\n  <div class=\"sx-seg sx-seg-full\" role=\"tablist\" aria-label=\"Step\">\n    <button type=\"button\" role=\"tab\" aria-selected=\"false\">Book</button>\n    <button type=\"button\" role=\"tab\" aria-selected=\"false\">Chapter</button>\n    <button type=\"button\" role=\"tab\" aria-selected=\"true\">Verse</button>\n  </div>\n  <div class=\"sx-grid\" role=\"group\" aria-label=\"Verses\">\n    <button type=\"button\" class=\"sx-num\" aria-pressed=\"true\" aria-label=\"Verse 16\">16</button>\n  </div>\n  <button type=\"button\" class=\"btn btn-primary\">Go to John 3:16</button>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"sx-picker\" role=\"dialog\" aria-label=\"Choose a book and chapter\">\n  <div class=\"sx-picker-head\">\n    <div class=\"sx-seg\" role=\"tablist\" aria-label=\"Testament\">\n      <button type=\"button\" role=\"tab\" aria-selected=\"false\">Old Testament</button>\n      <button type=\"button\" role=\"tab\" aria-selected=\"true\">New Testament</button>\n    </div>\n    <div class=\"sx-crumb\" aria-label=\"Current selection\"><b>John</b><span aria-hidden=\"true\">›</span><b>3</b><span aria-hidden=\"true\">›</span><span>Verse</span></div>\n  </div>\n  <div class=\"sx-picker-body\">\n    <div class=\"sx-books\" role=\"listbox\" aria-label=\"Books\">\n      <button type=\"button\" class=\"sx-book\" role=\"option\" aria-selected=\"true\"><span>John</span><span class=\"n\">21</span></button>\n    </div>\n    <div class=\"sx-chapters\">\n      <span class=\"sx-lbl\">John · 21 chapters</span>\n      <div class=\"sx-grid\" role=\"group\" aria-label=\"Chapters\">\n        <button type=\"button\" class=\"sx-num is-read\" aria-label=\"John chapter 1\">1</button>\n        <button type=\"button\" class=\"sx-num\" aria-current=\"true\" aria-label=\"John chapter 3\">3</button>\n      </div>\n      <div class=\"sx-legend\"><span><i class=\"k-on\"></i>Current</span><span><i class=\"k-hover\"></i>Hover</span><span><i class=\"k-read\"></i>Read</span></div>\n    </div>\n  </div>\n</div>"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"sx-sheet\" role=\"dialog\" aria-label=\"Choose a verse\">\n  <div class=\"sx-handle\" aria-hidden=\"true\"></div>\n  <div class=\"sx-sheet-head\">\n    <button type=\"button\" class=\"sx-ibtn\" aria-label=\"Back to chapters\">…</button>\n    <span>John 3</span>\n    <button type=\"button\" class=\"sx-ibtn\" aria-label=\"Close\">…</button>\n  </div>\n  <div class=\"sx-seg sx-seg-full\" role=\"tablist\" aria-label=\"Step\">\n    <button type=\"button\" role=\"tab\" aria-selected=\"false\">Book</button>\n    <button type=\"button\" role=\"tab\" aria-selected=\"false\">Chapter</button>\n    <button type=\"button\" role=\"tab\" aria-selected=\"true\">Verse</button>\n  </div>\n  <div class=\"sx-grid\" role=\"group\" aria-label=\"Verses\">\n    <button type=\"button\" class=\"sx-num\" aria-pressed=\"true\" aria-label=\"Verse 16\">16</button>\n  </div>\n  <button type=\"button\" class=\"btn btn-primary\">Go to John 3:16</button>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/BookPicker/README.md",
+    "spec": "components/BookPicker/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

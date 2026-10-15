@@ -1,0 +1,200 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "PartnerCard",
+  "title": "PartnerCard",
+  "group": "Ministry",
+  "version": "3.0.0",
+  "summary": "A linked card for one ISM partner: an initials tile, name, location, partner-type badges and a ↗ that fills black on hover.",
+  "whenToUse": [
+    "Use in partner directories and on Global Bible Network region pages.",
+    "Use in grids of three or four, all with the same parts."
+  ],
+  "whenNotToUse": [
+    "Do not use for radio stations with live status; use StationCard.",
+    "Do not use for people or staff profiles."
+  ],
+  "anatomy": {
+    "description": "The whole card is one link: head (initials + ↗), name and location, badges.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { PartnerCard } from '@ism/ui'",
+    "source": "packages/react/src/components/PartnerCard.tsx",
+    "exports": [
+      "PartnerCard",
+      "PartnerTone"
+    ],
+    "extends": [
+      "AnchorHTMLAttributes<HTMLAnchorElement>"
+    ],
+    "props": [
+      {
+        "name": "href",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "URL of the partner's page. The whole card is the link."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Partner's official name, no abbreviations."
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "\"City, Country\". One line only."
+      },
+      {
+        "name": "badges",
+        "type": "string[]",
+        "required": false,
+        "default": null,
+        "description": "One or two partner-type badges, e.g. \"Church partner\"."
+      },
+      {
+        "name": "initials",
+        "type": "string",
+        "required": false,
+        "default": "derived from the first two words of `name`",
+        "description": "Two-letter initials."
+      },
+      {
+        "name": "tone",
+        "type": "PartnerTone",
+        "required": false,
+        "default": "\"dark\"",
+        "description": "Initials tile colour; rotate so neighbours differ."
+      },
+      {
+        "name": "external",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "The link leaves ISM for the partner's own site: adds the hidden text."
+      },
+      {
+        "name": "externalLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"(opens partner site)\"",
+        "description": "Hidden text added when `external`."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "badge",
+    "badge-partner",
+    "card",
+    "card-flat",
+    "mn-go",
+    "mn-initials",
+    "mn-meta",
+    "mn-meta-sm",
+    "mn-partner",
+    "mn-partner-badges",
+    "mn-partner-head",
+    "mn-partner-name"
+  ],
+  "variants": [
+    [
+      {
+        "class": ".mn-initials",
+        "colours": "--charcoal-900 / white"
+      },
+      {
+        "class": ".mn-initials mn-initials-blue",
+        "colours": "--blue-tint / --horizon-blue-dim"
+      },
+      {
+        "class": ".mn-initials mn-initials-violet",
+        "colours": "--violet-tint / --violet-ink"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "Initials tile (56px, `--radius-md`), rotate colours so neighbours differ: States: default; hover (`--shadow-lift`, darker border, `.mn-go` fills black with a white ↗); focus (2px Horizon Blue outline + `--shadow-focus`). Badges: one or two `.badge badge-partner` (Church partner, Translation partner, Radio partner)."
+  ],
+  "states": {
+    "documented": "default; hover (`--shadow-lift`, darker border, `.mn-go` fills black with a white ↗); focus (2px Horizon Blue outline + `--shadow-focus`).",
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "The card opens the partner's page, so it always shows ↗ in the 36px `.mn-go` circle. The whole card is the tap target.",
+    "Use initials (two letters) unless the partner supplied a logo cleared for use.",
+    "Name 18px 600; location 14px with a pin icon. One location line only.",
+    "Two badges at most; use `.badge-partner`, never status colours.",
+    "No buttons or extra links inside the card.",
+    "No Horizon Blue fill on the card; blue is used only for the focus ring and the blue initials variant."
+  ],
+  "do": [
+    "Use in partner directories and on Global Bible Network region pages.",
+    "Use in grids of three or four, all with the same parts.",
+    "The card opens the partner's page, so it always shows ↗ in the 36px `.mn-go` circle. The whole card is the tap target.",
+    "Use initials (two letters) unless the partner supplied a logo cleared for use.",
+    "Name 18px 600; location 14px with a pin icon. One location line only.",
+    "Two badges at most; use `.badge-partner`, never status colours."
+  ],
+  "dont": [
+    "Do not use for radio stations with live status; use StationCard.",
+    "Do not use for people or staff profiles.",
+    "No buttons or extra links inside the card.",
+    "No Horizon Blue fill on the card; blue is used only for the focus ring and the blue initials variant."
+  ],
+  "accessibility": [
+    "The link's accessible name is the card text (name, location, badges); the initials and ↗ are `aria-hidden=\"true\"`.",
+    "If the link opens an external partner site, add \"(opens partner site)\" as visually hidden text.",
+    "Pin icons are `aria-hidden=\"true\"`.",
+    "Keep focus visible on the whole card."
+  ],
+  "content": [
+    "Partner's official name, no abbreviations (\"Hope Translation Society\").",
+    "Location: \"City, Country\".",
+    "Partner names in the preview are samples."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<a class=\"card card-flat mn-partner\" href=\"/partners/grace-community-church\">\n  <div class=\"mn-partner-head\"><span class=\"mn-initials\" aria-hidden=\"true\">GC</span><span class=\"mn-go\" aria-hidden=\"true\">↗</span></div>\n  <div>\n    <p class=\"mn-partner-name\">Grace Community Church</p>\n    <p class=\"mn-meta mn-meta-sm\"><span><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">…</svg>Lagos, Nigeria</span></p>\n  </div>\n  <div class=\"mn-partner-badges\"><span class=\"badge badge-partner\">Church partner</span></div>\n</a>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<a class=\"card card-flat mn-partner\" href=\"/partners/grace-community-church\">\n  <div class=\"mn-partner-head\"><span class=\"mn-initials\" aria-hidden=\"true\">GC</span><span class=\"mn-go\" aria-hidden=\"true\">↗</span></div>\n  <div>\n    <p class=\"mn-partner-name\">Grace Community Church</p>\n    <p class=\"mn-meta mn-meta-sm\"><span><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">…</svg>Lagos, Nigeria</span></p>\n  </div>\n  <div class=\"mn-partner-badges\"><span class=\"badge badge-partner\">Church partner</span></div>\n</a>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/PartnerCard/README.md",
+    "spec": "components/PartnerCard/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

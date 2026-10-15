@@ -1,0 +1,57 @@
+<!-- @dsCard group="Data display" height=300 subtitle="Gradient progress line" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.pv-box{background:var(--white);border:1px solid var(--gray-200);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.pv-dk{background:var(--black);border-color:rgba(255,255,255,.16);color:var(--white)}
+.pv-h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-600)}
+.pv-dk .pv-h,.pv-dk .pv-c{color:rgba(255,255,255,.6)}
+.pv-c{font-size:12px;color:var(--gray-600);font-family:ui-monospace,Menlo,monospace}
+.pv-item{display:flex;flex-direction:column;gap:8px}
+.pv-top{display:flex;justify-content:space-between;font-size:14px}
+.pv-top span+span{color:var(--gray-600)}
+.pv-dk .pv-top span+span{color:rgba(255,255,255,.6)}
+</style></head><body>
+<div class="pv">
+  <div class="pv-box pv-dk">
+    <span class="pv-h">React · AccentBar</span>
+    <div id="r-bars" style="display:flex;flex-direction:column;gap:18px"></div>
+    <span class="pv-c">progress 0.15 · 0.4 · 0.6 (width 280) · 1</span>
+  </div>
+  <div class="pv-box pv-dk">
+    <span class="pv-h">HTML / CSS · on dark</span>
+    <div class="pv-item">
+      <div class="pv-top"><span>John 3:17–4:54</span><span>9:12 left</span></div>
+      <div class="cr-accentbar" role="progressbar" aria-label="John 3 audio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60"><span class="cr-accentbar-fill" style="width:60%"></span></div>
+    </div>
+    <div class="pv-item">
+      <div class="pv-top"><span>Psalm 23</span><span>Done</span></div>
+      <div class="cr-accentbar" role="progressbar" aria-label="Psalm 23 audio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><span class="cr-accentbar-fill" style="width:100%"></span></div>
+    </div>
+    <span class="pv-c">.cr-accentbar › .cr-accentbar-fill</span>
+  </div>
+  <div class="pv-box">
+    <span class="pv-h">HTML / CSS · on light</span>
+    <div class="pv-item">
+      <div class="pv-top"><span>Reading plan: Gospel of John</span><span>Day 4 of 21</span></div>
+      <div class="cr-accentbar cr-accentbar-light" role="progressbar" aria-label="Reading plan" aria-valuemin="0" aria-valuemax="100" aria-valuenow="19"><span class="cr-accentbar-fill" style="width:19%"></span></div>
+    </div>
+    <div class="pv-item">
+      <div class="pv-top"><span>Not started</span><span>0%</span></div>
+      <div class="cr-accentbar cr-accentbar-light" role="progressbar" aria-label="Not started" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="cr-accentbar-fill" style="width:0%"></span></div>
+    </div>
+    <span class="pv-c">.cr-accentbar-light</span>
+  </div>
+</div>
+<script>
+(function(){
+  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('r-bars')).render(h(React.Fragment,null,
+    h(NS.AccentBar,{progress:0.15}),
+    h(NS.AccentBar,{progress:0.4}),
+    h(NS.AccentBar,{progress:0.6,width:280}),
+    h(NS.AccentBar,{progress:1})));
+})();
+</script>
+</body></html>

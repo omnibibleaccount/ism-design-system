@@ -1,0 +1,258 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "StationCard",
+  "title": "StationCard",
+  "group": "Ministry",
+  "version": "3.0.0",
+  "summary": "A partner radio station card: photo, call sign and frequency, an On air or Off air pill, city and languages, what is playing now, and one action.",
+  "whenToUse": [
+    "Use on ISM Radio and Global Bible Network pages to list partner and HD Radio stations.",
+    "Use in a grid of 2–4 cards, or one card beside a NetworkMap selection."
+  ],
+  "whenNotToUse": [
+    "Do not use for audio Bible chapters; use AudioPlayer.",
+    "Do not use for a partner organisation without a station; use PartnerCard."
+  ],
+  "anatomy": {
+    "description": "Image (150px) → body: head (name, frequency, status pill) → meta rows → now line → action.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { StationCard } from '@ism/ui'",
+    "source": "packages/react/src/components/StationCard.tsx",
+    "exports": [
+      "StationCard",
+      "StationStatus"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'title'>"
+    ],
+    "props": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Call sign or station name as the station uses it, e.g. \"KISM\"."
+      },
+      {
+        "name": "frequency",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Frequency line in tabular numbers, e.g. \"98.7 FM · HD2\"."
+      },
+      {
+        "name": "status",
+        "type": "StationStatus",
+        "required": false,
+        "default": "\"onAir\"",
+        "description": "`onAir` shows the pulsing live pill; `offAir` greys the photo and the pill."
+      },
+      {
+        "name": "onAirLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"On air\"",
+        "description": "Pill text for on air."
+      },
+      {
+        "name": "offAirLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Off air\"",
+        "description": "Pill text for off air."
+      },
+      {
+        "name": "imageSrc",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Photo URL, e.g. `/ism/assets/imagery/deck-photo-headphones.jpg`."
+      },
+      {
+        "name": "imageAlt",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Real alt text for the photo, e.g. \"A listener wearing headphones\"."
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Location row, e.g. \"Nairobi, Kenya\"."
+      },
+      {
+        "name": "languages",
+        "type": "string[]",
+        "required": false,
+        "default": null,
+        "description": "Languages row, joined with \" · \" by the component."
+      },
+      {
+        "name": "nowLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Label before the now-playing text, e.g. \"Now:\". Omit on off-air cards."
+      },
+      {
+        "name": "now",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "What is playing now (on air) or when the station returns (off air, in local time)."
+      },
+      {
+        "name": "actionLabel",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Action label, e.g. \"Listen live\" or \"Past broadcasts\"."
+      },
+      {
+        "name": "actionHref",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Action URL. When omitted a `<button>` is rendered and `onAction` is used."
+      },
+      {
+        "name": "onAction",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Click handler for the action (use with a button, or to start audio on press; never autoplay)."
+      },
+      {
+        "name": "primaryAction",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Use the Horizon Blue primary button. Only for the one featured on-air station; others use the\nsecondary button. Off-air cards always use secondary and show ↗."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn",
+    "btn-primary",
+    "btn-secondary",
+    "card",
+    "card-flat",
+    "mn-live",
+    "mn-meta",
+    "mn-offair",
+    "mn-station",
+    "mn-station-body",
+    "mn-station-freq",
+    "mn-station-head",
+    "mn-station-img",
+    "mn-station-name",
+    "mn-station-now",
+    "photo"
+  ],
+  "variants": [
+    [
+      {
+        "state": "On air",
+        "pill": ".mn-live (pulsing --live dot)",
+        "image": "full colour",
+        "action": ".btn btn-primary \"Listen live\""
+      },
+      {
+        "state": "Off air",
+        "pill": ".mn-offair (grey dot)",
+        "image": ".mn-station-img mn-is-off (greyscale, 85%)",
+        "action": ".btn btn-secondary \"Past broadcasts ↗\""
+      }
+    ]
+  ],
+  "variantNotes": [
+    "The card itself uses the `.card` hover and focus from the base layer."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Live is the `--live` red dot only. Never colour the card, the name or the button red.",
+    "The pulse stops under `prefers-reduced-motion`.",
+    "Only on-air cards get the Horizon Blue \"Listen live\" button. In a grid of several on-air cards, keep it to the one featured station and use `.btn-secondary` for the rest.",
+    "Name 24px 600; frequency in tabular numbers (\"98.7 FM · HD2\").",
+    "Meta rows: location, then languages separated by \" · \". Two rows at most.",
+    "Off-air cards say when the station returns, in local time.",
+    "Past broadcasts open another page, so they carry ↗.",
+    "Card padding 22px 24px 24px; image 150px tall, `object-fit: cover`."
+  ],
+  "do": [
+    "Use on ISM Radio and Global Bible Network pages to list partner and HD Radio stations.",
+    "Use in a grid of 2–4 cards, or one card beside a NetworkMap selection.",
+    "Live is the `--live` red dot only. Never colour the card, the name or the button red.",
+    "The pulse stops under `prefers-reduced-motion`.",
+    "Only on-air cards get the Horizon Blue \"Listen live\" button. In a grid of several on-air cards, keep it to the one featured station and use `.btn-secondary` for the rest.",
+    "Name 24px 600; frequency in tabular numbers (\"98.7 FM · HD2\").",
+    "Meta rows: location, then languages separated by \" · \". Two rows at most.",
+    "Off-air cards say when the station returns, in local time.",
+    "Past broadcasts open another page, so they carry ↗.",
+    "Card padding 22px 24px 24px; image 150px tall, `object-fit: cover`."
+  ],
+  "dont": [
+    "Do not use for audio Bible chapters; use AudioPlayer.",
+    "Do not use for a partner organisation without a station; use PartnerCard."
+  ],
+  "accessibility": [
+    "The status pill has visible text (\"On air\" / \"Off air\"); the dot is `aria-hidden`.",
+    "The station photo has real alt text; meta icons are `aria-hidden=\"true\"`.",
+    "\"Listen live\" starts audio only on press; never autoplay.",
+    "Each card is an `<article>`; if the grid has a heading, make card names part of the outline as needed."
+  ],
+  "content": [
+    "Call sign or station name as the station uses it (\"KISM\", \"Radio Vida\").",
+    "Now line: \"Now: The Gospel of John, read aloud\".",
+    "Off air: \"Back on air at 6:00 am local time\".",
+    "Station names, frequencies and schedules shown in the preview are samples."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<article class=\"card card-flat mn-station\">\n  <div class=\"mn-station-img\"><img class=\"photo\" src=\"../../assets/imagery/deck-photo-headphones.jpg\" alt=\"A listener wearing headphones\"></div>\n  <div class=\"mn-station-body\">\n    <div class=\"mn-station-head\">\n      <div><p class=\"mn-station-name\">KISM</p><p class=\"mn-station-freq\">98.7 FM · HD2</p></div>\n      <span class=\"mn-live\"><i aria-hidden=\"true\"></i>On air</span>\n    </div>\n    <div class=\"mn-meta\">\n      <span><svg width=\"16\" height=\"16\" …aria-hidden=\"true\">…</svg>Nairobi, Kenya</span>\n      <span><svg width=\"16\" height=\"16\" …aria-hidden=\"true\">…</svg>Swahili · English</span>\n    </div>\n    <p class=\"mn-station-now\">Now: <span>The Gospel of John, read aloud</span></p>\n    <a class=\"btn btn-primary\" href=\"…\"><svg width=\"16\" height=\"16\" fill=\"currentColor\" aria-hidden=\"true\">…</svg>Listen live</a>\n  </div>\n</article>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<article class=\"card card-flat mn-station\">\n  <div class=\"mn-station-img\"><img class=\"photo\" src=\"../../assets/imagery/deck-photo-headphones.jpg\" alt=\"A listener wearing headphones\"></div>\n  <div class=\"mn-station-body\">\n    <div class=\"mn-station-head\">\n      <div><p class=\"mn-station-name\">KISM</p><p class=\"mn-station-freq\">98.7 FM · HD2</p></div>\n      <span class=\"mn-live\"><i aria-hidden=\"true\"></i>On air</span>\n    </div>\n    <div class=\"mn-meta\">\n      <span><svg width=\"16\" height=\"16\" …aria-hidden=\"true\">…</svg>Nairobi, Kenya</span>\n      <span><svg width=\"16\" height=\"16\" …aria-hidden=\"true\">…</svg>Swahili · English</span>\n    </div>\n    <p class=\"mn-station-now\">Now: <span>The Gospel of John, read aloud</span></p>\n    <a class=\"btn btn-primary\" href=\"…\"><svg width=\"16\" height=\"16\" fill=\"currentColor\" aria-hidden=\"true\">…</svg>Listen live</a>\n  </div>\n</article>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/StationCard/README.md",
+    "spec": "components/StationCard/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

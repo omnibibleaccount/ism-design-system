@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ISM Design System tokens",
+  "type": "object",
+  "required": ["name", "version", "color", "spacing", "radius", "shadow", "gradient", "layout", "zIndex", "motion"],
+  "definitions": {
+    "token": {
+      "type": "object",
+      "required": ["name", "value"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "value": { "type": "string" },
+        "usage": { "type": "string" }
+      }
+    },
+    "tokenGroup": { "type": "object", "required": ["tokens"], "properties": { "tokens": { "type": "array", "items": { "$ref": "#/definitions/token" } } } }
+  },
+  "properties": {
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "color": { "$ref": "#/definitions/tokenGroup" },
+    "spacing": { "$ref": "#/definitions/tokenGroup" },
+    "radius": { "$ref": "#/definitions/tokenGroup" },
+    "shadow": { "$ref": "#/definitions/tokenGroup" },
+    "gradient": { "$ref": "#/definitions/tokenGroup" },
+    "layout": { "$ref": "#/definitions/tokenGroup" },
+    "tracking": { "$ref": "#/definitions/tokenGroup" },
+    "blur": { "$ref": "#/definitions/tokenGroup" },
+    "zIndex": { "$ref": "#/definitions/tokenGroup" },
+    "opacity": { "$ref": "#/definitions/tokenGroup" },
+    "size": { "$ref": "#/definitions/tokenGroup" },
+    "breakpointsExtra": { "$ref": "#/definitions/tokenGroup" },
+    "motion": {
+      "type": "object",
+      "required": ["duration", "easing"],
+      "properties": {
+        "duration": { "type": "array", "items": { "$ref": "#/definitions/token" } },
+        "easing": { "type": "array", "items": { "$ref": "#/definitions/token" } }
+      }
+    },
+    "script": { "type": "object" },
+    "type": { "type": "object" },
+    "elevation": { "type": "object" }
+  }
+}

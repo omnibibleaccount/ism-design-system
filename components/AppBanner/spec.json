@@ -1,0 +1,316 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "AppBanner",
+  "title": "AppBanner",
+  "group": "Ministry",
+  "version": "3.0.0",
+  "summary": "Promotes the dot.Bible app in three sizes: a dismissible \"Open in app\" smart banner on mobile, an inline promo card with QR and store badges on desktop, and a slim strip at the end of an article.",
+  "whenToUse": [
+    "Smart banner `.mn-sbanner`: top of mobile pages on dot.bible and ism.bible, once per visit.",
+    "Promo card `.mn-promo`: inside a page section about the app or Scripture access.",
+    "Slim strip `.mn-strip`: end of an article or reading page."
+  ],
+  "whenNotToUse": [
+    "Do not stack more than one app promotion in a view.",
+    "Do not use for giving or newsletter asks; use DonationWidget or NewsletterCard."
+  ],
+  "anatomy": {
+    "description": "Every variant starts with the app tile `.mn-apptile`: the dot.Bible icon in white on black with a 3px `--gradient-line` underline. Smart banner (above the site header): Promo card: Slim strip:",
+    "markup": null
+  },
+  "react": {
+    "import": "import { AppBanner } from '@ism/ui'",
+    "source": "packages/react/src/components/AppBanner.tsx",
+    "exports": [
+      "AppBanner",
+      "AppBannerVariant"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'title'>"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "AppBannerVariant",
+        "required": false,
+        "default": "\"smartBanner\"",
+        "description": "`smartBanner` is the dismissible \"Open in app\" bar for the top of mobile pages, `promo` is the inline\ncard with QR and store badges for desktop, `strip` is the slim end-of-article strip."
+      },
+      {
+        "name": "iconSrc",
+        "type": "string",
+        "required": false,
+        "default": "\"/ism/assets/logos/dot.bible%20Icon%20Black.svg\"",
+        "description": "URL of the dot.Bible icon (black logo, rendered white by the CSS)."
+      },
+      {
+        "name": "name",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Smart banner: app name, e.g. \"dot.Bible\". Promo: brand line, e.g. \"dot.Bible · free\"."
+      },
+      {
+        "name": "subtitle",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Smart banner: sub-line, e.g. \"Read offline in 500+ languages\"."
+      },
+      {
+        "name": "href",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Smart banner: URL of the Open button. Strip: URL of the \"Get the app\" link."
+      },
+      {
+        "name": "actionLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Smart banner: label of the Open button, e.g. \"Open\". Strip: label of the link, e.g. \"Get the app\"."
+      },
+      {
+        "name": "regionLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Get the dot.Bible app\"",
+        "description": "Smart banner: accessible name of the region."
+      },
+      {
+        "name": "dismissLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Dismiss\"",
+        "description": "Smart banner: accessible name of the dismiss button."
+      },
+      {
+        "name": "onDismiss",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Smart banner: called when the reader dismisses the banner. Remember the choice for the visit."
+      },
+      {
+        "name": "heading",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Promo: heading, e.g. \"Take the Bible with you, even offline.\""
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Promo: one or two sentences under the heading."
+      },
+      {
+        "name": "qr",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Promo: QR code element (`<svg>`). Hidden on phones by the CSS."
+      },
+      {
+        "name": "qrLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"QR code to download dot.Bible\"",
+        "description": "Promo: accessible name of the QR."
+      },
+      {
+        "name": "appStoreHref",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Promo: App Store URL."
+      },
+      {
+        "name": "playStoreHref",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Promo: Google Play URL."
+      },
+      {
+        "name": "storeLabels",
+        "type": "Partial<StoreBadgeLabels>",
+        "required": false,
+        "default": null,
+        "description": "Promo: override store badge text and accessible names."
+      },
+      {
+        "name": "imageSrc",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Promo: photo URL, e.g. `/ism/assets/imagery/deck-photo-tap-hand.png`."
+      },
+      {
+        "name": "imageAlt",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Promo: alt text of the photo (real description, e.g. \"A hand holding a phone\")."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Strip: the message; wrap the lead in `<b>`. Falls back to `children`."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "arrow",
+    "btn",
+    "btn-ghost",
+    "btn-light",
+    "btn-primary",
+    "btn-sm",
+    "card",
+    "card-flat",
+    "card-lg",
+    "h3",
+    "media",
+    "mn-apptile",
+    "mn-apptile-md",
+    "mn-apptile-sm",
+    "mn-promo",
+    "mn-promo-badges",
+    "mn-promo-body",
+    "mn-promo-brand",
+    "mn-promo-get",
+    "mn-promo-media",
+    "mn-qr",
+    "mn-qr-sm",
+    "mn-sb-name",
+    "mn-sb-open",
+    "mn-sb-sub",
+    "mn-sb-text",
+    "mn-sb-x",
+    "mn-sbanner",
+    "mn-store",
+    "mn-store-sm",
+    "mn-strip",
+    "muted",
+    "photo"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Smart banner",
+        "classes": ".mn-sbanner (white, bottom hairline)",
+        "tile": ".mn-apptile 52px"
+      },
+      {
+        "variant": "Promo card",
+        "classes": ".card card-lg card-flat mn-promo (two columns; stacks under 768px, QR hidden, photo 220px)",
+        "tile": ".mn-apptile-md 44px"
+      },
+      {
+        "variant": "Slim strip",
+        "classes": ".mn-strip (--blue-tint, --radius-md)",
+        "tile": ".mn-apptile-sm 40px"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "Dismiss `.mn-sb-x`: default (`--gray-600`), hover (`--gray-100` fill, black icon), focus ring."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "The smart banner's Open is the one Horizon Blue button on screen at that moment; the header Give pill stays `.btn-light`.",
+    "Always offer dismiss on the smart banner; remember the choice for the visit and do not show it again after dismiss.",
+    "Dismiss and Open are at least 44px / 40px tall; the X is a 44px circle.",
+    "The promo card uses StoreBadges `.mn-store-sm`, never blue buttons, to install the app. Hide the QR on phones.",
+    "The strip's link goes to the app page, so it ends with ↗ and uses `.btn-ghost`.",
+    "The app icon is the black logo file rendered white (`filter: brightness(0) invert(1)`).",
+    "Use real product facts only: free, offline, 500+ languages."
+  ],
+  "do": [
+    "Smart banner `.mn-sbanner`: top of mobile pages on dot.bible and ism.bible, once per visit.",
+    "Promo card `.mn-promo`: inside a page section about the app or Scripture access.",
+    "Slim strip `.mn-strip`: end of an article or reading page.",
+    "The smart banner's Open is the one Horizon Blue button on screen at that moment; the header Give pill stays `.btn-light`.",
+    "Always offer dismiss on the smart banner; remember the choice for the visit and do not show it again after dismiss.",
+    "Dismiss and Open are at least 44px / 40px tall; the X is a 44px circle.",
+    "The promo card uses StoreBadges `.mn-store-sm`, never blue buttons, to install the app. Hide the QR on phones.",
+    "The strip's link goes to the app page, so it ends with ↗ and uses `.btn-ghost`.",
+    "The app icon is the black logo file rendered white (`filter: brightness(0) invert(1)`).",
+    "Use real product facts only: free, offline, 500+ languages."
+  ],
+  "dont": [
+    "Do not stack more than one app promotion in a view.",
+    "Do not use for giving or newsletter asks; use DonationWidget or NewsletterCard."
+  ],
+  "accessibility": [
+    "The smart banner is a named region (`aria-label=\"Get the dot.Bible app\"`).",
+    "Dismiss has `aria-label=\"Dismiss\"`; after dismissing, move focus to the page's first heading or skip link.",
+    "App tile images are decorative (`alt=\"\"`); the name beside them carries meaning.",
+    "Promo photo has real alt text (\"A hand holding a phone\").",
+    "Do not animate the banner in once the page has been read; it renders on load only."
+  ],
+  "content": [
+    "Banner: \"dot.Bible\" / \"Read offline in 500+ languages\" / \"Open\".",
+    "Card: \"Take the Bible with you, even offline.\"",
+    "Strip: \"**Keep reading in the dot.Bible app.** Free, offline, 500+ languages.\" + \"Get the app ↗\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"mn-sbanner\" role=\"region\" aria-label=\"Get the dot.Bible app\">\n  <button class=\"mn-sb-x\" type=\"button\" aria-label=\"Dismiss\"><svg …aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button>\n  <span class=\"mn-apptile\"><img src=\"../../assets/logos/dot.bible%20Icon%20Black.svg\" alt=\"\"></span>\n  <span class=\"mn-sb-text\"><span class=\"mn-sb-name\">dot.Bible</span><span class=\"mn-sb-sub\">Read offline in 500+ languages</span></span>\n  <a class=\"btn btn-primary btn-sm mn-sb-open\" href=\"…\">Open</a>\n</div>",
+      "<div class=\"card card-lg card-flat mn-promo\">\n  <div class=\"mn-promo-body\">\n    <div class=\"mn-promo-brand\"><span class=\"mn-apptile mn-apptile-md\"><img src=\"…/dot.bible%20Icon%20Black.svg\" alt=\"\"></span>dot.Bible · free</div>\n    <h3 class=\"h3\">Take the Bible with you, even offline.</h3>\n    <p class=\"muted\">Read and listen in 500+ languages. Download a book once and keep reading where there is no signal.</p>\n    <div class=\"mn-promo-get\">\n      <div class=\"mn-qr mn-qr-sm\"><svg width=\"72\" height=\"72\" role=\"img\" aria-label=\"QR code to download dot.Bible\">…</svg></div>\n      <div class=\"mn-promo-badges\"><a class=\"mn-store mn-store-sm\" …>…</a><a class=\"mn-store mn-store-sm\" …>…</a></div>\n    </div>\n  </div>\n  <div class=\"media mn-promo-media\"><img class=\"photo\" src=\"…/deck-photo-tap-hand.png\" alt=\"A hand holding a phone\"></div>\n</div>",
+      "<div class=\"mn-strip\">\n  <span class=\"mn-apptile mn-apptile-sm\"><img src=\"…\" alt=\"\"></span>\n  <p><b>Keep reading in the dot.Bible app.</b> Free, offline, 500+ languages.</p>\n  <a class=\"btn btn-ghost btn-sm\" href=\"…\">Get the app <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"mn-sbanner\" role=\"region\" aria-label=\"Get the dot.Bible app\">\n  <button class=\"mn-sb-x\" type=\"button\" aria-label=\"Dismiss\"><svg …aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button>\n  <span class=\"mn-apptile\"><img src=\"../../assets/logos/dot.bible%20Icon%20Black.svg\" alt=\"\"></span>\n  <span class=\"mn-sb-text\"><span class=\"mn-sb-name\">dot.Bible</span><span class=\"mn-sb-sub\">Read offline in 500+ languages</span></span>\n  <a class=\"btn btn-primary btn-sm mn-sb-open\" href=\"…\">Open</a>\n</div>"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"card card-lg card-flat mn-promo\">\n  <div class=\"mn-promo-body\">\n    <div class=\"mn-promo-brand\"><span class=\"mn-apptile mn-apptile-md\"><img src=\"…/dot.bible%20Icon%20Black.svg\" alt=\"\"></span>dot.Bible · free</div>\n    <h3 class=\"h3\">Take the Bible with you, even offline.</h3>\n    <p class=\"muted\">Read and listen in 500+ languages. Download a book once and keep reading where there is no signal.</p>\n    <div class=\"mn-promo-get\">\n      <div class=\"mn-qr mn-qr-sm\"><svg width=\"72\" height=\"72\" role=\"img\" aria-label=\"QR code to download dot.Bible\">…</svg></div>\n      <div class=\"mn-promo-badges\"><a class=\"mn-store mn-store-sm\" …>…</a><a class=\"mn-store mn-store-sm\" …>…</a></div>\n    </div>\n  </div>\n  <div class=\"media mn-promo-media\"><img class=\"photo\" src=\"…/deck-photo-tap-hand.png\" alt=\"A hand holding a phone\"></div>\n</div>"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"mn-strip\">\n  <span class=\"mn-apptile mn-apptile-sm\"><img src=\"…\" alt=\"\"></span>\n  <p><b>Keep reading in the dot.Bible app.</b> Free, offline, 500+ languages.</p>\n  <a class=\"btn btn-ghost btn-sm\" href=\"…\">Get the app <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/AppBanner/README.md",
+    "spec": "components/AppBanner/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

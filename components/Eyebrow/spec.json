@@ -1,0 +1,190 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Eyebrow",
+  "title": "Eyebrow",
+  "group": "Actions",
+  "version": "3.0.0",
+  "summary": "Small uppercase section labels: the `.eyebrow` in a thin blue rectangle that introduces a headline, and the quieter `.overline` that heads a list, menu or table.",
+  "whenToUse": [
+    "`.eyebrow`: once above a section headline or a card title, to name the topic (\"About ISM\", \"Statement of Faith\", \"Broadcast\").",
+    "`.overline`: above a group of rows, a menu, a table or a form group (\"Reading\", \"More from ISM\", \"All languages · 32\").",
+    "The rule: eyebrow introduces a headline; overline organises a list. If there is no headline right after it, use an overline."
+  ],
+  "whenNotToUse": [
+    "Do not use either as a button, a status or a tag; use Button or Badge."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Eyebrow } from '@ism/ui'",
+    "source": "packages/react/src/components/Eyebrow.tsx",
+    "exports": [
+      "Eyebrow",
+      "Overline"
+    ],
+    "extends": [
+      "HTMLAttributes<HTMLSpanElement>"
+    ],
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Label text in normal case (\"About ISM\"); CSS uppercases it. One to three words."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": "There is no Eyebrow component. In the app, the bundle's `Badge` plays this role: small uppercase, wide-tracked eyebrow label inside a thin outlined pill (see Badge). On the website, render the class:"
+  },
+  "reactNative": {
+    "import": "import { Eyebrow } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Eyebrow.tsx",
+    "exports": [
+      "Eyebrow",
+      "Overline"
+    ],
+    "props": [
+      {
+        "name": "children",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "One to three words (\"About ISM\"). Write in normal case; it is uppercased for Latin script only."
+      },
+      {
+        "name": "onDark",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Force the on-dark colours (website `.sec-ink` sections). Defaults to the theme scheme."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "cr-inset-grp",
+    "eyebrow",
+    "h2",
+    "on-dark",
+    "overline",
+    "sec-ink"
+  ],
+  "variants": [
+    [
+      {
+        "col0": "Size",
+        "eyebrow": "12px, 600, tracking .2em (--eyebrow-tracking)",
+        "overline": "12px, 600, tracking .06em (--overline-tracking)"
+      },
+      {
+        "col0": "Frame",
+        "eyebrow": "1px rgba(4,109,227,.55) rectangle, square corners, 7px × 12px padding",
+        "overline": "none"
+      },
+      {
+        "col0": "Colour light",
+        "eyebrow": "--horizon-blue-dim",
+        "overline": "--gray-600"
+      },
+      {
+        "col0": "Colour dark (.sec-ink/.on-dark)",
+        "eyebrow": "--blue-on-dark, faint white fill",
+        "overline": "--text-tertiary-dark"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "Static labels; no hover or focus states."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "One eyebrow per section or card. Never stack two.",
+    "Eyebrow sits 16px (`--space-4`) above its headline; overline sits 8px (`--space-2`) above its list.",
+    "Keep the eyebrow square-cornered; the rounded pill is the app's Badge, not the website eyebrow.",
+    "Do not recolour eyebrows to gold, violet or status colours.",
+    "Inside dark sections, wrap in `.sec-ink` or `.on-dark` rather than overriding colours."
+  ],
+  "do": [
+    "`.eyebrow`: once above a section headline or a card title, to name the topic (\"About ISM\", \"Statement of Faith\", \"Broadcast\").",
+    "`.overline`: above a group of rows, a menu, a table or a form group (\"Reading\", \"More from ISM\", \"All languages · 32\").",
+    "The rule: eyebrow introduces a headline; overline organises a list. If there is no headline right after it, use an overline.",
+    "One eyebrow per section or card. Never stack two.",
+    "Eyebrow sits 16px (`--space-4`) above its headline; overline sits 8px (`--space-2`) above its list.",
+    "Keep the eyebrow square-cornered; the rounded pill is the app's Badge, not the website eyebrow.",
+    "Inside dark sections, wrap in `.sec-ink` or `.on-dark` rather than overriding colours."
+  ],
+  "dont": [
+    "Do not use either as a button, a status or a tag; use Button or Badge.",
+    "Do not recolour eyebrows to gold, violet or status colours."
+  ],
+  "accessibility": [
+    "An eyebrow is decorative context; the headline must make sense without it.",
+    "Write it in normal case in the HTML (\"About ISM\"); CSS uppercases it, so screen readers do not spell it out.",
+    "Do not use an eyebrow or overline in place of a real heading element."
+  ],
+  "content": [
+    "One to three words: \"About ISM\", \"Our mission\", \"Broadcast\", \"Updates\", \"Network\".",
+    "Overlines name the group plainly: \"Reading\", \"More from ISM\", \"All languages · 32\"."
+  ],
+  "snippets": {
+    "react": [
+      "React.createElement('span', { className: 'eyebrow' }, 'About ISM')",
+      "<Badge tone=\"outlineDark\">Trending</Badge>"
+    ],
+    "html": [
+      "<span class=\"eyebrow\">About ISM</span>\n<h2 class=\"h2\">Scripture for every heart language</h2>\n\n<section class=\"sec-ink\">\n  <span class=\"eyebrow\">Join the Mission</span>  <!-- on-dark colours automatically -->\n</section>\n\n<span class=\"overline\">Reading</span>\n<div class=\"cr-inset-grp\">…rows…</div>"
+    ],
+    "other": [
+      {
+        "lang": "js",
+        "code": "React.createElement('span', { className: 'eyebrow' }, 'About ISM')"
+      },
+      {
+        "lang": "jsx",
+        "code": "<Badge tone=\"outlineDark\">Trending</Badge>"
+      },
+      {
+        "lang": "html",
+        "code": "<span class=\"eyebrow\">About ISM</span>\n<h2 class=\"h2\">Scripture for every heart language</h2>\n\n<section class=\"sec-ink\">\n  <span class=\"eyebrow\">Join the Mission</span>  <!-- on-dark colours automatically -->\n</section>\n\n<span class=\"overline\">Reading</span>\n<div class=\"cr-inset-grp\">…rows…</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/Eyebrow/README.md",
+    "spec": "components/Eyebrow/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

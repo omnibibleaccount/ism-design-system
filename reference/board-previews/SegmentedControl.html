@@ -1,0 +1,42 @@
+<!-- @dsCard group="Forms" height=220 subtitle="One-time / monthly, light and dark" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:0;background:var(--off-white)}
+.g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.c{display:flex;flex-direction:column;gap:12px;padding:24px}
+.dk{background:var(--black)}
+.dk .fm-st{color:var(--text-secondary-dark)}
+@media (max-width:767px){.g{grid-template-columns:minmax(0,1fr)} }
+</style></head><body>
+<div class="g">
+  <div class="c">
+    <span class="fm-st">Light · Give Online · live</span>
+    <div class="fm-seg" role="group" aria-label="Gift frequency">
+      <button type="button" class="chip" aria-pressed="false">One-time</button>
+      <button type="button" class="chip" aria-pressed="true">Monthly</button>
+    </div>
+    <p class="hint" data-out>Monthly gifts help plan HD Radio and app work a year ahead.</p>
+  </div>
+  <div class="c dk on-dark">
+    <span class="fm-st">Dark · .fm-seg-dark · live</span>
+    <div class="fm-seg fm-seg-dark" role="group" aria-label="Gift frequency">
+      <button type="button" class="chip" aria-pressed="true">One-time</button>
+      <button type="button" class="chip" aria-pressed="false">Monthly</button>
+    </div>
+    <p class="small" style="color:var(--text-secondary-dark)" data-out>A one-time gift goes where it is needed most.</p>
+  </div>
+</div>
+<script>
+(function(){
+  var msg={'One-time':'A one-time gift goes where it is needed most.','Monthly':'Monthly gifts help plan HD Radio and app work a year ahead.'};
+  document.querySelectorAll('.fm-seg').forEach(function(g){
+    var out=g.parentNode.querySelector('[data-out]');
+    g.querySelectorAll('.chip').forEach(function(b){
+      b.addEventListener('click',function(){
+        g.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+        if(out)out.textContent=msg[b.textContent];
+      });
+    });
+  });
+})();
+</script>
+</body></html>

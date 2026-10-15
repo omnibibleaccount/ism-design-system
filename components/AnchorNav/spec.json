@@ -1,0 +1,210 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "AnchorNav",
+  "title": "AnchorNav",
+  "group": "Navigation",
+  "version": "3.0.0",
+  "summary": "In-page links for long pages: a sticky \"On this page\" list beside the content on desktop, and a horizontal sticky anchor bar under the header for product pages and phones.",
+  "whenToUse": [
+    "Use the side list (`.nv-otp`) on long reading pages with 4+ sections: Statement of Faith, Privacy, Terms, Cookie Policy.",
+    "Use the anchor bar (`.nv-abar`) on product pages (dot.Bible App, ISM Radio, NFC Cards) and on every long page below 1024px."
+  ],
+  "whenNotToUse": [
+    "Do not use it on short pages with fewer than 4 sections.",
+    "Do not use it to switch content in place; that is Tabs. Anchor links scroll to sections that are all on the page."
+  ],
+  "anatomy": {
+    "description": "Lay the side list out in a two-column grid: `240px` list, `minmax(0,1fr)` content, 64px gap.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { AnchorNav } from '@ism/ui'",
+    "source": "packages/react/src/components/AnchorNav.tsx",
+    "exports": [
+      "AnchorNav",
+      "AnchorNavItem",
+      "AnchorNavVariant"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'children' | 'title'>"
+    ],
+    "props": [
+      {
+        "name": "items",
+        "type": "AnchorNavItem[]",
+        "required": true,
+        "default": null,
+        "description": "The sections, in page order. Maximum 8."
+      },
+      {
+        "name": "variant",
+        "type": "AnchorNavVariant",
+        "required": false,
+        "default": "\"side\"",
+        "description": "`side` is the sticky \"On this page\" list for long reading pages; `bar` is the sticky horizontal bar under the header."
+      },
+      {
+        "name": "heading",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Visible heading of the side list (\"On this page\"). Side variant only."
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Product name at the start of the bar (\"dot.Bible App\"). Bar variant only."
+      },
+      {
+        "name": "action",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Optional single action at the end of the bar, for example a `btn btn-primary btn-sm` link. Bar variant only."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "default": "\"On this page\"",
+        "description": "Accessible name of the `<nav>`."
+      },
+      {
+        "name": "current",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Id of the active section (controlled). When omitted the active section follows the scroll position."
+      },
+      {
+        "name": "onCurrentChange",
+        "type": "(id: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the section in view changes."
+      },
+      {
+        "name": "linkComponent",
+        "type": "ElementType",
+        "required": false,
+        "default": "\"a\"",
+        "description": "Component used to render links. Defaults to `'a'`.\nPass `next/link` (or any component accepting `href`, `className`, `onClick`, `aria-current` and `children`)."
+      },
+      {
+        "name": "scrollOffset",
+        "type": "number",
+        "required": false,
+        "default": "140",
+        "description": "Height in px of the sticky offset used by the scroll spy (header plus bar)."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn",
+    "btn-primary",
+    "btn-sm",
+    "nv-abar",
+    "nv-abar-links",
+    "nv-abar-title",
+    "nv-alink",
+    "nv-otp",
+    "nv-otp-h",
+    "nv-otp-wrap",
+    "nv-stuck",
+    "overline"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "**Side list item:** 40px rows, 15px `var(--gray-700)` on a 2px `var(--gray-200)` rail.",
+    "Hover: text `var(--black)`.",
+    "Active (the section in view): `aria-current=\"true\"`, `var(--horizon-blue-dim)` 600 and a `var(--horizon-blue)` rail segment.",
+    "Focus: blue outline + `var(--shadow-focus)`.",
+    "**Side list position:** `.nv-otp-wrap` is `position:sticky; top:96px` (72px header + 24px).",
+    "**Anchor bar:** 60px white bar, `position:sticky; top:72px`, `var(--gray-200)` bottom hairline. Links 15px/500; active is 600 with a 2px `var(--horizon-blue)` underline. Add `.nv-stuck` once it sticks to show the soft shadow.",
+    "**Anchor bar action:** optional single `.btn-primary .btn-sm` on the right (\"Get the app\").",
+    "**Below 1024px:** hide the side list; use the bar. Links scroll sideways, never wrap."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Set the active item from scroll position (IntersectionObserver), not on click alone.",
+    "Only one item is active at a time.",
+    "Keep labels identical to the section headings they point to.",
+    "The bar's button is the one Horizon Blue primary in that view. Leave it out when the page hero already has a blue primary in view.",
+    "Give every section `scroll-margin-top` of 96px (side list) or 140px (bar) so headings are not hidden under the sticky header.",
+    "Never use ↗ or › in anchor links; they stay on this page.",
+    "Max 8 items in either form."
+  ],
+  "do": [
+    "Use the side list (`.nv-otp`) on long reading pages with 4+ sections: Statement of Faith, Privacy, Terms, Cookie Policy.",
+    "Use the anchor bar (`.nv-abar`) on product pages (dot.Bible App, ISM Radio, NFC Cards) and on every long page below 1024px.",
+    "Set the active item from scroll position (IntersectionObserver), not on click alone.",
+    "Only one item is active at a time.",
+    "Keep labels identical to the section headings they point to.",
+    "The bar's button is the one Horizon Blue primary in that view. Leave it out when the page hero already has a blue primary in view.",
+    "Give every section `scroll-margin-top` of 96px (side list) or 140px (bar) so headings are not hidden under the sticky header.",
+    "Max 8 items in either form."
+  ],
+  "dont": [
+    "Do not use it on short pages with fewer than 4 sections.",
+    "Do not use it to switch content in place; that is Tabs. Anchor links scroll to sections that are all on the page.",
+    "Never use ↗ or › in anchor links; they stay on this page."
+  ],
+  "accessibility": [
+    "Wrap each form in `nav aria-label=\"On this page\"`.",
+    "Use `aria-current=\"true\"` (not `\"page\"`) for the section in view.",
+    "On click, move focus to the target heading (`tabindex=\"-1\"`) so keyboard and screen reader users land there.",
+    "Respect `prefers-reduced-motion`: jump instead of smooth-scrolling.",
+    "Links keep at least 40px height in the list and the full 60px bar height in the bar."
+  ],
+  "content": [
+    "Use the section headings: \"The Scriptures\", \"God\", \"Jesus Christ\", \"The Holy Spirit\", \"Salvation\", \"The Church\", \"Last Things\".",
+    "Product bars: \"Overview / Features / Languages / Offline reading / FAQ\".",
+    "Bar title is the product name: \"dot.Bible App\", \"ISM Radio\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<!-- side list -->\n<div class=\"nv-otp-wrap\">\n  <nav aria-label=\"On this page\">\n    <p class=\"overline nv-otp-h\">On this page</p>\n    <ul class=\"nv-otp\">\n      <li><a href=\"#scriptures\">The Scriptures</a></li>\n      <li><a href=\"#jesus\" aria-current=\"true\">Jesus Christ</a></li>\n    </ul>\n  </nav>\n</div>\n\n<!-- horizontal bar, directly under the header -->\n<div class=\"nv-abar\">\n  <span class=\"nv-abar-title\">dot.Bible App</span>\n  <nav class=\"nv-abar-links\" aria-label=\"On this page\">\n    <a class=\"nv-alink\" href=\"#overview\">Overview</a>\n    <a class=\"nv-alink\" href=\"#features\" aria-current=\"true\">Features</a>\n  </nav>\n  <a class=\"btn btn-primary btn-sm\" href=\"#get\">Get the app</a>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<!-- side list -->\n<div class=\"nv-otp-wrap\">\n  <nav aria-label=\"On this page\">\n    <p class=\"overline nv-otp-h\">On this page</p>\n    <ul class=\"nv-otp\">\n      <li><a href=\"#scriptures\">The Scriptures</a></li>\n      <li><a href=\"#jesus\" aria-current=\"true\">Jesus Christ</a></li>\n    </ul>\n  </nav>\n</div>\n\n<!-- horizontal bar, directly under the header -->\n<div class=\"nv-abar\">\n  <span class=\"nv-abar-title\">dot.Bible App</span>\n  <nav class=\"nv-abar-links\" aria-label=\"On this page\">\n    <a class=\"nv-alink\" href=\"#overview\">Overview</a>\n    <a class=\"nv-alink\" href=\"#features\" aria-current=\"true\">Features</a>\n  </nav>\n  <a class=\"btn btn-primary btn-sm\" href=\"#get\">Get the app</a>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/AnchorNav/README.md",
+    "spec": "components/AnchorNav/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

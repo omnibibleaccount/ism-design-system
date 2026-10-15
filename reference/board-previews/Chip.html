@@ -1,0 +1,60 @@
+<!-- @dsCard group="Actions" height=300 subtitle="Filter chips and amount presets" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.pv-box{background:var(--white);border:1px solid var(--gray-200);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.pv-h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-600)}
+.pv-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pv-c{font-size:12px;color:var(--gray-600);font-family:ui-monospace,Menlo,monospace}
+</style></head><body>
+<div class="pv">
+  <div class="pv-box">
+    <span class="pv-h">HTML / CSS · filter chips</span>
+    <div class="pv-row" role="group" aria-label="Filter resources" id="h-chips">
+      <button type="button" class="chip" aria-pressed="true">All</button>
+      <button type="button" class="chip" aria-pressed="false">About ISM</button>
+      <button type="button" class="chip" aria-pressed="false">Apps</button>
+      <button type="button" class="chip" aria-pressed="false">Giving</button>
+    </div>
+    <span class="pv-c">.chip · aria-pressed · click to try</span>
+  </div>
+  <div class="pv-box">
+    <span class="pv-h">HTML / CSS · amount presets (Give)</span>
+    <div class="pv-row" role="group" aria-label="Gift amount" id="h-amt">
+      <button type="button" class="chip" aria-pressed="false">$25</button>
+      <button type="button" class="chip" aria-pressed="true">$50</button>
+      <button type="button" class="chip" aria-pressed="false">$100</button>
+      <button type="button" class="chip" aria-pressed="false">Other</button>
+    </div>
+    <span class="pv-c">single choice · sample amounts</span>
+  </div>
+  <div class="pv-box">
+    <span class="pv-h">React · className</span>
+    <div class="pv-row" id="r-chips"></div>
+    <span class="pv-c">no dedicated component: state drives aria-pressed</span>
+  </div>
+</div>
+<script>
+(function(){
+  function single(id){
+    var g = document.getElementById(id);
+    g.addEventListener('click', function(e){
+      var b = e.target.closest('.chip'); if(!b) return;
+      g.querySelectorAll('.chip').forEach(function(c){ c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); });
+    });
+  }
+  single('h-chips'); single('h-amt');
+  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var h = React.createElement;
+  function Langs(){
+    var s = React.useState(['Amharic']); var sel = s[0], set = s[1];
+    return h(React.Fragment,null,['Amharic','Burmese','Cebuano','Swahili'].map(function(l){
+      var on = sel.indexOf(l) > -1;
+      return h('button',{key:l,type:'button',className:'chip','aria-pressed':on ? 'true' : 'false',
+        onClick:function(){ set(on ? sel.filter(function(x){return x!==l;}) : sel.concat(l)); } },l);
+    }));
+  }
+  ReactDOM.createRoot(document.getElementById('r-chips')).render(h(Langs));
+})();
+</script>
+</body></html>

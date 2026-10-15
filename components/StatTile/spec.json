@@ -1,0 +1,256 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "StatTile",
+  "title": "StatTile",
+  "group": "Data display",
+  "version": "3.0.0",
+  "summary": "A metric tile with one big number, a short label, an optional up or down change and an optional sparkline, on light or dark.",
+  "whenToUse": [
+    "Use for ministry reach on landing pages (languages, stations, partners) and for KPI rows in staff dashboards.",
+    "Use four tiles in a row on desktop, two on tablet, one or two on mobile."
+  ],
+  "whenNotToUse": [
+    "Do not use for a single sentence-sized fact inside body copy; write it in the sentence.",
+    "Do not use when the number cannot be sourced; say \"sample\" until it is."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { StatTile } from '@ism/ui'",
+    "source": "packages/react/src/components/StatTile.tsx",
+    "exports": [
+      "StatDelta",
+      "StatTile"
+    ],
+    "extends": [
+      "HTMLAttributes<HTMLDivElement>"
+    ],
+    "props": [
+      {
+        "name": "value",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "The big number, abbreviated if large (1.2M)."
+      },
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Short label, three or four words."
+      },
+      {
+        "name": "delta",
+        "type": "StatDelta",
+        "required": false,
+        "default": null,
+        "description": "Optional change since a previous period."
+      },
+      {
+        "name": "spark",
+        "type": "number[]",
+        "required": false,
+        "default": null,
+        "description": "Optional sparkline series (at least two numbers). Decorative."
+      },
+      {
+        "name": "sparkFlat",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Grey sparkline for a flat or falling series."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Dark tile: wraps the tile in the `.dp-dk` panel. Do not mix light and dark tiles in one row."
+      },
+      {
+        "name": "sample",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Mark the figure as a sample (invented, for mock-ups) with `.dp-sample`."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { StatTile } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/StatTile.tsx",
+    "exports": [
+      "StatDelta",
+      "StatTile"
+    ],
+    "props": [
+      {
+        "name": "value",
+        "type": "string | number",
+        "required": true,
+        "default": null,
+        "description": "The big number, abbreviated if large (1.2M)."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Short label, three or four words."
+      },
+      {
+        "name": "delta",
+        "type": "StatDelta",
+        "required": false,
+        "default": null,
+        "description": "Optional change since a previous period."
+      },
+      {
+        "name": "spark",
+        "type": "number[]",
+        "required": false,
+        "default": null,
+        "description": "Optional sparkline series (at least two numbers). Decorative."
+      },
+      {
+        "name": "sparkFlat",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Grey sparkline for a flat or falling series."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Dark tile (4% white fill, 14% white border). Do not mix light and dark tiles in one row. Defaults to the theme scheme."
+      },
+      {
+        "name": "sampleLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Mark the figure as a sample (invented, for mock-ups): shows this caption in small italic under the label, e.g. \"sample\"."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Extra content under the tile."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "dp-delta",
+    "dp-delta-down",
+    "dp-delta-up",
+    "dp-delta-vs",
+    "dp-dk",
+    "dp-sample",
+    "dp-spark",
+    "dp-spark-flat",
+    "dp-stat",
+    "dp-stat-l",
+    "dp-stat-n",
+    "dp-stat-row",
+    "dp-vh",
+    "sec-ink"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Light: white tile, `--gray-200` border, `--radius-lg`, 24px padding.",
+    "Dark: inside `.dp-dk` (black panel with the blue/gold glow) or `.sec-ink`; tile goes to 4% white with a 14% white border.",
+    "Delta up: `.dp-delta-up` (`--success`, on dark `--success-on-dark`). Down: `.dp-delta-down` (`--error`, on dark `--error-on-dark`).",
+    "Sparkline: `.dp-spark` in `--horizon-blue` (on dark `--blue-on-dark`); `.dp-spark-flat` grey for flat or falling series.",
+    "Without delta or sparkline: number and label only."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": false,
+      "focus": false,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Number: 44px, weight 600, tracking -0.03em, tabular figures. Label: 15px `--gray-700`.",
+    "Use vertical arrows only (↑ ↓). The ↗ arrow is reserved for links to another page.",
+    "Always give the period after the delta (\"this quarter\", \"vs last year\").",
+    "Sparkline is 88×32, 2px stroke, last point marked with a 3px dot. No axes, no labels.",
+    "Keep tiles in a row the same height; do not mix light and dark tiles in one row.",
+    "Mark invented figures as samples with `.dp-sample` or in the label."
+  ],
+  "do": [
+    "Use for ministry reach on landing pages (languages, stations, partners) and for KPI rows in staff dashboards.",
+    "Use four tiles in a row on desktop, two on tablet, one or two on mobile.",
+    "Number: 44px, weight 600, tracking -0.03em, tabular figures. Label: 15px `--gray-700`.",
+    "Use vertical arrows only (↑ ↓). The ↗ arrow is reserved for links to another page.",
+    "Always give the period after the delta (\"this quarter\", \"vs last year\").",
+    "Sparkline is 88×32, 2px stroke, last point marked with a 3px dot. No axes, no labels.",
+    "Keep tiles in a row the same height; do not mix light and dark tiles in one row.",
+    "Mark invented figures as samples with `.dp-sample` or in the label."
+  ],
+  "dont": [
+    "Do not use for a single sentence-sized fact inside body copy; write it in the sentence.",
+    "Do not use when the number cannot be sourced; say \"sample\" until it is."
+  ],
+  "accessibility": [
+    "The sparkline is decorative (`aria-hidden=\"true\"`); the delta text carries the meaning.",
+    "Do not rely on green or red alone: the arrow and the sign (+ / −) state direction.",
+    "Write the delta so it reads well aloud: \"up 3 this quarter\". Add a `.dp-vh` phrase if the visual is terse.",
+    "Text contrast meets AA on both themes with the token colours above."
+  ],
+  "content": [
+    "Lead with what matters to people: \"500+ Bible languages\", \"38 HD Radio stations\".",
+    "Keep labels to three or four words. Abbreviate large numbers (1.2M), not small ones.",
+    "Only \"500+ languages\" is an ISM public figure; the rest in the preview are samples."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"dp-stat\">\n  <span class=\"dp-stat-n\">38</span>\n  <span class=\"dp-stat-l\">HD Radio stations</span>\n  <div class=\"dp-stat-row\">\n    <span class=\"dp-delta dp-delta-up\"><svg aria-hidden=\"true\">…up arrow…</svg>+3 <span class=\"dp-delta-vs\">this quarter</span></span>\n    <svg class=\"dp-spark\" width=\"88\" height=\"32\" viewBox=\"0 0 120 36\" preserveAspectRatio=\"none\" fill=\"none\" aria-hidden=\"true\">\n      <polyline points=\"2,26 34,22 66,20 98,16 116,10\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      <circle cx=\"116\" cy=\"10\" r=\"3\" fill=\"currentColor\"/>\n    </svg>\n  </div>\n</div>\n<!-- dark: wrap the row in .dp-dk, or place tiles inside .sec-ink -->\n<div class=\"dp-dk\"> …tiles… </div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"dp-stat\">\n  <span class=\"dp-stat-n\">38</span>\n  <span class=\"dp-stat-l\">HD Radio stations</span>\n  <div class=\"dp-stat-row\">\n    <span class=\"dp-delta dp-delta-up\"><svg aria-hidden=\"true\">…up arrow…</svg>+3 <span class=\"dp-delta-vs\">this quarter</span></span>\n    <svg class=\"dp-spark\" width=\"88\" height=\"32\" viewBox=\"0 0 120 36\" preserveAspectRatio=\"none\" fill=\"none\" aria-hidden=\"true\">\n      <polyline points=\"2,26 34,22 66,20 98,16 116,10\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      <circle cx=\"116\" cy=\"10\" r=\"3\" fill=\"currentColor\"/>\n    </svg>\n  </div>\n</div>\n<!-- dark: wrap the row in .dp-dk, or place tiles inside .sec-ink -->\n<div class=\"dp-dk\"> …tiles… </div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/StatTile/README.md",
+    "spec": "components/StatTile/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "NewsletterCard",
+  "title": "NewsletterCard",
+  "group": "Ministry",
+  "version": "3.0.0",
+  "summary": "A dark email sign-up card with an eyebrow, headline, one email field and a full-width Subscribe button, which turns into a one-line confirmation after sign-up.",
+  "whenToUse": [
+    "Use at the end of stories, in the footer area of ism.bible and on the News page.",
+    "Use once per page."
+  ],
+  "whenNotToUse": [
+    "Do not use for giving or partner sign-up; use DonationWidget or PartnerCard.",
+    "Do not add more fields (name, country) here; a longer form belongs on its own page."
+  ],
+  "anatomy": {
+    "description": "`.mn-nl` (black with blue and gold glows, `--radius-lg`) → eyebrow → title → lead → field → button → note. Success (replaces field, button and note):",
+    "markup": null
+  },
+  "react": {
+    "import": "import { NewsletterCard } from '@ism/ui'",
+    "source": "packages/react/src/components/NewsletterCard.tsx",
+    "exports": [
+      "NewsletterCard",
+      "NewsletterLabels",
+      "defaultNewsletterLabels"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLFormElement>, 'onSubmit'>"
+    ],
+    "props": [
+      {
+        "name": "onSubmit",
+        "type": "(email: string) => void | Promise<void>",
+        "required": false,
+        "default": null,
+        "description": "Called with the email after it passes validation. May return a promise: the button shows the submitting\nstate until it resolves (then the success line shows) and stays on the form if it rejects. No network call\nis made by this component."
+      },
+      {
+        "name": "submitting",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Force the submitting state (controlled)."
+      },
+      {
+        "name": "success",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Force the success state (controlled)."
+      },
+      {
+        "name": "invalid",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Force an error message state from outside (for example a server rejection)."
+      },
+      {
+        "name": "privacyHref",
+        "type": "string",
+        "required": false,
+        "default": "\"/privacy\"",
+        "description": "Privacy page URL."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<NewsletterLabels>",
+        "required": false,
+        "default": null,
+        "description": "Override visible strings."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn",
+    "btn-primary",
+    "eyebrow",
+    "field",
+    "h3",
+    "input",
+    "label",
+    "mn-nl",
+    "mn-nl-err",
+    "mn-nl-lead",
+    "mn-nl-note",
+    "mn-nl-ok",
+    "mn-nl-rule",
+    "mn-nl-title",
+    "on-dark",
+    "spin"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Default: input on white 6% with a white 30% border; hover border white 55%; focus border `--blue-on-dark`.",
+    "Error: `aria-invalid=\"true\"` on the input turns its border `--error-on-dark`; `.mn-nl-err` shows below in `--error-on-dark`; focus returns to the input.",
+    "Success: field, button and note hide; `.mn-nl-rule` (`--gradient-line`) and `.mn-nl-ok` (check in `--blue-on-dark`) appear.",
+    "Submitting: button shows `.spin` + \"Subscribing…\" and is disabled."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": true,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Always dark (`--black` surface); add `.on-dark` so the base eyebrow, label and links switch colours.",
+    "One field, one button. Subscribe is the single Horizon Blue button, full width.",
+    "Label above the field (\"Email\"); the placeholder is an example, not the label.",
+    "Validate on submit, not while typing. Keep the message next to the field.",
+    "The privacy note sits under the button at 13px, with the link in `--blue-on-dark`.",
+    "Field and button are at least 44px tall."
+  ],
+  "do": [
+    "Use at the end of stories, in the footer area of ism.bible and on the News page.",
+    "Use once per page.",
+    "Always dark (`--black` surface); add `.on-dark` so the base eyebrow, label and links switch colours.",
+    "One field, one button. Subscribe is the single Horizon Blue button, full width.",
+    "Label above the field (\"Email\"); the placeholder is an example, not the label.",
+    "Validate on submit, not while typing. Keep the message next to the field.",
+    "The privacy note sits under the button at 13px, with the link in `--blue-on-dark`.",
+    "Field and button are at least 44px tall."
+  ],
+  "dont": [
+    "Do not use for giving or partner sign-up; use DonationWidget or PartnerCard.",
+    "Do not add more fields (name, country) here; a longer form belongs on its own page."
+  ],
+  "accessibility": [
+    "Real `<label for>` on the input; `type=\"email\"` and `autocomplete=\"email\"`.",
+    "The error is linked through `aria-describedby`; set `aria-invalid=\"true\"` only while invalid.",
+    "The success line is `role=\"status\"` so it is announced; move focus to it after submit.",
+    "Check contrast of the lead and note text on black (white 72% and 60% pass at these sizes)."
+  ],
+  "content": [
+    "Eyebrow: \"Newsletter\". Title: \"Stories from the field, once a month.\"",
+    "Lead: \"Answered prayers, new languages and ways to help. Short and worth reading.\"",
+    "Error: \"Enter an email like name@example.com.\"",
+    "Success: \"You’re in. Watch for our next letter.\"",
+    "Note: \"No spam. Unsubscribe anytime. Privacy\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<form class=\"mn-nl on-dark\" novalidate>\n  <span class=\"eyebrow\">Newsletter</span>\n  <h3 class=\"h3 mn-nl-title\">Stories from the field, once a month.</h3>\n  <p class=\"mn-nl-lead\">Answered prayers, new languages and ways to help. Short and worth reading.</p>\n  <div class=\"field\">\n    <label class=\"label\" for=\"nl-email\">Email</label>\n    <input class=\"input\" id=\"nl-email\" type=\"email\" autocomplete=\"email\" placeholder=\"you@example.com\" aria-describedby=\"nl-err\">\n    <span class=\"mn-nl-err\" id=\"nl-err\" hidden>Enter an email like name@example.com.</span>\n  </div>\n  <button class=\"btn btn-primary\" type=\"submit\" style=\"width:100%\">Subscribe</button>\n  <p class=\"mn-nl-note\">No spam. Unsubscribe anytime. <a href=\"/privacy\">Privacy</a></p>\n</form>",
+      "<div class=\"mn-nl-rule\"></div>\n<p class=\"mn-nl-ok\" role=\"status\"><svg width=\"18\" height=\"18\" …aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7.5\"/></svg>You’re in. Watch for our next letter.</p>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<form class=\"mn-nl on-dark\" novalidate>\n  <span class=\"eyebrow\">Newsletter</span>\n  <h3 class=\"h3 mn-nl-title\">Stories from the field, once a month.</h3>\n  <p class=\"mn-nl-lead\">Answered prayers, new languages and ways to help. Short and worth reading.</p>\n  <div class=\"field\">\n    <label class=\"label\" for=\"nl-email\">Email</label>\n    <input class=\"input\" id=\"nl-email\" type=\"email\" autocomplete=\"email\" placeholder=\"you@example.com\" aria-describedby=\"nl-err\">\n    <span class=\"mn-nl-err\" id=\"nl-err\" hidden>Enter an email like name@example.com.</span>\n  </div>\n  <button class=\"btn btn-primary\" type=\"submit\" style=\"width:100%\">Subscribe</button>\n  <p class=\"mn-nl-note\">No spam. Unsubscribe anytime. <a href=\"/privacy\">Privacy</a></p>\n</form>"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"mn-nl-rule\"></div>\n<p class=\"mn-nl-ok\" role=\"status\"><svg width=\"18\" height=\"18\" …aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7.5\"/></svg>You’re in. Watch for our next letter.</p>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/NewsletterCard/README.md",
+    "spec": "components/NewsletterCard/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

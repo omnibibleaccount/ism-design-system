@@ -1,0 +1,328 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "ListRow",
+  "title": "ListRow",
+  "group": "Data display",
+  "version": "3.0.0",
+  "summary": "A 56px row of icon or avatar, title, meta and an end slot, grouped as a divided list or inset card, plus the React `ListRow` audio row with progress and play.",
+  "whenToUse": [
+    "Use for settings, menus, people, languages, downloads and links in app screens and account pages.",
+    "Use the React `ListRow` for audio Bible chapters and teachings: title, progress, duration and play.",
+    "Use `.cr-list.cr-list-div` (hairline between rows) on web pages; use `.cr-list-inset` (grouped cards with a group heading) in app screens and settings."
+  ],
+  "whenNotToUse": [
+    "Do not use for data with several comparable columns; use Table. Do not use for marketing content with images; use Card."
+  ],
+  "anatomy": {
+    "description": "Leading slot (`.cr-lr-ic` icon tile or `.cr-av` avatar, optional) › text (`.cr-lr-t` title, `.cr-lr-m` meta) › end slot (`.cr-lr-end`: value, ›, ↗ or switch).",
+    "markup": null
+  },
+  "react": {
+    "import": "import { ListRow } from '@ism/ui'",
+    "source": "packages/react/src/components/ListRow.tsx",
+    "exports": [
+      "List",
+      "ListGroup",
+      "ListItem",
+      "ListRow"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'title'>"
+    ],
+    "props": [
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Shown in a 40px round tile."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Chapter or teaching name."
+      },
+      {
+        "name": "meta",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Duration, for example \"9:12\"."
+      },
+      {
+        "name": "progress",
+        "type": "number",
+        "required": false,
+        "default": "0.15",
+        "description": "Listened fraction, 0 to 1."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Dark surface styling. Set `false` on light surfaces."
+      },
+      {
+        "name": "onPlay",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the play button is pressed."
+      },
+      {
+        "name": "playLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Play\"",
+        "description": "Accessible name of the play button. Override to translate."
+      },
+      {
+        "name": "playIcon",
+        "type": "ReactNode",
+        "required": false,
+        "default": "\"▶\"",
+        "description": "Glyph inside the play button."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": "`window.ISMDesignSystem_106e83.ListRow`"
+  },
+  "reactNative": {
+    "import": "import { ListRow } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/ListRow.tsx",
+    "exports": [
+      "List",
+      "ListGroup",
+      "ListItem",
+      "ListRow"
+    ],
+    "props": [
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Shown in a 40dp round tile. Decorative."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Chapter or teaching name, one line."
+      },
+      {
+        "name": "meta",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Duration, for example \"9:12\"."
+      },
+      {
+        "name": "progress",
+        "type": "number",
+        "required": false,
+        "default": "0.15",
+        "description": "Listened fraction, 0 to 1."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Dark surface styling. Set `false` on light surfaces. Defaults to the theme scheme."
+      },
+      {
+        "name": "onPlay",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the play button is pressed."
+      },
+      {
+        "name": "playLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Play\"",
+        "description": "Accessible name of the play button. Pass it translated."
+      },
+      {
+        "name": "playIcon",
+        "type": "ReactNode",
+        "required": false,
+        "default": "the `play` UI icon",
+        "description": "Icon inside the play button."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "cr-accentbar",
+    "cr-av",
+    "cr-inset-grp",
+    "cr-is-hover",
+    "cr-list",
+    "cr-list-div",
+    "cr-list-inset",
+    "cr-lr",
+    "cr-lr-end",
+    "cr-lr-ic",
+    "cr-lr-ic-gold",
+    "cr-lr-m",
+    "cr-lr-noic",
+    "cr-lr-off",
+    "cr-lr-t",
+    "cr-lr-two",
+    "cr-lr-tx",
+    "cr-sw",
+    "overline"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Simple",
+        "class": ".cr-lr with text only"
+      },
+      {
+        "variant": "Leading icon",
+        "class": ".cr-lr-ic (blue tint), .cr-lr-ic-gold"
+      },
+      {
+        "variant": "Avatar + meta",
+        "class": ".cr-av + .cr-lr-m"
+      },
+      {
+        "variant": "Drill in ›",
+        "class": ".cr-lr-end with a chevron; the row is an <a>"
+      },
+      {
+        "variant": "Leaves ↗",
+        "class": ".cr-lr-end.cr-lr-out with ↗; the row is an <a>"
+      },
+      {
+        "variant": "Toggle",
+        "class": ".cr-sw switch in the end slot; the whole row toggles"
+      },
+      {
+        "variant": "Two-line",
+        "class": ".cr-lr-two: meta wraps to two lines, then ellipsis"
+      },
+      {
+        "variant": "Divided list",
+        "class": ".cr-list.cr-list-div"
+      },
+      {
+        "variant": "Inset group",
+        "class": ".cr-list-inset › .overline + .cr-inset-grp (divider inset past the icon; add .cr-lr-noic to rows with no icon)"
+      },
+      {
+        "variant": "Audio row",
+        "class": "React ListRow, dark or light"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "States: default, hover (`--off-white`; `.cr-is-hover` for docs), focus (inset 2px Horizon Blue ring), disabled (`.cr-lr-off`, 45%)."
+  ],
+  "states": {
+    "documented": "default, hover (`--off-white`; `.cr-is-hover` for docs), focus (inset 2px Horizon Blue ring), disabled (`.cr-lr-off`, 45%).",
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": true,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Rows are at least 56px tall with 20px side padding; the whole row is the tap target (well over 44px).",
+    "Icons in the end slot: › = drills into an app screen, ↗ = goes to another page, ⌄ = opens here. Never mix › and ↗ in one group without reason.",
+    "A row with › or ↗ is one `<a>`; never nest another link or button inside it.",
+    "A row with a switch toggles from anywhere on the row; the switch is the only control.",
+    "The switch uses Horizon Blue (`--horizon-blue`) when on; keep primary buttons out of list groups.",
+    "Use `--gradient-violet` avatars and `--blue-tint` icon tiles; keep one leading style per group.",
+    "Keep titles to one line. Only `.cr-lr-two` rows may wrap their meta.",
+    "The React audio row draws its progress in solid Horizon Blue as built. When you build an audio row in HTML, use AccentBar (`.cr-accentbar`, gradient) for the progress line instead."
+  ],
+  "do": [
+    "Use for settings, menus, people, languages, downloads and links in app screens and account pages.",
+    "Use the React `ListRow` for audio Bible chapters and teachings: title, progress, duration and play.",
+    "Use `.cr-list.cr-list-div` (hairline between rows) on web pages; use `.cr-list-inset` (grouped cards with a group heading) in app screens and settings.",
+    "Rows are at least 56px tall with 20px side padding; the whole row is the tap target (well over 44px).",
+    "Icons in the end slot: › = drills into an app screen, ↗ = goes to another page, ⌄ = opens here. Never mix › and ↗ in one group without reason.",
+    "A row with › or ↗ is one `<a>`; never nest another link or button inside it.",
+    "A row with a switch toggles from anywhere on the row; the switch is the only control.",
+    "The switch uses Horizon Blue (`--horizon-blue`) when on; keep primary buttons out of list groups.",
+    "Use `--gradient-violet` avatars and `--blue-tint` icon tiles; keep one leading style per group.",
+    "Keep titles to one line. Only `.cr-lr-two` rows may wrap their meta.",
+    "The React audio row draws its progress in solid Horizon Blue as built. When you build an audio row in HTML, use AccentBar (`.cr-accentbar`, gradient) for the progress line instead."
+  ],
+  "dont": [
+    "Do not use for data with several comparable columns; use Table. Do not use for marketing content with images; use Card."
+  ],
+  "accessibility": [
+    "Leading icons and avatars are decorative (`aria-hidden=\"true\"`); the title names the row.",
+    "Switches use `role=\"switch\"` + `aria-checked` and are labelled by the row title.",
+    "Label inset groups with their `.overline` heading through `aria-labelledby`.",
+    "For ↗ rows that open a new tab, add visually hidden \"(opens in a new tab)\".",
+    "In the React audio row, give the play button an `aria-label` in your wrapper if you replace the default ▶."
+  ],
+  "content": [
+    "Titles are short nouns: \"Language\", \"Downloaded Bibles\", \"Daily verse\", \"dot.Bible directory\".",
+    "Meta adds one fact: \"7:00 each morning\", \"500+ languages\", \"Partner · Lima, Peru\".",
+    "End values show the current setting (\"Amharic\", \"3\"), not instructions."
+  ],
+  "snippets": {
+    "react": [
+      "<ListRow icon={<HeadphonesIcon/>} title=\"John 3:17-4:54\" meta=\"9:12\" progress={0.3} />"
+    ],
+    "html": [
+      "<div class=\"cr-list cr-list-div\">\n  <a class=\"cr-lr\" href=\"/app/language\">\n    <span class=\"cr-lr-ic\" aria-hidden=\"true\"><svg>…</svg></span>\n    <span class=\"cr-lr-tx\"><span class=\"cr-lr-t\">Language</span></span>\n    <span class=\"cr-lr-end\">Amharic <svg>›</svg></span>\n  </a>\n  <div class=\"cr-lr\">\n    <span class=\"cr-av\" aria-hidden=\"true\">MS</span>\n    <span class=\"cr-lr-tx\"><span class=\"cr-lr-t\">Maria Santos</span><span class=\"cr-lr-m\">Partner · Lima, Peru</span></span>\n    <span class=\"cr-lr-end\">2d ago</span>\n  </div>\n</div>\n\n<div class=\"cr-list-inset\">\n  <span class=\"overline\" id=\"grp-reading\">Reading</span>\n  <div class=\"cr-inset-grp\" role=\"group\" aria-labelledby=\"grp-reading\">\n    <div class=\"cr-lr\">…\n      <button class=\"cr-sw\" type=\"button\" role=\"switch\" aria-checked=\"true\" aria-labelledby=\"dv\"></button>\n    </div>\n  </div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "jsx",
+        "code": "<ListRow icon={<HeadphonesIcon/>} title=\"John 3:17-4:54\" meta=\"9:12\" progress={0.3} />"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"cr-list cr-list-div\">\n  <a class=\"cr-lr\" href=\"/app/language\">\n    <span class=\"cr-lr-ic\" aria-hidden=\"true\"><svg>…</svg></span>\n    <span class=\"cr-lr-tx\"><span class=\"cr-lr-t\">Language</span></span>\n    <span class=\"cr-lr-end\">Amharic <svg>›</svg></span>\n  </a>\n  <div class=\"cr-lr\">\n    <span class=\"cr-av\" aria-hidden=\"true\">MS</span>\n    <span class=\"cr-lr-tx\"><span class=\"cr-lr-t\">Maria Santos</span><span class=\"cr-lr-m\">Partner · Lima, Peru</span></span>\n    <span class=\"cr-lr-end\">2d ago</span>\n  </div>\n</div>\n\n<div class=\"cr-list-inset\">\n  <span class=\"overline\" id=\"grp-reading\">Reading</span>\n  <div class=\"cr-inset-grp\" role=\"group\" aria-labelledby=\"grp-reading\">\n    <div class=\"cr-lr\">…\n      <button class=\"cr-sw\" type=\"button\" role=\"switch\" aria-checked=\"true\" aria-labelledby=\"dv\"></button>\n    </div>\n  </div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/ListRow/README.md",
+    "spec": "components/ListRow/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

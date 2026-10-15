@@ -1,0 +1,47 @@
+{
+  "name": "@ism/ui-native",
+  "version": "3.0.0",
+  "description": "ISM Design System for React Native (dot.Bible app): theme, typography, icons and components for iOS and Android.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "react-native": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "react-native": "./src/index.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./fonts/*": "./fonts/*"
+  },
+  "files": ["dist", "src", "fonts", "README.md"],
+  "scripts": {
+    "build:index": "node scripts/build-index.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "build": "npm run build:index && node -e \"const fs=require('fs');fs.mkdirSync('fonts',{recursive:true});for(const f of fs.readdirSync('../web/assets/fonts-static'))fs.copyFileSync('../web/assets/fonts-static/'+f,'fonts/'+f)\" && tsup",
+    "test": "npm run build:index && node --import ./test/register.mjs --import tsx --test test/*.test.tsx"
+  },
+  "dependencies": {
+    "@ism/tokens": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.76",
+    "react-native-svg": ">=15"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-native": "^0.80.0",
+    "react-native-svg": "^15.12.0",
+    "react-native-web": "^0.21.0",
+    "tsup": "^8.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.6.0"
+  }
+}

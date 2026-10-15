@@ -1,0 +1,231 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "LanguageRow",
+  "title": "LanguageRow",
+  "group": "Scripture",
+  "version": "3.0.0",
+  "summary": "A language entry in the dot.bible directory: native-script name first, English name second, format badges (Read, Listen, Print, App) and a ↗, as a list row or as a card.",
+  "whenToUse": [
+    "Use `.sx-lang` rows inside `.sx-langlist` for the full directory of 500+ languages and search results.",
+    "Use `.sx-lcard` cards for a small set of featured or nearby languages."
+  ],
+  "whenNotToUse": [
+    "Do not use for the hero of a single language page; use BibleCard.",
+    "Do not use as a language switcher for the site UI; use Select or Combobox."
+  ],
+  "anatomy": {
+    "description": "Each row is one link: name block, badges, ↗. Card:",
+    "markup": null
+  },
+  "react": {
+    "import": "import { LanguageRow } from '@ism/ui'",
+    "source": "packages/react/src/components/LanguageRow.tsx",
+    "exports": [
+      "LanguageFormat",
+      "LanguageFormatType",
+      "LanguageList",
+      "LanguageRow",
+      "LanguageRowVariant"
+    ],
+    "extends": [
+      "Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'children'>"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "LanguageRowVariant",
+        "required": false,
+        "default": "\"row\"",
+        "description": "`row`: list row inside a `LanguageList`. `card`: card for featured languages."
+      },
+      {
+        "name": "href",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Link to the language page."
+      },
+      {
+        "name": "nativeName",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Language name written in its own script, shown first. Never show only the English name."
+      },
+      {
+        "name": "nativeLang",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "BCP 47 code of the native name (BCP 47), for example \"am\". Needed so fonts and screen readers pick the right voice."
+      },
+      {
+        "name": "nativeDir",
+        "type": "'ltr' | 'rtl'",
+        "required": false,
+        "default": null,
+        "description": "Set \"rtl\" for Arabic-script and Hebrew names."
+      },
+      {
+        "name": "englishName",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "English name exactly as in the directory (\"Burmese\"). Card meta may replace it with `meta`."
+      },
+      {
+        "name": "meta",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Card only: secondary line such as \"Amharic · Ethiopia · 57M speakers (sample)\". Defaults to `englishName`."
+      },
+      {
+        "name": "formats",
+        "type": "LanguageFormat[]",
+        "required": false,
+        "default": null,
+        "description": "Formats available for this language; show only those that exist."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { LanguageRow } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/LanguageRow.tsx",
+    "exports": [
+      "LanguageCard",
+      "LanguageFormat",
+      "LanguageFormatLabels",
+      "LanguageList",
+      "LanguageRow"
+    ],
+    "props": [
+      {
+        "name": "divider",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Draw the hairline above this row. `LanguageList` sets it for every row after the first."
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "is-hover",
+    "sx-badge",
+    "sx-badges",
+    "sx-eng",
+    "sx-go",
+    "sx-lang",
+    "sx-lang-name",
+    "sx-langlist",
+    "sx-lcard",
+    "sx-lcard-top",
+    "sx-native"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Row",
+        "classes": ".sx-lang in .sx-langlist",
+        "notes": "72px min, native name 22px, hairline between rows"
+      },
+      {
+        "variant": "Card",
+        "classes": ".sx-lcard",
+        "notes": "native name 32px (Burmese 28px), --shadow-card-light"
+      },
+      {
+        "variant": "Right-to-left",
+        "classes": "dir=\"rtl\" on .sx-native",
+        "notes": "name renders RTL inside an LTR row"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "Row states: default; hover (`.is-hover` in the preview): `--blue-tint` background, badges turn white, ↗ turns Horizon Blue; focus ring. Card states: hover lifts to `--shadow-lift` and ↗ turns Horizon Blue; focus ring. Under 768px rows wrap: badges drop under the name, ↗ spans both lines."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Native-script name first, in `--font-sans` 600; English name after it in 14px `--gray-600`. Never show only the English name.",
+    "Give scripts with tall marks more line-height (Burmese 1.6, Urdu 1.5); the CSS does this through `:lang(my)` and `:lang(ur)`.",
+    "Show only the formats that exist for that language, in the order Read, Listen, Print, App.",
+    "Badges are neutral `--gray-100` pills with a 14px icon; never colour-code formats.",
+    "The whole row is one link to the language page, so it ends with ↗. Do not nest other links or buttons inside.",
+    "Row and card minimum height respects the 44px tap target (rows are 72px).",
+    "Speaker counts are samples until confirmed; label them \"(sample)\"."
+  ],
+  "do": [
+    "Use `.sx-lang` rows inside `.sx-langlist` for the full directory of 500+ languages and search results.",
+    "Use `.sx-lcard` cards for a small set of featured or nearby languages.",
+    "Native-script name first, in `--font-sans` 600; English name after it in 14px `--gray-600`. Never show only the English name.",
+    "Give scripts with tall marks more line-height (Burmese 1.6, Urdu 1.5); the CSS does this through `:lang(my)` and `:lang(ur)`.",
+    "Show only the formats that exist for that language, in the order Read, Listen, Print, App.",
+    "Badges are neutral `--gray-100` pills with a 14px icon; never colour-code formats.",
+    "The whole row is one link to the language page, so it ends with ↗. Do not nest other links or buttons inside.",
+    "Row and card minimum height respects the 44px tap target (rows are 72px).",
+    "Speaker counts are samples until confirmed; label them \"(sample)\"."
+  ],
+  "dont": [
+    "Do not use for the hero of a single language page; use BibleCard.",
+    "Do not use as a language switcher for the site UI; use Select or Combobox."
+  ],
+  "accessibility": [
+    "Always set `lang` on `.sx-native`, and `dir=\"rtl\"` for Arabic-script and Hebrew names, so screen readers and fonts pick the right voice and shaping.",
+    "The ↗ is `aria-hidden`; the link's text (native + English name + formats) is its accessible name.",
+    "Badge icons are `aria-hidden=\"true\"`; the word carries the meaning.",
+    "Keep list order stable when filtering so keyboard users do not lose their place."
+  ],
+  "content": [
+    "English name exactly as in the directory (\"Burmese\", not \"Myanmar language\").",
+    "Card meta: \"Language · Country · speakers (sample)\".",
+    "Badge words: Read, Listen, Print, App. No other labels."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"sx-langlist\">\n  <a class=\"sx-lang\" href=\"/amharic\">\n    <div class=\"sx-lang-name\"><span class=\"sx-native\" lang=\"am\">አማርኛ</span><span class=\"sx-eng\">Amharic</span></div>\n    <div class=\"sx-badges\">\n      <span class=\"sx-badge\"><svg width=\"14\" height=\"14\" …aria-hidden=\"true\">…</svg>Read</span>\n      <span class=\"sx-badge\"><svg …>…</svg>Listen</span>\n      <span class=\"sx-badge\"><svg …>…</svg>Print</span>\n      <span class=\"sx-badge\"><svg …>…</svg>App</span>\n    </div>\n    <span class=\"sx-go\" aria-hidden=\"true\">↗</span>\n  </a>\n  <a class=\"sx-lang\" href=\"/urdu\">\n    <div class=\"sx-lang-name\"><span class=\"sx-native\" lang=\"ur\" dir=\"rtl\">اردو</span><span class=\"sx-eng\">Urdu</span></div>\n    …\n  </a>\n</div>",
+      "<a class=\"sx-lcard\" href=\"/amharic\">\n  <div class=\"sx-lcard-top\"><span class=\"sx-native\" lang=\"am\">አማርኛ</span><span class=\"sx-go\" aria-hidden=\"true\">↗</span></div>\n  <span class=\"sx-eng\">Amharic · Ethiopia · 57M speakers (sample)</span>\n  <div class=\"sx-badges\">…</div>\n</a>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"sx-langlist\">\n  <a class=\"sx-lang\" href=\"/amharic\">\n    <div class=\"sx-lang-name\"><span class=\"sx-native\" lang=\"am\">አማርኛ</span><span class=\"sx-eng\">Amharic</span></div>\n    <div class=\"sx-badges\">\n      <span class=\"sx-badge\"><svg width=\"14\" height=\"14\" …aria-hidden=\"true\">…</svg>Read</span>\n      <span class=\"sx-badge\"><svg …>…</svg>Listen</span>\n      <span class=\"sx-badge\"><svg …>…</svg>Print</span>\n      <span class=\"sx-badge\"><svg …>…</svg>App</span>\n    </div>\n    <span class=\"sx-go\" aria-hidden=\"true\">↗</span>\n  </a>\n  <a class=\"sx-lang\" href=\"/urdu\">\n    <div class=\"sx-lang-name\"><span class=\"sx-native\" lang=\"ur\" dir=\"rtl\">اردو</span><span class=\"sx-eng\">Urdu</span></div>\n    …\n  </a>\n</div>"
+      },
+      {
+        "lang": "html",
+        "code": "<a class=\"sx-lcard\" href=\"/amharic\">\n  <div class=\"sx-lcard-top\"><span class=\"sx-native\" lang=\"am\">አማርኛ</span><span class=\"sx-go\" aria-hidden=\"true\">↗</span></div>\n  <span class=\"sx-eng\">Amharic · Ethiopia · 57M speakers (sample)</span>\n  <div class=\"sx-badges\">…</div>\n</a>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/LanguageRow/README.md",
+    "spec": "components/LanguageRow/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

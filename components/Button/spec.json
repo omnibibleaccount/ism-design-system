@@ -1,0 +1,282 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Button",
+  "title": "Button",
+  "group": "Actions",
+  "version": "3.0.0",
+  "summary": "Pill-shaped call-to-action button used across ISM's app, site, and print/email creative, available as the React `Button` and as `.btn` classes.",
+  "whenToUse": [
+    "Use for actions: give, sign up, download, submit, open a section.",
+    "Use `primary` / `.btn-primary` for the ONE main action in a group. Everything else in that group is secondary, light, outline or ghost."
+  ],
+  "whenNotToUse": [
+    "Do not use a button for plain navigation inside running text; use a link (see Link).",
+    "Do not use a button for a filter or toggle; use Chip."
+  ],
+  "anatomy": {
+    "description": "A pill with a label and an optional trailing icon. No shadow; hover darkens one step; no scale.",
+    "markup": "Classes: `.btn` + one colour class (`.btn-primary`, `.btn-secondary`, `.btn-ghost`, `.btn-light`, `.btn-outline-light`) + optional size (`.btn-sm` 36px, default 44px, `.btn-lg` 52px). `.cr-btn-block` makes it full width. `.arrow` nudges up-right on hover. `.spin` is the loading spinner."
+  },
+  "react": {
+    "import": "import { Button } from '@ism/ui'",
+    "source": "packages/react/src/components/Button.tsx",
+    "exports": [
+      "Button",
+      "ButtonSize",
+      "ButtonVariant"
+    ],
+    "extends": [],
+    "props": [
+      {
+        "name": "variant",
+        "type": "ButtonVariant",
+        "required": false,
+        "default": "\"primary\"",
+        "description": "Colour treatment. `primary` (solid Horizon Blue) is for the ONE main action in a group.\n`outlineLight` and `ghost` suit light sections; `outlineDark` and `solidWhite` suit dark sections."
+      },
+      {
+        "name": "size",
+        "type": "ButtonSize",
+        "required": false,
+        "default": "\"md\"",
+        "description": ""
+      },
+      {
+        "name": "block",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Stretch to the full width of the container."
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Show a spinner and block interaction. The label stays and the width does not change. Sets `aria-busy`."
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Trailing icon element, for example `<UiIcon name=\"arrow-right\" />` or an `↗` span. Hidden from assistive tech."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": ""
+      },
+      {
+        "name": "href",
+        "type": "undefined",
+        "required": false,
+        "default": null,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": "`import { Button } from` the bundle (`window.ISMDesignSystem_106e83.Button`)."
+  },
+  "reactNative": {
+    "import": "import { Button } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Button.tsx",
+    "exports": [
+      "Button",
+      "ButtonSize",
+      "ButtonVariant"
+    ],
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Label. Verb first, sentence case."
+      },
+      {
+        "name": "variant",
+        "type": "ButtonVariant",
+        "required": false,
+        "default": "\"primary\"",
+        "description": "`primary` is the ONE main action in a group. `light` and `outlineLight` are for dark surfaces."
+      },
+      {
+        "name": "size",
+        "type": "ButtonSize",
+        "required": false,
+        "default": "\"md\"",
+        "description": "Heights 36, 44 and 52dp. Use `sm` only in dense desktop-like toolbars, never as a sole touch target."
+      },
+      {
+        "name": "block",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Stretch to the container width."
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Show a spinner in place of the leading icon and block presses. Sets busy accessibility state."
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Optional trailing element, e.g. `<UiIcon name=\"arrow-right\" mirrorInRTL />`."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "arrow",
+    "btn",
+    "btn-ghost",
+    "btn-lg",
+    "btn-light",
+    "btn-outline-light",
+    "btn-primary",
+    "btn-secondary",
+    "btn-sm",
+    "cr-btn-block",
+    "sec-ink",
+    "spin"
+  ],
+  "variants": [
+    [
+      {
+        "react_variant": "primary",
+        "html_class": ".btn-primary",
+        "use_on": "light or dark, the one main action"
+      },
+      {
+        "react_variant": "outlineLight",
+        "html_class": ".btn-secondary",
+        "use_on": "light sections"
+      },
+      {
+        "react_variant": "outlineDark",
+        "html_class": ".btn-outline-light",
+        "use_on": "dark sections"
+      },
+      {
+        "react_variant": "solidWhite",
+        "html_class": ".btn-light",
+        "use_on": "dark sections (also the header Give pill)"
+      },
+      {
+        "react_variant": "ghost",
+        "html_class": ".btn-ghost",
+        "use_on": "inline \"See all ↗\", \"Browse All\""
+      }
+    ]
+  ],
+  "variantNotes": [
+    "States: default, hover (one step darker), focus (2px Horizon Blue outline + `--shadow-focus`), disabled (`disabled` or `aria-disabled=\"true\"`, 45% opacity), loading (`.spin` + \"Sending…\", keep it disabled)."
+  ],
+  "states": {
+    "documented": "default, hover (one step darker), focus (2px Horizon Blue outline + `--shadow-focus`), disabled (`disabled` or `aria-disabled=\"true\"`, 45% opacity), loading (`.spin` + \"Sending…\", keep it disabled).",
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": true,
+      "loading": true,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "One Horizon Blue (`--horizon-blue`) button per group. Never two blues side by side.",
+    "Never use blue for other accents (progress lines, borders, dividers); use the gradient, gold, white or black (see Divider, AccentBar).",
+    "Keep every button at least 44px tall (`--tap-target`). `.btn-sm` (36px) is for dense desktop toolbars only.",
+    "Icons: ↗ = goes to another page, ⌄ = opens here, › = drills into an app screen. Put the icon after the label; a leading icon is fine for download or give.",
+    "Inside `.sec-ink`, `.btn-secondary` and `.btn-ghost` switch to their on-dark colours automatically.",
+    "Use `<a>` for navigation and `<button type=\"button\">` for actions."
+  ],
+  "do": [
+    "Use for actions: give, sign up, download, submit, open a section.",
+    "Use `primary` / `.btn-primary` for the ONE main action in a group. Everything else in that group is secondary, light, outline or ghost.",
+    "One Horizon Blue (`--horizon-blue`) button per group. Never two blues side by side.",
+    "Keep every button at least 44px tall (`--tap-target`). `.btn-sm` (36px) is for dense desktop toolbars only.",
+    "Icons: ↗ = goes to another page, ⌄ = opens here, › = drills into an app screen. Put the icon after the label; a leading icon is fine for download or give.",
+    "Inside `.sec-ink`, `.btn-secondary` and `.btn-ghost` switch to their on-dark colours automatically.",
+    "Use `<a>` for navigation and `<button type=\"button\">` for actions."
+  ],
+  "dont": [
+    "Do not use a button for plain navigation inside running text; use a link (see Link).",
+    "Do not use a button for a filter or toggle; use Chip.",
+    "Never use blue for other accents (progress lines, borders, dividers); use the gradient, gold, white or black (see Divider, AccentBar)."
+  ],
+  "accessibility": [
+    "The label must say what happens (\"Give online\", not \"Click here\").",
+    "Mark decorative icons and `.arrow` with `aria-hidden=\"true\"`.",
+    "A loading button keeps its width, gets `aria-busy=\"true\"` and `disabled`.",
+    "Focus ring is always visible on keyboard focus; do not remove it."
+  ],
+  "content": [
+    "Verb first, two to four words, sentence case: \"Give online\", \"Download the app\", \"Become a partner\", \"Join the Mission\".",
+    "No exclamation marks, no emoji."
+  ],
+  "snippets": {
+    "react": [
+      "<Button variant=\"primary\">Get Started</Button>\n<Button variant=\"outlineDark\" icon={<ArrowIcon/>}>Download the App</Button>"
+    ],
+    "html": [
+      "<a class=\"btn btn-primary\" href=\"/give\">Give online <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n<a class=\"btn btn-secondary\" href=\"/about\">Learn about ISM</a>\n<a class=\"btn btn-ghost\" href=\"/faith\">Our statement of faith <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n\n<button class=\"btn btn-primary\" type=\"button\" disabled aria-busy=\"true\">\n  <span class=\"spin\" aria-hidden=\"true\"></span>Sending…\n</button>"
+    ],
+    "other": [
+      {
+        "lang": "jsx",
+        "code": "<Button variant=\"primary\">Get Started</Button>\n<Button variant=\"outlineDark\" icon={<ArrowIcon/>}>Download the App</Button>"
+      },
+      {
+        "lang": "html",
+        "code": "<a class=\"btn btn-primary\" href=\"/give\">Give online <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n<a class=\"btn btn-secondary\" href=\"/about\">Learn about ISM</a>\n<a class=\"btn btn-ghost\" href=\"/faith\">Our statement of faith <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n\n<button class=\"btn btn-primary\" type=\"button\" disabled aria-busy=\"true\">\n  <span class=\"spin\" aria-hidden=\"true\"></span>Sending…\n</button>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/Button/README.md",
+    "spec": "components/Button/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

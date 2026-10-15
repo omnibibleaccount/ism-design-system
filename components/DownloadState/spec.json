@@ -1,0 +1,290 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "DownloadState",
+  "title": "DownloadState",
+  "group": "App UI",
+  "version": "3.0.0",
+  "summary": "Offline and download indicators for ISM apps: the 44px download button in its four states, a storage usage row, and offline / back-online banners.",
+  "whenToUse": [
+    "Use the download button on any Bible, audio or language row that can be saved for offline use.",
+    "Use the storage row at the top of Manage downloads.",
+    "Show the offline banner under the AppBar while the phone has no connection; show Back online briefly when it returns.",
+    "Use the inline warning when the reader opens something that is not downloaded while offline."
+  ],
+  "whenNotToUse": [],
+  "anatomy": {
+    "description": "Progress ring:",
+    "markup": null
+  },
+  "react": {
+    "import": "import { DownloadState } from '@ism/ui'",
+    "source": "packages/react/src/components/DownloadState.tsx",
+    "exports": [
+      "ConnectionBanner",
+      "DownloadRow",
+      "DownloadState",
+      "DownloadStateLabels",
+      "DownloadStatus",
+      "NotDownloadedWarning",
+      "StorageRow",
+      "StorageSegment"
+    ],
+    "extends": [
+      "Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'>"
+    ],
+    "props": [
+      {
+        "name": "status",
+        "type": "DownloadStatus",
+        "required": false,
+        "default": "\"idle\"",
+        "description": "`idle` hairline circle with ↓, `downloading` progress ring with a stop square, `paused` ring with a\nresume triangle, `downloaded` success tick, `error` retry on error tint. State is never colour alone:\nthe icon shape changes too, and the row subtitle should change."
+      },
+      {
+        "name": "progress",
+        "type": "number",
+        "required": false,
+        "default": "0",
+        "description": "Progress from 0 to 1 for `downloading` and `paused`. Update at most every 250 ms."
+      },
+      {
+        "name": "itemName",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Name of the item, used in the accessible name (\"Download Amharic\")."
+      },
+      {
+        "name": "small",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "36px button with a 44px hit area, for dense lists."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<DownloadStateLabels>",
+        "required": false,
+        "default": null,
+        "description": "Override the accessible-name builders."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { DownloadState } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/DownloadState.tsx",
+    "exports": [
+      "DownloadButton",
+      "DownloadButtonLabels",
+      "DownloadStatus",
+      "DownloadWarning",
+      "OfflineBanner",
+      "StorageKind",
+      "StorageRow",
+      "StorageSegment"
+    ],
+    "props": [
+      {
+        "name": "status",
+        "type": "DownloadStatus",
+        "required": false,
+        "default": "\"idle\"",
+        "description": "Current state. State is shown by icon shape too, never colour alone."
+      },
+      {
+        "name": "progress",
+        "type": "number",
+        "required": false,
+        "default": null,
+        "description": "Progress 0 to 1 while `downloading`."
+      },
+      {
+        "name": "itemName",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Name of the item for the accessible name: \"Amharic\"."
+      },
+      {
+        "name": "onPress",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called on press: start (idle), stop (downloading), manage or open (downloaded), retry (error)."
+      },
+      {
+        "name": "small",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "36dp visual with a 44dp hit area, for dense lists."
+      },
+      {
+        "name": "labels",
+        "type": "DownloadButtonLabels",
+        "required": false,
+        "default": null,
+        "description": "Accessible names; override for translation."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Disable while offline (\"Needs a connection\")."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "ap-banner",
+    "ap-dl",
+    "ap-dl-idle",
+    "ap-dl-sm",
+    "ap-eth",
+    "ap-ring-stop",
+    "ap-ring-track",
+    "ap-ring-val",
+    "ap-row",
+    "ap-row-tall",
+    "ap-s",
+    "ap-s-err",
+    "ap-t",
+    "ap-tt"
+  ],
+  "variants": [
+    [
+      {
+        "state": "Not downloaded",
+        "classes": ".ap-dl.ap-dl-idle",
+        "meaning": "hairline circle, blue ↓"
+      },
+      {
+        "state": "Downloading",
+        "classes": ".ap-dl + ring",
+        "meaning": "3px Horizon Blue ring on --gray-200, stop square"
+      },
+      {
+        "state": "Downloaded",
+        "classes": ".ap-dl.ap-dl-ok",
+        "meaning": "--success tick on --success-bg"
+      },
+      {
+        "state": "Error",
+        "classes": ".ap-dl.ap-dl-err + .ap-s-err subtitle",
+        "meaning": "--error retry on --error-bg"
+      },
+      {
+        "state": "Small",
+        "classes": ".ap-dl-sm (36px, 44px hit area)",
+        "meaning": "inside dense lists"
+      },
+      {
+        "state": "Offline banner",
+        "classes": ".ap-banner",
+        "meaning": "--charcoal-900, full width under the bar"
+      },
+      {
+        "state": "Back online",
+        "classes": ".ap-banner.ap-banner-online",
+        "meaning": "success tint, auto-hides after 3s"
+      },
+      {
+        "state": "Not downloaded warning",
+        "classes": ".alert.alert-warn.ap-warn",
+        "meaning": "inline, under the banner"
+      }
+    ]
+  ],
+  "variantNotes": [],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": false,
+      "focus": false,
+      "pressed": false,
+      "disabled": true,
+      "loading": true,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "The button is always 44×44 and on the right of the row.",
+    "Ring dasharray = progress × 119.4 (the circumference); update it at most every 250ms.",
+    "Show size before download (\"312 MB\") and progress during (\"193 of 312 MB\").",
+    "Storage bar: Bibles Horizon Blue, audio `--gradient-violet`, other `--gray-300`; always show the legend with numbers.",
+    "While offline, keep downloaded rows normal and mark the rest disabled with \"Needs a connection\".",
+    "Never block the screen for offline; the banner is enough."
+  ],
+  "do": [
+    "Use the download button on any Bible, audio or language row that can be saved for offline use.",
+    "Use the storage row at the top of Manage downloads.",
+    "Show the offline banner under the AppBar while the phone has no connection; show Back online briefly when it returns.",
+    "Use the inline warning when the reader opens something that is not downloaded while offline.",
+    "The button is always 44×44 and on the right of the row.",
+    "Ring dasharray = progress × 119.4 (the circumference); update it at most every 250ms.",
+    "Show size before download (\"312 MB\") and progress during (\"193 of 312 MB\").",
+    "Storage bar: Bibles Horizon Blue, audio `--gradient-violet`, other `--gray-300`; always show the legend with numbers.",
+    "While offline, keep downloaded rows normal and mark the rest disabled with \"Needs a connection\"."
+  ],
+  "dont": [
+    "Never block the screen for offline; the banner is enough."
+  ],
+  "accessibility": [
+    "Each button's name says the action and item: \"Download Amharic\", \"Stop download, 62 percent\", \"Retry download\".",
+    "Banners use `role=\"status\"` so the change is announced once.",
+    "The storage bar has `role=\"img\"` and an `aria-label` with all values.",
+    "State never relies on colour alone: icon shape and subtitle change too."
+  ],
+  "content": [
+    "\"You’re offline · Downloaded Bibles still work\"",
+    "\"Back online\"",
+    "\"Download failed · Tap to retry\"",
+    "\"This Bible isn’t downloaded\" / \"Download Español · NBLA to read it without a connection.\"",
+    "Mark example sizes as samples in specs."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"ap-row ap-row-tall\">\n  <span class=\"ap-tt\"><span class=\"ap-t\">Amharic <span class=\"ap-eth\">አማርኛ</span></span><span class=\"ap-s\">312 MB · Bible + audio</span></span>\n  <button class=\"ap-dl ap-dl-idle\" type=\"button\" aria-label=\"Download Amharic\">…</button>\n</div>\n\n<div class=\"ap-banner\" role=\"status\">…<span><b>You’re offline</b> · Downloaded Bibles still work</span></div>",
+      "<button class=\"ap-dl\" type=\"button\" aria-label=\"Stop download, 62 percent\">\n  <svg width=\"44\" height=\"44\" viewBox=\"0 0 44 44\"><circle class=\"ap-ring-track\" cx=\"22\" cy=\"22\" r=\"19\"/>\n  <circle class=\"ap-ring-val\" cx=\"22\" cy=\"22\" r=\"19\" stroke-dasharray=\"74 120\" transform=\"rotate(-90 22 22)\"/>\n  <rect class=\"ap-ring-stop\" x=\"17\" y=\"17\" width=\"10\" height=\"10\" rx=\"2\"/></svg>\n</button>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"ap-row ap-row-tall\">\n  <span class=\"ap-tt\"><span class=\"ap-t\">Amharic <span class=\"ap-eth\">አማርኛ</span></span><span class=\"ap-s\">312 MB · Bible + audio</span></span>\n  <button class=\"ap-dl ap-dl-idle\" type=\"button\" aria-label=\"Download Amharic\">…</button>\n</div>\n\n<div class=\"ap-banner\" role=\"status\">…<span><b>You’re offline</b> · Downloaded Bibles still work</span></div>"
+      },
+      {
+        "lang": "html",
+        "code": "<button class=\"ap-dl\" type=\"button\" aria-label=\"Stop download, 62 percent\">\n  <svg width=\"44\" height=\"44\" viewBox=\"0 0 44 44\"><circle class=\"ap-ring-track\" cx=\"22\" cy=\"22\" r=\"19\"/>\n  <circle class=\"ap-ring-val\" cx=\"22\" cy=\"22\" r=\"19\" stroke-dasharray=\"74 120\" transform=\"rotate(-90 22 22)\"/>\n  <rect class=\"ap-ring-stop\" x=\"17\" y=\"17\" width=\"10\" height=\"10\" rx=\"2\"/></svg>\n</button>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/DownloadState/README.md",
+    "spec": "components/DownloadState/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

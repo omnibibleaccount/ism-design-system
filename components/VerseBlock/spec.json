@@ -1,0 +1,370 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "VerseBlock",
+  "title": "VerseBlock",
+  "group": "Scripture",
+  "version": "3.0.0",
+  "summary": "A single Bible verse set in Lora with its reference and Share, Copy and Bookmark tools, plus a dark Verse of the Day hero and an inline citation link.",
+  "whenToUse": [
+    "Use `.sx-verse` to feature one verse or a short passage inside a page, article or app screen.",
+    "Use `.sx-votd` for the Verse of the Day on the homepage or the dot.Bible app home, on a dark section.",
+    "Use `.sx-cite` for a Bible reference inside running text that links to the passage."
+  ],
+  "whenNotToUse": [
+    "Do not use VerseBlock for a whole chapter; use ReadingView.",
+    "Do not use it for a testimony or a quote from a person; use Quote."
+  ],
+  "anatomy": {
+    "description": "Verse card: serif verse text, then a footer with the reference on the left and 44px icon tools on the right. Verse of the day (dark): Inline citation: `<a class=\"sx-cite\" href=\"/john-3#3\">John 3:3</a>`.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { VerseBlock } from '@ism/ui'",
+    "source": "packages/react/src/components/VerseBlock.tsx",
+    "exports": [
+      "VerseBlock",
+      "VerseBlockLabels",
+      "VerseBlockVariant",
+      "VerseCitation",
+      "formatReference"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'title' | 'lang' | 'dir'>"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "VerseBlockVariant",
+        "required": false,
+        "default": "\"card\"",
+        "description": "`card`: white verse card. `votd`: dark Verse of the day hero with gold accents."
+      },
+      {
+        "name": "text",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "The verse text exactly as in the translation, without surrounding quotation marks. Never edited or shortened here."
+      },
+      {
+        "name": "reference",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Reference such as \"John 3:16\" or \"1 Corinthians 13:4–7\", in the reader's language. A non-breaking space is placed after the book name."
+      },
+      {
+        "name": "translation",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Translation abbreviation or name (\"BSB\"). Always name it. Shown after the reference as \"John 3:16 · BSB\"."
+      },
+      {
+        "name": "lang",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Language of the verse text and reference (BCP 47), set when it differs from the page language."
+      },
+      {
+        "name": "dir",
+        "type": "Direction",
+        "required": false,
+        "default": null,
+        "description": "Reading direction of the verse text. Use \"rtl\" for Arabic-script and Hebrew translations."
+      },
+      {
+        "name": "referenceDir",
+        "type": "Direction",
+        "required": false,
+        "default": "\"ltr\"",
+        "description": "Direction of the reference run; references are isolated as LTR by default so digits and punctuation keep their order."
+      },
+      {
+        "name": "quoted",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Wrap the text in curly quotation marks. Turn off when the translation supplies its own marks."
+      },
+      {
+        "name": "onShare",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called by the Share tool. The tool is shown only when this is given."
+      },
+      {
+        "name": "onCopy",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called by the Copy tool. The tool is shown only when this is given. Confirm with a Toast."
+      },
+      {
+        "name": "onBookmarkChange",
+        "type": "(saved: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "Called by the Bookmark tool. The tool is shown only when this is given."
+      },
+      {
+        "name": "bookmarked",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Whether the verse is bookmarked (`aria-pressed`)."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<VerseBlockLabels>",
+        "required": false,
+        "default": null,
+        "description": "Accessible names of the tools."
+      },
+      {
+        "name": "eyebrow",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Eyebrow of the `votd` variant, for example \"Verse of the day\"."
+      },
+      {
+        "name": "more",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Lead-in line under a `votd` verse, usually ending in a `VerseCitation`."
+      },
+      {
+        "name": "eyebrowId",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Id of the `votd` eyebrow, used as the landmark name; generated when omitted."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { VerseBlock } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/VerseBlock.tsx",
+    "exports": [
+      "VerseBlock",
+      "VerseBlockLabels",
+      "VerseCitation",
+      "VerseOfTheDay"
+    ],
+    "props": [
+      {
+        "name": "text",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "The verse text, exactly as published. Never edited or shortened here."
+      },
+      {
+        "name": "reference",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Reference, e.g. \"John 3:16\"."
+      },
+      {
+        "name": "translation",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Translation abbreviation or name, e.g. \"BSB\". Always shown after the reference."
+      },
+      {
+        "name": "lang",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "BCP-47 language of the verse when it differs from the UI language. Sets line-height and direction."
+      },
+      {
+        "name": "quotes",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Wrap the verse in curly quotes."
+      },
+      {
+        "name": "onShare",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Show the Share tool when set."
+      },
+      {
+        "name": "onCopy",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Show the Copy tool when set."
+      },
+      {
+        "name": "onBookmark",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Show the Bookmark tool when set."
+      },
+      {
+        "name": "bookmarked",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Bookmark is saved."
+      },
+      {
+        "name": "labels",
+        "type": "VerseBlockLabels",
+        "required": false,
+        "default": null,
+        "description": "Accessible names for the tools; override for translation."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "eyebrow",
+    "sx-cite",
+    "sx-cite-dark",
+    "sx-eyebrow-gold",
+    "sx-gold-rule",
+    "sx-ibtn",
+    "sx-ibtn-dark",
+    "sx-ref",
+    "sx-verse",
+    "sx-verse-foot",
+    "sx-verse-text",
+    "sx-verse-tools",
+    "sx-votd",
+    "sx-votd-more",
+    "sx-votd-ref",
+    "sx-votd-text"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Verse card",
+        "classes": ".sx-verse + .sx-verse-text + .sx-ref",
+        "background": "white card on --off-white"
+      },
+      {
+        "variant": "Verse of the day",
+        "classes": ".sx-votd + .sx-votd-text + .sx-votd-ref",
+        "background": "--black with blue and gold glows"
+      },
+      {
+        "variant": "Inline citation",
+        "classes": ".sx-cite (light), .sx-cite sx-cite-dark (dark)",
+        "background": "running text"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "Tool button (`.sx-ibtn`) states: default, hover (`--gray-100` fill), focus (2px Horizon Blue outline + `--shadow-focus`), saved (`aria-pressed=\"true\"`: `--blue-tint` fill, filled icon). On dark, `.sx-ibtn-dark` is transparent with a white 22% border; saved turns `--leather-gold`. Citation states: default (dotted underline, `--horizon-blue-dim`), hover (solid `--horizon-blue` underline)."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Set verse text in `--font-serif` only: 21px / 1.6 in the card, 34px / 1.4 in Verse of the day (19px and 26px under 768px).",
+    "Reference after the verse, sans 600, format \"Book chapter:verse · TRANSLATION\" (`John 3:16 · BSB`).",
+    "Wrap the verse in curly quotes (“ ”). Never italicise the verse.",
+    "Tools are `.sx-ibtn` 44px circles, in the order Share, Copy, Bookmark. Three tools at most.",
+    "Verse of the day uses gold accents (`.sx-eyebrow-gold`, `.sx-gold-rule`, `--leather-gold` reference), not Horizon Blue. No filled blue button inside it.",
+    "Card: `--radius-lg`, `--shadow-card-light`, 1px `--border-hairline-light`. Hero: `--radius-lg`, padding `--space-7`.",
+    "A citation that opens the reader on another page ends with ↗; a citation inside the reader that scrolls to a verse has no icon."
+  ],
+  "do": [
+    "Use `.sx-verse` to feature one verse or a short passage inside a page, article or app screen.",
+    "Use `.sx-votd` for the Verse of the Day on the homepage or the dot.Bible app home, on a dark section.",
+    "Use `.sx-cite` for a Bible reference inside running text that links to the passage.",
+    "Set verse text in `--font-serif` only: 21px / 1.6 in the card, 34px / 1.4 in Verse of the day (19px and 26px under 768px).",
+    "Reference after the verse, sans 600, format \"Book chapter:verse · TRANSLATION\" (`John 3:16 · BSB`).",
+    "Wrap the verse in curly quotes (“ ”). Never italicise the verse.",
+    "Tools are `.sx-ibtn` 44px circles, in the order Share, Copy, Bookmark. Three tools at most.",
+    "Verse of the day uses gold accents (`.sx-eyebrow-gold`, `.sx-gold-rule`, `--leather-gold` reference), not Horizon Blue. No filled blue button inside it.",
+    "Card: `--radius-lg`, `--shadow-card-light`, 1px `--border-hairline-light`. Hero: `--radius-lg`, padding `--space-7`.",
+    "A citation that opens the reader on another page ends with ↗; a citation inside the reader that scrolls to a verse has no icon."
+  ],
+  "dont": [
+    "Do not use VerseBlock for a whole chapter; use ReadingView.",
+    "Do not use it for a testimony or a quote from a person; use Quote."
+  ],
+  "accessibility": [
+    "Every icon tool has an `aria-label` (\"Share verse\", \"Copy verse\", \"Bookmark verse\"); icons are `aria-hidden=\"true\"`.",
+    "Bookmark is a toggle: `aria-pressed` and swap the label to \"Remove bookmark\" when saved.",
+    "Give Verse of the day a landmark name via `aria-labelledby` pointing at its eyebrow.",
+    "Copy and Share confirm with a Toast (\"Verse copied\"), never only by changing the icon.",
+    "Set `lang` on verse text that is not in the page language."
+  ],
+  "content": [
+    "Quote the translation exactly; always name it (BSB, KJV, or the local translation).",
+    "Short lead-ins only: \"Read the whole chapter in the dot.Bible app\".",
+    "No added commentary inside the verse block. No exclamation marks, no emoji."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<article class=\"sx-verse\">\n  <p class=\"sx-verse-text\">“For God so loved the world that He gave His one and only Son, that everyone who believes in Him shall not perish but have eternal life.”</p>\n  <div class=\"sx-verse-foot\">\n    <span class=\"sx-ref\">John 3:16 · BSB</span>\n    <div class=\"sx-verse-tools\">\n      <button type=\"button\" class=\"sx-ibtn\" aria-label=\"Share verse\"><svg …aria-hidden=\"true\">…</svg></button>\n      <button type=\"button\" class=\"sx-ibtn\" aria-label=\"Copy verse\"><svg …>…</svg></button>\n      <button type=\"button\" class=\"sx-ibtn\" aria-label=\"Bookmark verse\" aria-pressed=\"false\"><svg …>…</svg></button>\n    </div>\n  </div>\n</article>",
+      "<section class=\"sx-votd\" aria-labelledby=\"votd\">\n  <span class=\"eyebrow sx-eyebrow-gold\" id=\"votd\">Verse of the day</span>\n  <div class=\"sx-gold-rule\" aria-hidden=\"true\"></div>\n  <p class=\"sx-votd-text\">“Your word is a lamp to my feet and a light to my path.”</p>\n  <div class=\"sx-verse-foot\">\n    <span class=\"sx-votd-ref\">Psalm 119:105 · BSB</span>\n    <div class=\"sx-verse-tools\">\n      <button type=\"button\" class=\"sx-ibtn sx-ibtn-dark\" aria-label=\"Share verse\">…</button>\n    </div>\n  </div>\n  <p class=\"sx-votd-more\">Read the whole chapter in the dot.Bible app <a class=\"sx-cite sx-cite-dark\" href=\"/psalm-119\">Psalm 119 ↗</a></p>\n</section>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<article class=\"sx-verse\">\n  <p class=\"sx-verse-text\">“For God so loved the world that He gave His one and only Son, that everyone who believes in Him shall not perish but have eternal life.”</p>\n  <div class=\"sx-verse-foot\">\n    <span class=\"sx-ref\">John 3:16 · BSB</span>\n    <div class=\"sx-verse-tools\">\n      <button type=\"button\" class=\"sx-ibtn\" aria-label=\"Share verse\"><svg …aria-hidden=\"true\">…</svg></button>\n      <button type=\"button\" class=\"sx-ibtn\" aria-label=\"Copy verse\"><svg …>…</svg></button>\n      <button type=\"button\" class=\"sx-ibtn\" aria-label=\"Bookmark verse\" aria-pressed=\"false\"><svg …>…</svg></button>\n    </div>\n  </div>\n</article>"
+      },
+      {
+        "lang": "html",
+        "code": "<section class=\"sx-votd\" aria-labelledby=\"votd\">\n  <span class=\"eyebrow sx-eyebrow-gold\" id=\"votd\">Verse of the day</span>\n  <div class=\"sx-gold-rule\" aria-hidden=\"true\"></div>\n  <p class=\"sx-votd-text\">“Your word is a lamp to my feet and a light to my path.”</p>\n  <div class=\"sx-verse-foot\">\n    <span class=\"sx-votd-ref\">Psalm 119:105 · BSB</span>\n    <div class=\"sx-verse-tools\">\n      <button type=\"button\" class=\"sx-ibtn sx-ibtn-dark\" aria-label=\"Share verse\">…</button>\n    </div>\n  </div>\n  <p class=\"sx-votd-more\">Read the whole chapter in the dot.Bible app <a class=\"sx-cite sx-cite-dark\" href=\"/psalm-119\">Psalm 119 ↗</a></p>\n</section>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/VerseBlock/README.md",
+    "spec": "components/VerseBlock/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

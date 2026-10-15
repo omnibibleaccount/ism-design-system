@@ -1,0 +1,28 @@
+{
+  "name": "@ism/web",
+  "version": "3.0.0",
+  "description": "ISM Design System for plain HTML and CSS: tokens, component classes, per-script typography, RTL overrides, fonts, icons, logos and patterns.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "files": [
+    "css",
+    "assets"
+  ],
+  "exports": {
+    "./css/*": "./css/*",
+    "./assets/*": "./assets/*",
+    "./ism.css": "./css/ism.css",
+    "./ism.rtl.css": "./css/rtl.css"
+  },
+  "scripts": {
+    "build": "node scripts/build-web.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.30",
+    "postcss-rtlcss": "^5.7.1"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

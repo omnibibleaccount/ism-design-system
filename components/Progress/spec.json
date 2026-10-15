@@ -1,0 +1,300 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Progress",
+  "title": "Progress",
+  "group": "Feedback",
+  "version": "3.0.0",
+  "summary": "Bars and rings that show how far along a task is, from a file download to day 15 of a reading plan to step 1 of 2 in a sign-up.",
+  "whenToUse": [
+    "Use a determinate bar when you know the total: downloads, uploads, a giving goal.",
+    "Use the indeterminate bar for work of unknown length that runs longer than about 2 seconds, at the top of a panel or page.",
+    "Use the circular ring for compact spots: an upload thumbnail, a reading plan in a list.",
+    "Use step progress at the top of a multi-step form (partner sign-up, giving).",
+    "Use a Loader spinner for short waits with no measurable progress."
+  ],
+  "whenNotToUse": [],
+  "anatomy": {
+    "description": "Track + fill, with an optional label row (name left, percent right) and a hint line below.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Progress } from '@ism/ui'",
+    "source": "packages/react/src/components/Progress.tsx",
+    "exports": [
+      "Progress",
+      "ProgressRing",
+      "ProgressSteps"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'children'>"
+    ],
+    "props": [
+      {
+        "name": "value",
+        "type": "number",
+        "required": false,
+        "default": null,
+        "description": "Current value, from 0 to `max`. Omit (or set `indeterminate`) when the length of the work is unknown."
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "required": false,
+        "default": "100",
+        "description": "Total."
+      },
+      {
+        "name": "indeterminate",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Unknown length: a looping 35% bar with no `aria-valuenow`. Use for work longer than about 2 seconds."
+      },
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Visible name of the task: a verb and the object, for example \"Downloading Amharic audio Bible\". Names the bar."
+      },
+      {
+        "name": "valueText",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Text shown on the right of the label row, for example \"68%\". Defaults to the percentage when `label` is set."
+      },
+      {
+        "name": "hideValue",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Hide the percentage next to the label. Show it only when it is accurate."
+      },
+      {
+        "name": "hint",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Hint line below the bar, for example \"412 MB of 600 MB · about 2 minutes left\"."
+      },
+      {
+        "name": "'aria-label'",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Accessible name when there is no visible `label`."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { Progress } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Progress.tsx",
+    "exports": [
+      "ProgressBar",
+      "ProgressRing",
+      "StepProgress"
+    ],
+    "props": [
+      {
+        "name": "value",
+        "type": "number",
+        "required": false,
+        "default": null,
+        "description": "Current value from 0 to `max`. Ignored when `indeterminate`."
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "required": false,
+        "default": "100",
+        "description": "Total."
+      },
+      {
+        "name": "indeterminate",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Work of unknown length (longer than about 2 seconds). Leaves the value out of the accessibility info."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Task name: verb and object, \"Downloading Amharic audio Bible\". Also the accessible name."
+      },
+      {
+        "name": "valueText",
+        "type": "string | null",
+        "required": false,
+        "default": null,
+        "description": "Right-hand text such as \"68%\". Defaults to the percent when `label` is set and the bar is determinate. Pass `null` to hide."
+      },
+      {
+        "name": "hint",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Hint line below: amount and time, \"412 MB of 600 MB\"."
+      },
+      {
+        "name": "accessibilityLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Accessible name when no visible `label`."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "fb-fill",
+    "fb-indet",
+    "fb-prog",
+    "fb-prog-head",
+    "fb-prog-name",
+    "fb-prog-val",
+    "fb-ring",
+    "fb-ring-bar",
+    "fb-ring-inline",
+    "fb-ring-track",
+    "fb-ring-val",
+    "fb-steps",
+    "fb-steps-label",
+    "fb-track",
+    "fb-track-lg",
+    "hint"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Linear determinate",
+        "classes": ".fb-track > .fb-fill",
+        "notes": "4px"
+      },
+      {
+        "variant": "Linear with label",
+        "classes": ".fb-prog + .fb-prog-head + .fb-track-lg",
+        "notes": "8px track, percent in tabular numerals"
+      },
+      {
+        "variant": "Indeterminate",
+        "classes": ".fb-track > .fb-indet",
+        "notes": "35% bar loops every 1.4s; omit aria-valuenow"
+      },
+      {
+        "variant": "Circular 64px",
+        "classes": ".fb-ring + SVG (.fb-ring-track, .fb-ring-bar) + .fb-ring-val",
+        "notes": "6px stroke, r 28, dasharray 175.9"
+      },
+      {
+        "variant": "Circular inline 24px",
+        "classes": ".fb-ring-inline + SVG",
+        "notes": "3px stroke, r 9.5, dasharray 59.7; text beside it"
+      },
+      {
+        "variant": "Step progress",
+        "classes": ".fb-steps + .fb-steps-label + .fb-track",
+        "notes": "fills by completed step"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "Ring fill: `stroke-dashoffset = dasharray × (1 − value/100)`."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": false,
+      "focus": false,
+      "pressed": false,
+      "disabled": false,
+      "loading": true,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Track `--gray-200`, fill `--horizon-blue`, radius `--radius-xs`. Never use status colours for normal progress.",
+    "4px by default; 8px (`.fb-track-lg`) only when a label sits above it.",
+    "Rings start at 12 o’clock (the SVG is rotated −90°) with round caps.",
+    "Animate width changes (0.3s); never jump backwards except on a restart.",
+    "Show the percent only when it is accurate. Add a hint line with size and time left when known.",
+    "Step progress: label left (\"Step 1 of 2\"), bar fills one share per step. Use it only for two to five steps.",
+    "When the task finishes, replace the bar with a success Toast or the next screen. When it fails, show an Alert or Toast with Retry."
+  ],
+  "do": [
+    "Use a determinate bar when you know the total: downloads, uploads, a giving goal.",
+    "Use the indeterminate bar for work of unknown length that runs longer than about 2 seconds, at the top of a panel or page.",
+    "Use the circular ring for compact spots: an upload thumbnail, a reading plan in a list.",
+    "Use step progress at the top of a multi-step form (partner sign-up, giving).",
+    "Use a Loader spinner for short waits with no measurable progress.",
+    "Track `--gray-200`, fill `--horizon-blue`, radius `--radius-xs`. Never use status colours for normal progress.",
+    "4px by default; 8px (`.fb-track-lg`) only when a label sits above it.",
+    "Rings start at 12 o’clock (the SVG is rotated −90°) with round caps.",
+    "Animate width changes (0.3s); never jump backwards except on a restart.",
+    "Show the percent only when it is accurate. Add a hint line with size and time left when known.",
+    "Step progress: label left (\"Step 1 of 2\"), bar fills one share per step. Use it only for two to five steps.",
+    "When the task finishes, replace the bar with a success Toast or the next screen. When it fails, show an Alert or Toast with Retry."
+  ],
+  "dont": [],
+  "accessibility": [
+    "Every bar and ring has `role=\"progressbar\"` and an accessible name (`aria-label` or `aria-labelledby`).",
+    "Determinate: set `aria-valuenow`, `aria-valuemin=\"0\"`, `aria-valuemax`. Indeterminate: leave out `aria-valuenow`.",
+    "Step progress uses step numbers for the values (`aria-valuenow=\"1\" aria-valuemax=\"2\"`) and the visible label as its name.",
+    "Do not announce every percent change. Announce start and finish through a polite live region.",
+    "SVG rings are `aria-hidden=\"true\"`; the wrapper carries the role and values.",
+    "Reduced motion: the indeterminate bar stops; keep the label so the state is still clear."
+  ],
+  "content": [
+    "Name the task with a verb and the object: \"Downloading Amharic audio Bible\", \"Uploading photo\".",
+    "Hint line: amount and time, plain. \"412 MB of 600 MB · about 2 minutes left\" (sample figures).",
+    "Reading plans: \"Reading plan · day 15 of 30\".",
+    "Steps: \"Step 1 of 2\". Do not add step names to the bar; put them in the page heading."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"fb-prog\">\n  <div class=\"fb-prog-head\">\n    <span class=\"fb-prog-name\" id=\"dl-label\">Downloading Amharic audio Bible</span>\n    <span class=\"fb-prog-val\">68%</span>\n  </div>\n  <div class=\"fb-track fb-track-lg\" role=\"progressbar\" aria-labelledby=\"dl-label\"\n       aria-valuenow=\"68\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n    <span class=\"fb-fill\" style=\"width:68%\"></span>\n  </div>\n  <span class=\"hint\">412 MB of 600 MB · about 2 minutes left</span>\n</div>\n\n<div class=\"fb-steps\">\n  <span class=\"fb-steps-label\" id=\"step\">Step 1 of 2</span>\n  <span class=\"fb-track\" role=\"progressbar\" aria-labelledby=\"step\" aria-valuenow=\"1\" aria-valuemin=\"0\" aria-valuemax=\"2\"><span class=\"fb-fill\" style=\"width:50%\"></span></span>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"fb-prog\">\n  <div class=\"fb-prog-head\">\n    <span class=\"fb-prog-name\" id=\"dl-label\">Downloading Amharic audio Bible</span>\n    <span class=\"fb-prog-val\">68%</span>\n  </div>\n  <div class=\"fb-track fb-track-lg\" role=\"progressbar\" aria-labelledby=\"dl-label\"\n       aria-valuenow=\"68\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n    <span class=\"fb-fill\" style=\"width:68%\"></span>\n  </div>\n  <span class=\"hint\">412 MB of 600 MB · about 2 minutes left</span>\n</div>\n\n<div class=\"fb-steps\">\n  <span class=\"fb-steps-label\" id=\"step\">Step 1 of 2</span>\n  <span class=\"fb-track\" role=\"progressbar\" aria-labelledby=\"step\" aria-valuenow=\"1\" aria-valuemin=\"0\" aria-valuemax=\"2\"><span class=\"fb-fill\" style=\"width:50%\"></span></span>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/Progress/README.md",
+    "spec": "components/Progress/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

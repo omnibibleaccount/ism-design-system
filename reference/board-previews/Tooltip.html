@@ -1,0 +1,34 @@
+<!-- @dsCard group="Feedback" height=520 subtitle="Dark tooltip and light popover" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:flex;flex-direction:column;gap:24px}
+.pv-four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.pv-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:760px){.pv-four{grid-template-columns:repeat(2,minmax(0,1fr))}.pv-two{grid-template-columns:1fr} }
+.pv-pop{height:250px;place-items:start;padding:24px}
+.pv-note{font-size:14px;line-height:1.55;color:var(--gray-700);align-self:center}
+</style></head><body>
+<div class="pv">
+  <div class="pv-four">
+    <div class="fb-cell"><span class="fb-lbl">Top (default)</span><div class="fb-tipcell"><button class="fb-ib" type="button" aria-label="Copy link" aria-describedby="t1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg><span class="fb-tip fb-tip-t" id="t1" role="tooltip">Copy link</span></button></div></div>
+    <div class="fb-cell"><span class="fb-lbl">Bottom</span><div class="fb-tipcell"><button class="fb-ib" type="button" aria-label="Share verse" aria-describedby="t2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4"/><path d="M5 13v5a2 2 0 002 2h10a2 2 0 002-2v-5"/></svg><span class="fb-tip fb-tip-b" id="t2" role="tooltip">Share verse</span></button></div></div>
+    <div class="fb-cell"><span class="fb-lbl">Left</span><div class="fb-tipcell"><button class="fb-ib" type="button" style="margin-left:70px" aria-label="Listen" aria-describedby="t3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/></svg><span class="fb-tip fb-tip-l" id="t3" role="tooltip">Listen</span></button></div></div>
+    <div class="fb-cell"><span class="fb-lbl">Right</span><div class="fb-tipcell"><button class="fb-ib" type="button" style="margin-right:90px" aria-label="Save verse" aria-describedby="t4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg><span class="fb-tip fb-tip-r" id="t4" role="tooltip">Save verse</span></button></div></div>
+  </div>
+  <div class="pv-two">
+    <div class="fb-cell"><span class="fb-lbl">Popover · light, opened by click</span>
+      <div class="fb-tipcell pv-pop">
+        <div style="position:relative">
+          <button class="fb-ib fb-focus" type="button" aria-label="About offline reading" aria-expanded="true" aria-controls="p1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.01"/></svg></button>
+          <div class="fb-pop" id="p1" role="dialog" aria-label="About offline reading">
+            <span class="fb-pop-title">Read without a connection</span>
+            <span class="fb-pop-body">Download a Bible once and it stays on your phone. Audio needs about 600 MB of space.</span>
+            <a class="fb-pop-link" href="#">How offline reading works ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="pv-note">Tooltips name an icon-only control: dark, 13px, plain text, never a link. They show on hover and keyboard focus after 300ms. Popovers open on click, so they can hold a title, a sentence and one link. Esc, a click outside or the trigger closes them.</p>
+  </div>
+</div>
+</body></html>

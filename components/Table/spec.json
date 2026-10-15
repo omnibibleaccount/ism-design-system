@@ -1,0 +1,307 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Table",
+  "title": "Table",
+  "group": "Data display",
+  "version": "3.0.0",
+  "summary": "A data table for admin and report screens, with sortable headers, row selection, status badges, a row menu, zebra and dense variants, and a stacked-card layout on mobile.",
+  "whenToUse": [
+    "Use for records people compare across columns: HD Radio stations, partner reports, NFC card orders, giving history.",
+    "Use the dense variant only in staff tools where many rows matter more than comfort."
+  ],
+  "whenNotToUse": [
+    "Do not use for marketing content, single records (use DescriptionList) or fewer than about four rows (use a list).",
+    "Do not use a table for layout."
+  ],
+  "anatomy": {
+    "description": "Mobile cards (show under 768px, hide the table with `.dp-hide-mobile`, show cards with `.dp-show-mobile`):",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Table } from '@ism/ui'",
+    "source": "packages/react/src/components/Table.tsx",
+    "exports": [
+      "SortDirection",
+      "Table",
+      "TableColumn",
+      "TableLabels",
+      "TableMobileCard",
+      "TableRowAction",
+      "TableSort"
+    ],
+    "extends": [],
+    "props": [
+      {
+        "name": "columns",
+        "type": "TableColumn<T>[]",
+        "required": true,
+        "default": null,
+        "description": "Column definitions in display order."
+      },
+      {
+        "name": "rows",
+        "type": "T[]",
+        "required": true,
+        "default": null,
+        "description": "Row data."
+      },
+      {
+        "name": "getRowId",
+        "type": "(row: T) => string",
+        "required": true,
+        "default": null,
+        "description": "Stable unique id of a row."
+      },
+      {
+        "name": "getRowName",
+        "type": "(row: T) => string",
+        "required": false,
+        "default": null,
+        "description": "Human name of a row, used in checkbox and menu labels (\"Radio Hope\"). Required when `selectable` or `rowActions` is used."
+      },
+      {
+        "name": "'aria-label'",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Names the table's contents for assistive tech. Required (or give `caption`)."
+      },
+      {
+        "name": "caption",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Visible or hidden caption alternative to `aria-label`."
+      },
+      {
+        "name": "zebra",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Even rows on `--off-white`."
+      },
+      {
+        "name": "dense",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Dense staff-tool variant: 40px header, 44px rows."
+      },
+      {
+        "name": "selectable",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Show a checkbox column."
+      },
+      {
+        "name": "selectedIds",
+        "type": "string[]",
+        "required": false,
+        "default": null,
+        "description": "Controlled selected row ids."
+      },
+      {
+        "name": "defaultSelectedIds",
+        "type": "string[]",
+        "required": false,
+        "default": null,
+        "description": "Uncontrolled initial selection."
+      },
+      {
+        "name": "onSelectionChange",
+        "type": "(ids: string[]) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the new selected ids."
+      },
+      {
+        "name": "sort",
+        "type": "TableSort | null",
+        "required": false,
+        "default": null,
+        "description": "Controlled sort."
+      },
+      {
+        "name": "defaultSort",
+        "type": "TableSort | null",
+        "required": false,
+        "default": null,
+        "description": "Uncontrolled initial sort."
+      },
+      {
+        "name": "onSortChange",
+        "type": "(sort: TableSort) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a sort header is pressed."
+      },
+      {
+        "name": "rowActions",
+        "type": "(row: T) => TableRowAction[]",
+        "required": false,
+        "default": null,
+        "description": "Row menu items. Return an empty array for no menu on that row. Adds a ⋯ column."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Footer content, for example the selection count (\"1 of 38 stations selected\") and pagination. Announced politely."
+      },
+      {
+        "name": "mobileCard",
+        "type": "(row: T) => TableMobileCard",
+        "required": false,
+        "default": null,
+        "description": "Render each row as a stacked card under 768px and hide the table there."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Wrap class additions."
+      },
+      {
+        "name": "labels",
+        "type": "TableLabels",
+        "required": false,
+        "default": null,
+        "description": "Text labels, for translation."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "badge",
+    "badge-success",
+    "dp-cbx",
+    "dp-dot",
+    "dp-dots",
+    "dp-hide-mobile",
+    "dp-num",
+    "dp-rmenu",
+    "dp-rmenu-danger",
+    "dp-rmenu-ic",
+    "dp-rmenu-item",
+    "dp-rmenu-sep",
+    "dp-show-mobile",
+    "dp-sort",
+    "dp-strong",
+    "dp-sub",
+    "dp-tbl",
+    "dp-tbl-clip",
+    "dp-tbl-foot",
+    "dp-tbl-foot-nav",
+    "dp-tbl-sm",
+    "dp-tbl-wrap",
+    "dp-tbl-zebra",
+    "dp-tcard",
+    "dp-tcard-bot",
+    "dp-tcard-m",
+    "dp-tcard-t",
+    "dp-tcard-top",
+    "dp-tcards",
+    "dp-vh",
+    "dp-w-act",
+    "dp-w-chk"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Default: 48px header on `--off-white`, 60px rows with `--gray-100` hairlines, panel radius `--radius-lg`.",
+    "`.dp-tbl-zebra`: even rows on `--off-white`. `.dp-tbl-sm`: 40px header, 44px rows, 14px text.",
+    "Add `.dp-tbl-clip` to the wrap when no row menu can overflow it.",
+    "Sorted column: `aria-sort` on the `th`; label turns black, arrow turns `--horizon-blue`. Unsorted columns show a grey up/down arrow.",
+    "Hover: row on `--off-white`. Selected: `aria-selected=\"true\"`, row on `--blue-tint` with a 3px `--horizon-blue` left edge.",
+    "Row menu: ⋯ button `.dp-dots`; open state `aria-expanded=\"true\"` with a `--gray-200` circle; menu `.dp-rmenu` uses `--shadow-overlay`, items 44px.",
+    "Mobile: `.dp-tcard` stacks name, meta, badge and the key figure; selected card gets a `--horizon-blue` border."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Use base `.badge` + `.badge-success/-info/-warning/-error` for status, always with a word. Add `.dp-dot` for a leading dot.",
+    "Right-align nothing except the action column; set numbers in `.dp-num` (tabular figures).",
+    "Put the row's main name in `.dp-strong` with the ID in `.dp-sub` beneath.",
+    "Menu items that leave the page end in ↗; destructive items use `.dp-rmenu-danger` and sit last, after `.dp-rmenu-sep`.",
+    "Keep one Horizon Blue primary per group; pagination uses `.btn-secondary .btn-sm`.",
+    "Every interactive control is at least 44px tall (`.dp-sort` and the mobile `.dp-dots` hit 44px; the table ⋯ is 40px plus a hit-area pad).",
+    "Do not colour whole rows by status."
+  ],
+  "do": [
+    "Use for records people compare across columns: HD Radio stations, partner reports, NFC card orders, giving history.",
+    "Use the dense variant only in staff tools where many rows matter more than comfort.",
+    "Use base `.badge` + `.badge-success/-info/-warning/-error` for status, always with a word. Add `.dp-dot` for a leading dot.",
+    "Right-align nothing except the action column; set numbers in `.dp-num` (tabular figures).",
+    "Put the row's main name in `.dp-strong` with the ID in `.dp-sub` beneath.",
+    "Menu items that leave the page end in ↗; destructive items use `.dp-rmenu-danger` and sit last, after `.dp-rmenu-sep`.",
+    "Keep one Horizon Blue primary per group; pagination uses `.btn-secondary .btn-sm`.",
+    "Every interactive control is at least 44px tall (`.dp-sort` and the mobile `.dp-dots` hit 44px; the table ⋯ is 40px plus a hit-area pad)."
+  ],
+  "dont": [
+    "Do not use for marketing content, single records (use DescriptionList) or fewer than about four rows (use a list).",
+    "Do not use a table for layout.",
+    "Do not colour whole rows by status."
+  ],
+  "accessibility": [
+    "Use a real `<table>` with `<thead>`/`<th>`. Give the table a caption or an `aria-label` naming its contents.",
+    "Put the sort control in a `<button>` inside the `th`; set `aria-sort` on the `th` only for the sorted column.",
+    "Every checkbox and ⋯ button needs an `aria-label` naming the row (\"Actions for Radio Hope\").",
+    "The row menu uses `role=\"menu\"` / `role=\"menuitem\"`, opens on Enter/Space, closes on Escape and returns focus to ⋯.",
+    "Focus ring: `outline: 2px solid var(--horizon-blue)` with `--shadow-focus`.",
+    "Announce selection count in the footer (\"1 of 38 stations selected\")."
+  ],
+  "content": [
+    "Column labels are one or two words in sentence case: Station, City, Language, Frequency, Status.",
+    "Status words: On air, Scheduled, Maintenance, Offline. No codes on their own.",
+    "Mark invented figures as samples in mock-ups."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"dp-tbl-wrap\">\n  <table class=\"dp-tbl\">\n    <thead><tr>\n      <th class=\"dp-w-chk\"><input class=\"dp-cbx\" type=\"checkbox\" aria-label=\"Select all stations\"></th>\n      <th aria-sort=\"ascending\"><button class=\"dp-sort\" type=\"button\">Station <svg aria-hidden=\"true\">…up arrow…</svg></button></th>\n      <th>Status</th>\n      <th class=\"dp-w-act\"><span class=\"dp-vh\">Actions</span></th>\n    </tr></thead>\n    <tbody>\n      <tr aria-selected=\"true\">\n        <td class=\"dp-w-chk\"><input class=\"dp-cbx\" type=\"checkbox\" checked aria-label=\"Select Radio Hope\"></td>\n        <td><span class=\"dp-strong\">Radio Hope</span><span class=\"dp-sub\">ISM-ET-01</span></td>\n        <td><span class=\"badge badge-success\"><span class=\"dp-dot\"></span>On air</span></td>\n        <td class=\"dp-w-act\">\n          <button class=\"dp-dots\" type=\"button\" aria-haspopup=\"menu\" aria-expanded=\"true\" aria-label=\"Actions for Radio Hope\">…</button>\n          <div class=\"dp-rmenu\" role=\"menu\">\n            <button class=\"dp-rmenu-item\" role=\"menuitem\">Edit details</button>\n            <button class=\"dp-rmenu-item\" role=\"menuitem\">Listen live <span class=\"dp-rmenu-ic\">↗</span></button>\n            <hr class=\"dp-rmenu-sep\">\n            <button class=\"dp-rmenu-item dp-rmenu-danger\" role=\"menuitem\">Remove station</button>\n          </div>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"dp-tbl-foot\"><span>1 of 38 stations selected</span><span class=\"dp-tbl-foot-nav\">…Previous / Next…</span></div>\n</div>",
+      "<div class=\"dp-tcards dp-show-mobile\">\n  <div class=\"dp-tcard\" aria-selected=\"true\">\n    <div class=\"dp-tcard-top\"><div><div class=\"dp-tcard-t\">Radio Hope</div><div class=\"dp-tcard-m\">Addis Ababa · Amharic</div></div><span class=\"badge badge-success\">On air</span></div>\n    <div class=\"dp-tcard-bot\"><span class=\"dp-num\">98.7 FM · HD2</span><button class=\"dp-dots\" aria-label=\"Actions for Radio Hope\">…</button></div>\n  </div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"dp-tbl-wrap\">\n  <table class=\"dp-tbl\">\n    <thead><tr>\n      <th class=\"dp-w-chk\"><input class=\"dp-cbx\" type=\"checkbox\" aria-label=\"Select all stations\"></th>\n      <th aria-sort=\"ascending\"><button class=\"dp-sort\" type=\"button\">Station <svg aria-hidden=\"true\">…up arrow…</svg></button></th>\n      <th>Status</th>\n      <th class=\"dp-w-act\"><span class=\"dp-vh\">Actions</span></th>\n    </tr></thead>\n    <tbody>\n      <tr aria-selected=\"true\">\n        <td class=\"dp-w-chk\"><input class=\"dp-cbx\" type=\"checkbox\" checked aria-label=\"Select Radio Hope\"></td>\n        <td><span class=\"dp-strong\">Radio Hope</span><span class=\"dp-sub\">ISM-ET-01</span></td>\n        <td><span class=\"badge badge-success\"><span class=\"dp-dot\"></span>On air</span></td>\n        <td class=\"dp-w-act\">\n          <button class=\"dp-dots\" type=\"button\" aria-haspopup=\"menu\" aria-expanded=\"true\" aria-label=\"Actions for Radio Hope\">…</button>\n          <div class=\"dp-rmenu\" role=\"menu\">\n            <button class=\"dp-rmenu-item\" role=\"menuitem\">Edit details</button>\n            <button class=\"dp-rmenu-item\" role=\"menuitem\">Listen live <span class=\"dp-rmenu-ic\">↗</span></button>\n            <hr class=\"dp-rmenu-sep\">\n            <button class=\"dp-rmenu-item dp-rmenu-danger\" role=\"menuitem\">Remove station</button>\n          </div>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"dp-tbl-foot\"><span>1 of 38 stations selected</span><span class=\"dp-tbl-foot-nav\">…Previous / Next…</span></div>\n</div>"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"dp-tcards dp-show-mobile\">\n  <div class=\"dp-tcard\" aria-selected=\"true\">\n    <div class=\"dp-tcard-top\"><div><div class=\"dp-tcard-t\">Radio Hope</div><div class=\"dp-tcard-m\">Addis Ababa · Amharic</div></div><span class=\"badge badge-success\">On air</span></div>\n    <div class=\"dp-tcard-bot\"><span class=\"dp-num\">98.7 FM · HD2</span><button class=\"dp-dots\" aria-label=\"Actions for Radio Hope\">…</button></div>\n  </div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/Table/README.md",
+    "spec": "components/Table/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

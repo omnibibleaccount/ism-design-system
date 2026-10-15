@@ -1,0 +1,246 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Badge",
+  "title": "Badge",
+  "group": "Actions",
+  "version": "3.0.0",
+  "summary": "Small pill labels: the React `Badge` section tag in an outlined pill, `.badge` status badges, removable `.cr-tag` filters and the `.count` number dot.",
+  "whenToUse": [
+    "React `Badge`: tag a section or promo in the app (\"YOU'RE ALMOST DONE!\", \"GET A SNEAK PEEK\", \"Trending\").",
+    "`.badge`: show a status beside data (Draft, New, Live, Pending, Failed, Partner).",
+    "`.cr-tag`: show an applied filter the user can remove.",
+    "`.count`: unread or pending numbers on a tab, nav item or icon.",
+    "On website sections, use Eyebrow (`.eyebrow`) to label a section, not a badge."
+  ],
+  "whenNotToUse": [
+    "Do not use a badge as a button; badges are labels. Use Chip for toggles."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Badge } from '@ism/ui'",
+    "source": "packages/react/src/components/Badge.tsx",
+    "exports": [
+      "Badge",
+      "BadgeTone",
+      "Count",
+      "StatusBadge",
+      "StatusSize",
+      "StatusTone",
+      "Tag"
+    ],
+    "extends": [
+      "HTMLAttributes<HTMLSpanElement>"
+    ],
+    "props": [
+      {
+        "name": "tone",
+        "type": "BadgeTone",
+        "required": false,
+        "default": "\"outlineDark\"",
+        "description": "`outlineDark` on dark, `outlineLight` on light, `solidBlue` filled, `accentText` blue text with no border."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "The label; rendered uppercase."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": "`window.ISMDesignSystem_106e83.Badge`. Small uppercase, wide-tracked eyebrow label inside a thin outlined pill — ISM's signature way to tag a section (\"YOU'RE ALMOST DONE!\", \"GET A SNEAK PEEK\")."
+  },
+  "reactNative": {
+    "import": "import { Badge } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Badge.tsx",
+    "exports": [
+      "Badge",
+      "BadgeTone",
+      "CountBadge",
+      "StatusBadge",
+      "StatusSize",
+      "StatusTone",
+      "Tag"
+    ],
+    "props": [
+      {
+        "name": "tone",
+        "type": "BadgeTone",
+        "required": false,
+        "default": "\"outlineDark\"",
+        "description": "`outlineDark` on dark, `outlineLight` on light, `solidBlue` filled, `accentText` blue text with no border."
+      },
+      {
+        "name": "children",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "The label; rendered uppercase for Latin script. Short and warm: \"Trending\", \"You're almost done!\"."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "badge",
+    "badge-brand",
+    "badge-error",
+    "badge-info",
+    "badge-partner",
+    "badge-success",
+    "count",
+    "cr-badge-dot",
+    "cr-badge-gold",
+    "cr-badge-md",
+    "cr-badge-neutral",
+    "cr-badge-sm",
+    "cr-solid-error",
+    "cr-solid-gold",
+    "cr-solid-info",
+    "cr-solid-neutral",
+    "cr-solid-success",
+    "cr-solid-warning",
+    "cr-tag",
+    "cr-tag-active",
+    "cr-tag-off",
+    "cr-tag-x",
+    "eyebrow",
+    "live-dot",
+    "navlink"
+  ],
+  "variants": [
+    [
+      {
+        "tone": "Neutral",
+        "subtle": ".cr-badge-neutral",
+        "solid": ".cr-solid-neutral"
+      },
+      {
+        "tone": "Info",
+        "subtle": ".badge-info",
+        "solid": ".cr-solid-info"
+      },
+      {
+        "tone": "Success",
+        "subtle": ".badge-success",
+        "solid": ".cr-solid-success"
+      },
+      {
+        "tone": "Warning",
+        "subtle": ".badge-warning .cr-badge-warning",
+        "solid": ".cr-solid-warning"
+      },
+      {
+        "tone": "Error",
+        "subtle": ".badge-error",
+        "solid": ".cr-solid-error"
+      },
+      {
+        "tone": "Brand / partner",
+        "subtle": ".cr-badge-gold (or .badge-brand, .badge-partner)",
+        "solid": ".cr-solid-gold"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "Sizes: 24px (`.cr-badge-sm` for 12px text as on data tables), `.cr-badge-md` 28px. Add `.cr-badge-dot` for a leading dot.",
+    "Tags: 32px; the 24px × has a 44px invisible hit area. States: hover ×, focus ×, disabled (`.cr-tag-off` + `disabled`), applied (`.cr-tag-active`, info tint).",
+    "Live: `.live-dot` (`--live`) inside a badge for on-air."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": true,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Always pair colour with a word. Never colour alone.",
+    "Use status colours only for status: `--success`, `--error`, `--warning`, `--info` with their `-bg`.",
+    "Counts and notification dots are Horizon Blue (`.count`), never red.",
+    "`solidBlue` / `.cr-solid-info` are rare; do not place them next to a blue primary button.",
+    "Live / on-air is the only use of `--live`.",
+    "Keep badges to one line, no wrapping (`white-space:nowrap`)."
+  ],
+  "do": [
+    "React `Badge`: tag a section or promo in the app (\"YOU'RE ALMOST DONE!\", \"GET A SNEAK PEEK\", \"Trending\").",
+    "`.badge`: show a status beside data (Draft, New, Live, Pending, Failed, Partner).",
+    "`.cr-tag`: show an applied filter the user can remove.",
+    "`.count`: unread or pending numbers on a tab, nav item or icon.",
+    "On website sections, use Eyebrow (`.eyebrow`) to label a section, not a badge.",
+    "Always pair colour with a word. Never colour alone.",
+    "Use status colours only for status: `--success`, `--error`, `--warning`, `--info` with their `-bg`.",
+    "Counts and notification dots are Horizon Blue (`.count`), never red.",
+    "`solidBlue` / `.cr-solid-info` are rare; do not place them next to a blue primary button.",
+    "Live / on-air is the only use of `--live`.",
+    "Keep badges to one line, no wrapping (`white-space:nowrap`)."
+  ],
+  "dont": [
+    "Do not use a badge as a button; badges are labels. Use Chip for toggles."
+  ],
+  "accessibility": [
+    "A status badge is text; screen readers read it as-is. Do not add `role=\"status\"` unless it updates live.",
+    "`.count` needs context: put it inside the labelled link, or add visually hidden text (\"3 unread\").",
+    "Every tag remove button has `aria-label=\"Remove <name>\"`; after removing, move focus to the next tag or the field."
+  ],
+  "content": [
+    "One word for status: Draft, New, Live, Pending, Failed, Partner.",
+    "React Badge copy is short and warm: \"Trending\", \"You're almost done!\", \"Get a sneak peek\", \"500+ languages\".",
+    "Tags show the item name as the user chose it: \"Amharic\", \"dot.Bible app\"."
+  ],
+  "snippets": {
+    "react": [
+      "<Badge tone=\"outlineDark\">Trending</Badge>\n<Badge tone=\"accentText\">You're almost done!</Badge>"
+    ],
+    "html": [
+      "<span class=\"badge badge-success\">Live</span>\n<span class=\"badge cr-badge-md badge-info\"><span class=\"cr-badge-dot\"></span>New</span>\n<span class=\"badge cr-solid-error\">Failed</span>\n\n<span class=\"cr-tag cr-tag-active\">HD Radio\n  <button type=\"button\" class=\"cr-tag-x\" aria-label=\"Remove HD Radio\">\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg>\n  </button>\n</span>\n\n<a class=\"navlink\" href=\"/inbox\">Messages <span class=\"count\">3</span></a>"
+    ],
+    "other": [
+      {
+        "lang": "jsx",
+        "code": "<Badge tone=\"outlineDark\">Trending</Badge>\n<Badge tone=\"accentText\">You're almost done!</Badge>"
+      },
+      {
+        "lang": "html",
+        "code": "<span class=\"badge badge-success\">Live</span>\n<span class=\"badge cr-badge-md badge-info\"><span class=\"cr-badge-dot\"></span>New</span>\n<span class=\"badge cr-solid-error\">Failed</span>\n\n<span class=\"cr-tag cr-tag-active\">HD Radio\n  <button type=\"button\" class=\"cr-tag-x\" aria-label=\"Remove HD Radio\">\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg>\n  </button>\n</span>\n\n<a class=\"navlink\" href=\"/inbox\">Messages <span class=\"count\">3</span></a>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/Badge/README.md",
+    "spec": "components/Badge/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

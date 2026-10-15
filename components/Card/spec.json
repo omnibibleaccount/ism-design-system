@@ -1,0 +1,333 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Card",
+  "title": "Card",
+  "group": "Cards",
+  "version": "3.0.0",
+  "summary": "Rounded content containers: the React `Card` (a large, image-led tile) and the website `.card` family for programs, text, values, people, contact, books, steps and statements.",
+  "whenToUse": [
+    "React `Card`: immersive topic or testament tiles in the dot.Bible app and on dark marketing sections.",
+    "`.card`: any grouped, linkable block of content on the website."
+  ],
+  "whenNotToUse": [
+    "Do not nest cards in cards. Do not use a card for a single line of text; use a ListRow."
+  ],
+  "anatomy": {
+    "description": "",
+    "markup": "Base: `.card` (white, 1px `--border-hairline-light`, 20px radius `--radius-lg`, 24px padding, `--shadow-card-light`, hover `--shadow-lift`). Photos sit in `.media` and zoom 3% on hover."
+  },
+  "react": {
+    "import": "import { Card } from '@ism/ui'",
+    "source": "packages/react/src/components/Card.tsx",
+    "exports": [
+      "Card",
+      "CardBody",
+      "CardCta",
+      "CardMedia",
+      "ContentCard",
+      "ContentCardVariant"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'title' | 'onClick'>"
+    ],
+    "props": [
+      {
+        "name": "image",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Photo URL. Without it the card is `--charcoal-900`."
+      },
+      {
+        "name": "imageAlt",
+        "type": "string",
+        "required": false,
+        "default": "\"\"",
+        "description": "Alt text for the photo. Empty by default because the title names the card."
+      },
+      {
+        "name": "eyebrow",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Small uppercase label above the title."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "24px semibold white title."
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "15px, 70% white."
+      },
+      {
+        "name": "cta",
+        "type": "string",
+        "required": false,
+        "default": "\"Explore\"",
+        "description": "CTA pill label shown top-right, rendered \"<Label> ↗\". Pass `\"\"` to hide it."
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "required": false,
+        "default": "360",
+        "description": "Height in px."
+      },
+      {
+        "name": "onClick",
+        "type": "MouseEventHandler<HTMLElement>",
+        "required": false,
+        "default": null,
+        "description": "Makes the card clickable. Renders `role=\"link\"` with `tabIndex={0}` and Enter/Space handling."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": "`window.ISMDesignSystem_106e83.Card`. Large, immersive, image-led card: full-bleed photo, dark gradient overlay for legibility, rounded corners, thin border, a white \"Explore ↗\" pill top-right, and title/eyebrow bottom-left. Used for testament/topic tiles across the dot.Bible app and marketing site."
+  },
+  "reactNative": {
+    "import": "import { Card } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Card.tsx",
+    "exports": [
+      "Card",
+      "CardBody",
+      "CardCta",
+      "CardMedia",
+      "ContentCard",
+      "ContentCardVariant"
+    ],
+    "props": [
+      {
+        "name": "image",
+        "type": "string | ImageSourcePropType",
+        "required": false,
+        "default": null,
+        "description": "Photo: a URL or an image source. Without it the card is `charcoal-900`."
+      },
+      {
+        "name": "imageAlt",
+        "type": "string",
+        "required": false,
+        "default": "\"\"",
+        "description": "Alt text. Empty by default because the title names the card."
+      },
+      {
+        "name": "eyebrow",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Small uppercase label above the title."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "24dp semibold white title."
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "15dp, 70% white."
+      },
+      {
+        "name": "cta",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Label of the white CTA pill shown top-right, followed by ↗. Omit (or pass \"\") to hide the pill. Pass it in the UI language, e.g. \"Explore\"."
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "required": false,
+        "default": "360",
+        "description": "Height in dp."
+      },
+      {
+        "name": "href",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "URL opened with `Linking.openURL` on press."
+      },
+      {
+        "name": "GradientComponent",
+        "type": "GradientComponent",
+        "required": false,
+        "default": null,
+        "description": "Gradient view such as `LinearGradient`. Paints the dark bottom overlay (5% to 78% black). Without it a flat 40% black scrim\n(`overlay-photo`) keeps the text legible."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "arrow",
+    "card",
+    "card-flat",
+    "cr-book-cover",
+    "cr-card-body",
+    "cr-card-cta",
+    "cr-card-dark",
+    "cr-card-flush",
+    "cr-card-list",
+    "cr-card-role",
+    "cr-card-text",
+    "cr-media-1610",
+    "cr-statement",
+    "cr-step-num",
+    "eyebrow",
+    "h3",
+    "h4",
+    "icon",
+    "media",
+    "muted",
+    "ph",
+    "photo",
+    "sec-ink",
+    "small"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Program, image-led",
+        "classes": ".card.cr-card-clip + .media.cr-card-media-top + .icon.cr-card-medal overlapping the photo"
+      },
+      {
+        "variant": "Masonry program",
+        "classes": ".card.cr-card-flush + .media + .cr-card-body"
+      },
+      {
+        "variant": "Text, light / dark",
+        "classes": ".card.cr-card-tight (+ .cr-card-dark, text in .cr-card-text)"
+      },
+      {
+        "variant": "Value",
+        "classes": ".card.card-lg.cr-card-roomy + .icon medallion + .cr-card-list"
+      },
+      {
+        "variant": "Team member",
+        "classes": ".card.cr-card-flush + photo + .h4 + .cr-card-role"
+      },
+      {
+        "variant": "Contact method",
+        "classes": ".card + .icon + .h4 + detail"
+      },
+      {
+        "variant": "Book",
+        "classes": ".card + .media.cr-book > .cr-book-cover"
+      },
+      {
+        "variant": "Numbered step",
+        "classes": ".card.card-flat.cr-card-pad + .cr-step-num"
+      },
+      {
+        "variant": "Statement",
+        "classes": ".card.card-flat.cr-card-pad + .eyebrow + .cr-statement"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "`.card-flat` keeps the resting shadow on hover (for cards that are not links). Inside `.sec-ink`, cards turn translucent automatically."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": false,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Radius 20px (`--radius-lg`) for every card; media inside a flush card has square corners.",
+    "The whole card is the link (`<a class=\"card\">`); do not add a second button inside a linked card.",
+    "Card CTAs are text with ↗ when they go to another page. The React CTA pill always reads \"<Label> ↗\".",
+    "Never use solid Horizon Blue inside a card except the book cover sample; blue stays for the page's primary button.",
+    "Use only real photography with people or the product; use `.ph` placeholders until a real photo exists.",
+    "Keep card grids to 3 columns on desktop, 1 on mobile, 24px gap (`--space-5`)."
+  ],
+  "do": [
+    "React `Card`: immersive topic or testament tiles in the dot.Bible app and on dark marketing sections.",
+    "`.card`: any grouped, linkable block of content on the website.",
+    "Radius 20px (`--radius-lg`) for every card; media inside a flush card has square corners.",
+    "The whole card is the link (`<a class=\"card\">`); do not add a second button inside a linked card.",
+    "Card CTAs are text with ↗ when they go to another page. The React CTA pill always reads \"<Label> ↗\".",
+    "Use only real photography with people or the product; use `.ph` placeholders until a real photo exists.",
+    "Keep card grids to 3 columns on desktop, 1 on mobile, 24px gap (`--space-5`)."
+  ],
+  "dont": [
+    "Do not nest cards in cards. Do not use a card for a single line of text; use a ListRow.",
+    "Never use solid Horizon Blue inside a card except the book cover sample; blue stays for the page's primary button."
+  ],
+  "accessibility": [
+    "Linked cards contain one heading; the link's accessible name comes from it. Keep CTA text short so the name stays readable.",
+    "Every photo has meaningful `alt`, or `alt=\"\"` if decorative. Medallion icons are `aria-hidden`.",
+    "React `Card` with `onClick` is a `div`; wrap it in an `<a>` or give it `role=\"link\"` and `tabIndex={0}` with key handling.",
+    "Text on the React Card always sits on the dark gradient overlay for contrast."
+  ],
+  "content": [
+    "Titles name the thing: \"dot.Bible App\", \"HD Radio Broadcast\", \"Global Bible Network\", \"The Old Testament\".",
+    "One sentence of body copy, warm and plain: \"Scripture readings on the air, wherever listeners tune in.\"",
+    "CTA: \"Learn more ↗\", \"Subscribe ↗\", \"Explore ↗\"."
+  ],
+  "snippets": {
+    "react": [
+      "<Card image=\"/assets/imagery/old-testament.jpg\" eyebrow=\"Explore\" title=\"The Old Testament\" />"
+    ],
+    "html": [
+      "<a class=\"card cr-card-flush\" href=\"/radio\">\n  <div class=\"media cr-media-1610\"><img class=\"photo\" src=\"…\" alt=\"…\"></div>\n  <div class=\"cr-card-body\">\n    <span class=\"eyebrow\">Broadcast</span>\n    <h3 class=\"h3\">HD Radio Broadcast</h3>\n    <p class=\"small muted\">Scripture readings on the air, wherever listeners tune in.</p>\n    <span class=\"cr-card-cta\">Learn more <span class=\"arrow\" aria-hidden=\"true\">↗</span></span>\n  </div>\n</a>"
+    ],
+    "other": [
+      {
+        "lang": "jsx",
+        "code": "<Card image=\"/assets/imagery/old-testament.jpg\" eyebrow=\"Explore\" title=\"The Old Testament\" />"
+      },
+      {
+        "lang": "html",
+        "code": "<a class=\"card cr-card-flush\" href=\"/radio\">\n  <div class=\"media cr-media-1610\"><img class=\"photo\" src=\"…\" alt=\"…\"></div>\n  <div class=\"cr-card-body\">\n    <span class=\"eyebrow\">Broadcast</span>\n    <h3 class=\"h3\">HD Radio Broadcast</h3>\n    <p class=\"small muted\">Scripture readings on the air, wherever listeners tune in.</p>\n    <span class=\"cr-card-cta\">Learn more <span class=\"arrow\" aria-hidden=\"true\">↗</span></span>\n  </div>\n</a>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/Card/README.md",
+    "spec": "components/Card/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

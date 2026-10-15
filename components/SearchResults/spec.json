@@ -1,0 +1,463 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "SearchResults",
+  "title": "SearchResults",
+  "group": "App UI",
+  "version": "3.0.0",
+  "summary": "The in-app search screen: focused field with Cancel, recent searches, results grouped by type with highlighted matches, and a helpful no-results state.",
+  "whenToUse": [
+    "Use when the reader taps search in the AppBar of dot.Bible or another ISM app.",
+    "Use groups (Languages, Verses, Pages) whenever results come from more than one source."
+  ],
+  "whenNotToUse": [
+    "Do not use for filtering a short list already on screen; filter in place."
+  ],
+  "anatomy": {
+    "description": "Search bar (`.ap-bar.ap-bar-search`), then `.ap-res-h` group headers and `.ap-res` rows.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { SearchResults } from '@ism/ui'",
+    "source": "packages/react/src/components/SearchResults.tsx",
+    "exports": [
+      "SearchEmptyState",
+      "SearchResultGroup",
+      "SearchResultItem",
+      "SearchResultKind",
+      "SearchResults"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>"
+    ],
+    "props": [
+      {
+        "name": "query",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Current text in the search field. Empty shows recent searches."
+      },
+      {
+        "name": "onQueryChange",
+        "type": "(query: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called as the reader types or clears."
+      },
+      {
+        "name": "onCancel",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called on Cancel (return focus to the search trigger)."
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Placeholder, e.g. \"Search languages, verses\"."
+      },
+      {
+        "name": "searchLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Search\"",
+        "description": "Accessible name of the input."
+      },
+      {
+        "name": "cancelLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": "\"Cancel\"",
+        "description": "Cancel text."
+      },
+      {
+        "name": "groups",
+        "type": "SearchResultGroup[]",
+        "required": false,
+        "default": null,
+        "description": "Result groups. When `query` is set and all groups are empty the `empty` state shows."
+      },
+      {
+        "name": "announcement",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Polite live-region text announcing counts, e.g. \"2 languages, 14 verses, 1 page\"."
+      },
+      {
+        "name": "externalLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"(opens the website)\"",
+        "description": "Hidden text for external rows."
+      },
+      {
+        "name": "empty",
+        "type": "SearchEmptyState",
+        "required": false,
+        "default": null,
+        "description": "No-results content."
+      },
+      {
+        "name": "recents",
+        "type": "string[]",
+        "required": false,
+        "default": null,
+        "description": "Recent searches, newest first, five at most. Shown while `query` is empty."
+      },
+      {
+        "name": "recentsHeading",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Header of the recents block, e.g. \"Recent\"."
+      },
+      {
+        "name": "clearRecentsLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Clear-all row text, e.g. \"Clear\"."
+      },
+      {
+        "name": "onRecentSelect",
+        "type": "(term: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a recent search is chosen."
+      },
+      {
+        "name": "onRecentRemove",
+        "type": "(term: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when one recent search is removed."
+      },
+      {
+        "name": "onClearRecents",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when Clear is pressed."
+      },
+      {
+        "name": "formatRemoveLabel",
+        "type": "(term: string) => string",
+        "required": false,
+        "default": "\"Remove <term>\"",
+        "description": "Builds the accessible name of a recent's remove button."
+      },
+      {
+        "name": "suggestions",
+        "type": "string[]",
+        "required": false,
+        "default": null,
+        "description": "\"Try\" suggestions shown as chips under the recents."
+      },
+      {
+        "name": "suggestionsHeading",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Header of the suggestions, e.g. \"Try\"."
+      },
+      {
+        "name": "onSuggestionSelect",
+        "type": "(term: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a suggestion chip is chosen."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { SearchResults } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/SearchResults.tsx",
+    "exports": [
+      "SearchResultGroup",
+      "SearchResultItem",
+      "SearchResultKind",
+      "SearchResults",
+      "splitMatch"
+    ],
+    "props": [
+      {
+        "name": "query",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Current query."
+      },
+      {
+        "name": "onChangeQuery",
+        "type": "(text: string) => void",
+        "required": true,
+        "default": null,
+        "description": "Called as the query changes."
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Field placeholder: \"Search languages, verses\"."
+      },
+      {
+        "name": "onCancel",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Cancel pressed; return focus to the search trigger."
+      },
+      {
+        "name": "cancelLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Cancel\"",
+        "description": ""
+      },
+      {
+        "name": "fieldLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Search\"",
+        "description": ""
+      },
+      {
+        "name": "clearLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Clear search\"",
+        "description": ""
+      },
+      {
+        "name": "recent",
+        "type": "string[]",
+        "required": false,
+        "default": null,
+        "description": "Recent searches, newest first, at most five shown. Shown while the query is empty."
+      },
+      {
+        "name": "recentTitle",
+        "type": "string",
+        "required": false,
+        "default": "\"Recent\"",
+        "description": "Title above recents."
+      },
+      {
+        "name": "onSelectRecent",
+        "type": "(query: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a recent search is chosen."
+      },
+      {
+        "name": "onRemoveRecent",
+        "type": "(query: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called to remove one recent search."
+      },
+      {
+        "name": "onClearRecent",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Clear all recents action."
+      },
+      {
+        "name": "clearRecentLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Clear\"",
+        "description": ""
+      },
+      {
+        "name": "removeRecentLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Remove {query}\"",
+        "description": "Accessible name of a remove button; \"{query}\" is replaced."
+      },
+      {
+        "name": "suggestions",
+        "type": "string[]",
+        "required": false,
+        "default": null,
+        "description": "\"Try\" suggestions shown as chips while the query is empty."
+      },
+      {
+        "name": "suggestionsTitle",
+        "type": "string",
+        "required": false,
+        "default": "\"Try\"",
+        "description": ""
+      },
+      {
+        "name": "groups",
+        "type": "SearchResultGroup[]",
+        "required": false,
+        "default": null,
+        "description": "Result groups."
+      },
+      {
+        "name": "summary",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Polite live-region summary read when results change: \"2 languages, 14 verses, 1 page\"."
+      },
+      {
+        "name": "noResults",
+        "type": "{ title: string; hint: string; actionLabel?: string; onAction?: () => void }",
+        "required": false,
+        "default": null,
+        "description": "No-results state, shown when the query is non-empty and `groups` has no items. One secondary action, no blue primary."
+      },
+      {
+        "name": "safeAreaInsets",
+        "type": "AppBarSafeAreaInsets",
+        "required": false,
+        "default": null,
+        "description": "Safe-area insets for the search bar."
+      },
+      {
+        "name": "scrollable",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Wrap results in a ScrollView."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "ap-bar",
+    "ap-bar-search",
+    "ap-cancel",
+    "ap-chips",
+    "ap-chv",
+    "ap-clear",
+    "ap-empty",
+    "ap-empty-ic",
+    "ap-field",
+    "ap-hl",
+    "ap-is-focus",
+    "ap-lt",
+    "ap-lt-page",
+    "ap-lt-verse",
+    "ap-res",
+    "ap-res-action",
+    "ap-res-h",
+    "ap-rm",
+    "ap-s",
+    "ap-t",
+    "ap-tt",
+    "count"
+  ],
+  "variants": [
+    [
+      {
+        "state": "Focused, empty",
+        "pieces": "Recent list (.ap-res with clock icon + .ap-rm remove), .ap-res-action Clear, \"Try\" .ap-chips"
+      },
+      {
+        "state": "Results",
+        "pieces": "Grouped .ap-res-h + .count; tiles .ap-lt (language), .ap-lt-verse (verse), .ap-lt-page (web page)"
+      },
+      {
+        "state": "No results",
+        "pieces": ".ap-empty with .ap-empty-ic, title, hint and one .btn-secondary.btn-sm"
+      }
+    ]
+  ],
+  "variantNotes": [],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": false,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Highlight the matched characters with `mark.ap-hl` (blue tint, `--horizon-blue-dim`, 600). Highlight only the match, never the whole row.",
+    "In-app results end with › (drills into an app screen). Results that open the website end with ↗.",
+    "Result rows are at least 56px; remove buttons are 44px.",
+    "Group order: Languages, Verses, Pages. Counts use `.count` in Horizon Blue, never red.",
+    "Show at most five rows per group, then a \"See all\" `.ap-res-action`.",
+    "Recent searches: newest first, five at most, each removable, plus Clear for all.",
+    "The no-results state offers one secondary action. No blue primary on this screen."
+  ],
+  "do": [
+    "Use when the reader taps search in the AppBar of dot.Bible or another ISM app.",
+    "Use groups (Languages, Verses, Pages) whenever results come from more than one source.",
+    "Highlight the matched characters with `mark.ap-hl` (blue tint, `--horizon-blue-dim`, 600). Highlight only the match, never the whole row.",
+    "In-app results end with › (drills into an app screen). Results that open the website end with ↗.",
+    "Result rows are at least 56px; remove buttons are 44px.",
+    "Group order: Languages, Verses, Pages. Counts use `.count` in Horizon Blue, never red.",
+    "Show at most five rows per group, then a \"See all\" `.ap-res-action`.",
+    "Recent searches: newest first, five at most, each removable, plus Clear for all.",
+    "The no-results state offers one secondary action. No blue primary on this screen."
+  ],
+  "dont": [
+    "Do not use for filtering a short list already on screen; filter in place."
+  ],
+  "accessibility": [
+    "`role=\"search\"` on the bar; the input has an accessible name.",
+    "Announce result counts in a polite live region (\"2 languages, 14 verses, 1 page\").",
+    "`mark` is fine for screen readers; do not split words with extra elements.",
+    "↗ rows need text that says they open the website (`aria-label` on the ↗ or in the row name).",
+    "Cancel returns focus to the search trigger."
+  ],
+  "content": [
+    "Placeholder: \"Search languages, verses\".",
+    "Language results show the English name, the native name and what is available: \"Kiswahili · Bible + audio\".",
+    "Verse results show the reference and a short snippet with ellipses.",
+    "No results: \"No results for “xqz”\" + \"Check the spelling, or try a book name like “John” or a language like “Amharic”.\" + \"Browse all languages\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"ap-bar ap-bar-search\" role=\"search\">\n  <div class=\"ap-field ap-is-focus\">…<input type=\"search\" aria-label=\"Search\" value=\"swa\">\n    <button class=\"ap-clear\" type=\"button\" aria-label=\"Clear search\">…</button></div>\n  <button class=\"ap-cancel\" type=\"button\">Cancel</button>\n</div>\n<div class=\"ap-res-h\"><span>Languages</span><span class=\"count\">2</span></div>\n<a class=\"ap-res\" href=\"#\">\n  <i class=\"ap-lt\" aria-hidden=\"true\">SW</i>\n  <span class=\"ap-tt\"><span class=\"ap-t\"><mark class=\"ap-hl\">Swa</mark>hili</span><span class=\"ap-s\">Kiswahili · Bible + audio</span></span>\n  <span class=\"ap-chv\">…</span>\n</a>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"ap-bar ap-bar-search\" role=\"search\">\n  <div class=\"ap-field ap-is-focus\">…<input type=\"search\" aria-label=\"Search\" value=\"swa\">\n    <button class=\"ap-clear\" type=\"button\" aria-label=\"Clear search\">…</button></div>\n  <button class=\"ap-cancel\" type=\"button\">Cancel</button>\n</div>\n<div class=\"ap-res-h\"><span>Languages</span><span class=\"count\">2</span></div>\n<a class=\"ap-res\" href=\"#\">\n  <i class=\"ap-lt\" aria-hidden=\"true\">SW</i>\n  <span class=\"ap-tt\"><span class=\"ap-t\"><mark class=\"ap-hl\">Swa</mark>hili</span><span class=\"ap-s\">Kiswahili · Bible + audio</span></span>\n  <span class=\"ap-chv\">…</span>\n</a>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/SearchResults/README.md",
+    "spec": "components/SearchResults/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

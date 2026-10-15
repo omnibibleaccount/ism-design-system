@@ -1,0 +1,60 @@
+<!-- @dsCard group="Marketing Email" viewport="960x640" name="Re-engagement + Receipt" subtitle="Lifecycle email templates" -->
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../tokens/all.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../components/bundle.js"></script>
+<style>body{margin:0;font-family:Inter,sans-serif;background:#e9eaec}#root{display:flex;gap:24px;padding:24px;align-items:flex-start;justify-content:center}</style>
+</head><body>
+<div id="root"></div>
+<script type="text/babel" src="./EmailParts.jsx"></script>
+<script type="text/babel">
+const { Button, Badge, Divider } = window.ISMDesignSystem_106e83;
+function Reengagement(){
+  return (
+    <EmailShell>
+      <EmailHeader/>
+      <div style={{padding:"28px 24px 8px"}}>
+        <Badge tone="outlineLight">WE MISS YOU</Badge>
+        <h1 style={{fontSize:28,lineHeight:1.15,fontWeight:600,margin:"16px 0 12px"}}>Your Bible is still waiting for you.</h1>
+        <p style={{fontSize:15,lineHeight:1.7,color:"rgba(0,0,0,.68)",margin:"0 0 20px"}}>Pick up where you left off — read, listen, or download a translation for offline access, wherever you are.</p>
+        <Button>Open dot.Bible ↗</Button>
+      </div>
+      <QuoteBlock text="So faith comes from hearing, and hearing through the word of Christ." citation="Rom. 10:17"/>
+      <div style={{padding:"0 24px"}}>
+        <IconStepRow icon={<img src="../../assets/icons/audio.svg" style={{width:22,height:22,filter:"brightness(0) invert(1)"}}/>} title="Listen on demand" body="Dramatized audio Bibles in your language, streaming or offline." cta="Start listening"/>
+        <IconStepRow icon={<img src="../../assets/icons/radio.svg" style={{width:22,height:22,filter:"brightness(0) invert(1)"}}/>} title="Find a station" body="HD radio broadcasts carrying Scripture near you." cta="Browse stations"/>
+        <IconStepRow icon={<img src="../../assets/icons/share-outreach.svg" style={{width:22,height:22,filter:"brightness(0) invert(1)"}}/>} title="Share the Bible with a friend" body="Send a translation to someone who needs it today." cta="Invite a friend"/>
+      </div>
+      <div style={{padding:"0 24px"}}><SignOff/></div>
+      <EmailFooter/>
+    </EmailShell>
+  );
+}
+function Receipt(){
+  return (
+    <EmailShell>
+      <EmailHeader/>
+      <div style={{padding:"28px 24px 8px"}}>
+        <Badge tone="outlineLight">DONATION RECEIPT</Badge>
+        <h1 style={{fontSize:26,lineHeight:1.2,fontWeight:600,margin:"16px 0 12px"}}>Thank you for partnering with us.</h1>
+        <p style={{fontSize:15,lineHeight:1.7,color:"rgba(0,0,0,.68)",margin:"0 0 20px"}}>Your gift delivers Scripture across languages, borders and technologies. Below is your receipt for tax purposes.</p>
+        <div style={{border:"1px solid rgba(0,0,0,.12)",borderRadius:20,padding:20,fontSize:14,lineHeight:2}}>
+          <div style={{display:"flex",justifyContent:"space-between"}}><span style={{color:"rgba(0,0,0,.55)"}}>Amount</span><strong>$250.00</strong></div>
+          <div style={{display:"flex",justifyContent:"space-between"}}><span style={{color:"rgba(0,0,0,.55)"}}>Date</span><span>August 12, 2026</span></div>
+          <div style={{display:"flex",justifyContent:"space-between"}}><span style={{color:"rgba(0,0,0,.55)"}}>Designation</span><span>Global Bible Network</span></div>
+          <div style={{display:"flex",justifyContent:"space-between"}}><span style={{color:"rgba(0,0,0,.55)"}}>Receipt no.</span><span>ISM-104882</span></div>
+        </div>
+        <div style={{margin:"20px 0"}}><Divider/></div>
+        <p style={{fontSize:12,lineHeight:1.7,color:"rgba(0,0,0,.5)",margin:"0 0 20px"}}>International Scripture Ministries, Inc. is a 501(c)(3) organization. No goods or services were provided in exchange for this contribution.</p>
+        <Button>View your impact ↗</Button>
+      </div>
+      <div style={{padding:"0 24px"}}><SignOff line="Until all have heard," title="President"/></div>
+      <DarkFooter/>
+    </EmailShell>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<React.Fragment><Reengagement/><Receipt/></React.Fragment>);
+</script>
+</body></html>

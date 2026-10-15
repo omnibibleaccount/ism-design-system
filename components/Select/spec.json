@@ -1,0 +1,225 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Select",
+  "title": "Select",
+  "group": "Forms",
+  "version": "3.0.0",
+  "summary": "A field-styled dropdown button with a caret that opens a short listbox of fixed options 6px below the field.",
+  "whenToUse": [
+    "Pick one value from 2–10 fixed options (contact topic, gift fund, country of a short list).",
+    "2–5 options that should all stay visible: use Radio instead.",
+    "Long or searchable lists (languages, countries): use Combobox.",
+    "Picking several: use MultiSelect or `.check` rows."
+  ],
+  "whenNotToUse": [],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Select } from '@ism/ui'",
+    "source": "packages/react/src/components/Select.tsx",
+    "exports": [
+      "Select",
+      "SelectOption"
+    ],
+    "extends": [
+      "Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value' | 'defaultValue' | 'onChange' | 'children'>"
+    ],
+    "props": [
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Visible label shown above the field."
+      },
+      {
+        "name": "options",
+        "type": "SelectOption[]",
+        "required": true,
+        "default": null,
+        "description": "The fixed options (2 to 10 works best)."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Controlled value. Use `\"\"` for \"nothing chosen\"."
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "required": false,
+        "default": "\"\"",
+        "description": "Initial value when uncontrolled."
+      },
+      {
+        "name": "onValueChange",
+        "type": "(value: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the picked value."
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Placeholder shown while nothing is chosen, for example \"Choose a topic\"."
+      },
+      {
+        "name": "hint",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Hint under the field. Replaced by `error`."
+      },
+      {
+        "name": "error",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Error message. Sets `aria-invalid=\"true\"` on the trigger and links the message with `aria-describedby`."
+      },
+      {
+        "name": "optional",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Mark the label with the optional marker."
+      },
+      {
+        "name": "optionalLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": "\"(optional)\"",
+        "description": "Text of the optional marker."
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Marks the field as required (`aria-required`)."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Form field name. When set, a hidden input submits the chosen value."
+      },
+      {
+        "name": "fieldClassName",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Class on the outer `.field` wrapper. `className` goes on the trigger button."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "check",
+    "err",
+    "field",
+    "fm-active",
+    "fm-menu",
+    "fm-menu-float",
+    "fm-menu-static",
+    "fm-opt",
+    "fm-opt-tick",
+    "fm-ph",
+    "fm-sel",
+    "fm-sel-btn",
+    "input",
+    "label"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Empty: placeholder text in `.fm-ph` (`--gray-placeholder`).",
+    "Filled: plain text value.",
+    "Open: `aria-expanded=\"true\"` gives the blue border and focus ring and rotates the caret 180°.",
+    "Option hover / keyboard-active (`.fm-active`): `--blue-tint` row.",
+    "Selected option: `aria-selected=\"true\"`, semibold `--horizon-blue-dim` text and a blue tick on the right.",
+    "Error: `aria-invalid=\"true\"` on the button and an `.err` line below."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "The caret ⌄ means \"opens here\". Never use ↗ or › on a select.",
+    "Options are 44px rows with 8px (`--radius-sm`) corners inside 6px panel padding.",
+    "Show exactly one check, on the selected option only.",
+    "Close the list on pick, on Esc and on blur; keep focus on the trigger.",
+    "Use the native `<select class=\"input\">` when you need no custom styling inside the list, e.g. inside the dot.Bible app on low-end devices.",
+    "Do not put links or actions inside the list."
+  ],
+  "do": [
+    "Pick one value from 2–10 fixed options (contact topic, gift fund, country of a short list).",
+    "2–5 options that should all stay visible: use Radio instead.",
+    "Long or searchable lists (languages, countries): use Combobox.",
+    "Picking several: use MultiSelect or `.check` rows.",
+    "The caret ⌄ means \"opens here\". Never use ↗ or › on a select.",
+    "Options are 44px rows with 8px (`--radius-sm`) corners inside 6px panel padding.",
+    "Show exactly one check, on the selected option only.",
+    "Close the list on pick, on Esc and on blur; keep focus on the trigger.",
+    "Use the native `<select class=\"input\">` when you need no custom styling inside the list, e.g. inside the dot.Bible app on low-end devices."
+  ],
+  "dont": [
+    "Do not put links or actions inside the list."
+  ],
+  "accessibility": [
+    "Trigger: `aria-haspopup=\"listbox\"` and `aria-expanded`. Name it with `aria-labelledby` pointing at the label and itself, so the current value is read.",
+    "List: `role=\"listbox\"`, options `role=\"option\"` with `aria-selected`.",
+    "Keys: Enter / Space / Alt+Down opens; Up/Down moves; Enter picks; Esc closes."
+  ],
+  "content": [
+    "Label: \"Topic\". Placeholder: \"Choose a topic\".",
+    "Options: General question, Partnership, Broadcast partner, Publishing or NFC order, Prayer request.",
+    "Use sentence case; keep options to a few words."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"field\">\n  <span class=\"label\" id=\"topic-label\">Topic</span>\n  <div class=\"fm-sel\">\n    <button type=\"button\" class=\"input fm-sel-btn\" id=\"topic\" aria-haspopup=\"listbox\"\n      aria-expanded=\"false\" aria-labelledby=\"topic-label topic\">\n      <span class=\"fm-ph\">Choose a topic</span>\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg>\n    </button>\n    <div class=\"fm-menu fm-menu-float\" role=\"listbox\" aria-labelledby=\"topic-label\" hidden>\n      <button type=\"button\" class=\"fm-opt\" role=\"option\" aria-selected=\"true\">\n        <span>Partnership</span>\n        <svg class=\"fm-opt-tick\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l5 5 9-10\"/></svg>\n      </button>\n      <button type=\"button\" class=\"fm-opt\" role=\"option\" aria-selected=\"false\"><span>Prayer request</span></button>\n    </div>\n  </div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"field\">\n  <span class=\"label\" id=\"topic-label\">Topic</span>\n  <div class=\"fm-sel\">\n    <button type=\"button\" class=\"input fm-sel-btn\" id=\"topic\" aria-haspopup=\"listbox\"\n      aria-expanded=\"false\" aria-labelledby=\"topic-label topic\">\n      <span class=\"fm-ph\">Choose a topic</span>\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg>\n    </button>\n    <div class=\"fm-menu fm-menu-float\" role=\"listbox\" aria-labelledby=\"topic-label\" hidden>\n      <button type=\"button\" class=\"fm-opt\" role=\"option\" aria-selected=\"true\">\n        <span>Partnership</span>\n        <svg class=\"fm-opt-tick\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l5 5 9-10\"/></svg>\n      </button>\n      <button type=\"button\" class=\"fm-opt\" role=\"option\" aria-selected=\"false\"><span>Prayer request</span></button>\n    </div>\n  </div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/Select/README.md",
+    "spec": "components/Select/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

@@ -1,0 +1,433 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "ReadingView",
+  "title": "ReadingView",
+  "group": "Scripture",
+  "version": "3.0.0",
+  "summary": "The chapter reader: a sticky bar with book and translation pickers, text size and listen, over a single serif column with verse numbers, section headings, highlights and footnotes.",
+  "whenToUse": [
+    "Use for reading a whole chapter of Scripture on dot.bible language pages and in the dot.Bible app."
+  ],
+  "whenNotToUse": [
+    "Do not use for a single verse or a short quote; use VerseBlock.",
+    "Do not use for articles or long-form ISM stories; they use the normal page type."
+  ],
+  "anatomy": {
+    "description": "`.sx-reader` frame → `.sx-rbar` (sticky, 68px) → `.sx-col` (max `--measure-scripture`, about 70 characters). Text size control (opens from Aa): Set the chosen size on `.sx-body` through `--sx-text` (`style=\"--sx-text:22px\"`).",
+    "markup": null
+  },
+  "react": {
+    "import": "import { ReadingView } from '@ism/ui'",
+    "source": "packages/react/src/components/ReadingView.tsx",
+    "exports": [
+      "ReadingFootnote",
+      "ReadingSection",
+      "ReadingTextSize",
+      "ReadingTheme",
+      "ReadingVerse",
+      "ReadingView",
+      "ReadingViewLabels"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'lang' | 'dir' | 'title'>"
+    ],
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Accessible name of the article: book, chapter and translation, for example \"John 3, Berean Standard Bible\"."
+      },
+      {
+        "name": "lang",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Language of the text (BCP 47). Set for non-English text."
+      },
+      {
+        "name": "dir",
+        "type": "Direction",
+        "required": false,
+        "default": null,
+        "description": "Reading direction of the text. Use \"rtl\" for Arabic-script and Hebrew translations."
+      },
+      {
+        "name": "pickerLabel",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Visible text of the book and chapter picker button in the bar, for example \"John 3\"."
+      },
+      {
+        "name": "translationLabel",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Translation abbreviation shown in the translation picker button, for example \"BSB\"."
+      },
+      {
+        "name": "pickerOpen",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "The book picker is open (`aria-expanded`). Render a `BookPicker` next to the reader."
+      },
+      {
+        "name": "translationOpen",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "The translation picker is open (`aria-expanded`)."
+      },
+      {
+        "name": "onPickerClick",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the book picker button is pressed."
+      },
+      {
+        "name": "onTranslationClick",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the translation button is pressed."
+      },
+      {
+        "name": "onListen",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the listen button is pressed; it opens the AudioPlayer mini player. The button is shown only when given."
+      },
+      {
+        "name": "textSize",
+        "type": "ReadingTextSize",
+        "required": false,
+        "default": null,
+        "description": "Controlled text size in px."
+      },
+      {
+        "name": "defaultTextSize",
+        "type": "ReadingTextSize",
+        "required": false,
+        "default": "19",
+        "description": "Initial text size when uncontrolled."
+      },
+      {
+        "name": "onTextSizeChange",
+        "type": "(size: ReadingTextSize) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a text size step is chosen."
+      },
+      {
+        "name": "theme",
+        "type": "ReadingTheme",
+        "required": false,
+        "default": "\"light\"",
+        "description": "Reading theme, set as `data-theme` on the reader."
+      },
+      {
+        "name": "bookLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Label above the chapter title, for example \"The Gospel of John\"."
+      },
+      {
+        "name": "chapterTitle",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Chapter title (the single h1), for example \"John 3\"."
+      },
+      {
+        "name": "sections",
+        "type": "ReadingSection[]",
+        "required": false,
+        "default": null,
+        "description": "Chapter content as sections of verses."
+      },
+      {
+        "name": "footnotes",
+        "type": "ReadingFootnote[]",
+        "required": false,
+        "default": null,
+        "description": "Footnotes referenced by verses, rendered below the text."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Extra content placed at the end of the text column."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<ReadingViewLabels>",
+        "required": false,
+        "default": null,
+        "description": "Accessible names."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { ReadingView } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/ReadingView.tsx",
+    "exports": [
+      "ReadingBlock",
+      "ReadingFootnote",
+      "ReadingTextSize",
+      "ReadingVerse",
+      "ReadingView",
+      "ReadingViewLabels",
+      "TextSizeControl"
+    ],
+    "props": [
+      {
+        "name": "bookLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Book label above the title, e.g. \"The Gospel of John\"."
+      },
+      {
+        "name": "chapterTitle",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Chapter title, e.g. \"John 3\". Also the heading of the screen."
+      },
+      {
+        "name": "blocks",
+        "type": "ReadingBlock[]",
+        "required": true,
+        "default": null,
+        "description": "Chapter content: section headings and paragraphs of verses."
+      },
+      {
+        "name": "footnotes",
+        "type": "ReadingFootnote[]",
+        "required": false,
+        "default": null,
+        "description": "Footnotes shown below the text."
+      },
+      {
+        "name": "lang",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "BCP-47 language of the text. Sets script line-height and direction. Defaults to the theme language."
+      },
+      {
+        "name": "pickerLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Text shown on the book/chapter picker button, e.g. \"John 3\". Defaults to `chapterTitle`."
+      },
+      {
+        "name": "translationLabel",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Translation abbreviation shown on the translation button, e.g. \"BSB\"."
+      },
+      {
+        "name": "onPressPicker",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Opens the BookPicker."
+      },
+      {
+        "name": "onPressTranslation",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Opens the translation list."
+      },
+      {
+        "name": "pickerOpen",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "The book picker is open (caret rotates, border turns blue)."
+      },
+      {
+        "name": "translationOpen",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "The translation list is open."
+      },
+      {
+        "name": "textSize",
+        "type": "ReadingTextSize",
+        "required": false,
+        "default": "19",
+        "description": "Current text size. Uncontrolled starts at 19."
+      },
+      {
+        "name": "onTextSizeChange",
+        "type": "(size: ReadingTextSize) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a text size is chosen."
+      },
+      {
+        "name": "onPressListen",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Opens the audio player (the one Horizon Blue control in the bar). Hidden when omitted."
+      },
+      {
+        "name": "onPressFootnote",
+        "type": "(marker: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when a footnote marker is pressed."
+      },
+      {
+        "name": "labels",
+        "type": "ReadingViewLabels",
+        "required": false,
+        "default": null,
+        "description": "Accessible names; override for translation."
+      },
+      {
+        "name": "scrollable",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Render the chapter inside a ScrollView under a fixed bar. Set false to embed in your own scroller."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "overline",
+    "sx-aa",
+    "sx-aa-btn",
+    "sx-body",
+    "sx-ch",
+    "sx-col",
+    "sx-col-book",
+    "sx-fn",
+    "sx-fnote",
+    "sx-fnote-mark",
+    "sx-hl",
+    "sx-ibtn",
+    "sx-play-sm",
+    "sx-rbar",
+    "sx-rbar-group",
+    "sx-reader",
+    "sx-sel",
+    "sx-sh",
+    "sx-v"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Picker buttons (`.sx-sel`): default, hover (`--gray-100`), open (`aria-expanded=\"true\"`: Horizon Blue border, caret rotates 180°), focus ring.",
+    "Text size: four steps, 17 / 19 (default) / 22 / 25px. The selected step is white with a light shadow.",
+    "Highlight: `.sx-hl` peach wash (`--gradient-peach` 70%), wraps cleanly across lines.",
+    "Footnote: `.sx-fn` superscript letter in `--horizon-blue`, note in `.sx-fnote` below a `--gray-200` rule.",
+    "Mobile (under 768px): chapter title 32px, column padding `--space-5`."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Body text `--font-serif`, line-height 1.7 at every size step. Never justify.",
+    "Column never exceeds `--measure-scripture`; center it with generous side padding (40px desktop).",
+    "Verse numbers `.sx-v`: sans 12px 600, `--horizon-blue-dim`, superscript. Never bold the verse text.",
+    "Section headings `.sx-sh` are sans 19px 600; chapter title `.sx-ch` is sans 40px 600.",
+    "The pickers open here, so they carry a caret ⌄ (the chevron SVG). The bar is sticky and translucent (`--blur-glass`).",
+    "The listen button `.sx-play-sm` is the one Horizon Blue control in the bar. It opens the AudioPlayer mini player.",
+    "All bar controls are 44px (`--tap-target`)."
+  ],
+  "do": [
+    "Use for reading a whole chapter of Scripture on dot.bible language pages and in the dot.Bible app.",
+    "Body text `--font-serif`, line-height 1.7 at every size step. Never justify.",
+    "Column never exceeds `--measure-scripture`; center it with generous side padding (40px desktop).",
+    "Verse numbers `.sx-v`: sans 12px 600, `--horizon-blue-dim`, superscript. Never bold the verse text.",
+    "Section headings `.sx-sh` are sans 19px 600; chapter title `.sx-ch` is sans 40px 600.",
+    "The pickers open here, so they carry a caret ⌄ (the chevron SVG). The bar is sticky and translucent (`--blur-glass`).",
+    "The listen button `.sx-play-sm` is the one Horizon Blue control in the bar. It opens the AudioPlayer mini player.",
+    "All bar controls are 44px (`--tap-target`)."
+  ],
+  "dont": [
+    "Do not use for a single verse or a short quote; use VerseBlock.",
+    "Do not use for articles or long-form ISM stories; they use the normal page type."
+  ],
+  "accessibility": [
+    "Name the article with book, chapter and translation (`aria-label=\"John 3, Berean Standard Bible\"`).",
+    "One `h1` per chapter; section headings are `h2`.",
+    "`.sx-sel` uses `aria-haspopup` (`dialog` for BookPicker, `listbox` for translations) and `aria-expanded`.",
+    "The translation button reads its full meaning: `aria-label=\"Translation: BSB\"`.",
+    "Footnote markers are links with `aria-label=\"Footnote a\"` pointing at the note's `id`.",
+    "Text size is a `radiogroup`; each step is a `radio` with `aria-checked`.",
+    "Set `lang` and `dir` on the reader for non-English and right-to-left text."
+  ],
+  "content": [
+    "Use the translation's own section headings; do not invent them.",
+    "Book label in `.overline`: \"The Gospel of John\".",
+    "Footnotes: verse reference bold, then the note (\"**3:3** Or *born from above*; also in verse 7\")."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<article class=\"sx-reader\" aria-label=\"John 3, Berean Standard Bible\">\n  <div class=\"sx-rbar\">\n    <div class=\"sx-rbar-group\">\n      <button type=\"button\" class=\"sx-sel\" aria-haspopup=\"dialog\" aria-expanded=\"false\">John 3<svg …aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg></button>\n      <button type=\"button\" class=\"sx-sel\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-label=\"Translation: BSB\">BSB<svg …>…</svg></button>\n    </div>\n    <div class=\"sx-rbar-group\">\n      <button type=\"button\" class=\"sx-ibtn sx-aa-btn\" aria-label=\"Text size\">Aa</button>\n      <button type=\"button\" class=\"sx-play-sm\" aria-label=\"Listen to John 3\"><svg …>…</svg></button>\n    </div>\n  </div>\n  <div class=\"sx-col\">\n    <p class=\"overline sx-col-book\">The Gospel of John</p>\n    <h1 class=\"sx-ch\">John 3</h1>\n    <h2 class=\"sx-sh\">Jesus and Nicodemus</h2>\n    <p class=\"sx-body\"><sup class=\"sx-v\">1</sup>Now there was a man of the Pharisees named Nicodemus… <sup class=\"sx-v\">3</sup><mark class=\"sx-hl\">Jesus replied, “Truly, truly, I tell you, no one can see the kingdom of God unless he is born again.”</mark><a class=\"sx-fn\" href=\"#fn-a\" aria-label=\"Footnote a\">a</a></p>\n    <p class=\"sx-fnote\" id=\"fn-a\"><span class=\"sx-fnote-mark\">a</span><span><b>3:3</b> Or <i>born from above</i>; also in verse 7</span></p>\n  </div>\n</article>",
+      "<div class=\"sx-aa\" role=\"radiogroup\" aria-label=\"Text size\">\n  <button type=\"button\" role=\"radio\" aria-checked=\"false\">17</button>\n  <button type=\"button\" role=\"radio\" aria-checked=\"true\">19</button>\n  <button type=\"button\" role=\"radio\" aria-checked=\"false\">22</button>\n  <button type=\"button\" role=\"radio\" aria-checked=\"false\">25</button>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<article class=\"sx-reader\" aria-label=\"John 3, Berean Standard Bible\">\n  <div class=\"sx-rbar\">\n    <div class=\"sx-rbar-group\">\n      <button type=\"button\" class=\"sx-sel\" aria-haspopup=\"dialog\" aria-expanded=\"false\">John 3<svg …aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg></button>\n      <button type=\"button\" class=\"sx-sel\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-label=\"Translation: BSB\">BSB<svg …>…</svg></button>\n    </div>\n    <div class=\"sx-rbar-group\">\n      <button type=\"button\" class=\"sx-ibtn sx-aa-btn\" aria-label=\"Text size\">Aa</button>\n      <button type=\"button\" class=\"sx-play-sm\" aria-label=\"Listen to John 3\"><svg …>…</svg></button>\n    </div>\n  </div>\n  <div class=\"sx-col\">\n    <p class=\"overline sx-col-book\">The Gospel of John</p>\n    <h1 class=\"sx-ch\">John 3</h1>\n    <h2 class=\"sx-sh\">Jesus and Nicodemus</h2>\n    <p class=\"sx-body\"><sup class=\"sx-v\">1</sup>Now there was a man of the Pharisees named Nicodemus… <sup class=\"sx-v\">3</sup><mark class=\"sx-hl\">Jesus replied, “Truly, truly, I tell you, no one can see the kingdom of God unless he is born again.”</mark><a class=\"sx-fn\" href=\"#fn-a\" aria-label=\"Footnote a\">a</a></p>\n    <p class=\"sx-fnote\" id=\"fn-a\"><span class=\"sx-fnote-mark\">a</span><span><b>3:3</b> Or <i>born from above</i>; also in verse 7</span></p>\n  </div>\n</article>"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"sx-aa\" role=\"radiogroup\" aria-label=\"Text size\">\n  <button type=\"button\" role=\"radio\" aria-checked=\"false\">17</button>\n  <button type=\"button\" role=\"radio\" aria-checked=\"true\">19</button>\n  <button type=\"button\" role=\"radio\" aria-checked=\"false\">22</button>\n  <button type=\"button\" role=\"radio\" aria-checked=\"false\">25</button>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/ReadingView/README.md",
+    "spec": "components/ReadingView/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

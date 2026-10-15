@@ -1,0 +1,37 @@
+{
+  "name": "ism-design-system",
+  "version": "3.0.0",
+  "private": true,
+  "description": "ISM Design System: the source of truth for ISM websites, apps and digital products (web, React, Next.js, React Native, iOS, Android).",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "packages/tokens",
+    "packages/web",
+    "packages/react",
+    "packages/react-native",
+    "examples/*"
+  ],
+  "scripts": {
+    "build:tokens": "node scripts/build-tokens.mjs",
+    "check:tokens": "node scripts/build-tokens.mjs --check",
+    "build:specs": "node scripts/build-specs.mjs",
+    "check:specs": "node scripts/build-specs.mjs --check",
+    "build:web": "npm run build --workspace @ism/web",
+    "build:previews": "node scripts/build-previews.mjs",
+    "sync:native": "node scripts/sync-native-assets.mjs",
+    "validate": "node scripts/validate.mjs",
+    "build": "npm run build:tokens && npm run build:icons && npm run build --workspace @ism/web && npm run build:specs && npm run sync:native && npm run build:previews && npm run build --workspaces --if-present",
+    "test": "npm run validate && npm test --workspaces --if-present",
+    "check": "npm run check:tokens && npm run check:icons && npm run check:native && npm run check:specs && npm run validate",
+    "build:icons": "node scripts/build-icons.mjs",
+    "check:icons": "node scripts/build-icons.mjs --check",
+    "check:native": "node scripts/sync-native-assets.mjs --check"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "@types/node": "^22.0.0"
+  }
+}

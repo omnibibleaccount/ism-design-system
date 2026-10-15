@@ -1,0 +1,158 @@
+# ISM Design System — .gitignore
+# Keep AI-tool working files out of the repo. AGENTS.md and llms.txt are NOT ignored:
+# they are published on purpose so other LLMs and platforms can read the design system.
+
+# --- Claude / Claude Code / Cowork (local state, settings, transcripts, scratch) ---
+.claude/
+.claude-plugin/
+.claudeignore
+.claude.json
+.claude.local.json
+CLAUDE.md
+CLAUDE.local.md
+**/CLAUDE.md
+**/CLAUDE.local.md
+.mcp.json
+.mcp.local.json
+claude-session*/
+.claude-sessions/
+scratchpad/
+.cowork/
+.anthropic/
+
+# --- Other AI assistants' local state ---
+.cursor/
+.cursorrules
+.cursorignore
+.windsurf/
+.windsurfrules
+.aider*
+.continue/
+.copilot/
+.codeium/
+.gemini/
+.codex/
+.cline/
+.clinerules
+.roo/
+.zed/
+
+# --- Dependencies ---
+node_modules/
+.pnpm-store/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+bower_components/
+jspm_packages/
+
+# --- Build output ---
+dist/
+build/
+out/
+coverage/
+storybook-static/
+.next/
+.nuxt/
+.turbo/
+.cache/
+.parcel-cache/
+.vite/
+.rollup.cache/
+*.tsbuildinfo
+*.tgz
+
+# --- Environment and secrets ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.keystore
+*.jks
+secrets/
+.npmrc.local
+
+# --- Logs ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# --- Editors and OS ---
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Mobile build output ---
+# React Native / iOS
+ios/Pods/
+ios/build/
+*.xcuserstate
+xcuserdata/
+DerivedData/
+*.xcworkspace/xcuserdata/
+.expo/
+.expo-shared/
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+.gradle/
+*.apk
+*.aab
+*.iml
+# Swift / Kotlin packages
+.build/
+.swiftpm/
+
+# --- Test and tooling output ---
+playwright-report/
+test-results/
+blob-report/
+.eslintcache
+.stylelintcache
+.prettiercache
+
+# --- Design-tool exports and scratch ---
+*.fig.tmp
+*.sketch.bak
+*.psd
+*.ai
+tmp/
+temp/
+.tmp/
+_scratch/
+_to_delete/
+
+# --- Large source material that belongs in storage, not git ---
+# Briefs, decks and reports used as reference when building the system.
+uploads/
+*.pdf
+*.pptx
+*.docx
+*.zip
+
+# --- Generated copies (rebuilt by each package's build) ---
+packages/react/css/
+packages/react-native/fonts/
+docs/previews/
+packages/react/assets/

@@ -1,0 +1,235 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "EventCard",
+  "title": "EventCard",
+  "group": "Ministry",
+  "version": "3.0.0",
+  "summary": "Two sibling cards for what is happening at ISM: an event card with a date tile, type badge, time and place, and a news card with a photo, category badge, date and Read the story link.",
+  "whenToUse": [
+    "Event `.mn-event`: prayer nights, launches, webinars and conferences with a date to register for.",
+    "News `.mn-news`: field stories, announcements and press items.",
+    "Use them side by side in a \"What's happening\" grid; give cards in a row equal height."
+  ],
+  "whenNotToUse": [
+    "Do not use for giving campaigns; use DonationWidget with goal progress."
+  ],
+  "anatomy": {
+    "description": "Event: News:",
+    "markup": null
+  },
+  "react": {
+    "import": "import { EventCard } from '@ism/ui'",
+    "source": "packages/react/src/components/EventCard.tsx",
+    "exports": [
+      "EventBadgeTone",
+      "EventCard",
+      "NewsCard"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLElement>, 'title'>"
+    ],
+    "props": [
+      {
+        "name": "month",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Month abbreviation on the date tile, e.g. \"NOV\". Decorative."
+      },
+      {
+        "name": "day",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Day of month on the date tile, e.g. \"12\". Decorative."
+      },
+      {
+        "name": "badge",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Type badge text, e.g. \"Online event\". One badge per card."
+      },
+      {
+        "name": "badgeTone",
+        "type": "EventBadgeTone",
+        "required": false,
+        "default": "\"info\"",
+        "description": "Badge colour; `info` suits online events."
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Event title that names the gathering."
+      },
+      {
+        "name": "dateTime",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Machine-readable start for `<time datetime>`, e.g. \"2026-11-12T19:00-05:00\"."
+      },
+      {
+        "name": "dateText",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Time row: day, date, time with zone, length, e.g. \"Thursday, Nov 12 · 7:00 pm ET · 90 min\"."
+      },
+      {
+        "name": "place",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Place row, e.g. \"Online · link sent after you register\"."
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "One-sentence summary, two lines at most."
+      },
+      {
+        "name": "actionLabel",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Register link label."
+      },
+      {
+        "name": "href",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Register URL. Opens another page, so the label ends with ↗."
+      },
+      {
+        "name": "footNote",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Text beside the action, e.g. \"212 going (sample)\". Mark invented counts as samples."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "arrow",
+    "badge",
+    "badge-brand",
+    "badge-info",
+    "btn",
+    "btn-ghost",
+    "btn-secondary",
+    "btn-sm",
+    "card",
+    "card-flat",
+    "h4",
+    "mn-datetile",
+    "mn-datetile-d",
+    "mn-datetile-m",
+    "mn-event",
+    "mn-event-foot",
+    "mn-event-head",
+    "mn-meta",
+    "mn-news",
+    "mn-news-body",
+    "mn-news-img",
+    "mn-news-link",
+    "mn-news-meta",
+    "muted",
+    "photo"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Event: 64 × 68px `.mn-datetile` (month 12px 700 in `--horizon-blue`, day 26px 600); type badge `.badge-info` (Online event) or another base badge for in-person.",
+    "News: 180px photo, `.badge-brand` category, date in 13px `--gray-600`.",
+    "Footers sit at the bottom (`margin-top:auto`) so a row of cards lines up.",
+    "Cards use base `.card` hover and focus."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Both actions go to another page, so both end with ↗: `.btn-secondary btn-sm` \"Register\" on events, `.btn-ghost btn-sm` \"Read the story\" on news.",
+    "No Horizon Blue filled button inside these cards; the page's primary action lives elsewhere.",
+    "Event meta rows: time first (day, date, time with zone, length), then place. Always include the time zone.",
+    "One badge per card. One-sentence summary, two lines at most.",
+    "Mark invented counts as samples (\"212 going (sample)\").",
+    "Use only system imagery; news photos need real alt text."
+  ],
+  "do": [
+    "Event `.mn-event`: prayer nights, launches, webinars and conferences with a date to register for.",
+    "News `.mn-news`: field stories, announcements and press items.",
+    "Use them side by side in a \"What's happening\" grid; give cards in a row equal height.",
+    "Both actions go to another page, so both end with ↗: `.btn-secondary btn-sm` \"Register\" on events, `.btn-ghost btn-sm` \"Read the story\" on news.",
+    "Event meta rows: time first (day, date, time with zone, length), then place. Always include the time zone.",
+    "One badge per card. One-sentence summary, two lines at most.",
+    "Mark invented counts as samples (\"212 going (sample)\").",
+    "Use only system imagery; news photos need real alt text."
+  ],
+  "dont": [
+    "Do not use for giving campaigns; use DonationWidget with goal progress.",
+    "No Horizon Blue filled button inside these cards; the page's primary action lives elsewhere."
+  ],
+  "accessibility": [
+    "Use `<time datetime>` for every date and time.",
+    "The date tile is `aria-hidden=\"true\"`; the meta row carries the full date for screen readers.",
+    "Each card is an `<article>` with an `h3` title; meta icons are `aria-hidden=\"true\"`.",
+    "Link text names the action; add the title as visually hidden text when several cards say \"Read the story\"."
+  ],
+  "content": [
+    "Event title names the gathering: \"Global prayer night for Bible translation\".",
+    "Time: \"Thursday, Nov 12 · 7:00 pm ET · 90 min\". Place: \"Online · link sent after you register\".",
+    "News title is a plain headline in sentence case: \"An audio Bible in Amharic reaches 40 radio stations\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<article class=\"card card-flat mn-event\">\n  <div class=\"mn-event-head\">\n    <span class=\"mn-datetile\" aria-hidden=\"true\"><span class=\"mn-datetile-m\">NOV</span><span class=\"mn-datetile-d\">12</span></span>\n    <span class=\"badge badge-info\">Online event</span>\n  </div>\n  <h3 class=\"h4\">Global prayer night for Bible translation</h3>\n  <div class=\"mn-meta\">\n    <span><svg width=\"16\" height=\"16\" …aria-hidden=\"true\">…</svg><time datetime=\"2026-11-12T19:00-05:00\">Thursday, Nov 12 · 7:00 pm ET · 90 min</time></span>\n    <span><svg width=\"16\" height=\"16\" …aria-hidden=\"true\">…</svg>Online · link sent after you register</span>\n  </div>\n  <p class=\"muted\">Pray with partners from 40 countries for the languages still waiting for Scripture.</p>\n  <div class=\"mn-event-foot\">\n    <a class=\"btn btn-secondary btn-sm\" href=\"…\">Register <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n    <span>212 going (sample)</span>\n  </div>\n</article>",
+      "<article class=\"card card-flat mn-news\">\n  <div class=\"mn-news-img\"><img class=\"photo\" src=\"../../assets/imagery/print-photo-listener.jpg\" alt=\"A woman listening to Scripture on her phone\"></div>\n  <div class=\"mn-news-body\">\n    <div class=\"mn-news-meta\"><span class=\"badge badge-brand\">Field story</span><time datetime=\"2026-10-02\">Oct 2, 2026</time></div>\n    <h3 class=\"h4\">An audio Bible in Amharic reaches 40 radio stations</h3>\n    <p class=\"muted\">Listeners across Ethiopia now hear Scripture read aloud each morning in their heart language.</p>\n    <a class=\"btn btn-ghost btn-sm mn-news-link\" href=\"…\">Read the story <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n  </div>\n</article>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<article class=\"card card-flat mn-event\">\n  <div class=\"mn-event-head\">\n    <span class=\"mn-datetile\" aria-hidden=\"true\"><span class=\"mn-datetile-m\">NOV</span><span class=\"mn-datetile-d\">12</span></span>\n    <span class=\"badge badge-info\">Online event</span>\n  </div>\n  <h3 class=\"h4\">Global prayer night for Bible translation</h3>\n  <div class=\"mn-meta\">\n    <span><svg width=\"16\" height=\"16\" …aria-hidden=\"true\">…</svg><time datetime=\"2026-11-12T19:00-05:00\">Thursday, Nov 12 · 7:00 pm ET · 90 min</time></span>\n    <span><svg width=\"16\" height=\"16\" …aria-hidden=\"true\">…</svg>Online · link sent after you register</span>\n  </div>\n  <p class=\"muted\">Pray with partners from 40 countries for the languages still waiting for Scripture.</p>\n  <div class=\"mn-event-foot\">\n    <a class=\"btn btn-secondary btn-sm\" href=\"…\">Register <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n    <span>212 going (sample)</span>\n  </div>\n</article>"
+      },
+      {
+        "lang": "html",
+        "code": "<article class=\"card card-flat mn-news\">\n  <div class=\"mn-news-img\"><img class=\"photo\" src=\"../../assets/imagery/print-photo-listener.jpg\" alt=\"A woman listening to Scripture on her phone\"></div>\n  <div class=\"mn-news-body\">\n    <div class=\"mn-news-meta\"><span class=\"badge badge-brand\">Field story</span><time datetime=\"2026-10-02\">Oct 2, 2026</time></div>\n    <h3 class=\"h4\">An audio Bible in Amharic reaches 40 radio stations</h3>\n    <p class=\"muted\">Listeners across Ethiopia now hear Scripture read aloud each morning in their heart language.</p>\n    <a class=\"btn btn-ghost btn-sm mn-news-link\" href=\"…\">Read the story <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n  </div>\n</article>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/EventCard/README.md",
+    "spec": "components/EventCard/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Logos",
+  "title": "Logos",
+  "group": "Brand",
+  "version": "3.0.0",
+  "summary": "The ISM and dot.Bible logos, marks and brand patterns, with the rules for placing them on light and dark surfaces.",
+  "whenToUse": [
+    "Use the **ISM full logo** in the site header, footer, print covers and email headers.",
+    "Use the **ISM mark** where space is tight: favicons, avatars, app tiles for ISM itself, social profile images.",
+    "Use the **dot.Bible full logo** wherever the dot.Bible app is the subject (app banners, store pages, app promos). Use the **dot.Bible icon** for the app tile and small placements.",
+    "Use the **patterns** (Circle-symbol-1, Dots 1–5) as quiet background texture on campaign, print and hero art. Never behind body text."
+  ],
+  "whenNotToUse": [
+    "Do not redraw, recolour, stretch, outline or add effects to any logo."
+  ],
+  "anatomy": {
+    "description": "All logo files are drawn in black ink. On dark surfaces invert them with a filter; do not use the \"White\" files (they render black). CSS custom properties for the files ship in `tokens/logos.css`: `--logo-full-black`, `--logo-mark-black`, `--logo-dotbible-full-black`, `--logo-dotbible-mark-black` (use with `background-image` / `mask-image`).",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Logos } from '@ism/ui'",
+    "source": "packages/react/src/components/Logos.tsx",
+    "exports": [
+      "Logo",
+      "LogoPattern",
+      "LogoPatternName",
+      "LogoVariant",
+      "logoMinHeight"
+    ],
+    "extends": [
+      "Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'height'>"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "LogoVariant",
+        "required": false,
+        "default": "\"ism\"",
+        "description": "Which logo file to show: ISM full logo, ISM mark, dot.Bible full logo or dot.Bible icon."
+      },
+      {
+        "name": "inverse",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Place on a dark surface: applies `filter: brightness(0) invert(1)` so the black ink turns white."
+      },
+      {
+        "name": "src",
+        "type": "string",
+        "required": false,
+        "default": "\"/ism/assets/logos\"",
+        "description": "Base path of the logo files (no trailing slash needed)."
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "required": false,
+        "default": "32",
+        "description": "Height in px. Full logo 28-40 in headers, 24-32 in footers; mark at least 24; dot.Bible icon at least 32."
+      },
+      {
+        "name": "alt",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Accessible name. Defaults to the brand name; when the logo is a home link make it the destination, for example \"ISM home\"."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { Logos } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Logos.tsx",
+    "exports": [
+      "LogoOnSurface"
+    ],
+    "props": [
+      {
+        "name": "surface",
+        "type": "'light' | 'dark'",
+        "required": false,
+        "default": null,
+        "description": "Surface the logo sits on. `light` gives black ink, `dark` gives white ink. Defaults to the theme scheme."
+      },
+      {
+        "name": "clearSpace",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Keep the clear space (a quarter of the logo height) around the logo free of other content."
+      },
+      {
+        "name": "tile",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Put the dot.Bible icon on a white tile with `radius-md`, as in app tiles. Only applies to `dotbible-icon`."
+      },
+      {
+        "name": "enforceMinSize",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Clamp the height up to the minimum size for the logo (ISM mark 24, dot.Bible icon 32, full logos 28)."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      },
+      {
+        "name": "testID",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [],
+  "variants": [],
+  "variantNotes": [
+    "**Ink:** black on `--white` / `--off-white` / `--gray-100`; white (inverted) on `--black`, `--charcoal-900` and on dark photography or `--gradient-signature`.",
+    "**Size:** full logo 28–40px tall in headers, 24–32px in footers; mark at least 24px; dot.Bible icon at least 32px.",
+    "**Patterns:** Circle-symbol-1 (ring; Circle-symbol-2 is an identical copy) at 6–20% opacity on dark, 4–10% on light; Dots 1–5 (PNG) as a corner or edge texture on light surfaces.",
+    "`Pattern1.svg`, `Pattern2.svg` and `Circle-symbol-3.svg` were exported without their styles and render as solid shapes. Do not use them until they are re-exported; build the ring motif from Circle-symbol-1 or inline SVG circles."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": false,
+      "focus": false,
+      "pressed": false,
+      "disabled": false,
+      "loading": true,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Clear space around every logo = the height of the mark's inner circle (about a quarter of the logo height). No text, buttons or edges inside it.",
+    "One logo per view. Never place ISM and dot.Bible full logos side by side except on a \"from ISM\" endorsement line, where the ISM logo is smaller.",
+    "Never place a logo on a busy photo without a dark overlay (`--black` at 40%+).",
+    "Never colour a logo Horizon Blue or a gradient. Logos are black or white only.",
+    "Patterns are decoration: `aria-hidden=\"true\"`, `alt=\"\"`, `pointer-events:none`.",
+    "In app tiles, the dot.Bible icon sits on a white tile with `--radius-md`."
+  ],
+  "do": [
+    "Use the **ISM full logo** in the site header, footer, print covers and email headers.",
+    "Use the **ISM mark** where space is tight: favicons, avatars, app tiles for ISM itself, social profile images.",
+    "Use the **dot.Bible full logo** wherever the dot.Bible app is the subject (app banners, store pages, app promos). Use the **dot.Bible icon** for the app tile and small placements.",
+    "Use the **patterns** (Circle-symbol-1, Dots 1–5) as quiet background texture on campaign, print and hero art. Never behind body text.",
+    "Clear space around every logo = the height of the mark's inner circle (about a quarter of the logo height). No text, buttons or edges inside it.",
+    "One logo per view. Never place ISM and dot.Bible full logos side by side except on a \"from ISM\" endorsement line, where the ISM logo is smaller.",
+    "Patterns are decoration: `aria-hidden=\"true\"`, `alt=\"\"`, `pointer-events:none`.",
+    "In app tiles, the dot.Bible icon sits on a white tile with `--radius-md`."
+  ],
+  "dont": [
+    "Do not redraw, recolour, stretch, outline or add effects to any logo.",
+    "Never place a logo on a busy photo without a dark overlay (`--black` at 40%+).",
+    "Never colour a logo Horizon Blue or a gradient. Logos are black or white only."
+  ],
+  "accessibility": [
+    "Logo images get meaningful `alt` (\"International Scripture Ministries\", \"dot.Bible\"). When the logo is a home link, the link's accessible name is \"ISM home\".",
+    "Decorative patterns get `alt=\"\"`."
+  ],
+  "content": [
+    "Write the names as **International Scripture Ministries** (or **ISM** after first use) and **dot.Bible** (lowercase d, capital B)."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<!-- light surface -->\n<img class=\"lg-logo\" src=\"assets/logos/Full%20Logo%20Black.svg\" alt=\"International Scripture Ministries\" height=\"32\">\n<!-- dark surface -->\n<img class=\"lg-logo\" style=\"filter:brightness(0) invert(1)\" src=\"assets/logos/Full%20Logo%20Black.svg\" alt=\"International Scripture Ministries\" height=\"32\">"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<!-- light surface -->\n<img class=\"lg-logo\" src=\"assets/logos/Full%20Logo%20Black.svg\" alt=\"International Scripture Ministries\" height=\"32\">\n<!-- dark surface -->\n<img class=\"lg-logo\" style=\"filter:brightness(0) invert(1)\" src=\"assets/logos/Full%20Logo%20Black.svg\" alt=\"International Scripture Ministries\" height=\"32\">"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/Logos/README.md",
+    "spec": "components/Logos/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [
+      "lg-logo"
+    ],
+    "missingSections": []
+  }
+}

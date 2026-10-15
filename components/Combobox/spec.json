@@ -1,0 +1,279 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Combobox",
+  "title": "Combobox",
+  "group": "Forms",
+  "version": "3.0.0",
+  "summary": "A search field joined to a dropdown list: type to filter a long list, or press the caret to see every option, in a 48px form size and a 64px homepage hero size.",
+  "whenToUse": [
+    "Long lists people know by name: Bible languages, countries, stations.",
+    "48px (`.fm-combo`): inside forms, e.g. \"Language\" on a partner form.",
+    "Hero (`.fm-dir`): the homepage Bible directory search, one per page, where picking a row opens that Bible on dot.Bible.",
+    "Fewer than 10 fixed options: use Select. Picking several: use MultiSelect. Free-text site search: use SearchField."
+  ],
+  "whenNotToUse": [],
+  "anatomy": {
+    "description": "48px form combobox: Hero combobox:",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Combobox } from '@ism/ui'",
+    "source": "packages/react/src/components/Combobox.tsx",
+    "exports": [
+      "Combobox",
+      "ComboboxHeadInfo",
+      "ComboboxOption",
+      "ComboboxVariant"
+    ],
+    "extends": [
+      "Omit< InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue' | 'onChange' | 'onSelect' | 'type' | 'size' | 'children' >"
+    ],
+    "props": [
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Visible label."
+      },
+      {
+        "name": "options",
+        "type": "ComboboxOption[]",
+        "required": true,
+        "default": null,
+        "description": "The list to search."
+      },
+      {
+        "name": "variant",
+        "type": "ComboboxVariant",
+        "required": false,
+        "default": "\"form\"",
+        "description": "`form` is the 48px field for forms; `hero` is the 64px homepage directory search (one per page)."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Controlled selected value."
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "required": false,
+        "default": "\"\"",
+        "description": "Initial selected value when uncontrolled."
+      },
+      {
+        "name": "onValueChange",
+        "type": "(value: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the picked option's value."
+      },
+      {
+        "name": "onSelectOption",
+        "type": "(option: ComboboxOption) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the picked option. Use it in the hero to navigate to the chosen item."
+      },
+      {
+        "name": "hint",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Hint under the field (form variant). Replaced by `error`."
+      },
+      {
+        "name": "error",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Error message (form variant). Sets `aria-invalid=\"true\"` and links the message."
+      },
+      {
+        "name": "showAllLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Show all options\"",
+        "description": "Accessible name of the caret button."
+      },
+      {
+        "name": "listLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Options\"",
+        "description": "Accessible name of the listbox."
+      },
+      {
+        "name": "searchLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Accessible name of the hero `<form role=\"search\">`."
+      },
+      {
+        "name": "formatHead",
+        "type": "(info: ComboboxHeadInfo) => string",
+        "required": false,
+        "default": "\"All · N\" / \"N matches\" / \"1 match\" (English)",
+        "description": "Text of the list head and the polite match-count announcement."
+      },
+      {
+        "name": "emptyText",
+        "type": "(query: string) => ReactNode",
+        "required": false,
+        "default": "`No match for “text”.`",
+        "description": "Content shown when nothing matches. Receives the typed text."
+      },
+      {
+        "name": "emptyAction",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Extra content after the empty text in the hero, for example a \"Browse every language ↗\" link."
+      },
+      {
+        "name": "goLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": "\"Open ↗\"",
+        "description": "Trailing text on hero rows. Hero rows leave the page when picked."
+      },
+      {
+        "name": "wrapperClassName",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Class on the outer wrapper (`.field` or `.fm-dir`). `className` goes on the input."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "field",
+    "fm-active",
+    "fm-combo",
+    "fm-combo-anchor",
+    "fm-combo-caret",
+    "fm-dir",
+    "fm-dir-box",
+    "fm-dir-caret",
+    "fm-dir-empty",
+    "fm-dir-eng",
+    "fm-dir-go",
+    "fm-dir-head",
+    "fm-dir-icon",
+    "fm-dir-input",
+    "fm-dir-name",
+    "fm-dir-native",
+    "fm-dir-option",
+    "fm-dir-results",
+    "fm-menu",
+    "fm-menu-empty",
+    "fm-menu-float",
+    "fm-menu-head",
+    "fm-opt",
+    "fm-opt-sub",
+    "fm-opt-two",
+    "fm-sf",
+    "fm-sf-icon",
+    "input",
+    "label"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "48px: base `.input`, 36px round caret button inside the right edge, list `.fm-menu` 6px below (max 264px, scrolls).",
+    "Hero: 64px pill (`--radius-pill`, `--gray-300` border, soft shadow), 56px on phones; 44px caret; results panel `.fm-dir-results` with `--radius-lg` corners and `--shadow-card-dark`, 8px below, max 380px.",
+    "Closed / open: caret rotates 180° when `aria-expanded=\"true\"`.",
+    "Filtering: the head reads \"All languages · 12\", then \"3 matches\" / \"1 match\".",
+    "Active row (`.fm-active`) and hover: `--blue-tint`.",
+    "Selected (48px only): `aria-selected=\"true\"`, semibold `--horizon-blue-dim` and a blue tick.",
+    "Empty: `.fm-menu-empty` \"No language matches “xyz”.\" Hero: `.fm-dir-empty` with a link \"Browse every language on dot.Bible ↗\"."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Caret ⌄ means the list opens here. Hero rows end in \"Open ↗\" because picking leaves for another page.",
+    "Match on both the native name and the English name, ignoring accents and case.",
+    "Show the native name first and larger; English under it in `--gray-600`.",
+    "Focus or typing opens the list; Enter picks the first match; Esc closes.",
+    "Keep the caret button from stealing focus (prevent mousedown default) so typing continues.",
+    "One hero combobox per page. Do not shrink the hero below 56px.",
+    "On the 48px version, show the current choice as the placeholder (\"አማርኛ · Amharic\") and clear the typed text on pick."
+  ],
+  "do": [
+    "Long lists people know by name: Bible languages, countries, stations.",
+    "48px (`.fm-combo`): inside forms, e.g. \"Language\" on a partner form.",
+    "Hero (`.fm-dir`): the homepage Bible directory search, one per page, where picking a row opens that Bible on dot.Bible.",
+    "Fewer than 10 fixed options: use Select. Picking several: use MultiSelect. Free-text site search: use SearchField.",
+    "Caret ⌄ means the list opens here. Hero rows end in \"Open ↗\" because picking leaves for another page.",
+    "Match on both the native name and the English name, ignoring accents and case.",
+    "Show the native name first and larger; English under it in `--gray-600`.",
+    "Focus or typing opens the list; Enter picks the first match; Esc closes.",
+    "Keep the caret button from stealing focus (prevent mousedown default) so typing continues.",
+    "One hero combobox per page. Do not shrink the hero below 56px.",
+    "On the 48px version, show the current choice as the placeholder (\"አማርኛ · Amharic\") and clear the typed text on pick."
+  ],
+  "dont": [],
+  "accessibility": [
+    "Input `role=\"combobox\"` with `aria-expanded`, `aria-controls` and `aria-autocomplete=\"list\"`.",
+    "Caret: `aria-label=\"Show all languages\"`, mirrors `aria-expanded`.",
+    "List `role=\"listbox\"`; rows `role=\"option\"`. Head is `aria-hidden`; announce the match count in a polite live region.",
+    "Up/Down move the active row (`aria-activedescendant`), Enter picks, Esc closes and keeps focus in the input.",
+    "Mark native names with `lang` (e.g. `lang=\"am\"`) where possible."
+  ],
+  "content": [
+    "Labels: \"Language\", \"Search for your language\".",
+    "Placeholder: \"Try “Español”, “Swahili” or “हिन्दी”\".",
+    "Head: \"All languages · 12\" (sample count). Empty: \"No match for “xyz”. Browse every language on dot.Bible ↗\"."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"field\">\n  <label class=\"label\" for=\"lang\">Language</label>\n  <div class=\"fm-sf fm-combo\">\n    <svg class=\"fm-sf-icon\" …magnifier…></svg>\n    <input class=\"input\" id=\"lang\" type=\"search\" role=\"combobox\" aria-expanded=\"false\"\n      aria-controls=\"lang-list\" aria-autocomplete=\"list\" autocomplete=\"off\" placeholder=\"Search or choose a language\">\n    <button type=\"button\" class=\"fm-combo-caret\" aria-label=\"Show all languages\" aria-expanded=\"false\" aria-controls=\"lang-list\">…caret…</button>\n  </div>\n  <div class=\"fm-combo-anchor\">\n    <div class=\"fm-menu fm-menu-float\" id=\"lang-list\" role=\"listbox\" aria-label=\"Languages\">\n      <div class=\"fm-menu-head\" aria-hidden=\"true\">All languages · 12</div>\n      <button type=\"button\" class=\"fm-opt\" role=\"option\" aria-selected=\"false\">\n        <span class=\"fm-opt-two\"><span>Tiếng Việt</span><span class=\"fm-opt-sub\">Vietnamese</span></span>\n      </button>\n    </div>\n  </div>\n</div>",
+      "<form class=\"fm-dir\" role=\"search\" aria-label=\"Search Bible languages\">\n  <label class=\"label\" for=\"dir\">Search for your language</label>\n  <div class=\"fm-dir-box\">\n    <svg class=\"fm-dir-icon\" width=\"22\" height=\"22\" …magnifier…></svg>\n    <input id=\"dir\" class=\"input fm-dir-input\" type=\"search\" role=\"combobox\" aria-expanded=\"false\" aria-controls=\"dir-list\" aria-autocomplete=\"list\" placeholder=\"Try “Español”, “Swahili” or “हिन्दी”\">\n    <button type=\"button\" class=\"fm-dir-caret\" aria-label=\"Show all languages\" aria-expanded=\"false\" aria-controls=\"dir-list\">…caret…</button>\n  </div>\n  <div id=\"dir-list\" class=\"fm-dir-results\" role=\"listbox\" aria-label=\"Matching languages\">\n    <div class=\"fm-dir-head\" aria-hidden=\"true\">All languages · 12</div>\n    <button type=\"button\" class=\"fm-dir-option\" role=\"option\" aria-selected=\"false\">\n      <span class=\"fm-dir-name\"><span class=\"fm-dir-native\">አማርኛ</span><span class=\"fm-dir-eng\">Amharic</span></span>\n      <span class=\"fm-dir-go\">Open ↗</span>\n    </button>\n  </div>\n</form>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"field\">\n  <label class=\"label\" for=\"lang\">Language</label>\n  <div class=\"fm-sf fm-combo\">\n    <svg class=\"fm-sf-icon\" …magnifier…></svg>\n    <input class=\"input\" id=\"lang\" type=\"search\" role=\"combobox\" aria-expanded=\"false\"\n      aria-controls=\"lang-list\" aria-autocomplete=\"list\" autocomplete=\"off\" placeholder=\"Search or choose a language\">\n    <button type=\"button\" class=\"fm-combo-caret\" aria-label=\"Show all languages\" aria-expanded=\"false\" aria-controls=\"lang-list\">…caret…</button>\n  </div>\n  <div class=\"fm-combo-anchor\">\n    <div class=\"fm-menu fm-menu-float\" id=\"lang-list\" role=\"listbox\" aria-label=\"Languages\">\n      <div class=\"fm-menu-head\" aria-hidden=\"true\">All languages · 12</div>\n      <button type=\"button\" class=\"fm-opt\" role=\"option\" aria-selected=\"false\">\n        <span class=\"fm-opt-two\"><span>Tiếng Việt</span><span class=\"fm-opt-sub\">Vietnamese</span></span>\n      </button>\n    </div>\n  </div>\n</div>"
+      },
+      {
+        "lang": "html",
+        "code": "<form class=\"fm-dir\" role=\"search\" aria-label=\"Search Bible languages\">\n  <label class=\"label\" for=\"dir\">Search for your language</label>\n  <div class=\"fm-dir-box\">\n    <svg class=\"fm-dir-icon\" width=\"22\" height=\"22\" …magnifier…></svg>\n    <input id=\"dir\" class=\"input fm-dir-input\" type=\"search\" role=\"combobox\" aria-expanded=\"false\" aria-controls=\"dir-list\" aria-autocomplete=\"list\" placeholder=\"Try “Español”, “Swahili” or “हिन्दी”\">\n    <button type=\"button\" class=\"fm-dir-caret\" aria-label=\"Show all languages\" aria-expanded=\"false\" aria-controls=\"dir-list\">…caret…</button>\n  </div>\n  <div id=\"dir-list\" class=\"fm-dir-results\" role=\"listbox\" aria-label=\"Matching languages\">\n    <div class=\"fm-dir-head\" aria-hidden=\"true\">All languages · 12</div>\n    <button type=\"button\" class=\"fm-dir-option\" role=\"option\" aria-selected=\"false\">\n      <span class=\"fm-dir-name\"><span class=\"fm-dir-native\">አማርኛ</span><span class=\"fm-dir-eng\">Amharic</span></span>\n      <span class=\"fm-dir-go\">Open ↗</span>\n    </button>\n  </div>\n</form>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/Combobox/README.md",
+    "spec": "components/Combobox/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

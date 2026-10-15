@@ -1,0 +1,254 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "MultiSelect",
+  "title": "MultiSelect",
+  "group": "Forms",
+  "version": "3.0.0",
+  "summary": "A tag input that grows from 48px, holds removable chips for each pick, and opens a type-to-filter list with checkboxes that stays open while picking.",
+  "whenToUse": [
+    "Picking several values from a long list: languages a church serves, countries a broadcast partner covers, newsletter topics.",
+    "8 or more options. For fewer, use `.check` rows (Checkbox).",
+    "Only one value: use Select or Combobox."
+  ],
+  "whenNotToUse": [],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { MultiSelect } from '@ism/ui'",
+    "source": "packages/react/src/components/MultiSelect.tsx",
+    "exports": [
+      "MultiSelect",
+      "MultiSelectLabels",
+      "MultiSelectOption"
+    ],
+    "extends": [],
+    "props": [
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Visible label."
+      },
+      {
+        "name": "options",
+        "type": "MultiSelectOption[]",
+        "required": true,
+        "default": null,
+        "description": "All options, in list order. Selected options keep their place."
+      },
+      {
+        "name": "value",
+        "type": "string[]",
+        "required": false,
+        "default": null,
+        "description": "Selected values (controlled), in the order they were added."
+      },
+      {
+        "name": "defaultValue",
+        "type": "string[]",
+        "required": false,
+        "default": null,
+        "description": "Initially selected values (uncontrolled)."
+      },
+      {
+        "name": "onChange",
+        "type": "(value: string[]) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the new list of values."
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Placeholder when nothing is selected, for example \"Choose languages\"."
+      },
+      {
+        "name": "placeholderMore",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Placeholder once something is selected, for example \"Add more\"."
+      },
+      {
+        "name": "labels",
+        "type": "MultiSelectLabels",
+        "required": true,
+        "default": null,
+        "description": "Texts for the list and announcements."
+      },
+      {
+        "name": "optionalText",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Tag such as \"(optional)\" shown after the label."
+      },
+      {
+        "name": "hint",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Helper text under the field, for example the selected count. Linked with `aria-describedby`."
+      },
+      {
+        "name": "error",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Error message under the field. Sets `aria-invalid` and the error shell."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Disable the field."
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Mark the input required."
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Id of the combobox input. Generated when omitted."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "When set, one hidden input per value is rendered for native form posts."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Extra class on the outer `.field`."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": null,
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "check",
+    "err",
+    "field",
+    "fm-active",
+    "fm-dial",
+    "fm-err",
+    "fm-focus",
+    "fm-mbox",
+    "fm-menu",
+    "fm-menu-float",
+    "fm-menu-head",
+    "fm-o",
+    "fm-open",
+    "fm-tag",
+    "fm-tag-x",
+    "fm-tags",
+    "fm-tags-caret",
+    "fm-ti",
+    "hint",
+    "label"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Empty: placeholder \"Choose languages\".",
+    "Filled: chips in the order they were added, then the input with \"Add more\" and a count in the `.hint`.",
+    "Focus: `:focus-within` (or `.fm-focus`) gives the `--horizon-blue` border and `--shadow-focus`.",
+    "Open (`.fm-open`): caret rotates 180°; the list filters as you type and the head shows the match count.",
+    "Option selected: `aria-selected=\"true\"` fills `.fm-mbox` `--horizon-blue` with a white tick, text `--horizon-blue-dim`.",
+    "Option hover / keyboard-active (`.fm-active`): `--blue-tint`.",
+    "Error: `.fm-err` on the shell (`--error` border on `--error-field-bg`), `aria-invalid=\"true\"` on the input and one `.err` line (\"Choose at least one language.\")."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": false,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Picking toggles: selected options keep their place in the list and show a filled box. Do not move them to the top.",
+    "Keep the list open while picking; close on Esc, Tab or click outside.",
+    "Chips wrap onto new lines; never scroll sideways.",
+    "Backspace in the empty input removes the last chip.",
+    "The caret ⌄ means the list opens here.",
+    "Use chips only for picked values; never as filters or links.",
+    "Every remove button is a real 30px button inside the 34px chip; the chip row itself stays 44px+ tall with the field."
+  ],
+  "do": [
+    "Picking several values from a long list: languages a church serves, countries a broadcast partner covers, newsletter topics.",
+    "8 or more options. For fewer, use `.check` rows (Checkbox).",
+    "Only one value: use Select or Combobox.",
+    "Picking toggles: selected options keep their place in the list and show a filled box. Do not move them to the top.",
+    "Keep the list open while picking; close on Esc, Tab or click outside.",
+    "Chips wrap onto new lines; never scroll sideways.",
+    "Backspace in the empty input removes the last chip.",
+    "The caret ⌄ means the list opens here.",
+    "Use chips only for picked values; never as filters or links.",
+    "Every remove button is a real 30px button inside the 34px chip; the chip row itself stays 44px+ tall with the field."
+  ],
+  "dont": [],
+  "accessibility": [
+    "Input: `role=\"combobox\"`, `aria-expanded`, `aria-controls`, `aria-autocomplete=\"list\"`.",
+    "List: `role=\"listbox\"` with `aria-multiselectable=\"true\"`; rows `role=\"option\"` with `aria-selected`.",
+    "Each × is named \"Remove Amharic\". After removal, move focus to the input.",
+    "Announce changes politely (\"Swahili added, 4 selected\").",
+    "Native names (Español, Kiswahili) carry a `lang` attribute when rendered in their script."
+  ],
+  "content": [
+    "Label: \"Languages your church serves\". Placeholder: \"Choose languages\" when empty, \"Add more\" once filled.",
+    "Hint: \"3 selected · Bibles in 500+ languages on dot.Bible\".",
+    "List head: \"4 matches\"; empty: \"No languages match. Try the English or native name.\"",
+    "Show the English name first and the native name on the right: Swahili · Kiswahili."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"field\">\n  <label class=\"label\" for=\"langs\">Languages your church serves</label>\n  <div class=\"fm-tags\">\n    <span class=\"fm-tag\">Amharic<button class=\"fm-tag-x\" type=\"button\" aria-label=\"Remove Amharic\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button></span>\n    <input class=\"fm-ti\" id=\"langs\" type=\"text\" role=\"combobox\" aria-expanded=\"false\"\n      aria-controls=\"langs-list\" aria-autocomplete=\"list\" placeholder=\"Add more\">\n    <button class=\"fm-tags-caret\" type=\"button\" aria-label=\"Show all languages\" tabindex=\"-1\">\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg></button>\n  </div>\n  <p class=\"hint\">3 selected · Bibles in 500+ languages on dot.Bible</p>\n</div>\n\n<div class=\"fm-menu fm-menu-float\" id=\"langs-list\" role=\"listbox\" aria-multiselectable=\"true\" aria-label=\"Languages\">\n  <div class=\"fm-menu-head\">4 matches</div>\n  <button class=\"fm-o\" type=\"button\" role=\"option\" aria-selected=\"true\">\n    <span class=\"fm-mbox\"><svg …tick…/></span>Spanish<span class=\"fm-dial\">Español</span></button>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"field\">\n  <label class=\"label\" for=\"langs\">Languages your church serves</label>\n  <div class=\"fm-tags\">\n    <span class=\"fm-tag\">Amharic<button class=\"fm-tag-x\" type=\"button\" aria-label=\"Remove Amharic\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button></span>\n    <input class=\"fm-ti\" id=\"langs\" type=\"text\" role=\"combobox\" aria-expanded=\"false\"\n      aria-controls=\"langs-list\" aria-autocomplete=\"list\" placeholder=\"Add more\">\n    <button class=\"fm-tags-caret\" type=\"button\" aria-label=\"Show all languages\" tabindex=\"-1\">\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg></button>\n  </div>\n  <p class=\"hint\">3 selected · Bibles in 500+ languages on dot.Bible</p>\n</div>\n\n<div class=\"fm-menu fm-menu-float\" id=\"langs-list\" role=\"listbox\" aria-multiselectable=\"true\" aria-label=\"Languages\">\n  <div class=\"fm-menu-head\">4 matches</div>\n  <button class=\"fm-o\" type=\"button\" role=\"option\" aria-selected=\"true\">\n    <span class=\"fm-mbox\"><svg …tick…/></span>Spanish<span class=\"fm-dial\">Español</span></button>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": false,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/MultiSelect/README.md",
+    "spec": "components/MultiSelect/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

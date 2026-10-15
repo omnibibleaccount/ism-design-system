@@ -1,0 +1,49 @@
+{
+  "name": "@ism/ui",
+  "version": "3.0.0",
+  "description": "ISM Design System React components (typed, Next.js App Router-ready). Thin wrappers over the @ism/web CSS classes.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./css": "./css/ism.css",
+    "./css/rtl": "./css/rtl.css",
+    "./assets/*": "./assets/*"
+  },
+  "files": [
+    "dist",
+    "css",
+    "assets",
+    "README.md"
+  ],
+  "scripts": {
+    "build:index": "node scripts/build-index.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "build": "npm run build:index && node scripts/copy-assets.mjs && tsup",
+    "test": "npm run build:index && node --import tsx --test test/*.test.tsx"
+  },
+  "dependencies": {
+    "@ism/tokens": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.6.0"
+  }
+}

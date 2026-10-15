@@ -1,0 +1,216 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Radio",
+  "title": "Radio",
+  "group": "Forms",
+  "version": "3.0.0",
+  "summary": "A 20px radio button with a 6px Horizon Blue ring when selected, used in a fieldset group where exactly one option can be picked.",
+  "whenToUse": [
+    "2–5 options, only one can be picked, and all should stay visible (gift frequency, \"How did you hear about ISM?\").",
+    "Card-style rows (`.check` + `.fm-radio`) when each option needs a one-line description (partnership type).",
+    "More than 5 options: use Select. Several can be picked: use Checkbox. Two options that switch a view or price (one-time / monthly): use SegmentedControl."
+  ],
+  "whenNotToUse": [],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Radio } from '@ism/ui'",
+    "source": "packages/react/src/components/Radio.tsx",
+    "exports": [
+      "Radio",
+      "RadioGroup"
+    ],
+    "extends": [
+      "Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'children' | 'size'>"
+    ],
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Label text. Short and parallel with the other options."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Value of this option. Required inside a `RadioGroup`."
+      },
+      {
+        "name": "card",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Render as a full-width `.check` row card; `children` becomes the title."
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "One-line explanation. In a card it sits under the title; in a plain row it follows the label (for example \"(coming soon)\" on a disabled option)."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { Radio } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Radio.tsx",
+    "exports": [
+      "Radio",
+      "RadioGroup"
+    ],
+    "props": [
+      {
+        "name": "value",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Value reported to the group when selected."
+      },
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Option label."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "One-line explanation under the label (card variant) or beside it (row variant, e.g. \"(coming soon)\")."
+      },
+      {
+        "name": "selected",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Selected state when used without a `RadioGroup`."
+      },
+      {
+        "name": "onSelect",
+        "type": "(value: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when pressed when used without a `RadioGroup`."
+      },
+      {
+        "name": "variant",
+        "type": "'row' | 'card'",
+        "required": false,
+        "default": "\"row\"",
+        "description": "`row` is a 44dp row; `card` is a bordered row with a description."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "check",
+    "err",
+    "fm-check-body",
+    "fm-check-t",
+    "fm-disabled",
+    "fm-fieldset",
+    "fm-focus",
+    "fm-legend",
+    "fm-radio",
+    "fm-radios",
+    "fm-row",
+    "hint",
+    "label"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Default: 1.5px `rgba(0,0,0,.4)` ring on white; hover turns it black.",
+    "Selected: 6px `--horizon-blue` border, white centre.",
+    "Focus: 2px `--horizon-blue` outline, 2px offset, `--shadow-focus` (`.fm-focus` draws it statically).",
+    "Disabled: `--gray-100` fill, `--gray-300` ring, label `--gray-600` (`.fm-row.fm-disabled`).",
+    "Error: `aria-invalid=\"true\"` on every radio in the group, `--error` ring on `--error-bg`; one `.err` under the group.",
+    "Card row: `.check` turns `--horizon-blue` border on `--blue-tint` when its radio is checked; `.check.fm-disabled` greys out."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": true,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Always wrap a group in `<fieldset>` + `<legend>`; the legend asks the question.",
+    "Pre-select the most common safe choice (e.g. Monthly) only when it is not a commitment the person did not choose; never pre-select in surveys.",
+    "Stack options vertically; go horizontal (`.fm-radios`, 3 columns) only for short labels inside FormLayout.",
+    "Keep the 44px row height; do not shrink the circle below 20px.",
+    "Explain disabled options in a hint (\"coming soon\", \"Opens in 2027\").",
+    "One error message per group, not per radio."
+  ],
+  "do": [
+    "2–5 options, only one can be picked, and all should stay visible (gift frequency, \"How did you hear about ISM?\").",
+    "Card-style rows (`.check` + `.fm-radio`) when each option needs a one-line description (partnership type).",
+    "More than 5 options: use Select. Several can be picked: use Checkbox. Two options that switch a view or price (one-time / monthly): use SegmentedControl.",
+    "Always wrap a group in `<fieldset>` + `<legend>`; the legend asks the question.",
+    "Pre-select the most common safe choice (e.g. Monthly) only when it is not a commitment the person did not choose; never pre-select in surveys.",
+    "Stack options vertically; go horizontal (`.fm-radios`, 3 columns) only for short labels inside FormLayout.",
+    "Keep the 44px row height; do not shrink the circle below 20px.",
+    "Explain disabled options in a hint (\"coming soon\", \"Opens in 2027\").",
+    "One error message per group, not per radio."
+  ],
+  "dont": [],
+  "accessibility": [
+    "Same `name` on every radio in a group. Arrow keys move and select; Tab enters and leaves the group.",
+    "Link the group error with `aria-describedby` on the fieldset.",
+    "Do not rely on colour alone: the selected ring is thicker as well as blue."
+  ],
+  "content": [
+    "Legend as a question: \"How often would you like to give?\", \"How did you hear about ISM?\".",
+    "Options short and parallel: \"HD Radio broadcast\", \"The dot.Bible app\", \"A friend or church\".",
+    "Error: \"Please choose one option.\""
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<fieldset class=\"fm-fieldset\">\n  <legend class=\"fm-legend\">How often would you like to give?</legend>\n  <label class=\"fm-row\"><input class=\"fm-radio\" type=\"radio\" name=\"freq\">One-time</label>\n  <label class=\"fm-row\"><input class=\"fm-radio\" type=\"radio\" name=\"freq\" checked>Monthly</label>\n  <label class=\"fm-row fm-disabled\"><input class=\"fm-radio\" type=\"radio\" name=\"freq\" disabled>Annually <span class=\"hint\">(coming soon)</span></label>\n</fieldset>\n\n<!-- card rows -->\n<label class=\"check\">\n  <input class=\"fm-radio\" type=\"radio\" name=\"partner\" checked>\n  <span class=\"fm-check-body\">\n    <span class=\"fm-check-t\">Church partner</span>\n    <span class=\"hint\">Equip your congregation and community</span>\n  </span>\n</label>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<fieldset class=\"fm-fieldset\">\n  <legend class=\"fm-legend\">How often would you like to give?</legend>\n  <label class=\"fm-row\"><input class=\"fm-radio\" type=\"radio\" name=\"freq\">One-time</label>\n  <label class=\"fm-row\"><input class=\"fm-radio\" type=\"radio\" name=\"freq\" checked>Monthly</label>\n  <label class=\"fm-row fm-disabled\"><input class=\"fm-radio\" type=\"radio\" name=\"freq\" disabled>Annually <span class=\"hint\">(coming soon)</span></label>\n</fieldset>\n\n<!-- card rows -->\n<label class=\"check\">\n  <input class=\"fm-radio\" type=\"radio\" name=\"partner\" checked>\n  <span class=\"fm-check-body\">\n    <span class=\"fm-check-t\">Church partner</span>\n    <span class=\"hint\">Equip your congregation and community</span>\n  </span>\n</label>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/Radio/README.md",
+    "spec": "components/Radio/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "IconButton",
+  "title": "IconButton",
+  "group": "Actions",
+  "version": "3.0.0",
+  "summary": "A round, icon-only button (`.iconbtn`) for compact actions such as menu, search, close, share and play.",
+  "whenToUse": [
+    "Use when the icon alone is universally understood: menu, close, search, play/pause, previous/next, share.",
+    "Use in headers, drawers, players and toolbars where space is tight."
+  ],
+  "whenNotToUse": [
+    "Do not use when a word would be clearer; use Button with a label.",
+    "Do not use for the main call to action of a section."
+  ],
+  "anatomy": {
+    "description": "A 44px circle, 1px hairline ring, transparent fill, one 20px line icon centred.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { IconButton } from '@ism/ui'",
+    "source": "packages/react/src/components/IconButton.tsx",
+    "exports": [
+      "IconButton",
+      "IconButtonSize",
+      "IconButtonTone"
+    ],
+    "extends": [
+      "Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label'>"
+    ],
+    "props": [
+      {
+        "name": "'aria-label'",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Accessible name naming the action, for example \"Open menu\". Required: the button has no visible text."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "The icon, normally `<UiIcon name=\"menu\" />`. Hidden from assistive tech."
+      },
+      {
+        "name": "tone",
+        "type": "IconButtonTone",
+        "required": false,
+        "default": "\"dark\"",
+        "description": "`dark` for dark surfaces (white icon), `light` for light surfaces, `solid` for filled Horizon Blue (the group's one primary)."
+      },
+      {
+        "name": "size",
+        "type": "IconButtonSize",
+        "required": false,
+        "default": "\"md\"",
+        "description": "`sm` is 36px visual with a 44px hit area; `lg` is 52px."
+      },
+      {
+        "name": "pressed",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "For toggles (play/pause, bookmark): sets `aria-pressed`. Omit for plain actions."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": "There is no dedicated React component. Render a `<button>` with the classes; the bundle's `Button` is for labelled pills."
+  },
+  "reactNative": {
+    "import": "import { IconButton } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/IconButton.tsx",
+    "exports": [
+      "IconButton",
+      "IconButtonSize",
+      "IconButtonVariant"
+    ],
+    "props": [
+      {
+        "name": "name",
+        "type": "UiIconName",
+        "required": true,
+        "default": null,
+        "description": "UI line icon name, e.g. \"menu\", \"search\", \"close\"."
+      },
+      {
+        "name": "accessibilityLabel",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Names the action: \"Open menu\", \"Close\", \"Play ISM Radio\". Required, short verb phrase in the user's language."
+      },
+      {
+        "name": "variant",
+        "type": "IconButtonVariant",
+        "required": false,
+        "default": "\"light\"",
+        "description": "`light` for light surfaces, `dark` for dark surfaces (header, drawer), `solid` is the group's one primary (Play)."
+      },
+      {
+        "name": "size",
+        "type": "IconButtonSize",
+        "required": false,
+        "default": "\"md\"",
+        "description": "36dp visual (hit area extended to 44), 44dp, or 52dp."
+      },
+      {
+        "name": "selected",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Toggle state (play/pause, bookmark). Reported as the selected accessibility state. Omit for plain buttons."
+      },
+      {
+        "name": "expanded",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Menu button state; reported as expanded. Omit for plain buttons."
+      },
+      {
+        "name": "mirrorInRTL",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Flip the icon in RTL (next/back arrows and chevrons)."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "btn-primary",
+    "cr-iconbtn-dark",
+    "cr-iconbtn-focus",
+    "cr-iconbtn-lg",
+    "cr-iconbtn-light",
+    "cr-iconbtn-sm",
+    "cr-iconbtn-solid",
+    "iconbtn"
+  ],
+  "variants": [
+    [
+      {
+        "class": ".iconbtn",
+        "result": "Base, styled for dark: white icon, rgba(255,255,255,.3) ring. Add .cr-iconbtn-dark for the hover tint."
+      },
+      {
+        "class": ".cr-iconbtn-light",
+        "result": "On light: black icon, rgba(0,0,0,.22) ring, white fill; hover --gray-100."
+      },
+      {
+        "class": ".cr-iconbtn-solid",
+        "result": "Filled Horizon Blue (a player's Play). Counts as the group's one primary."
+      },
+      {
+        "class": ".cr-iconbtn-sm",
+        "result": "36px visual, hit area extended to 44px."
+      },
+      {
+        "class": ".cr-iconbtn-lg",
+        "result": "52px."
+      },
+      {
+        "class": ".cr-iconbtn-focus",
+        "result": "Static focus ring for specimens; real focus uses :focus-visible."
+      },
+      {
+        "class": "disabled",
+        "result": "45% opacity, not-allowed cursor."
+      }
+    ]
+  ],
+  "variantNotes": [],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": true,
+      "disabled": true,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Always 44px tap target (`--tap-target`); `.cr-iconbtn-sm` keeps it with an invisible hit area.",
+    "Icons are inline SVG, 24 viewBox, `stroke=\"currentColor\"`, stroke-width 1.8, round caps.",
+    "Icon meaning: ⌄ opens here, ↗ goes to another page, › drills into an app screen.",
+    "Only one solid blue icon button per group, and never next to a blue `.btn-primary`.",
+    "Focus: `outline: 2px solid var(--horizon-blue); outline-offset: 2px; box-shadow: var(--shadow-focus)`."
+  ],
+  "do": [
+    "Use when the icon alone is universally understood: menu, close, search, play/pause, previous/next, share.",
+    "Use in headers, drawers, players and toolbars where space is tight.",
+    "Always 44px tap target (`--tap-target`); `.cr-iconbtn-sm` keeps it with an invisible hit area.",
+    "Icons are inline SVG, 24 viewBox, `stroke=\"currentColor\"`, stroke-width 1.8, round caps.",
+    "Icon meaning: ⌄ opens here, ↗ goes to another page, › drills into an app screen.",
+    "Only one solid blue icon button per group, and never next to a blue `.btn-primary`.",
+    "Focus: `outline: 2px solid var(--horizon-blue); outline-offset: 2px; box-shadow: var(--shadow-focus)`."
+  ],
+  "dont": [
+    "Do not use when a word would be clearer; use Button with a label.",
+    "Do not use for the main call to action of a section."
+  ],
+  "accessibility": [
+    "Every icon button needs an `aria-label` that names the action (\"Open menu\", \"Close\", \"Play ISM Radio\").",
+    "Mark the SVG `aria-hidden=\"true\"`.",
+    "Toggles (play/pause, bookmark) use `aria-pressed`; a menu button uses `aria-expanded` and `aria-controls`."
+  ],
+  "content": [
+    "Labels are short verbs: \"Search\", \"Close\", \"Share verse\", \"Next chapter\"."
+  ],
+  "snippets": {
+    "react": [
+      "React.createElement('button', { type: 'button', className: 'iconbtn cr-iconbtn-light', 'aria-label': 'Next chapter' }, chevronIcon)"
+    ],
+    "html": [
+      "<!-- on dark (header, drawer) -->\n<button class=\"iconbtn\" type=\"button\" aria-label=\"Open menu\">\n  <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M4 7h16M4 12h16M4 17h16\"/></svg>\n</button>\n\n<!-- on light -->\n<button class=\"iconbtn cr-iconbtn-light\" type=\"button\" aria-label=\"Share\">…</button>"
+    ],
+    "other": [
+      {
+        "lang": "js",
+        "code": "React.createElement('button', { type: 'button', className: 'iconbtn cr-iconbtn-light', 'aria-label': 'Next chapter' }, chevronIcon)"
+      },
+      {
+        "lang": "html",
+        "code": "<!-- on dark (header, drawer) -->\n<button class=\"iconbtn\" type=\"button\" aria-label=\"Open menu\">\n  <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M4 7h16M4 12h16M4 17h16\"/></svg>\n</button>\n\n<!-- on light -->\n<button class=\"iconbtn cr-iconbtn-light\" type=\"button\" aria-label=\"Share\">…</button>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/IconButton/README.md",
+    "spec": "components/IconButton/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

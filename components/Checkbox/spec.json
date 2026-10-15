@@ -1,0 +1,235 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Checkbox",
+  "title": "Checkbox",
+  "group": "Forms",
+  "version": "3.0.0",
+  "summary": "A 20px checkbox with 6px corners for single yes/no choices, and full-width `.check` row cards for choosing several options from a short list.",
+  "whenToUse": [
+    "Single inline checkbox (`.fm-inline` + `.fm-check`): consent and one-off choices (\"I agree to the Terms\", \"Send me prayer updates\").",
+    "Check rows (`.check`): pick any number from 2–7 options that each need a line of explanation (partnership types, newsletter topics).",
+    "8 or more options, or a searchable list: use MultiSelect.",
+    "Only one may be picked: use Radio. A setting that takes effect at once: use Switch."
+  ],
+  "whenNotToUse": [],
+  "anatomy": {
+    "description": "",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Checkbox } from '@ism/ui'",
+    "source": "packages/react/src/components/Checkbox.tsx",
+    "exports": [
+      "Checkbox",
+      "CheckboxGroup"
+    ],
+    "extends": [
+      "Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'children' | 'size'>"
+    ],
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Label content. A short sentence for the inline form, a short noun for a row card. May contain links (they stay focusable)."
+      },
+      {
+        "name": "card",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Render as a full-width `.check` row card with a title (`children`) and an optional `description`."
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "One-line explanation under the title of a row card (`.hint` style). Also used as an inline hint after the label."
+      },
+      {
+        "name": "indeterminate",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Show the indeterminate state (a dash) and set `aria-checked=\"mixed\"`. Say what it summarises in the label (\"3 of 12\")."
+      },
+      {
+        "name": "error",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Error message shown directly under the checkbox. Sets `aria-invalid=\"true\"` and links it with `aria-describedby`. For a group, use `CheckboxGroup error` instead."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { Checkbox } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Checkbox.tsx",
+    "exports": [
+      "Checkbox",
+      "CheckboxGroup"
+    ],
+    "props": [
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Label next to the box. May contain a nested `<Text tone=\"link\">`."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "One-line explanation under the label. Only shown in the `card` variant."
+      },
+      {
+        "name": "checked",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Checked state (controlled)."
+      },
+      {
+        "name": "indeterminate",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Shows a dash and reports `mixed` to screen readers. Use with a summary, e.g. \"3 of 12\"."
+      },
+      {
+        "name": "onValueChange",
+        "type": "(next: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the next checked value."
+      },
+      {
+        "name": "variant",
+        "type": "'inline' | 'card'",
+        "required": false,
+        "default": "\"inline\"",
+        "description": "`inline` is a 44dp row for consent; `card` is a bordered row for choosing among 2 to 7 options."
+      },
+      {
+        "name": "invalid",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Marks the box invalid (error border and fill). Put the message in a `CheckboxGroup` or beside the control."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "check",
+    "err",
+    "fm-check",
+    "fm-check-body",
+    "fm-check-t",
+    "fm-fieldset",
+    "fm-inline",
+    "fm-legend",
+    "fm-mixed",
+    "hint"
+  ],
+  "variants": [],
+  "variantNotes": [
+    "Unchecked: 1.5px `rgba(0,0,0,.4)` border on white; hover darkens to black.",
+    "Checked: `--horizon-blue` fill with a white tick.",
+    "Indeterminate: blue fill with a white dash. Set `el.indeterminate = true` in script (or `.fm-mixed` for static specs) and `aria-checked=\"mixed\"`.",
+    "Disabled: `--gray-100` fill, `--gray-300` border; label in `--gray-600` via `.fm-inline.fm-disabled`. Checked-disabled fills `--gray-300`.",
+    "Error: `aria-invalid=\"true\"` gives an `--error` border on `--error-bg`; add one `.err` line under it, linked with `aria-describedby`.",
+    "Focus: 2px `--horizon-blue` outline, 2px offset, plus `--shadow-focus`.",
+    "`.check.fm-disabled`: `--off-white` card, title in `--gray-600`."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": true,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Always wrap the box and its text in one `<label>`, so the text is clickable.",
+    "Use a real `<input type=\"checkbox\">`; never a styled div.",
+    "Do not pre-check consent or marketing boxes.",
+    "Group related check rows in a `<fieldset>` with a `.fm-legend` question.",
+    "Mark optional boxes \"(optional)\" in `.hint` style; required consent gets an error if left unticked on submit.",
+    "Checked state is Horizon Blue only; never use green for \"checked\".",
+    "Keep rows at least 44px tall; do not shrink the box below 20px."
+  ],
+  "do": [
+    "Single inline checkbox (`.fm-inline` + `.fm-check`): consent and one-off choices (\"I agree to the Terms\", \"Send me prayer updates\").",
+    "Check rows (`.check`): pick any number from 2–7 options that each need a line of explanation (partnership types, newsletter topics).",
+    "8 or more options, or a searchable list: use MultiSelect.",
+    "Only one may be picked: use Radio. A setting that takes effect at once: use Switch.",
+    "Always wrap the box and its text in one `<label>`, so the text is clickable.",
+    "Use a real `<input type=\"checkbox\">`; never a styled div.",
+    "Group related check rows in a `<fieldset>` with a `.fm-legend` question.",
+    "Mark optional boxes \"(optional)\" in `.hint` style; required consent gets an error if left unticked on submit.",
+    "Checked state is Horizon Blue only; never use green for \"checked\".",
+    "Keep rows at least 44px tall; do not shrink the box below 20px."
+  ],
+  "dont": [
+    "Do not pre-check consent or marketing boxes."
+  ],
+  "accessibility": [
+    "Native checkbox semantics; Space toggles.",
+    "Error text is linked with `aria-describedby` and repeated in the form's validation summary.",
+    "Indeterminate state must also set `aria-checked=\"mixed\"` and say what it summarises (\"3 of 12\").",
+    "Links inside the label (Terms) stay focusable and keep their underline."
+  ],
+  "content": [
+    "Consent: \"I agree to the Terms and Privacy Policy\".",
+    "Opt-in: \"Send me partner news and prayer updates (optional)\".",
+    "Row titles are short nouns (\"Broadcast partner\"); the hint says what it means in one line (\"Carry scripture on your HD channel\").",
+    "Error: \"Please accept the Terms to continue.\""
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<!-- single inline -->\n<label class=\"fm-inline\">\n  <input class=\"fm-check\" type=\"checkbox\">\n  <span>I agree to the <a href=\"/terms\">Terms</a></span>\n</label>\n\n<!-- check rows -->\n<fieldset class=\"fm-fieldset\">\n  <legend class=\"fm-legend\">How would you like to partner with ISM?</legend>\n  <label class=\"check\">\n    <input type=\"checkbox\" checked>\n    <span class=\"fm-check-body\">\n      <span class=\"fm-check-t\">Church partner</span>\n      <span class=\"hint\">Equip your congregation and community</span>\n    </span>\n  </label>\n</fieldset>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<!-- single inline -->\n<label class=\"fm-inline\">\n  <input class=\"fm-check\" type=\"checkbox\">\n  <span>I agree to the <a href=\"/terms\">Terms</a></span>\n</label>\n\n<!-- check rows -->\n<fieldset class=\"fm-fieldset\">\n  <legend class=\"fm-legend\">How would you like to partner with ISM?</legend>\n  <label class=\"check\">\n    <input type=\"checkbox\" checked>\n    <span class=\"fm-check-body\">\n      <span class=\"fm-check-t\">Church partner</span>\n      <span class=\"hint\">Equip your congregation and community</span>\n    </span>\n  </label>\n</fieldset>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/Checkbox/README.md",
+    "spec": "components/Checkbox/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

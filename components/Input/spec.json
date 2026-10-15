@@ -1,0 +1,334 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Input",
+  "title": "Input",
+  "group": "Forms",
+  "version": "3.0.0",
+  "summary": "Rounded 48px text field with its label above, available as the React `Input` and as `.field` › `.label` + `.input` with hint, error and success messages.",
+  "whenToUse": [
+    "Use for short free text: name, email, order number, partner code, search terms in a form.",
+    "Use `.input-lg` (60px) for the one or two big fields of a sign-up or give flow; use the amount field (`.cr-amount`) for a gift amount.",
+    "Use `<textarea class=\"input\">` for messages and prayer requests."
+  ],
+  "whenNotToUse": [
+    "Do not use for a choice from a known list; use Select, Radio or Combobox. For search bars use SearchField; for phone numbers use PhoneInput."
+  ],
+  "anatomy": {
+    "description": "Label above, field, then one line of hint OR error OR success below.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Input } from '@ism/ui'",
+    "source": "packages/react/src/components/Input.tsx",
+    "exports": [
+      "FieldError",
+      "FieldHint",
+      "FieldSuccess",
+      "Input",
+      "Textarea",
+      "joinIds"
+    ],
+    "extends": [
+      "FieldOwnProps",
+      "Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix' | 'children'>"
+    ],
+    "props": [
+      {
+        "name": "size",
+        "type": "'md' | 'lg'",
+        "required": false,
+        "default": "\"md\"",
+        "description": "Field size. `lg` (60px) is for the one or two big fields of a sign-up or give flow and also enlarges the label."
+      },
+      {
+        "name": "prefix",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Adornment shown inside the start of the field, for example a currency symbol (renders the `.cr-amount` field, pair with `size=\"lg\"`). Decorative."
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "required": false,
+        "default": "\"text\"",
+        "description": "Input type: `email`, `tel`, `password`, …"
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": "`window.ISMDesignSystem_106e83.Input` renders a `<label>` wrapping a 13px label and the field. The React version has no error, hint or disabled states; use the HTML classes for full forms."
+  },
+  "reactNative": {
+    "import": "import { Input } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Input.tsx",
+    "exports": [
+      "FieldFocusRing",
+      "Input",
+      "InputType",
+      "focusHalo"
+    ],
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Visible label above the field. Always provide one; the placeholder is only an example."
+      },
+      {
+        "name": "optionalLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Appended to the label for optional fields, e.g. \"(optional)\". Pass the localized word."
+      },
+      {
+        "name": "hint",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Helper text under the field. Hidden while `error` or `success` is shown."
+      },
+      {
+        "name": "error",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Error message under the field. Sets the error border and fill, and announces the message."
+      },
+      {
+        "name": "success",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Success message under the field. Show only where a check really ran."
+      },
+      {
+        "name": "type",
+        "type": "InputType",
+        "required": false,
+        "default": "\"text\"",
+        "description": "Semantic type that sets keyboard, autofill and capitalisation. Explicit props override it."
+      },
+      {
+        "name": "size",
+        "type": "'md' | 'lg'",
+        "required": false,
+        "default": "\"md\"",
+        "description": "Field height: 48dp default or 60dp for the one or two big fields of a flow."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Greyed out, not focusable."
+      },
+      {
+        "name": "readOnly",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Focusable and copyable but not editable; shows a lock icon."
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Trailing spinner for async validation."
+      },
+      {
+        "name": "dark",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Translucent field for black surfaces."
+      },
+      {
+        "name": "showPasswordLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Show password\"",
+        "description": "Accessible name of the password show toggle."
+      },
+      {
+        "name": "hidePasswordLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Hide password\"",
+        "description": "Accessible name of the password hide toggle."
+      },
+      {
+        "name": "startAdornment",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Element at the start of the field (decorative)."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": "Style of the outer container."
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "cr-adorn-end",
+    "cr-amount",
+    "cr-amount-sym",
+    "cr-is-focus",
+    "cr-is-hover",
+    "cr-label-lg",
+    "cr-label-off",
+    "cr-ok",
+    "cr-ok-msg",
+    "cr-ro",
+    "err",
+    "field",
+    "hint",
+    "input",
+    "input-lg",
+    "label",
+    "opt",
+    "sec-ink"
+  ],
+  "variants": [
+    [
+      {
+        "state": "Default",
+        "how": ".input",
+        "look": "1px rgba(0,0,0,.22) border, --radius-md"
+      },
+      {
+        "state": "Hover",
+        "how": ":hover (.cr-is-hover for docs)",
+        "look": "border rgba(0,0,0,.4)"
+      },
+      {
+        "state": "Focus",
+        "how": ":focus (.cr-is-focus for docs)",
+        "look": "--horizon-blue border + --shadow-focus ring"
+      },
+      {
+        "state": "Filled",
+        "how": "value present",
+        "look": "same as default, text --black"
+      },
+      {
+        "state": "Disabled",
+        "how": "disabled, label .cr-label-off",
+        "look": "--gray-100 fill, --gray-600 text"
+      },
+      {
+        "state": "Read-only",
+        "how": "readonly + .cr-ro",
+        "look": "--off-white fill; lock icon in .cr-adorn-end"
+      },
+      {
+        "state": "Error",
+        "how": "aria-invalid=\"true\" + .err",
+        "look": "--error border, pale error fill"
+      },
+      {
+        "state": "Success",
+        "how": ".cr-ok + .cr-ok-msg, tick in .cr-adorn-end.cr-ok-ic",
+        "look": "--success border"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "Sizes: default 48px, `.input-lg` 60px (pair with `.cr-label-lg` 17px label), amount 76px. Textarea starts at 144px and resizes vertically. Dark: React `dark`."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": true,
+      "hover": true,
+      "focus": true,
+      "pressed": false,
+      "disabled": true,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Always show a visible `.label` above the field. Placeholders are examples only.",
+    "Keep fields at least 48px tall; that also covers the 44px tap target.",
+    "Validate on blur, not on every keystroke. On submit, move focus to the first field with an error.",
+    "Show success only where a check really ran (server-confirmed email, partner code). Never on every field.",
+    "Disabled fields are skipped by Tab and not submitted; read-only fields can be focused, copied and are submitted.",
+    "Mark the fewer kind: most ISM forms are mostly required, so label the rest `(optional)` with `.opt`.",
+    "The focus ring is the only blue on a field; never colour borders `--horizon-blue` at rest."
+  ],
+  "do": [
+    "Use for short free text: name, email, order number, partner code, search terms in a form.",
+    "Use `.input-lg` (60px) for the one or two big fields of a sign-up or give flow; use the amount field (`.cr-amount`) for a gift amount.",
+    "Use `<textarea class=\"input\">` for messages and prayer requests.",
+    "Always show a visible `.label` above the field. Placeholders are examples only.",
+    "Keep fields at least 48px tall; that also covers the 44px tap target.",
+    "Validate on blur, not on every keystroke. On submit, move focus to the first field with an error.",
+    "Show success only where a check really ran (server-confirmed email, partner code). Never on every field.",
+    "Disabled fields are skipped by Tab and not submitted; read-only fields can be focused, copied and are submitted.",
+    "Mark the fewer kind: most ISM forms are mostly required, so label the rest `(optional)` with `.opt`.",
+    "The focus ring is the only blue on a field; never colour borders `--horizon-blue` at rest."
+  ],
+  "dont": [
+    "Do not use for a choice from a known list; use Select, Radio or Combobox. For search bars use SearchField; for phone numbers use PhoneInput."
+  ],
+  "accessibility": [
+    "Tie the label with `for`/`id`. Tie hints and errors with `aria-describedby`.",
+    "Set `aria-invalid=\"true\"` on errors and give the error an icon plus text, never colour alone.",
+    "Use the right `type`, `autocomplete` and `inputmode` so phones show the right keyboard.",
+    "Icons inside `.cr-adorn-end` are decorative (`aria-hidden=\"true\"`); say the state in text."
+  ],
+  "content": [
+    "Labels are nouns in sentence case: \"Email\", \"Your full name\", \"Prayer request\".",
+    "Placeholders show a real example: \"you@example.com\", \"e.g. Maria Santos\", \"How can we help?\".",
+    "Errors say how to fix it: \"Enter a full email address.\", \"Please enter your name.\" Success is short: \"Looks good.\""
+  ],
+  "snippets": {
+    "react": [
+      "<Input label=\"Email\" placeholder=\"you@example.com\" />\n<Input label=\"Email\" placeholder=\"you@example.com\" dark />"
+    ],
+    "html": [
+      "<div class=\"field\">\n  <label class=\"label\" for=\"email\">Email</label>\n  <input class=\"input\" id=\"email\" type=\"email\" autocomplete=\"email\"\n         placeholder=\"you@example.com\" aria-describedby=\"email-err\" aria-invalid=\"true\">\n  <p class=\"err\" id=\"email-err\">Enter a full email address.</p>\n</div>\n\n<div class=\"field\">\n  <label class=\"label\" for=\"order\">Order # <span class=\"opt\">(optional)</span></label>\n  <input class=\"input\" id=\"order\" type=\"text\" aria-describedby=\"order-hint\">\n  <p class=\"hint\" id=\"order-hint\">For questions about an ISM Publishing or NFC card order.</p>\n</div>\n\n<div class=\"field\">\n  <label class=\"label cr-label-lg\" for=\"amt\">Gift amount (USD)</label>\n  <div class=\"cr-amount\"><span class=\"cr-amount-sym\" aria-hidden=\"true\">$</span>\n    <input class=\"input input-lg\" id=\"amt\" inputmode=\"decimal\" value=\"50\"></div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "jsx",
+        "code": "<Input label=\"Email\" placeholder=\"you@example.com\" />\n<Input label=\"Email\" placeholder=\"you@example.com\" dark />"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"field\">\n  <label class=\"label\" for=\"email\">Email</label>\n  <input class=\"input\" id=\"email\" type=\"email\" autocomplete=\"email\"\n         placeholder=\"you@example.com\" aria-describedby=\"email-err\" aria-invalid=\"true\">\n  <p class=\"err\" id=\"email-err\">Enter a full email address.</p>\n</div>\n\n<div class=\"field\">\n  <label class=\"label\" for=\"order\">Order # <span class=\"opt\">(optional)</span></label>\n  <input class=\"input\" id=\"order\" type=\"text\" aria-describedby=\"order-hint\">\n  <p class=\"hint\" id=\"order-hint\">For questions about an ISM Publishing or NFC card order.</p>\n</div>\n\n<div class=\"field\">\n  <label class=\"label cr-label-lg\" for=\"amt\">Gift amount (USD)</label>\n  <div class=\"cr-amount\"><span class=\"cr-amount-sym\" aria-hidden=\"true\">$</span>\n    <input class=\"input input-lg\" id=\"amt\" inputmode=\"decimal\" value=\"50\"></div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/Input/README.md",
+    "spec": "components/Input/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

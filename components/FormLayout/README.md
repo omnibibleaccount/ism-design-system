@@ -1,0 +1,70 @@
+# FormLayout
+The frame for longer ISM forms: fieldsets with a legend column on the left and two-column fields on the right, required/optional marking, character counters, and a validation summary that links to each error.
+
+## When to use
+- Any form with more than about five fields or two topics: Become a church partner, Broadcast partner application, publishing and NFC card orders.
+- Short forms (contact, subscribe, sign in) use a single column of `.field`s without fieldsets.
+- Settings pages that save as you go use Switch rows in `.fm-settings`, not this layout.
+
+## Anatomy & markup
+```html
+<form class="fm-form" novalidate aria-label="Become a church partner">
+  <div class="alert fm-sum" role="alert" tabindex="-1" id="form-errors">
+    <span class="fm-sum-t"><svg …alert…/>Please fix 3 things before sending</span>
+    <ul class="fm-sum-list">
+      <li><a href="#email">Email: enter a full email, like name@example.com</a></li>
+    </ul>
+  </div>
+
+  <fieldset class="fm-set">
+    <legend><span class="fm-set-lg">About you</span>
+      <span class="fm-set-ld">So our partnership team knows who to contact.</span></legend>
+    <div class="fm-cols">
+      <div class="field"><label class="label" for="first">First name</label><input class="input" id="first"></div>
+      <div class="field"><label class="label" for="phone">Phone <span class="opt">(optional)</span></label>…</div>
+      <div class="field fm-full">…</div>
+    </div>
+  </fieldset>
+</form>
+
+<!-- character counter -->
+<div class="field">
+  <label class="label" for="story">Share your story <span class="opt">(optional)</span></label>
+  <textarea class="input" id="story" aria-describedby="story-count"></textarea>
+  <div class="fm-count"><span>How has the Bible in your language helped?</span>
+    <span class="fm-count-n" id="story-count" aria-live="polite">120 / 500</span></div>
+</div>
+```
+- `.fm-form`: white card, `--gray-200` border, `--radius-lg`, 40px padding (24px on phones), 40px between sets.
+- `.fm-set`: a three-column grid; the legend takes the first third (`.fm-set-lg` 19px semibold title, `.fm-set-ld` 14px `--gray-600` line) and `.fm-cols` spans the other two as a 2-column field grid. Every set has a `--gray-200` top rule; add `.fm-first` to the first set when no summary sits above it.
+- `.fm-full` makes a field span both field columns. `.fm-radios` lays radio rows in three columns. `.fm-actions` holds the buttons.
+- `.fm-req` is the red asterisk; `.label .opt` is the "(optional)" tag.
+- `.fm-count` sits under a textarea: helper text left, `.fm-count-n` right with tabular numbers.
+
+## Variants & states
+- Required/optional: mark the fewer kind. Most ISM forms are mostly required, so tag the rest "(optional)". When you use `*` instead, explain it once at the top ("Fields marked * are required.").
+- Counter normal: `--gray-600`. Near the limit (90%+): `.fm-warn`, `--warning` semibold, "462 / 500 · 38 left". Over: `.fm-over`, `--error` semibold, plus `aria-invalid="true"` on the field and an `.err` on the left.
+- Validation summary: `.alert.fm-sum` on `--error-bg` with `--error-line` border; error items are underlined `--error` links.
+- Under 768px: sets, field columns and radios stack to one column; summary list indent drops to 22px.
+
+## Rules
+- Group fields by what they are about, 2–6 per set, each with a plain-noun legend and one helper line.
+- Keep paired fields (first/last name, city/attendance) side by side; long fields (church name, story) span with `.fm-full`.
+- Never block typing at a character limit; let people paste, then ask them to trim.
+- On submit with errors: show the summary at the top, move focus to it, keep every inline `.err`, and list errors in page order using the same words.
+- One Horizon Blue primary per form (Send application, `.btn-primary .btn-lg`); the other action is `.btn-secondary`.
+- Use real `<fieldset>` and `<legend>` elements; nested choices (radios) get their own `.fm-fieldset` with `.fm-legend`.
+- Keep inputs 48px and every target 44px; do not add a third field column.
+
+## Accessibility
+- The summary has `role="alert"` and `tabindex="-1"`; focus it after submit. Each link moves focus to its field.
+- Update the page title on error: "(3 errors) Become a partner — ISM".
+- Inline errors are linked with `aria-describedby`; invalid fields get `aria-invalid="true"`.
+- The `*` is `aria-hidden`; required fields also carry the `required` attribute.
+- Counters are polite live regions; debounce announcements to about one second.
+
+## Content
+- Summary title: "Please fix 3 things before sending". Items: "Field: what to do" ("Church name: please enter your church's name").
+- Legends: "About you", "Your church", "Agreement", each with one helper line ("We use this to send the right Bibles, NFC cards and app links.").
+- Counter helper: "How has the Bible in your language helped?" Over-limit error: "Please shorten this a little."
+- Actions: "Send application", "Save for later".

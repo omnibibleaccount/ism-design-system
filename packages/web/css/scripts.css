@@ -1,0 +1,32 @@
+/* ISM Design System: per-script typography. Load after tokens.css and bundle.css.
+   Set `lang` (and `dir` for Arabic, Urdu and Farsi) on <html> or on the container of translated content.
+   Line heights come from tokens.json "script" (recommended values, to be reviewed by native readers). */
+
+/* Ethiopic (Amharic, Tigrinya) */
+:lang(am), :lang(ti) { line-height: var(--lh-body-ethiopic); }
+:lang(am) :is(h1, h2, h3, h4, .h1, .h2, .h3, .h4),
+:lang(ti) :is(h1, h2, h3, h4, .h1, .h2, .h3, .h4) { line-height: var(--lh-heading-ethiopic); }
+
+/* Burmese: stacked marks need the most vertical room; no spaces between words */
+:lang(my) { line-height: var(--lh-body-myanmar); line-break: strict; overflow-wrap: break-word; }
+:lang(my) :is(h1, h2, h3, h4, .h1, .h2, .h3, .h4) { line-height: var(--lh-heading-myanmar); }
+
+/* Arabic script (Arabic, Farsi, Urdu) */
+:lang(ar), :lang(fa), :lang(ur) { line-height: var(--lh-body-arabic); }
+:lang(ar) :is(h1, h2, h3, h4, .h1, .h2, .h3, .h4),
+:lang(fa) :is(h1, h2, h3, h4, .h1, .h2, .h3, .h4),
+:lang(ur) :is(h1, h2, h3, h4, .h1, .h2, .h3, .h4) { line-height: var(--lh-heading-arabic); }
+
+/* Never letter-space joined or syllabic scripts: it breaks Arabic joining and looks gappy in Ethiopic and Burmese.
+   This overrides heading tracking (-0.02em), .eyebrow (0.2em) and .overline (0.06em). */
+:lang(ar), :lang(ar) *, :lang(fa), :lang(fa) *, :lang(ur), :lang(ur) *,
+:lang(am), :lang(am) *, :lang(ti), :lang(ti) *, :lang(my), :lang(my) * { letter-spacing: 0 !important; }
+
+/* These scripts have no capitals and no italic. Uppercase transforms are no-ops; slanted type is a faux style. */
+:lang(ar) *, :lang(fa) *, :lang(ur) *, :lang(am) *, :lang(ti) *, :lang(my) * { text-transform: none; }
+:lang(ar) :is(em, i, cite, .pull-quote, .editorial-quote),
+:lang(fa) :is(em, i, cite, .pull-quote, .editorial-quote),
+:lang(ur) :is(em, i, cite, .pull-quote, .editorial-quote) { font-style: normal; }
+
+/* Gradient marker (.em) underlay is fine in every script; the gradient-clipped on-dark variant needs the glyph box to be tall enough */
+:lang(my) .em, :lang(ar) .em, :lang(fa) .em, :lang(ur) .em { padding-block: 0.1em; }

@@ -1,0 +1,214 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "AccentBar",
+  "title": "AccentBar",
+  "group": "Data display",
+  "version": "3.0.0",
+  "summary": "A thin 3px progress line filled with the signature gradient, available as the React `AccentBar` and as `.cr-accentbar` classes.",
+  "whenToUse": [
+    "Use for quiet, passive progress: how far through a chapter, an audio teaching, a reading plan or an onboarding carousel.",
+    "Use on dark surfaces by default (app player, `.sec-ink` bands); use `.cr-accentbar-light` on white or `--off-white`."
+  ],
+  "whenNotToUse": [
+    "Do not use for uploads, form steps or anything the user waits on; use Progress for that.",
+    "Do not use as a decorative rule; use Divider (`.thread`)."
+  ],
+  "anatomy": {
+    "description": "A track (18% white on dark, 12% black on light) with a gradient fill from the left. No labels, no handle.",
+    "markup": "The HTML bar fills its parent's width; set a width on the parent, not on the bar."
+  },
+  "react": {
+    "import": "import { AccentBar } from '@ism/ui'",
+    "source": "packages/react/src/components/AccentBar.tsx",
+    "exports": [
+      "AccentBar"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'children'>"
+    ],
+    "props": [
+      {
+        "name": "progress",
+        "type": "number",
+        "required": false,
+        "default": "0.4",
+        "description": "Fraction filled, 0 to 1."
+      },
+      {
+        "name": "width",
+        "type": "number | string",
+        "required": false,
+        "default": "200",
+        "description": "Track width in px, or any CSS width such as \"100%\"."
+      },
+      {
+        "name": "light",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Light track (`rgba(0,0,0,.12)`) for white or off-white surfaces. The default track is for dark surfaces."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Accessible name (\"John 3 read\"). When given, the track gets `role=\"progressbar\"` with value attributes.\nWithout it the bar is plain divs: show the value in text beside it."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": "`window.ISMDesignSystem_106e83.AccentBar` (exported from the Divider module)."
+  },
+  "reactNative": {
+    "import": "import { AccentBar } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/AccentBar.tsx",
+    "exports": [
+      "AccentBar"
+    ],
+    "props": [
+      {
+        "name": "progress",
+        "type": "number",
+        "required": false,
+        "default": "0.4",
+        "description": "Fraction filled, 0 to 1."
+      },
+      {
+        "name": "width",
+        "type": "number | `${number}%`",
+        "required": false,
+        "default": "200",
+        "description": "Track width in dp, or a percentage such as \"100%\"."
+      },
+      {
+        "name": "light",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Light track (`rgba(0,0,0,.12)`) for white or off-white surfaces. The default track (`rgba(255,255,255,.18)`) is for dark surfaces."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Names what is progressing (\"John 3 read\"). When given the bar is exposed as a progressbar with its value;\nwithout it the bar is hidden from screen readers, so show the value in text beside it."
+      },
+      {
+        "name": "GradientComponent",
+        "type": "GradientComponent",
+        "required": false,
+        "default": null,
+        "description": "Gradient view such as `LinearGradient` from expo-linear-gradient or react-native-linear-gradient. The fill is `gradient-signature`.\nWithout it the fill is a solid `gradient-violet` colour (never Horizon Blue)."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "cr-accentbar",
+    "cr-accentbar-fill",
+    "cr-accentbar-light",
+    "sec-ink",
+    "thread"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Dark (default)",
+        "class_prop": ".cr-accentbar, React AccentBar",
+        "track": "rgba(255,255,255,.18)"
+      },
+      {
+        "variant": "Light",
+        "class_prop": ".cr-accentbar-light",
+        "track": "rgba(0,0,0,.12)"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "States: empty (0%), partial, complete (100%). The fill is always `--gradient-signature`; it never changes colour for \"done\"."
+  ],
+  "states": {
+    "documented": "empty (0%), partial, complete (100%). The fill is always `--gradient-signature`; it never changes colour for \"done\".",
+    "coverage": {
+      "default": true,
+      "hover": false,
+      "focus": false,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": false
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Fill with `--gradient-signature` only. Never solid Horizon Blue (`--horizon-blue`); blue is reserved for the one primary button.",
+    "Keep it 3px tall with a 2px radius. Do not thicken it into a progress bar.",
+    "One AccentBar per item. In a list of teachings, each row gets its own (see ListRow).",
+    "Pair it with a nearby text value when the number matters (\"9:12 left\", \"Day 4 of 21\").",
+    "Do not animate it on load; update it as real progress changes."
+  ],
+  "do": [
+    "Use for quiet, passive progress: how far through a chapter, an audio teaching, a reading plan or an onboarding carousel.",
+    "Use on dark surfaces by default (app player, `.sec-ink` bands); use `.cr-accentbar-light` on white or `--off-white`.",
+    "Fill with `--gradient-signature` only. Never solid Horizon Blue (`--horizon-blue`); blue is reserved for the one primary button.",
+    "Keep it 3px tall with a 2px radius. Do not thicken it into a progress bar.",
+    "One AccentBar per item. In a list of teachings, each row gets its own (see ListRow).",
+    "Pair it with a nearby text value when the number matters (\"9:12 left\", \"Day 4 of 21\")."
+  ],
+  "dont": [
+    "Do not use for uploads, form steps or anything the user waits on; use Progress for that.",
+    "Do not use as a decorative rule; use Divider (`.thread`).",
+    "Do not animate it on load; update it as real progress changes."
+  ],
+  "accessibility": [
+    "In HTML, give the track `role=\"progressbar\"`, `aria-valuemin`, `aria-valuemax`, `aria-valuenow` and an `aria-label` naming what is progressing.",
+    "The React `AccentBar` renders plain `div`s with no role; wrap it in an element with the progressbar attributes, or show the value in text beside it.",
+    "A 3px line alone is hard to see; never make it the only place progress is reported."
+  ],
+  "content": [
+    "Labels name the thing, not the percentage: \"John 3 read\", \"Reading plan: Gospel of John\", \"Audio teaching progress\".",
+    "Visible companions are short: \"60% read\", \"Day 4 of 21\", \"9:12 left\"."
+  ],
+  "snippets": {
+    "react": [
+      "<AccentBar progress={0.6} />\n<AccentBar progress={0.25} width={320} />"
+    ],
+    "html": [
+      "<div class=\"cr-accentbar\" role=\"progressbar\" aria-label=\"John 3 read\"\n     aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"60\">\n  <span class=\"cr-accentbar-fill\" style=\"width:60%\"></span>\n</div>\n\n<!-- on a light surface -->\n<div class=\"cr-accentbar cr-accentbar-light\" role=\"progressbar\" aria-label=\"Reading plan\"\n     aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"25\">\n  <span class=\"cr-accentbar-fill\" style=\"width:25%\"></span>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "jsx",
+        "code": "<AccentBar progress={0.6} />\n<AccentBar progress={0.25} width={320} />"
+      },
+      {
+        "lang": "html",
+        "code": "<div class=\"cr-accentbar\" role=\"progressbar\" aria-label=\"John 3 read\"\n     aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"60\">\n  <span class=\"cr-accentbar-fill\" style=\"width:60%\"></span>\n</div>\n\n<!-- on a light surface -->\n<div class=\"cr-accentbar cr-accentbar-light\" role=\"progressbar\" aria-label=\"Reading plan\"\n     aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"25\">\n  <span class=\"cr-accentbar-fill\" style=\"width:25%\"></span>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/AccentBar/README.md",
+    "spec": "components/AccentBar/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

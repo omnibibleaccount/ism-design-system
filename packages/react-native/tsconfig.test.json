@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@ism/tokens": ["../tokens/src/index.ts"],
+      "@ism/tokens/*": ["../tokens/src/*.ts"],
+      "react-native": ["../../node_modules/react-native-web"]
+    }
+  }
+}

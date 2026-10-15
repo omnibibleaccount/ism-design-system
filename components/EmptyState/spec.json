@@ -1,0 +1,307 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "EmptyState",
+  "title": "EmptyState",
+  "group": "Feedback",
+  "version": "3.0.0",
+  "summary": "A centred panel that explains why a list, search or screen has nothing to show and offers the one next step.",
+  "whenToUse": [
+    "Use when a search returns no results: suggest close matches as chips.",
+    "Use when a personal collection is empty for the first time (saved verses, downloads, favourite stations): offer the action that fills it.",
+    "Use when content cannot load because the reader is offline or the request failed: offer Retry."
+  ],
+  "whenNotToUse": [
+    "Do not use while content is still loading; use Loader skeletons.",
+    "Do not use for a whole-site error page; that is the 404 page pattern."
+  ],
+  "anatomy": {
+    "description": "Icon circle (64px) + title + one short sentence + one next step (chips, a primary button, or a secondary Retry).",
+    "markup": null
+  },
+  "react": {
+    "import": "import { EmptyState } from '@ism/ui'",
+    "source": "packages/react/src/components/EmptyState.tsx",
+    "exports": [
+      "EmptyState",
+      "EmptyStateVariant"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'title'>"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "EmptyStateVariant",
+        "required": false,
+        "default": "\"nothing\"",
+        "description": "`nothing`: first-time empty collection (blue icon, one primary button).\n`noResults`: search with no hits (neutral icon, suggestion chips; announced politely).\n`error`: offline or failed load (red tint, secondary \"Try again\"; announced once with `role=\"alert\"`)."
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "Heading text, for example \"No saved verses yet\"."
+      },
+      {
+        "name": "headingLevel",
+        "type": "2 | 3 | 4",
+        "required": false,
+        "default": "3",
+        "description": "Heading level that fits the page outline."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "The one short sentence: what happened and what to do. Never blame the reader."
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Override the 28px icon. Defaults to bookmark, search or wifi-off by variant. Hidden from assistive tech."
+      },
+      {
+        "name": "actionLabel",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Label of the single next-step button, for example \"Start reading\" or \"Try again\"."
+      },
+      {
+        "name": "onAction",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Click handler of the next-step button."
+      },
+      {
+        "name": "actionHref",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Render the next step as a link to this URL instead of a button."
+      },
+      {
+        "name": "actionIcon",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Trailing icon of the action, for example a refresh icon on \"Try again\". Defaults to a refresh icon for `error`."
+      },
+      {
+        "name": "chips",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "`noResults` only: two to four `.chip` suggestions (real searches the reader can tap)."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { EmptyState } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/EmptyState.tsx",
+    "exports": [
+      "EmptyState",
+      "EmptyStateVariant"
+    ],
+    "props": [
+      {
+        "name": "variant",
+        "type": "EmptyStateVariant",
+        "required": false,
+        "default": "\"nothingYet\"",
+        "description": "`noResults` (grey search icon, suggestion chips), `nothingYet` (blue tint, one primary action), `offline` (red tint, secondary \"Try again\")."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "What happened: \"No saved verses yet\"."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "One short sentence saying what to do. Never blames the reader."
+      },
+      {
+        "name": "icon",
+        "type": "UiIconProps['name']",
+        "required": false,
+        "default": null,
+        "description": "Icon override. Defaults: search, bookmark, wifi-off."
+      },
+      {
+        "name": "actionLabel",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Label of the single next-step button."
+      },
+      {
+        "name": "onAction",
+        "type": "() => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the next-step button is pressed."
+      },
+      {
+        "name": "suggestions",
+        "type": "readonly string[]",
+        "required": false,
+        "default": null,
+        "description": "Two to four real searches the reader can tap (`noResults`)."
+      },
+      {
+        "name": "onSuggestionPress",
+        "type": "(suggestion: string) => void",
+        "required": false,
+        "default": null,
+        "description": "Called with the tapped suggestion."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Extra content under the description, replacing the default action."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": {
+    "module": "ISMDesignSystem",
+    "source": "packages/ios/Sources/ISMDesignSystem/Components"
+  },
+  "android": {
+    "module": "bible.ism.design.components",
+    "source": "packages/android/ism-design-system/src/main/kotlin/bible/ism/design/components"
+  },
+  "cssClasses": [
+    "btn",
+    "btn-primary",
+    "chip",
+    "fb-eicon",
+    "fb-empty",
+    "fb-empty-act",
+    "fb-empty-chips",
+    "fb-empty-text",
+    "fb-empty-title"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "No results",
+        "icon_circle": ".fb-eicon .fb-eicon-neutral (--gray-100, search icon)",
+        "next_step": ".fb-empty-chips with two to four .chip suggestions"
+      },
+      {
+        "variant": "Nothing yet",
+        "icon_circle": ".fb-eicon (--blue-tint, Horizon Blue icon)",
+        "next_step": "one .btn .btn-primary"
+      },
+      {
+        "variant": "Offline / error",
+        "icon_circle": ".fb-eicon .fb-eicon-error (--error-bg, --error icon)",
+        "next_step": ".btn .btn-secondary \"Try again\" with a refresh icon"
+      }
+    ]
+  ],
+  "variantNotes": [],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": false,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Panel `--white`, 1px `--gray-200` border, radius `--radius-lg`, padding 40px 28px, everything centred.",
+    "Title 20px/600 (`.fb-empty-title`). Sentence 15px `--gray-700`, max-width 280px (`.fb-empty-text`).",
+    "One next step only. \"Nothing yet\" gets the single Horizon Blue primary; offline uses a secondary button so it never competes with the page's primary.",
+    "Suggestion chips are real searches the reader can tap; 44px tall from `.chip`.",
+    "Icons: 28px inline SVG, stroke currentColor, 1.8 width, round caps.",
+    "Inside a list or card, the empty state replaces the list in place; keep the page header and filters visible.",
+    "Red tint only for offline and errors. Never use it for an empty collection.",
+    "Link icons on the action: ↗ when it goes to another page, › when it drills into an app screen."
+  ],
+  "do": [
+    "Use when a search returns no results: suggest close matches as chips.",
+    "Use when a personal collection is empty for the first time (saved verses, downloads, favourite stations): offer the action that fills it.",
+    "Use when content cannot load because the reader is offline or the request failed: offer Retry.",
+    "Panel `--white`, 1px `--gray-200` border, radius `--radius-lg`, padding 40px 28px, everything centred.",
+    "Title 20px/600 (`.fb-empty-title`). Sentence 15px `--gray-700`, max-width 280px (`.fb-empty-text`).",
+    "One next step only. \"Nothing yet\" gets the single Horizon Blue primary; offline uses a secondary button so it never competes with the page's primary.",
+    "Suggestion chips are real searches the reader can tap; 44px tall from `.chip`.",
+    "Icons: 28px inline SVG, stroke currentColor, 1.8 width, round caps.",
+    "Inside a list or card, the empty state replaces the list in place; keep the page header and filters visible.",
+    "Red tint only for offline and errors. Never use it for an empty collection.",
+    "Link icons on the action: ↗ when it goes to another page, › when it drills into an app screen."
+  ],
+  "dont": [
+    "Do not use while content is still loading; use Loader skeletons.",
+    "Do not use for a whole-site error page; that is the 404 page pattern."
+  ],
+  "accessibility": [
+    "Use a real heading (`h2`/`h3`) at the level that fits the page outline.",
+    "When results update to empty after a search, announce it: wrap in or update a `role=\"status\"` region (\"No results for psalm 151\").",
+    "Offline and load errors use `role=\"alert\"` once, when they appear.",
+    "After Retry, move focus to the first loaded item or keep it on the button if it fails again.",
+    "Icons are `aria-hidden=\"true\"`; the title and sentence carry the meaning.",
+    "Chips and buttons are 44px tap targets with the base focus ring."
+  ],
+  "content": [
+    "Say what happened and what to do. Never blame the reader (\"You typed it wrong\").",
+    "No results: echo the query. \"No results for “psalm 151”. Check the spelling, or try one of these:\" + Psalm 23, Psalms, dot.Bible app.",
+    "Nothing yet: invite. \"No saved verses yet. Tap the bookmark on any verse and it will wait for you here.\" + Start reading.",
+    "Offline: reassure. \"You’re offline. Check your connection and try again. Bibles you’ve downloaded still work.\" + Try again.",
+    "Keep it warm and short. No jokes, no emoji, no exclamation marks."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"fb-empty\">\n  <span class=\"fb-eicon\"><svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 4h12v17l-6-4-6 4V4z\"/></svg></span>\n  <h3 class=\"fb-empty-title\">No saved verses yet</h3>\n  <p class=\"fb-empty-text\">Tap the bookmark on any verse and it will wait for you here.</p>\n  <button class=\"btn btn-primary fb-empty-act\" type=\"button\">Start reading</button>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"fb-empty\">\n  <span class=\"fb-eicon\"><svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 4h12v17l-6-4-6 4V4z\"/></svg></span>\n  <h3 class=\"fb-empty-title\">No saved verses yet</h3>\n  <p class=\"fb-empty-text\">Tap the bookmark on any verse and it will wait for you here.</p>\n  <button class=\"btn btn-primary fb-empty-act\" type=\"button\">Start reading</button>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": true,
+    "android": true
+  },
+  "files": {
+    "readme": "components/EmptyState/README.md",
+    "spec": "components/EmptyState/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}

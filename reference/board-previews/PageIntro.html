@@ -1,0 +1,31 @@
+<!-- @dsCard group="Patterns" height=380 subtitle="Inner-page intro, section heading" -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;padding:24px;background:var(--off-white)}
+.pv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.pv-col{display:flex;flex-direction:column;gap:12px;min-width:0}
+.pv-frame{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:40px;height:100%}
+.pv-frame .dp-sechead{height:100%}
+@media (max-width:760px){.pv{grid-template-columns:minmax(0,1fr)}.pv-frame{padding:24px} }
+</style></head><body>
+<div class="pv">
+  <div class="pv-col">
+    <span class="overline">Page intro · inner pages</span>
+    <div class="pv-frame">
+      <header class="dp-intro">
+        <span class="eyebrow">HD Radio Broadcast</span>
+        <h1 class="h2">Scripture on the <span class="em">airwaves</span>.</h1>
+        <p class="lead">Clear, continuous scripture readings on HD Radio.</p>
+      </header>
+    </div>
+  </div>
+  <div class="pv-col">
+    <span class="overline">Section heading row · eyebrow + h2 + ghost link</span>
+    <div class="pv-frame">
+      <div class="dp-sechead">
+        <div class="dp-sechead-text"><span class="eyebrow">What we do</span><h2 class="h2">Four ways scripture <span class="em">travels</span>.</h2></div>
+        <a class="btn btn-ghost" href="#">See all ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

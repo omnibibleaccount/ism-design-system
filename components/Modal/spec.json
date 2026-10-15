@@ -1,0 +1,363 @@
+{
+  "$schema": "../../specs/spec.schema.json",
+  "name": "Modal",
+  "title": "Modal",
+  "group": "Feedback",
+  "version": "3.0.0",
+  "summary": "A white dialog over a dimmed scrim that holds one short task or one decision, including the confirmation dialog for destructive and neutral choices.",
+  "whenToUse": [
+    "Use a dialog (S or M) for a short focused task that should not leave the page: send an app link, request NFC Bible cards.",
+    "Use the confirmation dialog before an action that cannot be undone or loses work: remove a partner, leave an unfinished sign-up."
+  ],
+  "whenNotToUse": [
+    "Do not use a modal for long forms, reading content or anything with more than one step; give it its own page.",
+    "Do not open a modal on page load or on scroll. Open it only from a click.",
+    "Do not confirm actions that can be undone; do them and offer Undo in a Toast."
+  ],
+  "anatomy": {
+    "description": "Scrim, panel, header (title + 44px close X), body, footer with a secondary button then one primary.",
+    "markup": null
+  },
+  "react": {
+    "import": "import { Modal } from '@ism/ui'",
+    "source": "packages/react/src/components/Modal.tsx",
+    "exports": [
+      "Modal",
+      "ModalSize",
+      "ModalTone",
+      "ModalVariant"
+    ],
+    "extends": [
+      "Omit<HTMLAttributes<HTMLDivElement>, 'title'>"
+    ],
+    "props": [
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": false,
+        "default": null,
+        "description": "Controlled open state."
+      },
+      {
+        "name": "defaultOpen",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Initial open state when uncontrolled."
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean) => void",
+        "required": false,
+        "default": null,
+        "description": "Called when the dialog asks to open or close (Esc, X, scrim click, or a closing button)."
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": true,
+        "default": null,
+        "description": "The title: the task or the question. Labels the dialog (`aria-labelledby`)."
+      },
+      {
+        "name": "variant",
+        "type": "ModalVariant",
+        "required": false,
+        "default": "\"dialog\"",
+        "description": "`dialog` is a short task with a close X; `confirm` is a confirmation (`role=\"alertdialog\"`, no X,\nscrim clicks do nothing, Esc means Cancel)."
+      },
+      {
+        "name": "size",
+        "type": "ModalSize",
+        "required": false,
+        "default": "\"s\"",
+        "description": "Panel width: `s` is 400px, `m` is 560px."
+      },
+      {
+        "name": "tone",
+        "type": "ModalTone",
+        "required": false,
+        "default": "\"danger\"",
+        "description": "Confirm only: `danger` shows a red icon circle, `neutral` a blue one."
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Confirm only: icon inside the 48px circle. Defaults to a trash icon (danger) or an info icon (neutral)."
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Confirm only: the one-sentence consequence, linked with `aria-describedby`."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Body content (dialog variant)."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Footer buttons: secondary first, then one primary. Build them with `Button` (`size=\"sm\"`)."
+      },
+      {
+        "name": "closeLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Close\"",
+        "description": "Accessible name of the close X."
+      },
+      {
+        "name": "closeOnScrim",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Close when the scrim is clicked. Ignored by `confirm`."
+      },
+      {
+        "name": "initialFocusRef",
+        "type": "React.RefObject<HTMLElement | null>",
+        "required": false,
+        "default": null,
+        "description": "Element to focus when the dialog opens. Defaults to the first element with `data-autofocus`,\nelse the Cancel (first footer) button in a confirmation, else the first form field, else the title."
+      },
+      {
+        "name": "scrimClassName",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Class names for the scrim wrapper."
+      }
+    ],
+    "propsSource": "typescript",
+    "notes": null
+  },
+  "reactNative": {
+    "import": "import { Modal } from '@ism/ui-native'",
+    "source": "packages/react-native/src/components/Modal.tsx",
+    "exports": [
+      "ConfirmDialog",
+      "Modal"
+    ],
+    "props": [
+      {
+        "name": "visible",
+        "type": "boolean",
+        "required": true,
+        "default": null,
+        "description": "Whether the dialog is shown. Open it only from a tap, never on load or scroll."
+      },
+      {
+        "name": "onClose",
+        "type": "() => void",
+        "required": true,
+        "default": null,
+        "description": "Called by the close button, a scrim tap (when allowed) and the hardware back button / Esc."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Task or question: \"Get the dot.Bible app\". Also the accessible name of the dialog."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Body content, 16dp, one or two sentences or a short form."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "required": false,
+        "default": null,
+        "description": "Footer: a secondary button, then one primary. Right-aligned."
+      },
+      {
+        "name": "size",
+        "type": "'s' | 'm'",
+        "required": false,
+        "default": "\"s\"",
+        "description": "Max width 400 (`s`) or 560 (`m`)."
+      },
+      {
+        "name": "dismissOnScrim",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Closing by tapping the scrim."
+      },
+      {
+        "name": "showClose",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Show the 44dp close button."
+      },
+      {
+        "name": "closeLabel",
+        "type": "string",
+        "required": false,
+        "default": "\"Close\"",
+        "description": "Accessible name of the close button."
+      },
+      {
+        "name": "style",
+        "type": "StyleProp<ViewStyle>",
+        "required": false,
+        "default": null,
+        "description": ""
+      },
+      {
+        "name": "testID",
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": ""
+      }
+    ]
+  },
+  "ios": null,
+  "android": null,
+  "cssClasses": [
+    "btn",
+    "btn-primary",
+    "btn-secondary",
+    "btn-sm",
+    "fb-cicon",
+    "fb-cicon-danger",
+    "fb-cicon-info",
+    "fb-confirm",
+    "fb-confirm-desc",
+    "fb-confirm-text",
+    "fb-danger",
+    "fb-modal",
+    "fb-modal-body",
+    "fb-modal-foot",
+    "fb-modal-grid",
+    "fb-modal-head",
+    "fb-modal-s",
+    "fb-modal-title",
+    "fb-scrim",
+    "fb-scrim-demo",
+    "fb-x"
+  ],
+  "variants": [
+    [
+      {
+        "variant": "Dialog S",
+        "classes": ".fb-modal .fb-modal-s",
+        "notes": "max-width 400px; a sentence and two buttons"
+      },
+      {
+        "variant": "Dialog M",
+        "classes": ".fb-modal .fb-modal-m",
+        "notes": "max-width 560px; a short form (.fb-modal-grid for two fields side by side)"
+      },
+      {
+        "variant": "Confirm, destructive",
+        "classes": ".fb-confirm + .fb-cicon-danger + .fb-danger button",
+        "notes": "role=\"alertdialog\", no close X"
+      },
+      {
+        "variant": "Confirm, neutral",
+        "classes": ".fb-confirm + .fb-cicon-info + .btn-primary",
+        "notes": "the primary keeps the reader safe (\"Keep editing\")"
+      }
+    ]
+  ],
+  "variantNotes": [
+    "`.fb-scrim` is the fixed full-screen overlay. `.fb-scrim-demo` is an in-page stage for docs and previews only."
+  ],
+  "states": {
+    "documented": null,
+    "coverage": {
+      "default": false,
+      "hover": false,
+      "focus": true,
+      "pressed": false,
+      "disabled": false,
+      "loading": false,
+      "error": true
+    },
+    "universal": "See rules/states.md for the seven required states and their hooks."
+  },
+  "rules": [
+    "Scrim `rgba(22,24,25,.6)` (charcoal-900 at 60%). Panel `--white`, radius `--radius-lg`, shadow `--shadow-overlay`.",
+    "Title 20px/600. Body 16px, `--gray-700`. Footer has a 1px `--gray-200` rule and right-aligned buttons, `.btn-sm`.",
+    "Footer order: secondary first, then one primary. One Horizon Blue primary per dialog.",
+    "Destructive actions use `.fb-danger` (`--error` fill) and name the action (\"Remove partner\"), never \"OK\" or \"Yes\".",
+    "The close X is `.fb-x`, a 44px round button, top right. Confirmation dialogs have no X: the two buttons are the only way out.",
+    "Esc, the X or a scrim click closes a dialog. In a confirmation, Esc means Cancel and scrim clicks do nothing.",
+    "On phones the panel keeps 16px from the screen edges and scrolls inside itself (`max-height: calc(100vh - 32px)`).",
+    "Lock page scroll while open. One modal at a time; never open a modal from a modal."
+  ],
+  "do": [
+    "Use a dialog (S or M) for a short focused task that should not leave the page: send an app link, request NFC Bible cards.",
+    "Use the confirmation dialog before an action that cannot be undone or loses work: remove a partner, leave an unfinished sign-up.",
+    "Scrim `rgba(22,24,25,.6)` (charcoal-900 at 60%). Panel `--white`, radius `--radius-lg`, shadow `--shadow-overlay`.",
+    "Title 20px/600. Body 16px, `--gray-700`. Footer has a 1px `--gray-200` rule and right-aligned buttons, `.btn-sm`.",
+    "Footer order: secondary first, then one primary. One Horizon Blue primary per dialog.",
+    "Destructive actions use `.fb-danger` (`--error` fill) and name the action (\"Remove partner\"), never \"OK\" or \"Yes\".",
+    "The close X is `.fb-x`, a 44px round button, top right. Confirmation dialogs have no X: the two buttons are the only way out.",
+    "Esc, the X or a scrim click closes a dialog. In a confirmation, Esc means Cancel and scrim clicks do nothing.",
+    "On phones the panel keeps 16px from the screen edges and scrolls inside itself (`max-height: calc(100vh - 32px)`).",
+    "Lock page scroll while open. One modal at a time; never open a modal from a modal."
+  ],
+  "dont": [
+    "Do not use a modal for long forms, reading content or anything with more than one step; give it its own page.",
+    "Do not open a modal on page load or on scroll. Open it only from a click.",
+    "Do not confirm actions that can be undone; do them and offer Undo in a Toast."
+  ],
+  "accessibility": [
+    "`role=\"dialog\"` (or `role=\"alertdialog\"` for confirmations), `aria-modal=\"true\"`, `aria-labelledby` the title; confirmations also `aria-describedby` the sentence.",
+    "On open, move focus into the dialog: the first field in a form, the Cancel button in a confirmation, otherwise the title (`tabindex=\"-1\"`).",
+    "Trap Tab inside the dialog. On close, return focus to the button that opened it.",
+    "Make the page behind `inert`.",
+    "Focus ring on every control: `outline: 2px solid var(--horizon-blue); outline-offset: 2px; box-shadow: var(--shadow-focus)`.",
+    "Icons in the dialog are `aria-hidden=\"true\"`; the close button has `aria-label=\"Close\"`."
+  ],
+  "content": [
+    "Title is the task or the question. \"Get the dot.Bible app\", \"Remove this partner?\", \"Leave without saving?\"",
+    "The body says what will happen, in one or two sentences. \"Grace Fellowship will lose access to the partner dashboard. You can invite them again later.\"",
+    "Button labels are verbs that match the title: \"Send link\", \"Send request\", \"Remove partner\", \"Keep editing\". Dismiss with \"Not now\" or \"Cancel\".",
+    "Never use \"Are you sure?\" as the whole message."
+  ],
+  "snippets": {
+    "react": [],
+    "html": [
+      "<div class=\"fb-scrim\">\n  <div class=\"fb-modal fb-modal-s\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"app-title\">\n    <div class=\"fb-modal-head\">\n      <h2 class=\"fb-modal-title\" id=\"app-title\">Get the dot.Bible app</h2>\n      <button class=\"fb-x\" type=\"button\" aria-label=\"Close\">…x icon…</button>\n    </div>\n    <div class=\"fb-modal-body\"><p>Read and listen in 500+ languages, even offline.</p></div>\n    <div class=\"fb-modal-foot\">\n      <button class=\"btn btn-secondary btn-sm\" type=\"button\">Not now</button>\n      <button class=\"btn btn-primary btn-sm\" type=\"button\">Send link</button>\n    </div>\n  </div>\n</div>\n\n<!-- confirmation -->\n<div class=\"fb-modal fb-modal-s\" role=\"alertdialog\" aria-modal=\"true\" aria-labelledby=\"c-t\" aria-describedby=\"c-d\">\n  <div class=\"fb-confirm\">\n    <span class=\"fb-cicon fb-cicon-danger\">…trash icon…</span>\n    <div class=\"fb-confirm-text\">\n      <h2 class=\"fb-modal-title\" id=\"c-t\">Remove this partner?</h2>\n      <p class=\"fb-confirm-desc\" id=\"c-d\">Grace Fellowship will lose access to the partner dashboard.</p>\n    </div>\n  </div>\n  <div class=\"fb-modal-foot\">\n    <button class=\"btn btn-secondary btn-sm\" type=\"button\">Cancel</button>\n    <button class=\"btn btn-sm fb-danger\" type=\"button\">Remove partner</button>\n  </div>\n</div>"
+    ],
+    "other": [
+      {
+        "lang": "html",
+        "code": "<div class=\"fb-scrim\">\n  <div class=\"fb-modal fb-modal-s\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"app-title\">\n    <div class=\"fb-modal-head\">\n      <h2 class=\"fb-modal-title\" id=\"app-title\">Get the dot.Bible app</h2>\n      <button class=\"fb-x\" type=\"button\" aria-label=\"Close\">…x icon…</button>\n    </div>\n    <div class=\"fb-modal-body\"><p>Read and listen in 500+ languages, even offline.</p></div>\n    <div class=\"fb-modal-foot\">\n      <button class=\"btn btn-secondary btn-sm\" type=\"button\">Not now</button>\n      <button class=\"btn btn-primary btn-sm\" type=\"button\">Send link</button>\n    </div>\n  </div>\n</div>\n\n<!-- confirmation -->\n<div class=\"fb-modal fb-modal-s\" role=\"alertdialog\" aria-modal=\"true\" aria-labelledby=\"c-t\" aria-describedby=\"c-d\">\n  <div class=\"fb-confirm\">\n    <span class=\"fb-cicon fb-cicon-danger\">…trash icon…</span>\n    <div class=\"fb-confirm-text\">\n      <h2 class=\"fb-modal-title\" id=\"c-t\">Remove this partner?</h2>\n      <p class=\"fb-confirm-desc\" id=\"c-d\">Grace Fellowship will lose access to the partner dashboard.</p>\n    </div>\n  </div>\n  <div class=\"fb-modal-foot\">\n    <button class=\"btn btn-secondary btn-sm\" type=\"button\">Cancel</button>\n    <button class=\"btn btn-sm fb-danger\" type=\"button\">Remove partner</button>\n  </div>\n</div>"
+      }
+    ]
+  },
+  "platforms": {
+    "web": true,
+    "react": true,
+    "reactNative": true,
+    "ios": false,
+    "android": false
+  },
+  "files": {
+    "readme": "components/Modal/README.md",
+    "spec": "components/Modal/spec.json"
+  },
+  "diagnostics": {
+    "unknownClasses": [],
+    "missingSections": []
+  }
+}
