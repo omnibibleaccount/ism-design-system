@@ -28,6 +28,8 @@ If a fetch fails, say you could not read the system and stop. Do not fall back t
 5. Run the linter: `node lint-usage.mjs --data specs/lint-data.json <your files>`. If you cannot run code, check your output against the checklist below line by line.
 6. End your answer with a short "Design system check": components used, tokens used, and any place you were unsure.
 
+If content is missing (Scripture text, audio, images, copy), do not stop and do not invent it. Build the full page with clearly marked placeholders in the page language, say exactly what is missing and where it must come from, and ask for it in the same reply. Scripture text must be marked in a comment as unverified until checked against the approved source.
+
 ## Non-negotiable rules
 
 - One Horizon Blue primary action per group.
@@ -44,6 +46,8 @@ If a fetch fails, say you could not read the system and stop. Do not fall back t
 - Text contrast is at least 4.5:1. Only the approved pairs in rules.json are allowed.
 - Set `lang`; set `dir="rtl"` for Arabic, Urdu, Farsi, Hebrew. Non-Latin scripts use their own line-height and never get letter-spacing or uppercase. Do not mirror ↗, the down caret, media controls, logos or QR codes.
 - Scripture: never alter or paraphrase verse text; always show the reference and translation. Lora is for Scripture and quotes only.
+- Do not override component styles. No <style> blocks or inline styles that change the borders, radius, colours, hover or active states, positioning or sizing of system classes (.btn, .ap-*, .sx-*, .dp-*, and so on). Layout wrappers using tokens are fine. If a component cannot do what is needed, report the gap instead of patching it.
+- Placeholder and status text (for example 'Audio coming soon') must be in the language of the page, with lang and dir set correctly. Never leave English strings on a translated screen.
 
 Never do:
 
