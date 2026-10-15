@@ -25,6 +25,7 @@ const ref = (v) => v.replace(/\{([a-z0-9-]+)\}/g, 'var(--$1)');
 {
   const lines = [`/* ${HEADER} */`];
   for (const f of t.type.fonts) {
+    if (!f.file) continue; // licensed fonts are not shipped; the family stack uses an installed copy or falls back
     const file = f.file.replace(/^fonts\//, '../assets/fonts/');
     const fmt = file.endsWith('.ttf') ? 'truetype' : 'opentype';
     lines.push(`@font-face{font-family:"${f.family}";src:url("${file}") format("${fmt}");font-weight:${f.weight};font-style:${f.style};font-display:swap}`);

@@ -4,15 +4,6 @@
 @font-face{font-family:"Inter";src:url("../assets/fonts/Inter-VariableFont.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap}
 @font-face{font-family:"Lora";src:url("../assets/fonts/Lora-VariableFont.ttf") format("truetype");font-weight:400 700;font-style:normal;font-display:swap}
 @font-face{font-family:"Lora";src:url("../assets/fonts/Lora-Italic-VariableFont.ttf") format("truetype");font-weight:400 700;font-style:italic;font-display:swap}
-@font-face{font-family:"Procerus";src:url("../assets/fonts/Procerus-300-Light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
-@font-face{font-family:"Procerus";src:url("../assets/fonts/Procerus-300-Light-Italic.otf") format("opentype");font-weight:300;font-style:italic;font-display:swap}
-@font-face{font-family:"Procerus";src:url("../assets/fonts/Procerus-400-Regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Procerus";src:url("../assets/fonts/Procerus-400-Regular-Italic.otf") format("opentype");font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:"Neue Power";src:url("../assets/fonts/NeuePower-Ultra.otf") format("opentype");font-weight:800;font-style:normal;font-display:swap}
-@font-face{font-family:"Neue Power";src:url("../assets/fonts/NeuePower-UltraOblique.otf") format("opentype");font-weight:800;font-style:oblique;font-display:swap}
-@font-face{font-family:"Miss Noteworthy";src:url("../assets/fonts/MissNoteworthy-Regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Miss Noteworthy Dense";src:url("../assets/fonts/MissNoteworthy-Dense.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Miss Noteworthy Loose";src:url("../assets/fonts/MissNoteworthy-Loose.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
 :root, [data-theme="light"] {
   --black: #000000;
   --charcoal-900: #161819;
