@@ -1,6 +1,6 @@
 # Email
 
-**Source of truth: the ISM Email Design & Copy Standard v1.1, packaged as the skill [`skills/ism-emails/`](../skills/ism-emails/SKILL.md)** (owner: Curt Branscombe, Director of Digital Marketing). Build every ISM and THRU the BIBLE (TTB) email from that skill: its `SKILL.md` workflow, the references, the two HTML templates and the QA scan. This page is the short form; when they differ, the skill wins. Machine-readable copy: `rules.json` under `applied.email`.
+**Source of truth: the ISM Email Design & Copy Standard v1.1, packaged as the skill [`skills/ism-emails/`](../skills/ism-emails/SKILL.md)** (owner: Curt Branscombe, Director of Digital Marketing). Build every ISM and THRU the BIBLE (TTB) email from that skill: its `SKILL.md` workflow, the references, the two HTML templates and the QA scan. Troy Carl (President) requires strict adherence. For email the skill overrides everything else in this design system, including `tokens.json`, the web components and the older email kits. This page is the short form; when they differ, the skill wins. Machine-readable copy: `rules.json` under `applied.email`.
 
 Hosted: `<base>/skills/ism-emails/` (templates at `<base>/skills/ism-emails/assets/templates/`). Download the whole skill as one file from `<base>/skills/ism-emails.zip`.
 

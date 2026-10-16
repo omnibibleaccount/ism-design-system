@@ -16,4 +16,6 @@ These are the rules a person or an LLM needs and cannot infer from the visual bo
 | [social.md](social.md) | Social (thin, observed only) |
 | [rules.json](rules.json) | All of the above in machine-readable form (also validated in CI) |
 
+Email is the exception: for any email, `skills/ism-emails/` (the ISM Email Design & Copy Standard) overrides every file here, `tokens.json` included.
+
 Precedence when two sources disagree: `tokens.json` for values, `rules.json` for behaviour, the component `spec.json` for a single component, then the Markdown prose. CI fails if the contrast pairs or z-index values in `rules.json` stop matching `tokens.json`.

@@ -36,7 +36,7 @@ const goodLabels = rules.voice.buttons.good.join(', ');
 const em = rules.applied.email;
 const emailFull = `## Email is different (follow the email skill, not the web components)
 
-Emails do not use ism.css, the components or the linter. Every ISM and THRU the BIBLE email follows the ${em.standard}: fetch ${BASE}/${em.skill} (download the whole skill as ${BASE}/skills/ism-emails.zip) and its references, then fill one of its templates. Never write an email from scratch and never invent a footer: the footer is already in the template.
+Emails do not use ism.css, the components, the web tokens or the linter. Every ISM and THRU the BIBLE email (newsletters included) follows the ${em.standard}, strictly: it is the single source of truth for email and overrides everything else here. Fetch ${BASE}/${em.skill} (download the whole skill as ${BASE}/skills/ism-emails.zip) and its references, then fill one of its templates. Never write an email from scratch and never invent a footer: the footer is already in the template.
 
 - ESP send (Braze, Postmark, Resend): ${BASE}/${em.templates.esp.file} (${em.templates.esp.maxWidthPx}px max, hosted HTTPS images).
 - Gmail paste: ${BASE}/${em.templates.gmailPaste.file} (all styles inline, root ${em.templates.gmailPaste.rootMaxWidthPx}px max, images embedded).
@@ -46,7 +46,7 @@ Emails do not use ism.css, the components or the linter. Every ISM and THRU the 
 - Fonts: headings ${em.fonts.headings}; body ${em.fonts.body}; quotes ${em.fonts.quotes}.
 - No em dashes, no emoji, no hidden characters. Run ${em.qa} and fix every FAIL.
 `;
-const emailShort = `EMAIL (overrides the web method above): never build email from the components or from scratch. Fetch ${BASE}/${em.skill} and fill ${BASE}/${em.templates.esp.file} (ESP) or ${BASE}/${em.templates.gmailPaste.file} (Gmail paste); the footer is in the template. Dark text on light, light mode only; blue for buttons and links only; one first-person CTA; sign-off ${em.signature.join(' / ')}; footer ${em.footer.contact} once; no em dashes or emoji.`;
+const emailShort = `EMAIL (the email standard is the single source of truth for email and overrides everything else here, web tokens included): never build email from the components or from scratch. Fetch ${BASE}/${em.skill} and fill ${BASE}/${em.templates.esp.file} (ESP) or ${BASE}/${em.templates.gmailPaste.file} (Gmail paste); the footer is in the template. Dark text on light, light mode only; blue for buttons and links only; one first-person CTA; sign-off ${em.signature.join(' / ')}; footer ${em.footer.contact} once; no em dashes or emoji.`;
 
 const full = `# ISM Design System: system prompt (v${tokens.version})
 

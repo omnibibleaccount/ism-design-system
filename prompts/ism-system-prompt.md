@@ -32,7 +32,7 @@ If content is missing (Scripture text, audio, images, copy), do not stop and do 
 
 ## Email is different (follow the email skill, not the web components)
 
-Emails do not use ism.css, the components or the linter. Every ISM and THRU the BIBLE email follows the ISM Email Design & Copy Standard v1.1: fetch https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/SKILL.md (download the whole skill as https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails.zip) and its references, then fill one of its templates. Never write an email from scratch and never invent a footer: the footer is already in the template.
+Emails do not use ism.css, the components, the web tokens or the linter. Every ISM and THRU the BIBLE email (newsletters included) follows the ISM Email Design & Copy Standard v1.1, strictly: it is the single source of truth for email and overrides everything else here. Fetch https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/SKILL.md (download the whole skill as https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails.zip) and its references, then fill one of its templates. Never write an email from scratch and never invent a footer: the footer is already in the template.
 
 - ESP send (Braze, Postmark, Resend): https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/assets/templates/email-template.html (600px max, hosted HTTPS images).
 - Gmail paste: https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/assets/templates/email-template-gmail-paste.html (all styles inline, root 420px max, images embedded).

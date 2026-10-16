@@ -12,6 +12,8 @@ This repository is the single source of truth for the look, behaviour and wordin
 
 If two sources disagree, the higher one wins and the lower one is a bug: open an issue.
 
+**Email is the exception.** For every ISM and THRU the BIBLE email (newsletters, appeals, thank-yous, updates, invitations), the email standard in `skills/ism-emails/` is the single source of truth and overrides everything above, including `tokens.json` (email uses its own palette and Poppins, Nunito and Lora). The President requires strict adherence: follow it exactly, use its templates, and do not mix in web components, web tokens or older email kits.
+
 ## Hosted copy, screenshots and the linter
 
 - Hosted (GitHub Pages, no Git LFS): tokens, rules, specs, `css/ism.css`, fonts, images and a SHA-256 `manifest.json` at one base URL (see `integrations/README.md`). `llms.txt` there lists everything.

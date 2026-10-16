@@ -822,6 +822,7 @@
       "standard": "ISM Email Design & Copy Standard v1.1",
       "owner": "Curt Branscombe, Director of Digital Marketing",
       "skill": "skills/ism-emails/SKILL.md",
+      "authority": "Single source of truth for all ISM and THRU the BIBLE email, newsletters included. Overrides tokens.json, rules, components and older email kits for email. Strict adherence required by the President.",
       "templates": {
         "esp": {
           "file": "skills/ism-emails/assets/templates/email-template.html",
