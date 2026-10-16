@@ -11,16 +11,19 @@ A thin 3px progress line filled with the signature gradient, available as the Re
 A track (18% white on dark, 12% black on light) with a gradient fill from the left. No labels, no handle.
 
 ### React
-`window.ISMDesignSystem_106e83.AccentBar` (exported from the Divider module).
+`import { AccentBar } from '@ism/ui'`. It renders the `.cr-accentbar` classes, so it matches the HTML below.
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `progress` | `number` | `0.4` | 0–1 fraction filled. |
-| `width` | `number` | `200` | Track width in px. The track colour is the dark-surface track. |
+| `progress` | `number` | `0.4` | 0–1 fraction filled; clamped and rounded to a whole percent. |
+| `width` | `number \| string` | `200` | Track width: px, or any CSS width such as `"100%"`. |
+| `light` | `boolean` | `false` | Light track (`.cr-accentbar-light`) for white or `--off-white` surfaces. |
+| `label` | `string` | — | Accessible name ("John 3 read"). When set, the track gets `role="progressbar"` and value attributes. |
+| …rest | `HTMLAttributes<HTMLDivElement>` | | `className`, `style` (merged after `width`), `aria-*`. |
 
 ```jsx
-<AccentBar progress={0.6} />
-<AccentBar progress={0.25} width={320} />
+<AccentBar progress={0.6} label="John 3 read" />
+<AccentBar progress={0.25} width="100%" light label="Reading plan" />
 ```
 
 ### HTML / CSS
@@ -42,7 +45,7 @@ The HTML bar fills its parent's width; set a width on the parent, not on the bar
 | Variant | Class / prop | Track |
 |---|---|---|
 | Dark (default) | `.cr-accentbar`, React `AccentBar` | `rgba(255,255,255,.18)` |
-| Light | `.cr-accentbar-light` | `rgba(0,0,0,.12)` |
+| Light | `.cr-accentbar-light`, React `light` | `rgba(0,0,0,.12)` |
 
 States: empty (0%), partial, complete (100%). The fill is always `--gradient-signature`; it never changes colour for "done".
 
@@ -55,7 +58,7 @@ States: empty (0%), partial, complete (100%). The fill is always `--gradient-sig
 
 ## Accessibility
 - In HTML, give the track `role="progressbar"`, `aria-valuemin`, `aria-valuemax`, `aria-valuenow` and an `aria-label` naming what is progressing.
-- The React `AccentBar` renders plain `div`s with no role; wrap it in an element with the progressbar attributes, or show the value in text beside it.
+- The React `AccentBar` gets the progressbar role and values only when you pass `label`. Without it the bar is plain `div`s: show the value in text beside it.
 - A 3px line alone is hard to see; never make it the only place progress is reported.
 
 ## Content

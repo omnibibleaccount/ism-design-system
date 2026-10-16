@@ -89,7 +89,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "`window.ISMDesignSystem_106e83.Card`. Large, immersive, image-led card: full-bleed photo, dark gradient overlay for legibility, rounded corners, thin border, a white \"Explore ↗\" pill top-right, and title/eyebrow bottom-left. Used for testament/topic tiles across the dot.Bible app and marketing site."
+    "notes": "`import { Card, ContentCard, CardMedia, CardBody, CardCta } from '@ism/ui'`. `Card` is the large, immersive, image-led tile: full-bleed photo, dark gradient overlay for legibility, rounded corners, thin border, a white \"Explore ↗\" pill top-right, and title/eyebrow bottom-left. Used for testament/topic tiles across the dot.Bible app and marketing site. The website `.card` family:"
   },
   "reactNative": {
     "import": "import { Card } from '@ism/ui-native'",
@@ -257,7 +257,7 @@
     "coverage": {
       "default": true,
       "hover": true,
-      "focus": false,
+      "focus": true,
       "pressed": false,
       "disabled": false,
       "loading": false,
@@ -289,7 +289,7 @@
   "accessibility": [
     "Linked cards contain one heading; the link's accessible name comes from it. Keep CTA text short so the name stays readable.",
     "Every photo has meaningful `alt`, or `alt=\"\"` if decorative. Medallion icons are `aria-hidden`.",
-    "React `Card` with `onClick` is a `div`; wrap it in an `<a>` or give it `role=\"link\"` and `tabIndex={0}` with key handling.",
+    "React `Card` with `onClick` is a `div` with `role=\"link\"`, `tabIndex={0}` and Enter/Space handling built in. Without `onClick` it is not focusable; for real navigation prefer `ContentCard` with `href`.",
     "Text on the React Card always sits on the dark gradient overlay for contrast."
   ],
   "content": [
@@ -299,7 +299,8 @@
   ],
   "snippets": {
     "react": [
-      "<Card image=\"/assets/imagery/old-testament.jpg\" eyebrow=\"Explore\" title=\"The Old Testament\" />"
+      "<Card image=\"/assets/imagery/old-testament.jpg\" eyebrow=\"Explore\" title=\"The Old Testament\" />",
+      "<ContentCard variant=\"flush\" href=\"/radio\">\n  <CardMedia src=\"…\" alt=\"…\" ratio=\"1610\" />\n  <CardBody>\n    <Eyebrow>Broadcast</Eyebrow>\n    <h3 className=\"h3\">HD Radio Broadcast</h3>\n    <p className=\"small muted\">Scripture readings on the air, wherever listeners tune in.</p>\n    <CardCta>Learn more</CardCta>\n  </CardBody>\n</ContentCard>"
     ],
     "html": [
       "<a class=\"card cr-card-flush\" href=\"/radio\">\n  <div class=\"media cr-media-1610\"><img class=\"photo\" src=\"…\" alt=\"…\"></div>\n  <div class=\"cr-card-body\">\n    <span class=\"eyebrow\">Broadcast</span>\n    <h3 class=\"h3\">HD Radio Broadcast</h3>\n    <p class=\"small muted\">Scripture readings on the air, wherever listeners tune in.</p>\n    <span class=\"cr-card-cta\">Learn more <span class=\"arrow\" aria-hidden=\"true\">↗</span></span>\n  </div>\n</a>"
@@ -308,6 +309,10 @@
       {
         "lang": "jsx",
         "code": "<Card image=\"/assets/imagery/old-testament.jpg\" eyebrow=\"Explore\" title=\"The Old Testament\" />"
+      },
+      {
+        "lang": "jsx",
+        "code": "<ContentCard variant=\"flush\" href=\"/radio\">\n  <CardMedia src=\"…\" alt=\"…\" ratio=\"1610\" />\n  <CardBody>\n    <Eyebrow>Broadcast</Eyebrow>\n    <h3 className=\"h3\">HD Radio Broadcast</h3>\n    <p className=\"small muted\">Scripture readings on the air, wherever listeners tune in.</p>\n    <CardCta>Learn more</CardCta>\n  </CardBody>\n</ContentCard>"
       },
       {
         "lang": "html",

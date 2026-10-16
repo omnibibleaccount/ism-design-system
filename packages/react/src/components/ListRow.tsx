@@ -56,7 +56,7 @@ export const ListRow = forwardRef<HTMLDivElement, ListRowProps>(function ListRow
           aria-valuenow={pct}
           style={{ position: 'relative', display: 'block', height: 3, borderRadius: 2, background: line, overflow: 'hidden' }}
         >
-          <span style={{ position: 'absolute', top: 0, bottom: 0, insetInlineStart: 0, width: `${pct}%`, background: 'var(--horizon-blue)', borderRadius: 2 }} />
+          <span style={{ position: 'absolute', top: 0, bottom: 0, insetInlineStart: 0, width: `${pct}%`, background: 'var(--gradient-line)', borderRadius: 2 }} />
         </span>
       </span>
       {meta ? <span style={{ fontSize: 14, color: soft, fontVariantNumeric: 'tabular-nums' }}>{meta}</span> : null}

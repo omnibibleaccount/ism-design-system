@@ -11,18 +11,35 @@ A 56px row of icon or avatar, title, meta and an end slot, grouped as a divided 
 Leading slot (`.cr-lr-ic` icon tile or `.cr-av` avatar, optional) › text (`.cr-lr-t` title, `.cr-lr-m` meta) › end slot (`.cr-lr-end`: value, ›, ↗ or switch).
 
 ### React
-`window.ISMDesignSystem_106e83.ListRow`
+`import { ListRow, List, ListGroup, ListItem } from '@ism/ui'`.
+
+`ListRow` is the audio row: icon, title, progress line, duration and play button.
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `icon` | `ReactNode` | — | Shown in a 40px round tile. |
-| `title` | `string` | — | Chapter or teaching name. |
+| `icon` | `ReactNode` | — | Shown in a 40px round tile; decorative. |
+| `title` | `string` | — | Chapter or teaching name; also names the progress line. |
 | `meta` | `string` | — | Duration, e.g. "9:12". |
 | `progress` | `number` | `0.15` | 0–1 listened fraction. |
 | `dark` | `boolean` | `true` | Set `false` on light surfaces. |
+| `onPlay` | `() => void` | — | Called when the play button is pressed. |
+| `playLabel` | `string` | `"Play"` | Accessible name of the play button; override to translate. |
+| `playIcon` | `ReactNode` | `"▶"` | Glyph inside the 44px play button. |
 
 ```jsx
-<ListRow icon={<HeadphonesIcon/>} title="John 3:17-4:54" meta="9:12" progress={0.3} />
+<ListRow icon={<UiIcon name="headphones" />} title="John 3:17–4:54" meta="9:12" progress={0.3} onPlay={play} />
+```
+
+The `.cr-lr` rows:
+- `List` renders `.cr-list.cr-list-div`. `ListGroup` renders `.cr-list-inset` with `title` as the `.overline`, tied to the group with `aria-labelledby`.
+- `ListItem` renders one `.cr-lr`: `title` (required), `meta`, `icon` (`iconGold` for the gold tile), `avatar`, `value`, `end` `"drill" | "out"` (› or ↗), `twoLine`, `noIcon`, `disabled`.
+- With `href` the row is one `<a>`; add `external` to open a new tab with hidden "(opens in a new tab)" text (`newTabLabel`). With `onCheckedChange` (and `checked`) it is a switch row and the whole row toggles.
+
+```jsx
+<ListGroup title="Reading">
+  <ListItem icon={<UiIcon name="globe" />} title="Language" value="Amharic" end="drill" href="/app/language" />
+  <ListItem icon={<UiIcon name="sun" />} title="Daily verse" checked={daily} onCheckedChange={setDaily} />
+</ListGroup>
 ```
 
 ### HTML / CSS
@@ -74,14 +91,14 @@ States: default, hover (`--off-white`; `.cr-is-hover` for docs), focus (inset 2p
 - The switch uses Horizon Blue (`--horizon-blue`) when on; keep primary buttons out of list groups.
 - Use `--gradient-violet` avatars and `--blue-tint` icon tiles; keep one leading style per group.
 - Keep titles to one line. Only `.cr-lr-two` rows may wrap their meta.
-- The React audio row draws its progress in solid Horizon Blue as built. When you build an audio row in HTML, use AccentBar (`.cr-accentbar`, gradient) for the progress line instead.
+- Fill an audio row's progress line with the signature gradient: in HTML use AccentBar (`.cr-accentbar`); the React `ListRow` draws it with `--gradient-line`.
 
 ## Accessibility
 - Leading icons and avatars are decorative (`aria-hidden="true"`); the title names the row.
 - Switches use `role="switch"` + `aria-checked` and are labelled by the row title.
 - Label inset groups with their `.overline` heading through `aria-labelledby`.
 - For ↗ rows that open a new tab, add visually hidden "(opens in a new tab)".
-- In the React audio row, give the play button an `aria-label` in your wrapper if you replace the default ▶.
+- The React audio row names its play button with `playLabel` (default "Play"); translate it with the page. Its progress line has `role="progressbar"` named by the title.
 
 ## Content
 - Titles are short nouns: "Language", "Downloaded Bibles", "Daily verse", "dot.Bible directory".

@@ -11,9 +11,19 @@ A round, icon-only button (`.iconbtn`) for compact actions such as menu, search,
 A 44px circle, 1px hairline ring, transparent fill, one 20px line icon centred.
 
 ### React
-There is no dedicated React component. Render a `<button>` with the classes; the bundle's `Button` is for labelled pills.
-```js
-React.createElement('button', { type: 'button', className: 'iconbtn cr-iconbtn-light', 'aria-label': 'Next chapter' }, chevronIcon)
+`import { IconButton } from '@ism/ui'`. For labelled pills use `Button`.
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `aria-label` | `string` | — | Required. Names the action. |
+| `children` | `ReactNode` | — | The icon, normally `<UiIcon name="menu" />`. |
+| `tone` | `"dark" \| "light" \| "solid"` | `"dark"` | `.cr-iconbtn-dark`, `.cr-iconbtn-light`, `.cr-iconbtn-solid`. |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | `sm` 36px with a 44px hit area, `lg` 52px. |
+| `pressed` | `boolean` | — | For toggles; sets `aria-pressed`. Omit for plain actions. |
+| …rest | `ButtonHTMLAttributes` | | `type` defaults to `"button"`; `onClick`, `disabled`, `aria-expanded`. |
+
+```jsx
+<IconButton tone="light" aria-label="Next chapter"><UiIcon name="chevron-right" /></IconButton>
 ```
 
 ### HTML / CSS

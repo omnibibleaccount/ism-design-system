@@ -12,7 +12,9 @@ Separates content: the React `Divider` gradient accent, the `.thread` signature 
 ## Anatomy & markup
 
 ### React
-`window.ISMDesignSystem_106e83.Divider`: a pill-ended bar painted with `--gradient-signature`.
+`import { Divider, Rule, OrDivider, VerticalRule, Thread } from '@ism/ui'`.
+
+`Divider` is a pill-ended accent bar painted with `--gradient-signature`, rendered with `aria-hidden="true"`.
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
@@ -20,9 +22,16 @@ Separates content: the React `Divider` gradient accent, the `.thread` signature 
 | `length` | `number` | `72` | px along the main axis. |
 | `thickness` | `number` | `2` | px across. |
 
+The other exports render the HTML classes below:
+- `Rule`: `<hr class="cr-rule">`; `tone` `"hairline" | "strong" | "dark"` (default `"hairline"`).
+- `OrDivider`: `.cr-rule-or` with `role="separator"`; `children` is the word (default `"or"`).
+- `VerticalRule`: `.cr-rule-v`, decorative. `Thread`: `.thread`, decorative.
+
 ```jsx
 <Divider />
 <Divider orientation="vertical" length={200} />
+<Rule tone="strong" />
+<OrDivider />
 ```
 
 ### HTML / CSS
@@ -49,6 +58,8 @@ Separates content: the React `Divider` gradient accent, the `.thread` signature 
 | Thread | `.thread` | 2px brand gradient line, full width of its box |
 | Accent | React `Divider` | 72 × 2px `--gradient-signature`, horizontal or vertical |
 
+React: `Rule tone="strong" | "dark"`, `OrDivider`, `VerticalRule` and `Thread` render the classes above.
+
 Dividers have no interactive states.
 
 ## Rules
@@ -60,7 +71,7 @@ Dividers have no interactive states.
 
 ## Accessibility
 - A plain `<hr>` is announced as a separator. Use it only where the break is meaningful.
-- Decorative lines (`.thread`, React `Divider`, `.cr-rule-v`) get `aria-hidden="true"` or are empty `<div>`s.
+- Decorative lines (`.thread`, React `Divider`, `.cr-rule-v`) get `aria-hidden="true"` or are empty `<div>`s. React `Divider`, `Thread` and `VerticalRule` set it for you.
 - The labelled divider uses `role="separator"`; its word is read as part of the flow.
 - Do not rely on a divider alone to show grouping; pair it with a heading or a gap.
 

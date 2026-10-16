@@ -85,7 +85,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "`import { Button } from` the bundle (`window.ISMDesignSystem_106e83.Button`)."
+    "notes": "`import { Button } from '@ism/ui'`. Renders a `<button type=\"button\">` by default and an `<a>` when `href` is set (buttons do things, links go places), with the same `.btn` classes as the HTML."
   },
   "reactNative": {
     "import": "import { Button } from '@ism/ui-native'",
@@ -199,10 +199,10 @@
     ]
   ],
   "variantNotes": [
-    "States: default, hover (one step darker), focus (2px Horizon Blue outline + `--shadow-focus`), disabled (`disabled` or `aria-disabled=\"true\"`, 45% opacity), loading (`.spin` + \"Sending…\", keep it disabled)."
+    "States: default, hover (one step darker), focus (2px Horizon Blue outline + `--shadow-focus`), disabled (`disabled` or `aria-disabled=\"true\"`, 45% opacity), loading (`.spin` + \"Sending…\", keep it disabled; React `loading` sets `aria-busy` and the spinner comes from CSS)."
   ],
   "states": {
-    "documented": "default, hover (one step darker), focus (2px Horizon Blue outline + `--shadow-focus`), disabled (`disabled` or `aria-disabled=\"true\"`, 45% opacity), loading (`.spin` + \"Sending…\", keep it disabled).",
+    "documented": "default, hover (one step darker), focus (2px Horizon Blue outline + `--shadow-focus`), disabled (`disabled` or `aria-disabled=\"true\"`, 45% opacity), loading (`.spin` + \"Sending…\", keep it disabled; React `loading` sets `aria-busy` and the spinner comes from CSS).",
     "coverage": {
       "default": true,
       "hover": true,
@@ -248,7 +248,7 @@
   ],
   "snippets": {
     "react": [
-      "<Button variant=\"primary\">Get Started</Button>\n<Button variant=\"outlineDark\" icon={<ArrowIcon/>}>Download the App</Button>"
+      "<Button href=\"/give\" icon=\"↗\">Give online</Button>\n<Button variant=\"outlineLight\" href=\"/about\">Learn about ISM</Button>\n<Button loading>Sending…</Button>"
     ],
     "html": [
       "<a class=\"btn btn-primary\" href=\"/give\">Give online <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n<a class=\"btn btn-secondary\" href=\"/about\">Learn about ISM</a>\n<a class=\"btn btn-ghost\" href=\"/faith\">Our statement of faith <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n\n<button class=\"btn btn-primary\" type=\"button\" disabled aria-busy=\"true\">\n  <span class=\"spin\" aria-hidden=\"true\"></span>Sending…\n</button>"
@@ -256,7 +256,7 @@
     "other": [
       {
         "lang": "jsx",
-        "code": "<Button variant=\"primary\">Get Started</Button>\n<Button variant=\"outlineDark\" icon={<ArrowIcon/>}>Download the App</Button>"
+        "code": "<Button href=\"/give\" icon=\"↗\">Give online</Button>\n<Button variant=\"outlineLight\" href=\"/about\">Learn about ISM</Button>\n<Button loading>Sending…</Button>"
       },
       {
         "lang": "html",

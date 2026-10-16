@@ -11,9 +11,20 @@ A pill toggle (`.chip` with `aria-pressed`) for filtering a list or picking a pr
 A 44px pill with a 1px `rgba(0,0,0,.28)` border and a 15px semibold label. Pressed = solid black with white text.
 
 ### React
-There is no dedicated React component. Render a `<button className="chip">` and drive `aria-pressed` from state.
-```js
-React.createElement('button', { type: 'button', className: 'chip', 'aria-pressed': on ? 'true' : 'false', onClick: toggle }, 'Amharic')
+`import { Chip, ChipGroup } from '@ism/ui'`.
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `pressed` | `boolean` | `false` | Renders `aria-pressed`. |
+| `children` | `ReactNode` | — | One or two words, text only. |
+| …rest | `ButtonHTMLAttributes` | | `type` defaults to `"button"`; `onClick`, `disabled`. |
+
+`ChipGroup` renders the `role="group"` with an 8px gap and manages pressed state: `options` (`{ value, label, disabled }[]`), `mode` `"single" | "multiple"` (default `"single"`), `value` / `defaultValue`, `onChange`, and a required `aria-label`.
+
+```jsx
+<ChipGroup aria-label="Filter resources" defaultValue="all" onChange={setTopic}
+  options={[{ value: 'all', label: 'All' }, { value: 'about', label: 'About ISM' }, { value: 'apps', label: 'Apps' }]} />
+<Chip pressed={on} onClick={toggle}>Amharic</Chip>
 ```
 
 ### HTML / CSS

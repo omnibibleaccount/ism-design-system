@@ -11,20 +11,23 @@ Pill-shaped call-to-action button used across ISM's app, site, and print/email c
 A pill with a label and an optional trailing icon. No shadow; hover darkens one step; no scale.
 
 ### React
-`import { Button } from` the bundle (`window.ISMDesignSystem_106e83.Button`).
+`import { Button } from '@ism/ui'`. Renders a `<button type="button">` by default and an `<a>` when `href` is set (buttons do things, links go places), with the same `.btn` classes as the HTML.
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `variant` | `"primary" \| "outlineDark" \| "outlineLight" \| "solidWhite" \| "ghost"` | `"primary"` | `primary` (solid Horizon Blue) is reserved for the ONE primary action in a group, never pair two blue buttons together. `outlineDark`/`outlineLight`/`solidWhite` are secondary actions, matched to the section behind them. `ghost` is a text-only inline link-button. |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | |
-| `disabled` | `boolean` | `false` | Fades to 45% and blocks the pointer. |
-| `icon` | `ReactNode` | — | Optional trailing icon element (e.g. an arrow glyph). |
-| `style` | `CSSProperties` | — | Merged last. |
-| …rest | `ButtonHTMLAttributes` | | `type`, `onClick`, `aria-*`. |
+| `variant` | `"primary" \| "outlineLight" \| "outlineDark" \| "solidWhite" \| "ghost"` | `"primary"` | `primary` (solid Horizon Blue) is reserved for the ONE primary action in a group, never pair two blue buttons together. `outlineLight` and `ghost` suit light sections; `outlineDark` and `solidWhite` suit dark sections. `ghost` is a text-only inline link-button. |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | `sm` 36px, `md` 44px, `lg` 52px. |
+| `block` | `boolean` | `false` | Full width (`.cr-btn-block`). |
+| `loading` | `boolean` | `false` | Sets `aria-busy`, shows the spinner and blocks interaction; the label and width stay. |
+| `icon` | `ReactNode` | — | Trailing icon, wrapped in `.arrow` and hidden from assistive tech. |
+| `href` | `string` | — | Renders an `<a>`. `disabled` on a link sets `aria-disabled` and removes it from the tab order. |
+| `disabled` | `boolean` | `false` | 45% opacity, blocks the pointer. |
+| …rest | `ButtonHTMLAttributes` / `AnchorHTMLAttributes` | | `type`, `onClick`, `className`, `aria-*`. |
 
 ```jsx
-<Button variant="primary">Get Started</Button>
-<Button variant="outlineDark" icon={<ArrowIcon/>}>Download the App</Button>
+<Button href="/give" icon="↗">Give online</Button>
+<Button variant="outlineLight" href="/about">Learn about ISM</Button>
+<Button loading>Sending…</Button>
 ```
 
 ### HTML / CSS
@@ -48,7 +51,7 @@ Classes: `.btn` + one colour class (`.btn-primary`, `.btn-secondary`, `.btn-ghos
 | `solidWhite` | `.btn-light` | dark sections (also the header Give pill) |
 | `ghost` | `.btn-ghost` | inline "See all ↗", "Browse All" |
 
-States: default, hover (one step darker), focus (2px Horizon Blue outline + `--shadow-focus`), disabled (`disabled` or `aria-disabled="true"`, 45% opacity), loading (`.spin` + "Sending…", keep it disabled).
+States: default, hover (one step darker), focus (2px Horizon Blue outline + `--shadow-focus`), disabled (`disabled` or `aria-disabled="true"`, 45% opacity), loading (`.spin` + "Sending…", keep it disabled; React `loading` sets `aria-busy` and the spinner comes from CSS).
 
 ## Rules
 - One Horizon Blue (`--horizon-blue`) button per group. Never two blues side by side.

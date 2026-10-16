@@ -11,16 +11,29 @@ Small pill labels: the React `Badge` section tag in an outlined pill, `.badge` s
 
 ## Anatomy & markup
 ### React
-`window.ISMDesignSystem_106e83.Badge`. Small uppercase, wide-tracked eyebrow label inside a thin outlined pill — ISM's signature way to tag a section ("YOU'RE ALMOST DONE!", "GET A SNEAK PEEK").
+`import { Badge, StatusBadge, Tag, Count } from '@ism/ui'`.
+
+`Badge` is the app section tag: small uppercase, wide-tracked label inside a thin outlined pill ("YOU'RE ALMOST DONE!", "GET A SNEAK PEEK").
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
 | `tone` | `"outlineDark" \| "outlineLight" \| "solidBlue" \| "accentText"` | `"outlineDark"` | `outlineDark` on dark, `outlineLight` on light, `solidBlue` filled, `accentText` blue text, no border |
 | `children` | `ReactNode` | — | The label; rendered uppercase |
+| …rest | `HTMLAttributes<HTMLSpanElement>` | | `style` is merged last. |
+
+The other exports render the HTML classes below:
+- `StatusBadge` (`.badge`): `tone` `"neutral" | "info" | "success" | "warning" | "error" | "gold"` (default `"neutral"`), `solid` (default `false`), `size` `"sm" | "md"` (omit for 24px), `dot`, `live` (adds `.live-dot`).
+- `Tag` (`.cr-tag`): `children` (string, required), `onRemove`, `removeLabel` (default "Remove <label>"), `active`, `disabled`, `removeButtonProps`.
+- `Count` (`.count`): `children`, `hiddenLabel` (visually hidden context, such as "unread").
 
 ```jsx
 <Badge tone="outlineDark">Trending</Badge>
 <Badge tone="accentText">You're almost done!</Badge>
+
+<StatusBadge tone="success" live>Live</StatusBadge>
+<StatusBadge tone="error" solid>Failed</StatusBadge>
+<Tag active onRemove={() => removeFilter('hd')}>HD Radio</Tag>
+<a className="navlink" href="/inbox">Messages <Count>3</Count></a>
 ```
 
 ### HTML / CSS
@@ -50,7 +63,8 @@ Small pill labels: the React `Badge` section tag in an outlined pill, `.badge` s
 
 - Sizes: 24px (`.cr-badge-sm` for 12px text as on data tables), `.cr-badge-md` 28px. Add `.cr-badge-dot` for a leading dot.
 - Tags: 32px; the 24px × has a 44px invisible hit area. States: hover ×, focus ×, disabled (`.cr-tag-off` + `disabled`), applied (`.cr-tag-active`, info tint).
-- Live: `.live-dot` (`--live`) inside a badge for on-air.
+- Live: `.live-dot` (`--live`) inside a badge for on-air (React `StatusBadge live`).
+- React: `StatusBadge` `tone` picks the row, `solid` the column; `size`, `dot`, `active` and `disabled` map to the classes above.
 
 ## Rules
 - Always pair colour with a word. Never colour alone.

@@ -20,6 +20,8 @@ International Scripture Ministries (ISM) is a FaithTech nonprofit delivering unh
 
 
 ## Index
+> Historical: this index and "How to consume" describe the original prototype this repository was built from. Its React bundle (`window.ISMDesignSystem_106e83`) now lives at `reference/bundle.legacy.js` for reference only. For the current layout and packages (`packages/web`, `@ism/ui`, `@ism/ui-native`, iOS, Android) read `AGENTS.md` and `README.md`.
+
 - `tokens.json` → `tokens.css`: the token source (colour, type, spacing, radius, shadow, gradient, layout). Use only these names.
 - `components/bundle.css`: the class layer for every component (shared base classes plus one prefixed chunk per group).
 - `components/bundle.js`: React components on `window.ISMDesignSystem_106e83` (Button, Badge, Card, ListRow, Input, Divider, AccentBar, Footer, SiteHeader).

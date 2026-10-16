@@ -8,20 +8,40 @@ Rounded content containers: the React `Card` (a large, image-led tile) and the w
 
 ## Anatomy & markup
 ### React
-`window.ISMDesignSystem_106e83.Card`. Large, immersive, image-led card: full-bleed photo, dark gradient overlay for legibility, rounded corners, thin border, a white "Explore ↗" pill top-right, and title/eyebrow bottom-left. Used for testament/topic tiles across the dot.Bible app and marketing site.
+`import { Card, ContentCard, CardMedia, CardBody, CardCta } from '@ism/ui'`.
+
+`Card` is the large, immersive, image-led tile: full-bleed photo, dark gradient overlay for legibility, rounded corners, thin border, a white "Explore ↗" pill top-right, and title/eyebrow bottom-left. Used for testament/topic tiles across the dot.Bible app and marketing site.
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
 | `image` | `string` | — | Photo URL; without it the card is `--charcoal-900` |
+| `imageAlt` | `string` | `""` | Alt text for the photo; empty because the title names the card |
 | `eyebrow` | `string` | — | Small uppercase label above the title |
 | `title` | `string` | — | 24px semibold, white |
 | `subtitle` | `string` | — | 15px, 70% white |
-| `cta` | `string` | `"Explore"` | CTA pill label shown top-right; pass `""` to hide it |
+| `cta` | `string` | `"Explore"` | CTA pill label shown top-right, rendered "<Label> ↗"; pass `""` to hide it |
 | `height` | `number` | `360` | px |
-| `onClick` | `MouseEventHandler` | — | Makes the card clickable |
+| `onClick` | `MouseEventHandler` | — | Makes the card clickable: `role="link"`, `tabIndex={0}`, Enter and Space activate it |
 
 ```jsx
 <Card image="/assets/imagery/old-testament.jpg" eyebrow="Explore" title="The Old Testament" />
+```
+
+The website `.card` family:
+- `ContentCard` renders `.card`; `variant` is `"default" | "flush" | "clip" | "tight" | "dark" | "roomy" | "flat" | "pad"` (default `"default"`). With `href` the whole card is one `<a>`.
+- `CardMedia` renders `.media`: `src`, `alt` (default `""`), `ratio` `"1610" | "top"`. Without `src` or children it shows the `.ph` placeholder.
+- `CardBody` renders `.cr-card-body`. `CardCta` renders `.cr-card-cta` with a trailing `arrow` (default `↗`).
+
+```jsx
+<ContentCard variant="flush" href="/radio">
+  <CardMedia src="…" alt="…" ratio="1610" />
+  <CardBody>
+    <Eyebrow>Broadcast</Eyebrow>
+    <h3 className="h3">HD Radio Broadcast</h3>
+    <p className="small muted">Scripture readings on the air, wherever listeners tune in.</p>
+    <CardCta>Learn more</CardCta>
+  </CardBody>
+</ContentCard>
 ```
 
 ### HTML / CSS
@@ -64,7 +84,7 @@ Base: `.card` (white, 1px `--border-hairline-light`, 20px radius `--radius-lg`, 
 ## Accessibility
 - Linked cards contain one heading; the link's accessible name comes from it. Keep CTA text short so the name stays readable.
 - Every photo has meaningful `alt`, or `alt=""` if decorative. Medallion icons are `aria-hidden`.
-- React `Card` with `onClick` is a `div`; wrap it in an `<a>` or give it `role="link"` and `tabIndex={0}` with key handling.
+- React `Card` with `onClick` is a `div` with `role="link"`, `tabIndex={0}` and Enter/Space handling built in. Without `onClick` it is not focusable; for real navigation prefer `ContentCard` with `href`.
 - Text on the React Card always sits on the dark gradient overlay for contrast.
 
 ## Content

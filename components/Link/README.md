@@ -4,14 +4,25 @@ Text links for navigation: plain inline links in copy, the `.lnk` underline-reve
 ## When to use
 - Inline `<a>`: a link inside a sentence ("Read our privacy policy").
 - `.lnk`: a standalone text link in a list, footer or card ("Get prayer updates ↗").
-- Ghost link (`.btn-ghost`, React `Button variant="ghost"`): a "See all" / "Browse All" link after a section or row of cards.
+- Ghost link (`.btn-ghost`, React `Link variant="ghost"`): a "See all" / "Browse All" link after a section or row of cards.
 - Do not use a link for an action that changes data (submit, give, delete); use Button.
 
 ## Anatomy & markup
 ### React
-There is no separate Link component. Use the bundle's `Button` with `variant="ghost"`, which is the text-only inline link-button ("Browse All"), and pass the arrow as `icon`. For inline links in copy, render a normal `<a>`.
+`import { Link } from '@ism/ui'`.
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `variant` | `"inline" \| "reveal" \| "ghost" \| "onDark" \| "ink"` | `"inline"` | `inline` plain `<a>`, `reveal` `.lnk`, `ghost` `.btn.btn-ghost`, `onDark` `.cr-link-dark`, `ink` `.lnk.cr-link-ink`. |
+| `arrow` | `boolean \| ReactNode` | — | `true` adds ↗ in `.arrow` (hidden from assistive tech); pass a node for another glyph. |
+| `external` | `boolean` | `false` | Adds `target="_blank"`, `rel="noopener"` and hidden "(opens in a new tab)". |
+| `newTabLabel` | `string` | `"(opens in a new tab)"` | Override to translate. |
+| …rest | `AnchorHTMLAttributes` | | `href`, `className`. |
+
 ```jsx
-<Button variant="ghost" icon={<span className="arrow" aria-hidden="true">↗</span>}>Browse All</Button>
+<p>Read our <Link href="/privacy">privacy policy</Link> for details.</p>
+<Link variant="reveal" href="/prayer" arrow>Get prayer updates</Link>
+<Link variant="ghost" href="https://dot.bible" arrow>Browse the directory</Link>
 ```
 
 ### HTML / CSS

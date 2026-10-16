@@ -8,7 +8,7 @@
   "whenToUse": [
     "Inline `<a>`: a link inside a sentence (\"Read our privacy policy\").",
     "`.lnk`: a standalone text link in a list, footer or card (\"Get prayer updates ↗\").",
-    "Ghost link (`.btn-ghost`, React `Button variant=\"ghost\"`): a \"See all\" / \"Browse All\" link after a section or row of cards."
+    "Ghost link (`.btn-ghost`, React `Link variant=\"ghost\"`): a \"See all\" / \"Browse All\" link after a section or row of cards."
   ],
   "whenNotToUse": [
     "Do not use a link for an action that changes data (submit, give, delete); use Button."
@@ -65,7 +65,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "There is no separate Link component. Use the bundle's `Button` with `variant=\"ghost\"`, which is the text-only inline link-button (\"Browse All\"), and pass the arrow as `icon`. For inline links in copy, render a normal `<a>`."
+    "notes": "`import { Link } from '@ism/ui'`."
   },
   "reactNative": {
     "import": "import { Link } from '@ism/ui-native'",
@@ -234,7 +234,7 @@
   "do": [
     "Inline `<a>`: a link inside a sentence (\"Read our privacy policy\").",
     "`.lnk`: a standalone text link in a list, footer or card (\"Get prayer updates ↗\").",
-    "Ghost link (`.btn-ghost`, React `Button variant=\"ghost\"`): a \"See all\" / \"Browse All\" link after a section or row of cards.",
+    "Ghost link (`.btn-ghost`, React `Link variant=\"ghost\"`): a \"See all\" / \"Browse All\" link after a section or row of cards.",
     "The ↗ rule: put ↗ after the label when the link goes to another page or site. Use ⌄ when it opens something here, and › when it drills into an app screen. Do not mix them.",
     "Links are `--horizon-blue` on light and `--blue-on-dark` on dark. Never pure blue on black.",
     "Keep standalone links at least 44px tall to tap; `.btn-ghost` does this for you.",
@@ -255,7 +255,7 @@
   ],
   "snippets": {
     "react": [
-      "<Button variant=\"ghost\" icon={<span className=\"arrow\" aria-hidden=\"true\">↗</span>}>Browse All</Button>"
+      "<p>Read our <Link href=\"/privacy\">privacy policy</Link> for details.</p>\n<Link variant=\"reveal\" href=\"/prayer\" arrow>Get prayer updates</Link>\n<Link variant=\"ghost\" href=\"https://dot.bible\" arrow>Browse the directory</Link>"
     ],
     "html": [
       "<p>Read our <a href=\"/privacy\">privacy policy</a> for details.</p>\n\n<a class=\"lnk\" href=\"/prayer\">Get prayer updates ↗</a>\n\n<a class=\"btn btn-ghost\" href=\"https://dot.bible\">Browse the directory <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n\n<!-- on dark -->\n<a class=\"cr-link-dark\" href=\"/cookies\">cookie policy</a>"
@@ -263,7 +263,7 @@
     "other": [
       {
         "lang": "jsx",
-        "code": "<Button variant=\"ghost\" icon={<span className=\"arrow\" aria-hidden=\"true\">↗</span>}>Browse All</Button>"
+        "code": "<p>Read our <Link href=\"/privacy\">privacy policy</Link> for details.</p>\n<Link variant=\"reveal\" href=\"/prayer\" arrow>Get prayer updates</Link>\n<Link variant=\"ghost\" href=\"https://dot.bible\" arrow>Browse the directory</Link>"
       },
       {
         "lang": "html",
