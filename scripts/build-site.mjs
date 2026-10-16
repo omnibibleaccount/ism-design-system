@@ -3,7 +3,7 @@
  * Builds the hosted copy of the design system into site/ (gitignored), for GitHub Pages.
  * Every file an LLM or design tool needs, at stable URLs, with no Git LFS and open CORS:
  *   tokens/ rules/ specs/ components/<Name>/{README.md,spec.json} previews/ screenshots/
- *   css/ assets/ lint/ prompts/ AGENTS.md llms.txt manifest.json index.html
+ *   css/ assets/ lint/ prompts/ skills/ (+ skills/<name>.zip) AGENTS.md llms.txt manifest.json index.html
  * Base URL: SITE_BASE env (default https://omnibibleaccount.github.io/ism-design-system).
  * Run build:previews, build:prompts and lint-data first (npm run build:site does).
  */
@@ -11,6 +11,7 @@ import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync, readdirSync
 import { join, dirname, resolve, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const BASE = (process.env.SITE_BASE || 'https://omnibibleaccount.github.io/ism-design-system').replace(/\/$/, '');
@@ -37,6 +38,12 @@ cp('specs', 'specs');
 cp('docs/screenshots', 'screenshots');
 cp('prompts', 'prompts');
 cp('AGENTS.md', 'AGENTS.md');
+// Agent skills (for example skills/ism-emails, the email standard): served as files and as one zip per skill to upload to Claude or ChatGPT
+cp('skills', 'skills');
+for (const name of readdirSync(p('skills'))) {
+  if (!statSync(p('skills', name)).isDirectory()) continue;
+  execFileSync('zip', ['-q', '-X', '-r', join(OUT, 'skills', `${name}.zip`), name, '-x', '*.DS_Store'], { cwd: p('skills') });
+}
 cp('scripts/lint-usage.mjs', 'lint/lint-usage.mjs');
 cp('specs/lint-data.json', 'lint/lint-data.json');
 // css + assets keep the packages/web layout so url(../assets/...) in ism.css keeps working
@@ -79,6 +86,10 @@ writeFileSync(join(OUT, 'llms.txt'), `# ISM Design System (hosted)
 - [index.json](${u('specs/index.json')}): ${idx.components.length} components; [all.json](${u('specs/all.json')}): every spec
 - Component: ${u('components/<Name>/spec.json')} and ${u('components/<Name>/README.md')}
 
+## Email
+- Every email follows the email skill, not the web components: [SKILL.md](${u('skills/ism-emails/SKILL.md')}) ([zip](${u('skills/ism-emails.zip')}))
+- Templates: [ESP](${u('skills/ism-emails/assets/templates/email-template.html')}), [Gmail paste](${u('skills/ism-emails/assets/templates/email-template-gmail-paste.html')}); rules: [email.md](${u('rules/email.md')})
+
 ## Visual reference
 - Screenshots: ${u('screenshots/<Name>.png')}; live specimens: ${u('previews/<Name>.html')}
 
@@ -93,7 +104,7 @@ writeFileSync(join(OUT, 'index.html'), `<!doctype html><html lang="en"><head><me
 <link rel="stylesheet" href="css/ism.css"><style>.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--space-4)}.g a{display:flex;flex-direction:column;gap:var(--space-1);text-decoration:none;color:inherit;background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-card-light);padding:var(--space-3)}.g img{width:100%;height:160px;object-fit:cover;object-position:top;border-radius:var(--radius-sm)}.g span{color:var(--gray-600);font-size:14px}</style></head>
 <body><main class="wrap" style="padding-block:var(--space-7)"><p class="eyebrow">ISM Design System</p><h1 class="h1">Source of truth</h1>
 <p class="lead">Hosted tokens, rules, specs, stylesheet, fonts, screenshots and linter. Start with <a href="prompts/ism-system-prompt.md">the system prompt</a>, <a href="llms.txt">llms.txt</a> or <a href="manifest.json">manifest.json</a>.</p>
-<p><a href="tokens/tokens.json">tokens.json</a> · <a href="tokens/tokens.dtcg.json">tokens.dtcg.json</a> · <a href="rules/rules.json">rules.json</a> · <a href="specs/index.json">specs</a> · <a href="css/ism.css">ism.css</a> · <a href="lint/lint-usage.mjs">linter</a></p>
+<p><a href="tokens/tokens.json">tokens.json</a> · <a href="tokens/tokens.dtcg.json">tokens.dtcg.json</a> · <a href="rules/rules.json">rules.json</a> · <a href="specs/index.json">specs</a> · <a href="css/ism.css">ism.css</a> · <a href="lint/lint-usage.mjs">linter</a> · <a href="skills/ism-emails/SKILL.md">email skill</a></p>
 <div class="g" style="margin-top:var(--space-6)">${cards}</div></main></body></html>`);
 writeFileSync(join(OUT, '.nojekyll'), '');
 // CORS note: GitHub Pages serves Access-Control-Allow-Origin: * by default.

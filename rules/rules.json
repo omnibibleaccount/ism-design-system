@@ -675,7 +675,7 @@
     "Tap targets are at least 44px on every platform."
   ],
   "applied": {
-    "note": "Rules for non-UI applications. Derived from the reference templates and boards; see rules/print-editorial.md, decks.md, email.md, social.md.",
+    "note": "Rules for non-UI applications. Print, decks and social are derived from the reference templates and boards; email follows the ISM Email Design & Copy Standard v1.1 (skills/ism-emails). See rules/print-editorial.md, decks.md, email.md, social.md.",
     "print": {
       "status": "derived",
       "page": {
@@ -818,49 +818,117 @@
       ]
     },
     "email": {
-      "status": "derived",
-      "families": [
-        "donor engagement",
-        "lifecycle marketing",
-        "transactional"
-      ],
-      "widthPx": 650,
-      "altWidthPx": 600,
-      "stackBelowPx": 670,
-      "order": [
-        "preheader",
-        "hero",
-        "greeting and intro",
-        "primary button",
-        "scripture quote band",
-        "closing and signature",
-        "dark footer"
-      ],
+      "status": "standard",
+      "standard": "ISM Email Design & Copy Standard v1.1",
+      "owner": "Curt Branscombe, Director of Digital Marketing",
+      "skill": "skills/ism-emails/SKILL.md",
+      "templates": {
+        "esp": {
+          "file": "skills/ism-emails/assets/templates/email-template.html",
+          "maxWidthPx": 600,
+          "images": "hosted HTTPS",
+          "mediaQueries": true
+        },
+        "gmailPaste": {
+          "file": "skills/ism-emails/assets/templates/email-template-gmail-paste.html",
+          "rootMaxWidthPx": 420,
+          "images": "embedded base64 (scripts/embed_images.py)",
+          "styleBlock": false,
+          "classes": false,
+          "mediaQueries": false
+        }
+      },
       "footer": {
-        "block": "HTML-ISM-Dark-Footer",
-        "background": "#20242B"
-      },
-      "primaryButtonsPerEmail": 1,
-      "colorScheme": "light only",
-      "darkModeHook": "[data-ogsc]",
-      "prefersColorSchemeBlock": false,
-      "fontStack": "Inter, Arial, sans-serif",
-      "heroGradientRequires": [
-        "background-clip: text",
-        "text-fill-color: transparent"
-      ],
-      "colors": {
-        "text": [
-          "#111111",
-          "#333333"
-        ],
+        "source": "included in each template",
         "background": "#F4F4F6",
-        "blue": "#046DE3",
-        "quoteBand": "#FFF9EC",
-        "quoteRule": "#E0A231"
+        "contact": "1-833-60-BIBLE (24253) | contact@ism.bible",
+        "contactTimes": 1,
+        "espRequires": [
+          "mailing address",
+          "unsubscribe link"
+        ],
+        "tagline": "Making Scripture accessible to all nations, anywhere."
       },
-      "placeholders": "[PLACEHOLDER …]",
-      "moduleToggles": "show_*"
+      "signature": [
+        "'til all have heard,",
+        "Troy Carl",
+        "President"
+      ],
+      "signatureStyle": "bold black, three lines",
+      "senderName": "Troy Carl",
+      "retiredContacts": [
+        "1-833-65-BIBLE",
+        "1-800-65-BIBLE",
+        "TTB.org (as contact)",
+        "Biblebus@ttb.org"
+      ],
+      "colorScheme": "light only; no dark variants",
+      "liveTextOnDark": false,
+      "palette": {
+        "solar-black": "#000000",
+        "celestial-white": "#F4F4F6",
+        "horizon-blue": "#046DE3",
+        "radiant-dawn": "#E7B650",
+        "steadfast-slate": "#41484E",
+        "ocean-mist": "#A3D7FF"
+      },
+      "colorUse": {
+        "horizon-blue": "buttons and links only",
+        "radiant-dawn": "accents and dividers only",
+        "ocean-mist": "secondary buttons, black text",
+        "greetingAndSignOff": "bold #000000, never blue"
+      },
+      "fonts": {
+        "headings": "'Poppins', Arial, Helvetica, sans-serif",
+        "body": "'Nunito', Arial, sans-serif",
+        "quotes": "'Lora', Georgia, serif",
+        "pasteRoute": "Arial, Helvetica, sans-serif"
+      },
+      "bodySizePx": [
+        14,
+        16
+      ],
+      "primaryButtonsPerEmail": 1,
+      "ctaVoice": "first person and specific",
+      "ctaPlacement": "first phone screen",
+      "subjectMaxChars": 45,
+      "preheader": "required; complements the subject",
+      "personalization": {
+        "token": "{FirstName}",
+        "fallback": "Friend"
+      },
+      "placeholders": "{UPPER_SNAKE} tokens, listed for the user; never fabricate",
+      "scriptureReferences": "spelled out (Romans 10:17)",
+      "banned": [
+        "em dash",
+        "emoji (unless asked)",
+        "hidden or zero-width characters",
+        "AI-authorship comments",
+        "God Bless You"
+      ],
+      "maxSizeKB": 100,
+      "renderWidthsPx": [
+        320,
+        390,
+        430
+      ],
+      "qa": "python3 skills/ism-emails/scripts/qa_scan.py <file> --route esp|paste",
+      "types": [
+        "appeal",
+        "thank-you",
+        "impact",
+        "announcement",
+        "weekly update",
+        "prayer",
+        "welcome",
+        "event",
+        "re-engagement",
+        "recruitment"
+      ],
+      "superseded": {
+        "files": "reference/ui-kits/marketing-email/",
+        "reason": "pre-standard: 650px, Inter, dark #20242B footer (HTML-ISM-Dark-Footer), gradient hero word"
+      }
     },
     "social": {
       "status": "thin, observed from the Instagram grid only",

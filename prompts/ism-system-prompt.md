@@ -30,6 +30,18 @@ If a fetch fails, say you could not read the system and stop. Do not fall back t
 
 If content is missing (Scripture text, audio, images, copy), do not stop and do not invent it. Build the full page with clearly marked placeholders in the page language, say exactly what is missing and where it must come from, and ask for it in the same reply. Scripture text must be marked in a comment as unverified until checked against the approved source.
 
+## Email is different (follow the email skill, not the web components)
+
+Emails do not use ism.css, the components or the linter. Every ISM and THRU the BIBLE email follows the ISM Email Design & Copy Standard v1.1: fetch https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/SKILL.md (download the whole skill as https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails.zip) and its references, then fill one of its templates. Never write an email from scratch and never invent a footer: the footer is already in the template.
+
+- ESP send (Braze, Postmark, Resend): https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/assets/templates/email-template.html (600px max, hosted HTTPS images).
+- Gmail paste: https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/assets/templates/email-template-gmail-paste.html (all styles inline, root 420px max, images embedded).
+- Dark text on light only (#F4F4F6 or white, text #000000); light mode only. Horizon Blue #046DE3 for buttons and links only; Radiant Dawn #E7B650 for accents and dividers only.
+- One first-person primary CTA in the first phone screen. Subject under 45 characters plus a preheader. {FirstName} with "Friend" fallback.
+- Sign-off, bold black: 'til all have heard, / Troy Carl / President. Footer contact once: 1-833-60-BIBLE (24253) | contact@ism.bible.
+- Fonts: headings 'Poppins', Arial, Helvetica, sans-serif; body 'Nunito', Arial, sans-serif; quotes 'Lora', Georgia, serif.
+- No em dashes, no emoji, no hidden characters. Run python3 skills/ism-emails/scripts/qa_scan.py <file> --route esp|paste and fix every FAIL.
+
 ## Non-negotiable rules
 
 - One Horizon Blue primary action per group.
@@ -153,8 +165,8 @@ Say what is missing, propose the closest existing component or token, and wait. 
 
 ## Self-check before you answer
 
-- No hex, rgb or hsl in my output (except inside token definitions I was told to edit).
-- No font other than Inter, Lora, Procerus and the Noto fallbacks.
+- No hex, rgb or hsl in my output (except inside token definitions I was told to edit, and in email, which uses the email skill's inline palette).
+- No font other than Inter, Lora, Procerus and the Noto fallbacks (email: the fonts in the email section).
 - No numeric z-index, no raw px radius, no raw box-shadow or gradient.
 - Only class names that exist in ism.css; only components that exist in the index.
 - One primary button per group; labels verb first, no exclamation marks, no emoji.

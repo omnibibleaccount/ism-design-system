@@ -12,7 +12,7 @@ These are the rules a person or an LLM needs and cannot infer from the visual bo
 | [voice-microcopy.md](voice-microcopy.md) | Button verbs, error tone, how to refer to scripture |
 | [print-editorial.md](print-editorial.md) | Print brochures, reports and media kits |
 | [decks.md](decks.md) | Slide decks |
-| [email.md](email.md) | Donor, lifecycle and transactional email |
+| [email.md](email.md) | Email: short form of the ISM Email Design & Copy Standard; the full standard is the skill `skills/ism-emails/` |
 | [social.md](social.md) | Social (thin, observed only) |
 | [rules.json](rules.json) | All of the above in machine-readable form (also validated in CI) |
 
