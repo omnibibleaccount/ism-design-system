@@ -164,7 +164,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "The bundle exposes `window.ISMDesignSystem_106e83.Footer`. The React footer is a static picture: its links are plain text, the Platforms column has no Global Bible Network, there is no Newsletter or Cookie settings, and its glow comes from a remote image. Use it for mock-ups. For production pages use the HTML below."
+    "notes": "`import { Footer } from '@ism/ui'` (source: `packages/react/src/components/Footer.tsx`). Data-driven: it renders the same `.nv-foot` markup as the HTML below from `columns`, `socials` and `legal`. Only `columns` is required; the copy is not built in, so pass the text from Content."
   },
   "reactNative": null,
   "ios": null,
@@ -252,7 +252,7 @@
   ],
   "snippets": {
     "react": [
-      "<Footer ctaText=\"Help deliver the Bible beyond every barrier.\" ctaLabel=\"Support Bible Access\" />"
+      "import Link from 'next/link';\n\n<Footer\n  linkComponent={Link}\n  ctaText=\"Help deliver the Bible beyond every barrier.\"\n  ctaLabel=\"Support Bible Access\"\n  ctaHref=\"/give\"\n  tagline=\"Delivering unhindered access to the Bible until everyone can engage with Scripture in their own language, without barriers.\"\n  socials={[{ name: 'Instagram', href: 'https://instagram.com/…', icon: <InstagramGlyph aria-hidden=\"true\" /> }]}\n  columns={[\n    { heading: 'About', links: [{ label: 'About ISM', href: '/about' }, { label: 'Our Mission', href: '/mission' }] },\n    { heading: 'Platforms', links: [{ label: 'dot.Bible App', href: '/app' }] },\n    { heading: 'Get Involved', links: [{ label: 'Give Online', href: '/give' }] },\n  ]}\n  legal={['© 2026 – International Scripture Ministries Inc', 'ISM is a 501(c)(3) nonprofit organization. All donations are tax-deductible.']}\n  legalLinks={[{ label: 'Cookie Policy', href: '/cookies' }, { label: 'Terms', href: '/terms' }, { label: 'Privacy', href: '/privacy' }]}\n  cookieSettingsLabel=\"Cookie settings\"\n  onCookieSettings={openCookieBanner}\n/>"
     ],
     "html": [
       "<footer class=\"nv-foot\">\n  <div class=\"nv-foot-glow\" aria-hidden=\"true\"></div>\n  <div class=\"nv-foot-in\">\n    <div class=\"nv-fcta\">\n      <h2 class=\"nv-fcta-h\">Help deliver the Bible beyond every barrier.</h2>\n      <a class=\"btn btn-outline-light nv-fcta-btn\" href=\"/give\">Support Bible Access <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n    </div>\n  </div>\n  <div class=\"nv-foot-in nv-foot-body\">\n    <div class=\"nv-fmain\">\n      <div class=\"nv-fbrand\">\n        <a class=\"nv-flogo\" href=\"/\" aria-label=\"International Scripture Ministries home\"><img src=\"assets/logos/Full%20Logo%20Black.svg\" alt=\"International Scripture Ministries\"></a>\n        <p class=\"nv-ftag\">Delivering unhindered access to the Bible until everyone can engage with Scripture in their own language, without barriers.</p>\n        <div class=\"nv-socials\"><a class=\"nv-soc\" href=\"…\" aria-label=\"Instagram\"><svg viewBox=\"0 0 32 32\" aria-hidden=\"true\">…</svg></a> <!-- Facebook, X, LinkedIn --></div>\n      </div>\n      <nav class=\"nv-fnav\" aria-label=\"Footer\">\n        <div class=\"nv-fcol\"><h2 class=\"nv-fcol-h\">About</h2><a class=\"lnk\" href=\"/about\">About ISM</a> …</div>\n        <div class=\"nv-fcol\"><h2 class=\"nv-fcol-h\">Platforms</h2> …</div>\n        <div class=\"nv-fcol\"><h2 class=\"nv-fcol-h\">Get Involved</h2> …</div>\n      </nav>\n    </div>\n    <div class=\"nv-frule\"></div>\n    <div class=\"nv-flegal\">\n      <div><p>© 2026 – International Scripture Ministries Inc</p><p>ISM is a 501(c)(3) nonprofit organization. All donations are tax-deductible.</p></div>\n      <div class=\"nv-flegal-links\"><a class=\"lnk\" href=\"/cookies\">Cookie Policy</a><a class=\"lnk\" href=\"/terms\">Terms</a><a class=\"lnk\" href=\"/privacy\">Privacy</a><button type=\"button\" class=\"lnk\">Cookie settings</button></div>\n    </div>\n  </div>\n</footer>"
@@ -260,7 +260,7 @@
     "other": [
       {
         "lang": "jsx",
-        "code": "<Footer ctaText=\"Help deliver the Bible beyond every barrier.\" ctaLabel=\"Support Bible Access\" />"
+        "code": "import Link from 'next/link';\n\n<Footer\n  linkComponent={Link}\n  ctaText=\"Help deliver the Bible beyond every barrier.\"\n  ctaLabel=\"Support Bible Access\"\n  ctaHref=\"/give\"\n  tagline=\"Delivering unhindered access to the Bible until everyone can engage with Scripture in their own language, without barriers.\"\n  socials={[{ name: 'Instagram', href: 'https://instagram.com/…', icon: <InstagramGlyph aria-hidden=\"true\" /> }]}\n  columns={[\n    { heading: 'About', links: [{ label: 'About ISM', href: '/about' }, { label: 'Our Mission', href: '/mission' }] },\n    { heading: 'Platforms', links: [{ label: 'dot.Bible App', href: '/app' }] },\n    { heading: 'Get Involved', links: [{ label: 'Give Online', href: '/give' }] },\n  ]}\n  legal={['© 2026 – International Scripture Ministries Inc', 'ISM is a 501(c)(3) nonprofit organization. All donations are tax-deductible.']}\n  legalLinks={[{ label: 'Cookie Policy', href: '/cookies' }, { label: 'Terms', href: '/terms' }, { label: 'Privacy', href: '/privacy' }]}\n  cookieSettingsLabel=\"Cookie settings\"\n  onCookieSettings={openCookieBanner}\n/>"
       },
       {
         "lang": "html",

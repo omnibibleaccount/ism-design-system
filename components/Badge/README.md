@@ -11,16 +11,30 @@ Small pill labels: the React `Badge` section tag in an outlined pill, `.badge` s
 
 ## Anatomy & markup
 ### React
-`window.ISMDesignSystem_106e83.Badge`. Small uppercase, wide-tracked eyebrow label inside a thin outlined pill — ISM's signature way to tag a section ("YOU'RE ALMOST DONE!", "GET A SNEAK PEEK").
+`import { Badge, StatusBadge, Tag, Count } from '@ism/ui'` (source: `packages/react/src/components/Badge.tsx`).
+
+`Badge`: small uppercase, wide-tracked eyebrow label inside a thin outlined pill, ISM's signature way to tag a section ("YOU'RE ALMOST DONE!", "GET A SNEAK PEEK"). Styled inline; extra `span` attributes and `style` are passed through.
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
 | `tone` | `"outlineDark" \| "outlineLight" \| "solidBlue" \| "accentText"` | `"outlineDark"` | `outlineDark` on dark, `outlineLight` on light, `solidBlue` filled, `accentText` blue text, no border |
 | `children` | `ReactNode` | — | The label; rendered uppercase |
 
+The other three render the HTML classes below:
+
+| Component | Props | Renders |
+|---|---|---|
+| `StatusBadge` | `tone` (`"neutral" \| "info" \| "success" \| "warning" \| "error" \| "gold"`, default `"neutral"`), `solid` (default `false`), `size` (`"sm" \| "md"`, omit for 24px), `dot`, `live` (default `false`) | `.badge` with the subtle or `.cr-solid-*` class; `dot` adds `.cr-badge-dot`, `live` adds `.live-dot` |
+| `Tag` | `children` (string, required), `onRemove`, `removeLabel` (default `"Remove <children>"`), `active`, `disabled` (default `false`), `removeButtonProps` | `.cr-tag` with a `.cr-tag-x` remove button; `active` adds `.cr-tag-active`, `disabled` adds `.cr-tag-off` and disables the button |
+| `Count` | `children` (required), `hiddenLabel` | `.count`; `hiddenLabel` adds visually hidden context after the number ("unread") |
+
 ```jsx
 <Badge tone="outlineDark">Trending</Badge>
 <Badge tone="accentText">You're almost done!</Badge>
+<StatusBadge tone="success">Live</StatusBadge>
+<StatusBadge tone="info" size="md" dot>New</StatusBadge>
+<Tag active onRemove={() => removeFilter('hd-radio')}>HD Radio</Tag>
+<Count hiddenLabel="unread">3</Count>
 ```
 
 ### HTML / CSS

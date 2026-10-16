@@ -85,7 +85,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "`import { Button } from` the bundle (`window.ISMDesignSystem_106e83.Button`)."
+    "notes": "`import { Button } from '@ism/ui'` (source: `packages/react/src/components/Button.tsx`). Renders a `<button type=\"button\">` by default and an `<a>` when `href` is given (buttons do things, links go places). It uses the same `.btn` classes as the HTML below."
   },
   "reactNative": {
     "import": "import { Button } from '@ism/ui-native'",
@@ -248,7 +248,7 @@
   ],
   "snippets": {
     "react": [
-      "<Button variant=\"primary\">Get Started</Button>\n<Button variant=\"outlineDark\" icon={<ArrowIcon/>}>Download the App</Button>"
+      "<Button variant=\"primary\" href=\"/give\" icon=\"↗\">Give online</Button>\n<Button variant=\"outlineLight\" href=\"/about\">Learn about ISM</Button>\n<Button variant=\"primary\" loading><span className=\"spin\" aria-hidden=\"true\" />Sending…</Button>"
     ],
     "html": [
       "<a class=\"btn btn-primary\" href=\"/give\">Give online <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n<a class=\"btn btn-secondary\" href=\"/about\">Learn about ISM</a>\n<a class=\"btn btn-ghost\" href=\"/faith\">Our statement of faith <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n\n<button class=\"btn btn-primary\" type=\"button\" disabled aria-busy=\"true\">\n  <span class=\"spin\" aria-hidden=\"true\"></span>Sending…\n</button>"
@@ -256,7 +256,7 @@
     "other": [
       {
         "lang": "jsx",
-        "code": "<Button variant=\"primary\">Get Started</Button>\n<Button variant=\"outlineDark\" icon={<ArrowIcon/>}>Download the App</Button>"
+        "code": "<Button variant=\"primary\" href=\"/give\" icon=\"↗\">Give online</Button>\n<Button variant=\"outlineLight\" href=\"/about\">Learn about ISM</Button>\n<Button variant=\"primary\" loading><span className=\"spin\" aria-hidden=\"true\" />Sending…</Button>"
       },
       {
         "lang": "html",

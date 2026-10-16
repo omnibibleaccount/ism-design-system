@@ -11,20 +11,33 @@ Rounded 48px text field with its label above, available as the React `Input` and
 Label above, field, then one line of hint OR error OR success below.
 
 ### React
-`window.ISMDesignSystem_106e83.Input` renders a `<label>` wrapping a 13px label and the field.
+`import { Input, Textarea } from '@ism/ui'` (source: `packages/react/src/components/Input.tsx`). Renders the `.field` markup below: `.label` tied with `for`/`id` (an id is generated when you pass none), the field, then one line of error, success or hint linked with `aria-describedby`. The ref goes to the `<input>`; other input attributes (`name`, `value`, `onChange`, `autoComplete`, `inputMode`, `required`, …) are passed through.
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `label` | `string` | — | Shown above the field. |
-| `placeholder` | `string` | — | An example, never the label. |
-| `dark` | `boolean` | `false` | Translucent field for `.sec-ink` / black surfaces. |
+| `label` | `ReactNode` (required) | — | Shown above the field. A placeholder is not a label. |
+| `hint` | `ReactNode` | — | `.hint` line; shown only when there is no error or success. |
+| `error` | `ReactNode` | — | `.err` line with an icon; sets `aria-invalid="true"` and replaces the hint. |
+| `success` | `ReactNode` | — | `.cr-ok-msg` line plus a tick inside the field (`.cr-ok`). Only where a check really ran. |
+| `optional` | `boolean` | `false` | Appends the `.opt` marker to the label. |
+| `optionalLabel` | `ReactNode` | `"(optional)"` | Text of the marker; override to translate. |
+| `size` | `"md" \| "lg"` | `"md"` | `lg` is `.input-lg` (60px) with the `.cr-label-lg` label. |
+| `prefix` | `ReactNode` | — | Decorative symbol at the start of the field (renders `.cr-amount`); pair with `size="lg"` for a gift amount. |
 | `type` | `string` | `"text"` | `email`, `tel`, `password`, … |
+| `placeholder` | `string` | — | An example, never the label. |
+| `disabled` | `boolean` | — | Disables the field and dims the label (`.cr-label-off`). |
+| `readOnly` | `boolean` | — | Adds `.cr-ro` and a lock icon in `.cr-adorn-end`. |
+| `dark` | `boolean` | `false` | Translucent field for `.sec-ink` / black surfaces. |
+| `fieldClassName` | `string` | — | Class on the outer `.field`; `className` goes on the `<input>`. |
+
+`Textarea` takes the same props except `size`, `prefix` and `type`, and renders `<textarea class="input">`. `FieldError`, `FieldSuccess` and `FieldHint` (`id`, `children`) are exported for custom fields.
 
 ```jsx
-<Input label="Email" placeholder="you@example.com" />
-<Input label="Email" placeholder="you@example.com" dark />
+<Input label="Email" type="email" autoComplete="email" placeholder="you@example.com" error="Enter a full email address." />
+<Input label="Order #" optional hint="For questions about an ISM Publishing or NFC card order." />
+<Input label="Gift amount (USD)" size="lg" prefix="$" inputMode="decimal" defaultValue="50" />
+<Textarea label="Prayer request" placeholder="How can we help?" />
 ```
-The React version has no error, hint or disabled states; use the HTML classes for full forms.
 
 ### HTML / CSS
 ```html
@@ -60,7 +73,7 @@ The React version has no error, hint or disabled states; use the HTML classes fo
 | Error | `aria-invalid="true"` + `.err` | `--error` border, pale error fill |
 | Success | `.cr-ok` + `.cr-ok-msg`, tick in `.cr-adorn-end.cr-ok-ic` | `--success` border |
 
-Sizes: default 48px, `.input-lg` 60px (pair with `.cr-label-lg` 17px label), amount 76px. Textarea starts at 144px and resizes vertically. Dark: React `dark`.
+Sizes: default 48px, `.input-lg` 60px (pair with `.cr-label-lg` 17px label), amount 76px. Textarea starts at 144px and resizes vertically. Dark: React `dark`. React `size="lg"` and `prefix` give the large and amount fields.
 
 ## Rules
 - Always show a visible `.label` above the field. Placeholders are examples only.

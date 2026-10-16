@@ -10,18 +10,52 @@ The site-wide black footer for ism.bible: a gradient-bordered giving banner, the
 Top to bottom: glow layer, CTA banner, brand column + three nav columns, hairline, legal row.
 
 ### React
-The bundle exposes `window.ISMDesignSystem_106e83.Footer`.
+`import { Footer } from '@ism/ui'` (source: `packages/react/src/components/Footer.tsx`). Data-driven: it renders the same `.nv-foot` markup as the HTML below from `columns`, `socials` and `legal`. Only `columns` is required; the copy is not built in, so pass the text from Content.
 
-| Prop | Type | Default |
-| --- | --- | --- |
-| `ctaText` | `string` (optional) | "Help deliver the Bible beyond every barrier." |
-| `ctaLabel` | `string` (optional) | "Support Bible Access" |
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `columns` | `FooterColumn[]` (required) | — | `{ heading, links: { label, href }[] }`. Headings render as `<h2 class="nv-fcol-h">` inside `<nav class="nv-fnav">`. The site uses three. |
+| `ctaText` | `ReactNode` | — | Mission sentence in the giving banner. |
+| `ctaLabel` | `ReactNode` | — | Banner button label; the button is `.btn-outline-light` with ↗. |
+| `ctaHref` | `string` | — | Banner button destination; the button shows only with both `ctaLabel` and `ctaHref`. The banner is hidden when `ctaText` and `ctaLabel` are both missing. |
+| `tagline` | `ReactNode` | — | Paragraph under the logo. |
+| `socials` | `FooterSocial[]` | — | `{ name, href, icon }`. Each is a 44px `.nv-soc` ring named by `name`; give `icon` `aria-hidden="true"`. |
+| `legal` | `ReactNode[]` | — | Legal lines on the left; each becomes a paragraph. |
+| `legalLinks` | `FooterLink[]` | — | `{ label, href }`: Cookie Policy, Terms, Privacy. |
+| `cookieSettingsLabel` | `ReactNode` | — | Label of the "Cookie settings" `<button>`. Shown only with `onCookieSettings`. |
+| `onCookieSettings` | `() => void` | — | Reopens the CookieBanner. |
+| `legalExtra` | `ReactNode` | — | Extra content at the end of the legal row, for example a language switcher. |
+| `linkComponent` | `ElementType` | `"a"` | Renders every internal link; pass `next/link` in Next.js. Social links are always plain `<a>`. |
+| `logo` | `ReactNode` | — | Replaces the default logo `<img>`. |
+| `logoSrc` | `string` | `"/ism/assets/logos/Full%20Logo%20Black.svg"` | Default logo path; the CSS inverts it to white. |
+| `logoAlt` | `string` | `"International Scripture Ministries"` | |
+| `logoHref` | `string` | `"/"` | |
+| `logoLabel` | `string` | `"International Scripture Ministries home"` | Accessible name of the logo link. |
+| `navLabel` | `string` | `"Footer"` | Accessible name of the columns' `<nav>`. |
+| `compact` | `boolean` | `false` | Forces the phone layout (`.nv-foot-sm`); it also applies below 768px. |
+| …rest | `HTMLAttributes<HTMLElement>` | | `className`, `id`, `aria-*` on the `<footer>`. No `children`. |
 
 ```jsx
-<Footer ctaText="Help deliver the Bible beyond every barrier." ctaLabel="Support Bible Access" />
-```
+import Link from 'next/link';
 
-The React footer is a static picture: its links are plain text, the Platforms column has no Global Bible Network, there is no Newsletter or Cookie settings, and its glow comes from a remote image. Use it for mock-ups. For production pages use the HTML below.
+<Footer
+  linkComponent={Link}
+  ctaText="Help deliver the Bible beyond every barrier."
+  ctaLabel="Support Bible Access"
+  ctaHref="/give"
+  tagline="Delivering unhindered access to the Bible until everyone can engage with Scripture in their own language, without barriers."
+  socials={[{ name: 'Instagram', href: 'https://instagram.com/…', icon: <InstagramGlyph aria-hidden="true" /> }]}
+  columns={[
+    { heading: 'About', links: [{ label: 'About ISM', href: '/about' }, { label: 'Our Mission', href: '/mission' }] },
+    { heading: 'Platforms', links: [{ label: 'dot.Bible App', href: '/app' }] },
+    { heading: 'Get Involved', links: [{ label: 'Give Online', href: '/give' }] },
+  ]}
+  legal={['© 2026 – International Scripture Ministries Inc', 'ISM is a 501(c)(3) nonprofit organization. All donations are tax-deductible.']}
+  legalLinks={[{ label: 'Cookie Policy', href: '/cookies' }, { label: 'Terms', href: '/terms' }, { label: 'Privacy', href: '/privacy' }]}
+  cookieSettingsLabel="Cookie settings"
+  onCookieSettings={openCookieBanner}
+/>
+```
 
 ### HTML / CSS
 ```html

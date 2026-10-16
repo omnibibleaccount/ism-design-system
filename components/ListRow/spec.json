@@ -88,7 +88,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "`window.ISMDesignSystem_106e83.ListRow`"
+    "notes": "`import { ListRow, List, ListGroup, ListItem } from '@ism/ui'` (source: `packages/react/src/components/ListRow.tsx`). `ListRow` is the audio row, styled inline: icon tile, title, a 3px progress line (`role=\"progressbar\"`, named by the title), duration and a 44px play button. The `.cr-lr` rows:"
   },
   "reactNative": {
     "import": "import { ListRow } from '@ism/ui-native'",
@@ -234,7 +234,7 @@
       },
       {
         "variant": "Audio row",
-        "class": "React ListRow, dark or light"
+        "class": "React ListRow, dark or light (dark={false})"
       }
     ]
   ],
@@ -284,8 +284,8 @@
     "Leading icons and avatars are decorative (`aria-hidden=\"true\"`); the title names the row.",
     "Switches use `role=\"switch\"` + `aria-checked` and are labelled by the row title.",
     "Label inset groups with their `.overline` heading through `aria-labelledby`.",
-    "For ↗ rows that open a new tab, add visually hidden \"(opens in a new tab)\".",
-    "In the React audio row, give the play button an `aria-label` in your wrapper if you replace the default ▶."
+    "For ↗ rows that open a new tab, add visually hidden \"(opens in a new tab)\". React `ListItem` with `external` adds it (`newTabLabel` to translate).",
+    "The React audio row's play button is named by `playLabel` (default \"Play\"); translate it, and keep it when you replace the ▶ with `playIcon`."
   ],
   "content": [
     "Titles are short nouns: \"Language\", \"Downloaded Bibles\", \"Daily verse\", \"dot.Bible directory\".",
@@ -294,7 +294,8 @@
   ],
   "snippets": {
     "react": [
-      "<ListRow icon={<HeadphonesIcon/>} title=\"John 3:17-4:54\" meta=\"9:12\" progress={0.3} />"
+      "<ListRow icon={<UiIcon name=\"headphones\" />} title=\"John 3:17-4:54\" meta=\"9:12\" progress={0.3} onPlay={() => play('jhn-3')} />",
+      "<List>\n  <ListItem icon={<UiIcon name=\"globe\" />} title=\"Language\" value=\"Amharic\" end=\"drill\" href=\"/app/language\" />\n  <ListItem avatar={<span className=\"cr-av\">MS</span>} title=\"Maria Santos\" meta=\"Partner · Lima, Peru\" value=\"2d ago\" />\n</List>\n<ListGroup title=\"Reading\">\n  <ListItem icon={<UiIcon name=\"sun\" />} title=\"Daily verse\" meta=\"7:00 each morning\" checked={daily} onCheckedChange={setDaily} />\n</ListGroup>"
     ],
     "html": [
       "<div class=\"cr-list cr-list-div\">\n  <a class=\"cr-lr\" href=\"/app/language\">\n    <span class=\"cr-lr-ic\" aria-hidden=\"true\"><svg>…</svg></span>\n    <span class=\"cr-lr-tx\"><span class=\"cr-lr-t\">Language</span></span>\n    <span class=\"cr-lr-end\">Amharic <svg>›</svg></span>\n  </a>\n  <div class=\"cr-lr\">\n    <span class=\"cr-av\" aria-hidden=\"true\">MS</span>\n    <span class=\"cr-lr-tx\"><span class=\"cr-lr-t\">Maria Santos</span><span class=\"cr-lr-m\">Partner · Lima, Peru</span></span>\n    <span class=\"cr-lr-end\">2d ago</span>\n  </div>\n</div>\n\n<div class=\"cr-list-inset\">\n  <span class=\"overline\" id=\"grp-reading\">Reading</span>\n  <div class=\"cr-inset-grp\" role=\"group\" aria-labelledby=\"grp-reading\">\n    <div class=\"cr-lr\">…\n      <button class=\"cr-sw\" type=\"button\" role=\"switch\" aria-checked=\"true\" aria-labelledby=\"dv\"></button>\n    </div>\n  </div>\n</div>"
@@ -302,7 +303,11 @@
     "other": [
       {
         "lang": "jsx",
-        "code": "<ListRow icon={<HeadphonesIcon/>} title=\"John 3:17-4:54\" meta=\"9:12\" progress={0.3} />"
+        "code": "<ListRow icon={<UiIcon name=\"headphones\" />} title=\"John 3:17-4:54\" meta=\"9:12\" progress={0.3} onPlay={() => play('jhn-3')} />"
+      },
+      {
+        "lang": "jsx",
+        "code": "<List>\n  <ListItem icon={<UiIcon name=\"globe\" />} title=\"Language\" value=\"Amharic\" end=\"drill\" href=\"/app/language\" />\n  <ListItem avatar={<span className=\"cr-av\">MS</span>} title=\"Maria Santos\" meta=\"Partner · Lima, Peru\" value=\"2d ago\" />\n</List>\n<ListGroup title=\"Reading\">\n  <ListItem icon={<UiIcon name=\"sun\" />} title=\"Daily verse\" meta=\"7:00 each morning\" checked={daily} onCheckedChange={setDaily} />\n</ListGroup>"
       },
       {
         "lang": "html",

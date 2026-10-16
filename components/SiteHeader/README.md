@@ -10,13 +10,53 @@ The site-wide black header bar for ism.bible: ISM mark, five main links (three o
 Two parts: the bar (`header.hdr`) and the drawer (`.drawer` with `.drawer-scrim`). The bar is fixed, 72px tall, `var(--black)`.
 
 ### React
-The bundle exposes `window.ISMDesignSystem_106e83.SiteHeader`. It takes no props (`SiteHeaderProps` is empty) and draws a static bar: logo, link row, Give pill, menu icon.
+`import { SiteHeader } from '@ism/ui'` (source: `packages/react/src/components/SiteHeader.tsx`). Data-driven: it renders the bar and drawer markup below from `navigation`, and handles the behaviour in Accessibility: submenus open on click and mouse hover and close on Esc (focus returns to the caret button) and outside click. The drawer traps focus, closes on Esc and scrim click, locks body scroll and returns focus to the menu button. `.is-scrolled` is added automatically past 8px. Only `navigation` is required. Give, the drawer buttons and the skip link are not built in; pass them as props.
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `navigation` | `SiteHeaderNavItem[]` (required) | — | Main links in order, max five. Item: `label`, `href`, `current`, and `children` (`{ label, href, description?, current? }[]`) to make it a caret submenu. With `children`, `href` is the section's own page, shown as the first `.nv-overview` row (`overviewLabel`, default the item's label; `overviewDescription`). `current` sets `aria-current="page"`. |
+| `give` | `ReactNode` | — | The Give pill: `<a className="btn btn-light btn-sm nv-give" href="/give">`. The only button in the bar. |
+| `drawerActions` | `ReactNode` | — | Content of `.nv-dcta`: "Give online" (`btn btn-primary btn-lg`) and "Partner with us" (`btn btn-outline-light btn-lg`). |
+| `languageSwitcher` | `ReactNode` | — | Slot before Give, for example a `LanguageSwitcher`. |
+| `skipLabel` | `ReactNode` | — | Renders the `.skip.nv-skip` link before the header. Without it there is no skip link; render your own as the first focusable element. |
+| `skipHref` | `string` | `"#main"` | |
+| `linkComponent` | `ElementType` | `"a"` | Renders every link; pass `next/link` in Next.js. |
+| `logo` | `ReactNode` | — | Replaces the bar logo `<img>`. |
+| `drawerLogo` | `ReactNode` | — | Replaces the drawer logo (default: decorative `<img>` from `logoSrc`). |
+| `logoSrc` | `string` | `"/ism/assets/logos/Logo%20Black.svg"` | Default logo path; the CSS inverts it to white. |
+| `logoAlt` | `string` | `"ISM"` | |
+| `logoHref` | `string` | `"/"` | |
+| `logoLabel` | `string` | `"International Scripture Ministries home"` | Accessible name of the logo link. |
+| `navLabel` | `string` | `"Main"` | Accessible name of the `<nav>`. |
+| `openMenuLabel` | `string` | `"Open menu"` | Menu button name; override to translate. |
+| `closeMenuLabel` | `string` | `"Close menu"` | Drawer close button name. |
+| `drawerLabel` | `string` | `"Menu"` | Drawer dialog name. |
+| `drawerOpen` | `boolean` | — | Controlled drawer state. |
+| `defaultDrawerOpen` | `boolean` | `false` | Initial state when uncontrolled. |
+| `onDrawerOpenChange` | `(open: boolean) => void` | — | Called when the drawer wants to open or close. |
+| …rest | `HTMLAttributes<HTMLElement>` | | `className`, `id`, `aria-*` on the `<header>` (`className="nv-static"` for docs). No `children`. |
 
 ```jsx
-<SiteHeader />
-```
+import Link from 'next/link';
 
-The React component still shows an older link set (it includes "Download App", "Stories of Impact" and "Bible") and its logo points at `Logo White.svg`. Use it for quick mock-ups only. For production pages use the HTML below, which matches the current website.
+<SiteHeader
+  linkComponent={Link}
+  skipLabel="Skip to content"
+  navigation={[
+    { label: 'About ISM', href: '/about', overviewLabel: 'About ISM overview', overviewDescription: 'Who we are and why',
+      children: [{ label: 'Our Mission', href: '/mission', description: 'Why Bible access matters' }] },
+    { label: 'Resources', href: '/resources', children: [{ label: 'dot.Bible App', href: '/app', description: 'Free Bible apps in 500+ languages' }] },
+    { label: 'Global Network', href: '/global-network' },
+    { label: 'Join The Mission', href: '/join', children: [{ label: 'Partner With Us', href: '/partner' }] },
+    { label: 'Contact', href: '/contact' },
+  ]}
+  give={<Link className="btn btn-light btn-sm nv-give" href="/give"><UiIcon name="heart" size={16} />Give</Link>}
+  drawerActions={<>
+    <Link className="btn btn-primary btn-lg" href="/give">Give online</Link>
+    <Link className="btn btn-outline-light btn-lg" href="/partner">Partner with us</Link>
+  </>}
+/>
+```
 
 ### HTML / CSS
 ```html

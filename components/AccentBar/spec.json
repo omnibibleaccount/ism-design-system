@@ -57,7 +57,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "`window.ISMDesignSystem_106e83.AccentBar` (exported from the Divider module)."
+    "notes": "`import { AccentBar } from '@ism/ui'` (source: `packages/react/src/components/AccentBar.tsx`). Renders the same `.cr-accentbar` markup as the HTML below and forwards its ref and any other `div` attributes."
   },
   "reactNative": {
     "import": "import { AccentBar } from '@ism/ui-native'",
@@ -128,7 +128,7 @@
       },
       {
         "variant": "Light",
-        "class_prop": ".cr-accentbar-light",
+        "class_prop": ".cr-accentbar-light, React light",
         "track": "rgba(0,0,0,.12)"
       }
     ]
@@ -171,7 +171,7 @@
   ],
   "accessibility": [
     "In HTML, give the track `role=\"progressbar\"`, `aria-valuemin`, `aria-valuemax`, `aria-valuenow` and an `aria-label` naming what is progressing.",
-    "The React `AccentBar` renders plain `div`s with no role; wrap it in an element with the progressbar attributes, or show the value in text beside it.",
+    "In React, pass `label` to get the progressbar role and value attributes. Without `label` the bar has no role; show the value in text beside it.",
     "A 3px line alone is hard to see; never make it the only place progress is reported."
   ],
   "content": [
@@ -180,7 +180,7 @@
   ],
   "snippets": {
     "react": [
-      "<AccentBar progress={0.6} />\n<AccentBar progress={0.25} width={320} />"
+      "<AccentBar progress={0.6} label=\"John 3 read\" />\n<AccentBar progress={0.25} width=\"100%\" light label=\"Reading plan: Gospel of John\" />"
     ],
     "html": [
       "<div class=\"cr-accentbar\" role=\"progressbar\" aria-label=\"John 3 read\"\n     aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"60\">\n  <span class=\"cr-accentbar-fill\" style=\"width:60%\"></span>\n</div>\n\n<!-- on a light surface -->\n<div class=\"cr-accentbar cr-accentbar-light\" role=\"progressbar\" aria-label=\"Reading plan\"\n     aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"25\">\n  <span class=\"cr-accentbar-fill\" style=\"width:25%\"></span>\n</div>"
@@ -188,7 +188,7 @@
     "other": [
       {
         "lang": "jsx",
-        "code": "<AccentBar progress={0.6} />\n<AccentBar progress={0.25} width={320} />"
+        "code": "<AccentBar progress={0.6} label=\"John 3 read\" />\n<AccentBar progress={0.25} width=\"100%\" light label=\"Reading plan: Gospel of John\" />"
       },
       {
         "lang": "html",

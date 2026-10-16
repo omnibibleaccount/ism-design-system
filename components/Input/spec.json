@@ -56,7 +56,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "`window.ISMDesignSystem_106e83.Input` renders a `<label>` wrapping a 13px label and the field. The React version has no error, hint or disabled states; use the HTML classes for full forms."
+    "notes": "`import { Input, Textarea } from '@ism/ui'` (source: `packages/react/src/components/Input.tsx`). Renders the `.field` markup below: `.label` tied with `for`/`id` (an id is generated when you pass none), the field, then one line of error, success or hint linked with `aria-describedby`. The ref goes to the `<input>`; other input attributes (`name`, `value`, `onChange`, `autoComplete`, `inputMode`, `required`, …) are passed through. `Textarea` takes the same props except `size`, `prefix` and `type`, and renders `<textarea class=\"input\">`. `FieldError`, `FieldSuccess` and `FieldHint` (`id`, `children`) are exported for custom fields."
   },
   "reactNative": {
     "import": "import { Input } from '@ism/ui-native'",
@@ -248,7 +248,7 @@
     ]
   ],
   "variantNotes": [
-    "Sizes: default 48px, `.input-lg` 60px (pair with `.cr-label-lg` 17px label), amount 76px. Textarea starts at 144px and resizes vertically. Dark: React `dark`."
+    "Sizes: default 48px, `.input-lg` 60px (pair with `.cr-label-lg` 17px label), amount 76px. Textarea starts at 144px and resizes vertically. Dark: React `dark`. React `size=\"lg\"` and `prefix` give the large and amount fields."
   ],
   "states": {
     "documented": null,
@@ -300,7 +300,7 @@
   ],
   "snippets": {
     "react": [
-      "<Input label=\"Email\" placeholder=\"you@example.com\" />\n<Input label=\"Email\" placeholder=\"you@example.com\" dark />"
+      "<Input label=\"Email\" type=\"email\" autoComplete=\"email\" placeholder=\"you@example.com\" error=\"Enter a full email address.\" />\n<Input label=\"Order #\" optional hint=\"For questions about an ISM Publishing or NFC card order.\" />\n<Input label=\"Gift amount (USD)\" size=\"lg\" prefix=\"$\" inputMode=\"decimal\" defaultValue=\"50\" />\n<Textarea label=\"Prayer request\" placeholder=\"How can we help?\" />"
     ],
     "html": [
       "<div class=\"field\">\n  <label class=\"label\" for=\"email\">Email</label>\n  <input class=\"input\" id=\"email\" type=\"email\" autocomplete=\"email\"\n         placeholder=\"you@example.com\" aria-describedby=\"email-err\" aria-invalid=\"true\">\n  <p class=\"err\" id=\"email-err\">Enter a full email address.</p>\n</div>\n\n<div class=\"field\">\n  <label class=\"label\" for=\"order\">Order # <span class=\"opt\">(optional)</span></label>\n  <input class=\"input\" id=\"order\" type=\"text\" aria-describedby=\"order-hint\">\n  <p class=\"hint\" id=\"order-hint\">For questions about an ISM Publishing or NFC card order.</p>\n</div>\n\n<div class=\"field\">\n  <label class=\"label cr-label-lg\" for=\"amt\">Gift amount (USD)</label>\n  <div class=\"cr-amount\"><span class=\"cr-amount-sym\" aria-hidden=\"true\">$</span>\n    <input class=\"input input-lg\" id=\"amt\" inputmode=\"decimal\" value=\"50\"></div>\n</div>"
@@ -308,7 +308,7 @@
     "other": [
       {
         "lang": "jsx",
-        "code": "<Input label=\"Email\" placeholder=\"you@example.com\" />\n<Input label=\"Email\" placeholder=\"you@example.com\" dark />"
+        "code": "<Input label=\"Email\" type=\"email\" autoComplete=\"email\" placeholder=\"you@example.com\" error=\"Enter a full email address.\" />\n<Input label=\"Order #\" optional hint=\"For questions about an ISM Publishing or NFC card order.\" />\n<Input label=\"Gift amount (USD)\" size=\"lg\" prefix=\"$\" inputMode=\"decimal\" defaultValue=\"50\" />\n<Textarea label=\"Prayer request\" placeholder=\"How can we help?\" />"
       },
       {
         "lang": "html",

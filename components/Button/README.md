@@ -11,20 +11,24 @@ Pill-shaped call-to-action button used across ISM's app, site, and print/email c
 A pill with a label and an optional trailing icon. No shadow; hover darkens one step; no scale.
 
 ### React
-`import { Button } from` the bundle (`window.ISMDesignSystem_106e83.Button`).
+`import { Button } from '@ism/ui'` (source: `packages/react/src/components/Button.tsx`). Renders a `<button type="button">` by default and an `<a>` when `href` is given (buttons do things, links go places). It uses the same `.btn` classes as the HTML below.
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `variant` | `"primary" \| "outlineDark" \| "outlineLight" \| "solidWhite" \| "ghost"` | `"primary"` | `primary` (solid Horizon Blue) is reserved for the ONE primary action in a group, never pair two blue buttons together. `outlineDark`/`outlineLight`/`solidWhite` are secondary actions, matched to the section behind them. `ghost` is a text-only inline link-button. |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | |
-| `disabled` | `boolean` | `false` | Fades to 45% and blocks the pointer. |
-| `icon` | `ReactNode` | — | Optional trailing icon element (e.g. an arrow glyph). |
-| `style` | `CSSProperties` | — | Merged last. |
-| …rest | `ButtonHTMLAttributes` | | `type`, `onClick`, `aria-*`. |
+| `variant` | `"primary" \| "outlineLight" \| "outlineDark" \| "solidWhite" \| "ghost"` | `"primary"` | `primary` (solid Horizon Blue) is reserved for the ONE primary action in a group, never pair two blue buttons together. `outlineLight` and `ghost` suit light sections; `outlineDark` and `solidWhite` suit dark sections. |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | `.btn-sm` 36px, default 44px, `.btn-lg` 52px. |
+| `block` | `boolean` | `false` | Full width (`.cr-btn-block`). |
+| `loading` | `boolean` | `false` | Sets `aria-busy` and blocks interaction (`disabled` on a `<button>`, `aria-disabled` on a link). The label stays and the width does not change; put the spinner and "Sending…" label in `children`. |
+| `disabled` | `boolean` | `false` | On a `<button>`, the native attribute. With `href`, renders `aria-disabled="true"` and `tabIndex={-1}`. |
+| `href` | `string` | — | Renders an `<a class="btn">`; accepts anchor attributes (`target`, `rel`, …). |
+| `icon` | `ReactNode` | — | Trailing icon, wrapped in `<span class="arrow" aria-hidden="true">`, for example `<UiIcon name="arrow-right" />` or `"↗"`. |
+| `children` | `ReactNode` | — | The label. |
+| …rest | `ButtonHTMLAttributes` or `AnchorHTMLAttributes` | | `type`, `onClick`, `className`, `style`, `aria-*`. The ref goes to the rendered element. |
 
 ```jsx
-<Button variant="primary">Get Started</Button>
-<Button variant="outlineDark" icon={<ArrowIcon/>}>Download the App</Button>
+<Button variant="primary" href="/give" icon="↗">Give online</Button>
+<Button variant="outlineLight" href="/about">Learn about ISM</Button>
+<Button variant="primary" loading><span className="spin" aria-hidden="true" />Sending…</Button>
 ```
 
 ### HTML / CSS

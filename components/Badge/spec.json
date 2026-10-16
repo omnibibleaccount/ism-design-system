@@ -51,7 +51,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "`window.ISMDesignSystem_106e83.Badge`. Small uppercase, wide-tracked eyebrow label inside a thin outlined pill — ISM's signature way to tag a section (\"YOU'RE ALMOST DONE!\", \"GET A SNEAK PEEK\")."
+    "notes": "`import { Badge, StatusBadge, Tag, Count } from '@ism/ui'` (source: `packages/react/src/components/Badge.tsx`). `Badge`: small uppercase, wide-tracked eyebrow label inside a thin outlined pill, ISM's signature way to tag a section (\"YOU'RE ALMOST DONE!\", \"GET A SNEAK PEEK\"). Styled inline; extra `span` attributes and `style` are passed through. The other three render the HTML classes below:"
   },
   "reactNative": {
     "import": "import { Badge } from '@ism/ui-native'",
@@ -212,7 +212,7 @@
   ],
   "snippets": {
     "react": [
-      "<Badge tone=\"outlineDark\">Trending</Badge>\n<Badge tone=\"accentText\">You're almost done!</Badge>"
+      "<Badge tone=\"outlineDark\">Trending</Badge>\n<Badge tone=\"accentText\">You're almost done!</Badge>\n<StatusBadge tone=\"success\">Live</StatusBadge>\n<StatusBadge tone=\"info\" size=\"md\" dot>New</StatusBadge>\n<Tag active onRemove={() => removeFilter('hd-radio')}>HD Radio</Tag>\n<Count hiddenLabel=\"unread\">3</Count>"
     ],
     "html": [
       "<span class=\"badge badge-success\">Live</span>\n<span class=\"badge cr-badge-md badge-info\"><span class=\"cr-badge-dot\"></span>New</span>\n<span class=\"badge cr-solid-error\">Failed</span>\n\n<span class=\"cr-tag cr-tag-active\">HD Radio\n  <button type=\"button\" class=\"cr-tag-x\" aria-label=\"Remove HD Radio\">\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg>\n  </button>\n</span>\n\n<a class=\"navlink\" href=\"/inbox\">Messages <span class=\"count\">3</span></a>"
@@ -220,7 +220,7 @@
     "other": [
       {
         "lang": "jsx",
-        "code": "<Badge tone=\"outlineDark\">Trending</Badge>\n<Badge tone=\"accentText\">You're almost done!</Badge>"
+        "code": "<Badge tone=\"outlineDark\">Trending</Badge>\n<Badge tone=\"accentText\">You're almost done!</Badge>\n<StatusBadge tone=\"success\">Live</StatusBadge>\n<StatusBadge tone=\"info\" size=\"md\" dot>New</StatusBadge>\n<Tag active onRemove={() => removeFilter('hd-radio')}>HD Radio</Tag>\n<Count hiddenLabel=\"unread\">3</Count>"
       },
       {
         "lang": "html",

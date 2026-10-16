@@ -12,7 +12,9 @@ Separates content: the React `Divider` gradient accent, the `.thread` signature 
 ## Anatomy & markup
 
 ### React
-`window.ISMDesignSystem_106e83.Divider`: a pill-ended bar painted with `--gradient-signature`.
+`import { Divider, Rule, OrDivider, VerticalRule, Thread } from '@ism/ui'` (source: `packages/react/src/components/Divider.tsx`).
+
+`Divider`: a pill-ended bar painted with `--gradient-signature`. Decorative: it always renders `aria-hidden="true"`.
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
@@ -20,9 +22,21 @@ Separates content: the React `Divider` gradient accent, the `.thread` signature 
 | `length` | `number` | `72` | px along the main axis. |
 | `thickness` | `number` | `2` | px across. |
 
+The other four render the HTML classes below:
+
+| Component | Props | Renders |
+|---|---|---|
+| `Rule` | `tone` (`"hairline" \| "strong" \| "dark"`, default `"hairline"`) | `<hr class="cr-rule">`, plus `.cr-rule-strong` or `.cr-rule-dark` |
+| `OrDivider` | `children` (string, default `"or"`) | `.cr-rule-or` with `role="separator"` and the word as its `aria-label` |
+| `VerticalRule` | `span` attributes | `<span class="cr-rule-v" aria-hidden="true">` |
+| `Thread` | `div` attributes | `<div class="thread" aria-hidden="true">` |
+
 ```jsx
 <Divider />
 <Divider orientation="vertical" length={200} />
+<Rule tone="strong" />
+<OrDivider />
+<p style={{ display: 'flex', alignItems: 'center', gap: 16 }}>98.7 FM <VerticalRule /> Amharic</p>
 ```
 
 ### HTML / CSS

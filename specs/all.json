@@ -62,7 +62,7 @@
           }
         ],
         "propsSource": "typescript",
-        "notes": "`window.ISMDesignSystem_106e83.AccentBar` (exported from the Divider module)."
+        "notes": "`import { AccentBar } from '@ism/ui'` (source: `packages/react/src/components/AccentBar.tsx`). Renders the same `.cr-accentbar` markup as the HTML below and forwards its ref and any other `div` attributes."
       },
       "reactNative": {
         "import": "import { AccentBar } from '@ism/ui-native'",
@@ -133,7 +133,7 @@
           },
           {
             "variant": "Light",
-            "class_prop": ".cr-accentbar-light",
+            "class_prop": ".cr-accentbar-light, React light",
             "track": "rgba(0,0,0,.12)"
           }
         ]
@@ -176,7 +176,7 @@
       ],
       "accessibility": [
         "In HTML, give the track `role=\"progressbar\"`, `aria-valuemin`, `aria-valuemax`, `aria-valuenow` and an `aria-label` naming what is progressing.",
-        "The React `AccentBar` renders plain `div`s with no role; wrap it in an element with the progressbar attributes, or show the value in text beside it.",
+        "In React, pass `label` to get the progressbar role and value attributes. Without `label` the bar has no role; show the value in text beside it.",
         "A 3px line alone is hard to see; never make it the only place progress is reported."
       ],
       "content": [
@@ -185,7 +185,7 @@
       ],
       "snippets": {
         "react": [
-          "<AccentBar progress={0.6} />\n<AccentBar progress={0.25} width={320} />"
+          "<AccentBar progress={0.6} label=\"John 3 read\" />\n<AccentBar progress={0.25} width=\"100%\" light label=\"Reading plan: Gospel of John\" />"
         ],
         "html": [
           "<div class=\"cr-accentbar\" role=\"progressbar\" aria-label=\"John 3 read\"\n     aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"60\">\n  <span class=\"cr-accentbar-fill\" style=\"width:60%\"></span>\n</div>\n\n<!-- on a light surface -->\n<div class=\"cr-accentbar cr-accentbar-light\" role=\"progressbar\" aria-label=\"Reading plan\"\n     aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"25\">\n  <span class=\"cr-accentbar-fill\" style=\"width:25%\"></span>\n</div>"
@@ -193,7 +193,7 @@
         "other": [
           {
             "lang": "jsx",
-            "code": "<AccentBar progress={0.6} />\n<AccentBar progress={0.25} width={320} />"
+            "code": "<AccentBar progress={0.6} label=\"John 3 read\" />\n<AccentBar progress={0.25} width=\"100%\" light label=\"Reading plan: Gospel of John\" />"
           },
           {
             "lang": "html",
@@ -2919,7 +2919,7 @@
           }
         ],
         "propsSource": "typescript",
-        "notes": "`window.ISMDesignSystem_106e83.Badge`. Small uppercase, wide-tracked eyebrow label inside a thin outlined pill — ISM's signature way to tag a section (\"YOU'RE ALMOST DONE!\", \"GET A SNEAK PEEK\")."
+        "notes": "`import { Badge, StatusBadge, Tag, Count } from '@ism/ui'` (source: `packages/react/src/components/Badge.tsx`). `Badge`: small uppercase, wide-tracked eyebrow label inside a thin outlined pill, ISM's signature way to tag a section (\"YOU'RE ALMOST DONE!\", \"GET A SNEAK PEEK\"). Styled inline; extra `span` attributes and `style` are passed through. The other three render the HTML classes below:"
       },
       "reactNative": {
         "import": "import { Badge } from '@ism/ui-native'",
@@ -3080,7 +3080,7 @@
       ],
       "snippets": {
         "react": [
-          "<Badge tone=\"outlineDark\">Trending</Badge>\n<Badge tone=\"accentText\">You're almost done!</Badge>"
+          "<Badge tone=\"outlineDark\">Trending</Badge>\n<Badge tone=\"accentText\">You're almost done!</Badge>\n<StatusBadge tone=\"success\">Live</StatusBadge>\n<StatusBadge tone=\"info\" size=\"md\" dot>New</StatusBadge>\n<Tag active onRemove={() => removeFilter('hd-radio')}>HD Radio</Tag>\n<Count hiddenLabel=\"unread\">3</Count>"
         ],
         "html": [
           "<span class=\"badge badge-success\">Live</span>\n<span class=\"badge cr-badge-md badge-info\"><span class=\"cr-badge-dot\"></span>New</span>\n<span class=\"badge cr-solid-error\">Failed</span>\n\n<span class=\"cr-tag cr-tag-active\">HD Radio\n  <button type=\"button\" class=\"cr-tag-x\" aria-label=\"Remove HD Radio\">\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg>\n  </button>\n</span>\n\n<a class=\"navlink\" href=\"/inbox\">Messages <span class=\"count\">3</span></a>"
@@ -3088,7 +3088,7 @@
         "other": [
           {
             "lang": "jsx",
-            "code": "<Badge tone=\"outlineDark\">Trending</Badge>\n<Badge tone=\"accentText\">You're almost done!</Badge>"
+            "code": "<Badge tone=\"outlineDark\">Trending</Badge>\n<Badge tone=\"accentText\">You're almost done!</Badge>\n<StatusBadge tone=\"success\">Live</StatusBadge>\n<StatusBadge tone=\"info\" size=\"md\" dot>New</StatusBadge>\n<Tag active onRemove={() => removeFilter('hd-radio')}>HD Radio</Tag>\n<Count hiddenLabel=\"unread\">3</Count>"
           },
           {
             "lang": "html",
@@ -4556,7 +4556,7 @@
           }
         ],
         "propsSource": "typescript",
-        "notes": "`import { Button } from` the bundle (`window.ISMDesignSystem_106e83.Button`)."
+        "notes": "`import { Button } from '@ism/ui'` (source: `packages/react/src/components/Button.tsx`). Renders a `<button type=\"button\">` by default and an `<a>` when `href` is given (buttons do things, links go places). It uses the same `.btn` classes as the HTML below."
       },
       "reactNative": {
         "import": "import { Button } from '@ism/ui-native'",
@@ -4719,7 +4719,7 @@
       ],
       "snippets": {
         "react": [
-          "<Button variant=\"primary\">Get Started</Button>\n<Button variant=\"outlineDark\" icon={<ArrowIcon/>}>Download the App</Button>"
+          "<Button variant=\"primary\" href=\"/give\" icon=\"↗\">Give online</Button>\n<Button variant=\"outlineLight\" href=\"/about\">Learn about ISM</Button>\n<Button variant=\"primary\" loading><span className=\"spin\" aria-hidden=\"true\" />Sending…</Button>"
         ],
         "html": [
           "<a class=\"btn btn-primary\" href=\"/give\">Give online <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n<a class=\"btn btn-secondary\" href=\"/about\">Learn about ISM</a>\n<a class=\"btn btn-ghost\" href=\"/faith\">Our statement of faith <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n\n<button class=\"btn btn-primary\" type=\"button\" disabled aria-busy=\"true\">\n  <span class=\"spin\" aria-hidden=\"true\"></span>Sending…\n</button>"
@@ -4727,7 +4727,7 @@
         "other": [
           {
             "lang": "jsx",
-            "code": "<Button variant=\"primary\">Get Started</Button>\n<Button variant=\"outlineDark\" icon={<ArrowIcon/>}>Download the App</Button>"
+            "code": "<Button variant=\"primary\" href=\"/give\" icon=\"↗\">Give online</Button>\n<Button variant=\"outlineLight\" href=\"/about\">Learn about ISM</Button>\n<Button variant=\"primary\" loading><span className=\"spin\" aria-hidden=\"true\" />Sending…</Button>"
           },
           {
             "lang": "html",
@@ -4842,7 +4842,7 @@
           }
         ],
         "propsSource": "typescript",
-        "notes": "`window.ISMDesignSystem_106e83.Card`. Large, immersive, image-led card: full-bleed photo, dark gradient overlay for legibility, rounded corners, thin border, a white \"Explore ↗\" pill top-right, and title/eyebrow bottom-left. Used for testament/topic tiles across the dot.Bible app and marketing site."
+        "notes": "`import { Card, ContentCard, CardMedia, CardBody, CardCta } from '@ism/ui'` (source: `packages/react/src/components/Card.tsx`). `Card`: large, immersive, image-led card: full-bleed photo, dark gradient overlay for legibility, rounded corners, thin border, a white \"Explore ↗\" pill top-right, and title/eyebrow bottom-left. Used for testament/topic tiles across the dot.Bible app and marketing site. Styled inline; renders a `div` and forwards its ref. The website `.card` family:"
       },
       "reactNative": {
         "import": "import { Card } from '@ism/ui-native'",
@@ -4942,12 +4942,15 @@
         "card-flat",
         "cr-book-cover",
         "cr-card-body",
+        "cr-card-clip",
         "cr-card-cta",
         "cr-card-dark",
         "cr-card-flush",
         "cr-card-list",
+        "cr-card-media-top",
         "cr-card-role",
         "cr-card-text",
+        "cr-card-tight",
         "cr-media-1610",
         "cr-statement",
         "cr-step-num",
@@ -5042,7 +5045,7 @@
       "accessibility": [
         "Linked cards contain one heading; the link's accessible name comes from it. Keep CTA text short so the name stays readable.",
         "Every photo has meaningful `alt`, or `alt=\"\"` if decorative. Medallion icons are `aria-hidden`.",
-        "React `Card` with `onClick` is a `div`; wrap it in an `<a>` or give it `role=\"link\"` and `tabIndex={0}` with key handling.",
+        "React `Card` with `onClick` is a `div` that gets `role=\"link\"`, `tabIndex={0}` and Enter/Space handling. Give it a `title` so the link has a name. For a real URL, prefer `ContentCard` with `href`.",
         "Text on the React Card always sits on the dark gradient overlay for contrast."
       ],
       "content": [
@@ -5052,7 +5055,8 @@
       ],
       "snippets": {
         "react": [
-          "<Card image=\"/assets/imagery/old-testament.jpg\" eyebrow=\"Explore\" title=\"The Old Testament\" />"
+          "<Card image=\"/assets/imagery/old-testament.jpg\" eyebrow=\"Explore\" title=\"The Old Testament\" onClick={() => open('ot')} />",
+          "<ContentCard variant=\"flush\" href=\"/radio\">\n  <CardMedia src=\"/assets/imagery/radio.jpg\" alt=\"A listener tuning a radio\" ratio=\"1610\" />\n  <CardBody>\n    <span className=\"eyebrow\">Broadcast</span>\n    <h3 className=\"h3\">HD Radio Broadcast</h3>\n    <p className=\"small muted\">Scripture readings on the air, wherever listeners tune in.</p>\n    <CardCta>Learn more</CardCta>\n  </CardBody>\n</ContentCard>"
         ],
         "html": [
           "<a class=\"card cr-card-flush\" href=\"/radio\">\n  <div class=\"media cr-media-1610\"><img class=\"photo\" src=\"…\" alt=\"…\"></div>\n  <div class=\"cr-card-body\">\n    <span class=\"eyebrow\">Broadcast</span>\n    <h3 class=\"h3\">HD Radio Broadcast</h3>\n    <p class=\"small muted\">Scripture readings on the air, wherever listeners tune in.</p>\n    <span class=\"cr-card-cta\">Learn more <span class=\"arrow\" aria-hidden=\"true\">↗</span></span>\n  </div>\n</a>"
@@ -5060,7 +5064,11 @@
         "other": [
           {
             "lang": "jsx",
-            "code": "<Card image=\"/assets/imagery/old-testament.jpg\" eyebrow=\"Explore\" title=\"The Old Testament\" />"
+            "code": "<Card image=\"/assets/imagery/old-testament.jpg\" eyebrow=\"Explore\" title=\"The Old Testament\" onClick={() => open('ot')} />"
+          },
+          {
+            "lang": "jsx",
+            "code": "<ContentCard variant=\"flush\" href=\"/radio\">\n  <CardMedia src=\"/assets/imagery/radio.jpg\" alt=\"A listener tuning a radio\" ratio=\"1610\" />\n  <CardBody>\n    <span className=\"eyebrow\">Broadcast</span>\n    <h3 className=\"h3\">HD Radio Broadcast</h3>\n    <p className=\"small muted\">Scripture readings on the air, wherever listeners tune in.</p>\n    <CardCta>Learn more</CardCta>\n  </CardBody>\n</ContentCard>"
           },
           {
             "lang": "html",
@@ -6825,7 +6833,7 @@
           }
         ],
         "propsSource": "typescript",
-        "notes": "`window.ISMDesignSystem_106e83.Divider`: a pill-ended bar painted with `--gradient-signature`."
+        "notes": "`import { Divider, Rule, OrDivider, VerticalRule, Thread } from '@ism/ui'` (source: `packages/react/src/components/Divider.tsx`). `Divider`: a pill-ended bar painted with `--gradient-signature`. Decorative: it always renders `aria-hidden=\"true\"`. The other four render the HTML classes below:"
       },
       "reactNative": {
         "import": "import { Divider } from '@ism/ui-native'",
@@ -6977,7 +6985,7 @@
       ],
       "snippets": {
         "react": [
-          "<Divider />\n<Divider orientation=\"vertical\" length={200} />"
+          "<Divider />\n<Divider orientation=\"vertical\" length={200} />\n<Rule tone=\"strong\" />\n<OrDivider />\n<p style={{ display: 'flex', alignItems: 'center', gap: 16 }}>98.7 FM <VerticalRule /> Amharic</p>"
         ],
         "html": [
           "<hr class=\"cr-rule\">                         <!-- hairline, --gray-200 -->\n<hr class=\"cr-rule cr-rule-strong\">          <!-- 1px --charcoal-900 -->\n<hr class=\"cr-rule cr-rule-dark\">            <!-- on dark, --border-hairline-dark -->\n\n<div class=\"cr-rule-or\" role=\"separator\" aria-label=\"or\">or</div>\n\n<p style=\"display:flex;align-items:center;gap:16px\">98.7 FM <span class=\"cr-rule-v\" aria-hidden=\"true\"></span> Amharic</p>\n\n<div class=\"thread\" aria-hidden=\"true\"></div>  <!-- 2px gradient line -->"
@@ -6985,7 +6993,7 @@
         "other": [
           {
             "lang": "jsx",
-            "code": "<Divider />\n<Divider orientation=\"vertical\" length={200} />"
+            "code": "<Divider />\n<Divider orientation=\"vertical\" length={200} />\n<Rule tone=\"strong\" />\n<OrDivider />\n<p style={{ display: 'flex', alignItems: 'center', gap: 16 }}>98.7 FM <VerticalRule /> Amharic</p>"
           },
           {
             "lang": "html",
@@ -9122,7 +9130,7 @@
           }
         ],
         "propsSource": "typescript",
-        "notes": "The bundle exposes `window.ISMDesignSystem_106e83.Footer`. The React footer is a static picture: its links are plain text, the Platforms column has no Global Bible Network, there is no Newsletter or Cookie settings, and its glow comes from a remote image. Use it for mock-ups. For production pages use the HTML below."
+        "notes": "`import { Footer } from '@ism/ui'` (source: `packages/react/src/components/Footer.tsx`). Data-driven: it renders the same `.nv-foot` markup as the HTML below from `columns`, `socials` and `legal`. Only `columns` is required; the copy is not built in, so pass the text from Content."
       },
       "reactNative": null,
       "ios": null,
@@ -9210,7 +9218,7 @@
       ],
       "snippets": {
         "react": [
-          "<Footer ctaText=\"Help deliver the Bible beyond every barrier.\" ctaLabel=\"Support Bible Access\" />"
+          "import Link from 'next/link';\n\n<Footer\n  linkComponent={Link}\n  ctaText=\"Help deliver the Bible beyond every barrier.\"\n  ctaLabel=\"Support Bible Access\"\n  ctaHref=\"/give\"\n  tagline=\"Delivering unhindered access to the Bible until everyone can engage with Scripture in their own language, without barriers.\"\n  socials={[{ name: 'Instagram', href: 'https://instagram.com/…', icon: <InstagramGlyph aria-hidden=\"true\" /> }]}\n  columns={[\n    { heading: 'About', links: [{ label: 'About ISM', href: '/about' }, { label: 'Our Mission', href: '/mission' }] },\n    { heading: 'Platforms', links: [{ label: 'dot.Bible App', href: '/app' }] },\n    { heading: 'Get Involved', links: [{ label: 'Give Online', href: '/give' }] },\n  ]}\n  legal={['© 2026 – International Scripture Ministries Inc', 'ISM is a 501(c)(3) nonprofit organization. All donations are tax-deductible.']}\n  legalLinks={[{ label: 'Cookie Policy', href: '/cookies' }, { label: 'Terms', href: '/terms' }, { label: 'Privacy', href: '/privacy' }]}\n  cookieSettingsLabel=\"Cookie settings\"\n  onCookieSettings={openCookieBanner}\n/>"
         ],
         "html": [
           "<footer class=\"nv-foot\">\n  <div class=\"nv-foot-glow\" aria-hidden=\"true\"></div>\n  <div class=\"nv-foot-in\">\n    <div class=\"nv-fcta\">\n      <h2 class=\"nv-fcta-h\">Help deliver the Bible beyond every barrier.</h2>\n      <a class=\"btn btn-outline-light nv-fcta-btn\" href=\"/give\">Support Bible Access <span class=\"arrow\" aria-hidden=\"true\">↗</span></a>\n    </div>\n  </div>\n  <div class=\"nv-foot-in nv-foot-body\">\n    <div class=\"nv-fmain\">\n      <div class=\"nv-fbrand\">\n        <a class=\"nv-flogo\" href=\"/\" aria-label=\"International Scripture Ministries home\"><img src=\"assets/logos/Full%20Logo%20Black.svg\" alt=\"International Scripture Ministries\"></a>\n        <p class=\"nv-ftag\">Delivering unhindered access to the Bible until everyone can engage with Scripture in their own language, without barriers.</p>\n        <div class=\"nv-socials\"><a class=\"nv-soc\" href=\"…\" aria-label=\"Instagram\"><svg viewBox=\"0 0 32 32\" aria-hidden=\"true\">…</svg></a> <!-- Facebook, X, LinkedIn --></div>\n      </div>\n      <nav class=\"nv-fnav\" aria-label=\"Footer\">\n        <div class=\"nv-fcol\"><h2 class=\"nv-fcol-h\">About</h2><a class=\"lnk\" href=\"/about\">About ISM</a> …</div>\n        <div class=\"nv-fcol\"><h2 class=\"nv-fcol-h\">Platforms</h2> …</div>\n        <div class=\"nv-fcol\"><h2 class=\"nv-fcol-h\">Get Involved</h2> …</div>\n      </nav>\n    </div>\n    <div class=\"nv-frule\"></div>\n    <div class=\"nv-flegal\">\n      <div><p>© 2026 – International Scripture Ministries Inc</p><p>ISM is a 501(c)(3) nonprofit organization. All donations are tax-deductible.</p></div>\n      <div class=\"nv-flegal-links\"><a class=\"lnk\" href=\"/cookies\">Cookie Policy</a><a class=\"lnk\" href=\"/terms\">Terms</a><a class=\"lnk\" href=\"/privacy\">Privacy</a><button type=\"button\" class=\"lnk\">Cookie settings</button></div>\n    </div>\n  </div>\n</footer>"
@@ -9218,7 +9226,7 @@
         "other": [
           {
             "lang": "jsx",
-            "code": "<Footer ctaText=\"Help deliver the Bible beyond every barrier.\" ctaLabel=\"Support Bible Access\" />"
+            "code": "import Link from 'next/link';\n\n<Footer\n  linkComponent={Link}\n  ctaText=\"Help deliver the Bible beyond every barrier.\"\n  ctaLabel=\"Support Bible Access\"\n  ctaHref=\"/give\"\n  tagline=\"Delivering unhindered access to the Bible until everyone can engage with Scripture in their own language, without barriers.\"\n  socials={[{ name: 'Instagram', href: 'https://instagram.com/…', icon: <InstagramGlyph aria-hidden=\"true\" /> }]}\n  columns={[\n    { heading: 'About', links: [{ label: 'About ISM', href: '/about' }, { label: 'Our Mission', href: '/mission' }] },\n    { heading: 'Platforms', links: [{ label: 'dot.Bible App', href: '/app' }] },\n    { heading: 'Get Involved', links: [{ label: 'Give Online', href: '/give' }] },\n  ]}\n  legal={['© 2026 – International Scripture Ministries Inc', 'ISM is a 501(c)(3) nonprofit organization. All donations are tax-deductible.']}\n  legalLinks={[{ label: 'Cookie Policy', href: '/cookies' }, { label: 'Terms', href: '/terms' }, { label: 'Privacy', href: '/privacy' }]}\n  cookieSettingsLabel=\"Cookie settings\"\n  onCookieSettings={openCookieBanner}\n/>"
           },
           {
             "lang": "html",
@@ -10328,7 +10336,7 @@
           }
         ],
         "propsSource": "typescript",
-        "notes": "`window.ISMDesignSystem_106e83.Input` renders a `<label>` wrapping a 13px label and the field. The React version has no error, hint or disabled states; use the HTML classes for full forms."
+        "notes": "`import { Input, Textarea } from '@ism/ui'` (source: `packages/react/src/components/Input.tsx`). Renders the `.field` markup below: `.label` tied with `for`/`id` (an id is generated when you pass none), the field, then one line of error, success or hint linked with `aria-describedby`. The ref goes to the `<input>`; other input attributes (`name`, `value`, `onChange`, `autoComplete`, `inputMode`, `required`, …) are passed through. `Textarea` takes the same props except `size`, `prefix` and `type`, and renders `<textarea class=\"input\">`. `FieldError`, `FieldSuccess` and `FieldHint` (`id`, `children`) are exported for custom fields."
       },
       "reactNative": {
         "import": "import { Input } from '@ism/ui-native'",
@@ -10520,7 +10528,7 @@
         ]
       ],
       "variantNotes": [
-        "Sizes: default 48px, `.input-lg` 60px (pair with `.cr-label-lg` 17px label), amount 76px. Textarea starts at 144px and resizes vertically. Dark: React `dark`."
+        "Sizes: default 48px, `.input-lg` 60px (pair with `.cr-label-lg` 17px label), amount 76px. Textarea starts at 144px and resizes vertically. Dark: React `dark`. React `size=\"lg\"` and `prefix` give the large and amount fields."
       ],
       "states": {
         "documented": null,
@@ -10572,7 +10580,7 @@
       ],
       "snippets": {
         "react": [
-          "<Input label=\"Email\" placeholder=\"you@example.com\" />\n<Input label=\"Email\" placeholder=\"you@example.com\" dark />"
+          "<Input label=\"Email\" type=\"email\" autoComplete=\"email\" placeholder=\"you@example.com\" error=\"Enter a full email address.\" />\n<Input label=\"Order #\" optional hint=\"For questions about an ISM Publishing or NFC card order.\" />\n<Input label=\"Gift amount (USD)\" size=\"lg\" prefix=\"$\" inputMode=\"decimal\" defaultValue=\"50\" />\n<Textarea label=\"Prayer request\" placeholder=\"How can we help?\" />"
         ],
         "html": [
           "<div class=\"field\">\n  <label class=\"label\" for=\"email\">Email</label>\n  <input class=\"input\" id=\"email\" type=\"email\" autocomplete=\"email\"\n         placeholder=\"you@example.com\" aria-describedby=\"email-err\" aria-invalid=\"true\">\n  <p class=\"err\" id=\"email-err\">Enter a full email address.</p>\n</div>\n\n<div class=\"field\">\n  <label class=\"label\" for=\"order\">Order # <span class=\"opt\">(optional)</span></label>\n  <input class=\"input\" id=\"order\" type=\"text\" aria-describedby=\"order-hint\">\n  <p class=\"hint\" id=\"order-hint\">For questions about an ISM Publishing or NFC card order.</p>\n</div>\n\n<div class=\"field\">\n  <label class=\"label cr-label-lg\" for=\"amt\">Gift amount (USD)</label>\n  <div class=\"cr-amount\"><span class=\"cr-amount-sym\" aria-hidden=\"true\">$</span>\n    <input class=\"input input-lg\" id=\"amt\" inputmode=\"decimal\" value=\"50\"></div>\n</div>"
@@ -10580,7 +10588,7 @@
         "other": [
           {
             "lang": "jsx",
-            "code": "<Input label=\"Email\" placeholder=\"you@example.com\" />\n<Input label=\"Email\" placeholder=\"you@example.com\" dark />"
+            "code": "<Input label=\"Email\" type=\"email\" autoComplete=\"email\" placeholder=\"you@example.com\" error=\"Enter a full email address.\" />\n<Input label=\"Order #\" optional hint=\"For questions about an ISM Publishing or NFC card order.\" />\n<Input label=\"Gift amount (USD)\" size=\"lg\" prefix=\"$\" inputMode=\"decimal\" defaultValue=\"50\" />\n<Textarea label=\"Prayer request\" placeholder=\"How can we help?\" />"
           },
           {
             "lang": "html",
@@ -11473,7 +11481,7 @@
           }
         ],
         "propsSource": "typescript",
-        "notes": "`window.ISMDesignSystem_106e83.ListRow`"
+        "notes": "`import { ListRow, List, ListGroup, ListItem } from '@ism/ui'` (source: `packages/react/src/components/ListRow.tsx`). `ListRow` is the audio row, styled inline: icon tile, title, a 3px progress line (`role=\"progressbar\"`, named by the title), duration and a 44px play button. The `.cr-lr` rows:"
       },
       "reactNative": {
         "import": "import { ListRow } from '@ism/ui-native'",
@@ -11619,7 +11627,7 @@
           },
           {
             "variant": "Audio row",
-            "class": "React ListRow, dark or light"
+            "class": "React ListRow, dark or light (dark={false})"
           }
         ]
       ],
@@ -11669,8 +11677,8 @@
         "Leading icons and avatars are decorative (`aria-hidden=\"true\"`); the title names the row.",
         "Switches use `role=\"switch\"` + `aria-checked` and are labelled by the row title.",
         "Label inset groups with their `.overline` heading through `aria-labelledby`.",
-        "For ↗ rows that open a new tab, add visually hidden \"(opens in a new tab)\".",
-        "In the React audio row, give the play button an `aria-label` in your wrapper if you replace the default ▶."
+        "For ↗ rows that open a new tab, add visually hidden \"(opens in a new tab)\". React `ListItem` with `external` adds it (`newTabLabel` to translate).",
+        "The React audio row's play button is named by `playLabel` (default \"Play\"); translate it, and keep it when you replace the ▶ with `playIcon`."
       ],
       "content": [
         "Titles are short nouns: \"Language\", \"Downloaded Bibles\", \"Daily verse\", \"dot.Bible directory\".",
@@ -11679,7 +11687,8 @@
       ],
       "snippets": {
         "react": [
-          "<ListRow icon={<HeadphonesIcon/>} title=\"John 3:17-4:54\" meta=\"9:12\" progress={0.3} />"
+          "<ListRow icon={<UiIcon name=\"headphones\" />} title=\"John 3:17-4:54\" meta=\"9:12\" progress={0.3} onPlay={() => play('jhn-3')} />",
+          "<List>\n  <ListItem icon={<UiIcon name=\"globe\" />} title=\"Language\" value=\"Amharic\" end=\"drill\" href=\"/app/language\" />\n  <ListItem avatar={<span className=\"cr-av\">MS</span>} title=\"Maria Santos\" meta=\"Partner · Lima, Peru\" value=\"2d ago\" />\n</List>\n<ListGroup title=\"Reading\">\n  <ListItem icon={<UiIcon name=\"sun\" />} title=\"Daily verse\" meta=\"7:00 each morning\" checked={daily} onCheckedChange={setDaily} />\n</ListGroup>"
         ],
         "html": [
           "<div class=\"cr-list cr-list-div\">\n  <a class=\"cr-lr\" href=\"/app/language\">\n    <span class=\"cr-lr-ic\" aria-hidden=\"true\"><svg>…</svg></span>\n    <span class=\"cr-lr-tx\"><span class=\"cr-lr-t\">Language</span></span>\n    <span class=\"cr-lr-end\">Amharic <svg>›</svg></span>\n  </a>\n  <div class=\"cr-lr\">\n    <span class=\"cr-av\" aria-hidden=\"true\">MS</span>\n    <span class=\"cr-lr-tx\"><span class=\"cr-lr-t\">Maria Santos</span><span class=\"cr-lr-m\">Partner · Lima, Peru</span></span>\n    <span class=\"cr-lr-end\">2d ago</span>\n  </div>\n</div>\n\n<div class=\"cr-list-inset\">\n  <span class=\"overline\" id=\"grp-reading\">Reading</span>\n  <div class=\"cr-inset-grp\" role=\"group\" aria-labelledby=\"grp-reading\">\n    <div class=\"cr-lr\">…\n      <button class=\"cr-sw\" type=\"button\" role=\"switch\" aria-checked=\"true\" aria-labelledby=\"dv\"></button>\n    </div>\n  </div>\n</div>"
@@ -11687,7 +11696,11 @@
         "other": [
           {
             "lang": "jsx",
-            "code": "<ListRow icon={<HeadphonesIcon/>} title=\"John 3:17-4:54\" meta=\"9:12\" progress={0.3} />"
+            "code": "<ListRow icon={<UiIcon name=\"headphones\" />} title=\"John 3:17-4:54\" meta=\"9:12\" progress={0.3} onPlay={() => play('jhn-3')} />"
+          },
+          {
+            "lang": "jsx",
+            "code": "<List>\n  <ListItem icon={<UiIcon name=\"globe\" />} title=\"Language\" value=\"Amharic\" end=\"drill\" href=\"/app/language\" />\n  <ListItem avatar={<span className=\"cr-av\">MS</span>} title=\"Maria Santos\" meta=\"Partner · Lima, Peru\" value=\"2d ago\" />\n</List>\n<ListGroup title=\"Reading\">\n  <ListItem icon={<UiIcon name=\"sun\" />} title=\"Daily verse\" meta=\"7:00 each morning\" checked={daily} onCheckedChange={setDaily} />\n</ListGroup>"
           },
           {
             "lang": "html",
@@ -17385,7 +17398,7 @@
           }
         ],
         "propsSource": "typescript",
-        "notes": "The bundle exposes `window.ISMDesignSystem_106e83.SiteHeader`. It takes no props (`SiteHeaderProps` is empty) and draws a static bar: logo, link row, Give pill, menu icon. The React component still shows an older link set (it includes \"Download App\", \"Stories of Impact\" and \"Bible\") and its logo points at `Logo White.svg`. Use it for quick mock-ups only. For production pages use the HTML below, which matches the current website."
+        "notes": "`import { SiteHeader } from '@ism/ui'` (source: `packages/react/src/components/SiteHeader.tsx`). Data-driven: it renders the bar and drawer markup below from `navigation`, and handles the behaviour in Accessibility: submenus open on click and mouse hover and close on Esc (focus returns to the caret button) and outside click. The drawer traps focus, closes on Esc and scrim click, locks body scroll and returns focus to the menu button. `.is-scrolled` is added automatically past 8px. Only `navigation` is required. Give, the drawer buttons and the skip link are not built in; pass them as props."
       },
       "reactNative": null,
       "ios": null,
@@ -17490,7 +17503,7 @@
       ],
       "snippets": {
         "react": [
-          "<SiteHeader />"
+          "import Link from 'next/link';\n\n<SiteHeader\n  linkComponent={Link}\n  skipLabel=\"Skip to content\"\n  navigation={[\n    { label: 'About ISM', href: '/about', overviewLabel: 'About ISM overview', overviewDescription: 'Who we are and why',\n      children: [{ label: 'Our Mission', href: '/mission', description: 'Why Bible access matters' }] },\n    { label: 'Resources', href: '/resources', children: [{ label: 'dot.Bible App', href: '/app', description: 'Free Bible apps in 500+ languages' }] },\n    { label: 'Global Network', href: '/global-network' },\n    { label: 'Join The Mission', href: '/join', children: [{ label: 'Partner With Us', href: '/partner' }] },\n    { label: 'Contact', href: '/contact' },\n  ]}\n  give={<Link className=\"btn btn-light btn-sm nv-give\" href=\"/give\"><UiIcon name=\"heart\" size={16} />Give</Link>}\n  drawerActions={<>\n    <Link className=\"btn btn-primary btn-lg\" href=\"/give\">Give online</Link>\n    <Link className=\"btn btn-outline-light btn-lg\" href=\"/partner\">Partner with us</Link>\n  </>}\n/>"
         ],
         "html": [
           "<a class=\"skip nv-skip\" href=\"#main\">Skip to content</a>\n<header class=\"hdr\">\n  <div class=\"nv-hdr-in\">\n    <a class=\"nv-logo\" href=\"/\" aria-label=\"International Scripture Ministries home\"><img src=\"assets/logos/Logo%20Black.svg\" alt=\"ISM\"></a>\n    <nav class=\"nv-links ism-desk\" aria-label=\"Main\">\n      <span class=\"nv-sub-wrap\">\n        <button class=\"navlink nv-has-sub\" type=\"button\" aria-expanded=\"false\" aria-controls=\"sub-about\">About ISM<svg class=\"nv-caret\" …><path d=\"M6 9l6 6 6-6\"/></svg></button>\n        <div class=\"nv-subpanel\" id=\"sub-about\" hidden>\n          <a class=\"nv-subitem nv-overview\" href=\"/about\"><span class=\"nv-subitem-txt\"><span class=\"nv-subitem-t\">About ISM overview</span><span class=\"nv-subitem-d\">Who we are and why</span></span><span class=\"nv-subitem-go\" aria-hidden=\"true\">↗</span></a>\n          <a class=\"nv-subitem\" href=\"/mission\">…</a>\n        </div>\n      </span>\n      <!-- Resources ⌄ · Global Network · Join The Mission ⌄ · Contact -->\n      <a class=\"navlink\" href=\"/global-network\">Global Network</a>\n    </nav>\n    <div class=\"nv-actions\">\n      <a class=\"btn btn-light btn-sm nv-give\" href=\"/give\"><svg …heart/>Give</a>\n      <button class=\"iconbtn nv-burger ism-burger\" type=\"button\" aria-label=\"Open menu\" aria-expanded=\"false\" aria-controls=\"ism-drawer\"><svg …/></button>\n    </div>\n  </div>\n</header>\n\n<!-- mobile drawer (rendered when open) -->\n<div class=\"drawer-scrim\"></div>\n<div class=\"drawer\" id=\"ism-drawer\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Menu\">\n  <div class=\"nv-dtop\"><img src=\"assets/logos/Logo%20Black.svg\" alt=\"\"><button class=\"iconbtn\" aria-label=\"Close menu\">…</button></div>\n  <a class=\"dlink\" href=\"/\"><span>Home</span><span class=\"nv-dgo\" aria-hidden=\"true\">↗</span></a>\n  <button class=\"nv-dparent\" type=\"button\" aria-expanded=\"true\" aria-controls=\"d-about\"><span>About ISM</span><svg class=\"nv-caret\" …/></button>\n  <div class=\"nv-dsub\" id=\"d-about\"><a href=\"/about\"><span>About ISM overview</span><span aria-hidden=\"true\">↗</span></a> …</div>\n  <div class=\"nv-dcta\"><a class=\"btn btn-primary btn-lg\" href=\"/give\">Give online</a><a class=\"btn btn-outline-light btn-lg\" href=\"/partner\">Partner with us</a></div>\n</div>"
@@ -17498,7 +17511,7 @@
         "other": [
           {
             "lang": "jsx",
-            "code": "<SiteHeader />"
+            "code": "import Link from 'next/link';\n\n<SiteHeader\n  linkComponent={Link}\n  skipLabel=\"Skip to content\"\n  navigation={[\n    { label: 'About ISM', href: '/about', overviewLabel: 'About ISM overview', overviewDescription: 'Who we are and why',\n      children: [{ label: 'Our Mission', href: '/mission', description: 'Why Bible access matters' }] },\n    { label: 'Resources', href: '/resources', children: [{ label: 'dot.Bible App', href: '/app', description: 'Free Bible apps in 500+ languages' }] },\n    { label: 'Global Network', href: '/global-network' },\n    { label: 'Join The Mission', href: '/join', children: [{ label: 'Partner With Us', href: '/partner' }] },\n    { label: 'Contact', href: '/contact' },\n  ]}\n  give={<Link className=\"btn btn-light btn-sm nv-give\" href=\"/give\"><UiIcon name=\"heart\" size={16} />Give</Link>}\n  drawerActions={<>\n    <Link className=\"btn btn-primary btn-lg\" href=\"/give\">Give online</Link>\n    <Link className=\"btn btn-outline-light btn-lg\" href=\"/partner\">Partner with us</Link>\n  </>}\n/>"
           },
           {
             "lang": "html",
