@@ -63,7 +63,8 @@ Run `python3 scripts/qa_scan.py {files} --route {esp|paste}` first; it automates
 - [ ] Signature is three lines: 'til all have heard, / Troy Carl / President (no "God Bless You")
 - [ ] Footer lists 1-833-60-BIBLE (24253) | contact@ism.bible once; no legacy 65-BIBLE, TTB.org, or Biblebus@ttb.org
 - [ ] Light-mode design only; no dark variant produced
-- [ ] Correct template for the delivery route
+- [ ] Correct template for the delivery route (newsletters: `email-template-newsletter.html`)
+- [ ] Footer used exactly as provided: dark newsletter footer for newsletters only, light footer for every other email
 - [ ] Paste route: no `<style>`, classes, or media queries; no grey shell; images embedded; audio as Play links; under 100 KB
 - [ ] ESP route: hosted HTTPS images, unsubscribe and mailing address present
 - [ ] Rendered at 320, 390, and 430px (paste route also 1440px) with no horizontal scroll and CTA in the first screen

@@ -32,11 +32,12 @@ If content is missing (Scripture text, audio, images, copy), do not stop and do 
 
 ## Email is different (follow the email skill, not the web components)
 
-Emails do not use ism.css, the components, the web tokens or the linter. Every ISM and THRU the BIBLE email (newsletters included) follows the ISM Email Design & Copy Standard v1.1, strictly: it is the single source of truth for email and overrides everything else here. Fetch https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/SKILL.md (download the whole skill as https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails.zip) and its references, then fill one of its templates. Never write an email from scratch and never invent a footer: the footer is already in the template.
+Emails do not use ism.css, the components, the web tokens or the linter. Every ISM and THRU the BIBLE email (newsletters included) follows the ISM Email Design & Copy Standard v1.2, strictly: it is the single source of truth for email and overrides everything else here. Fetch https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/SKILL.md (download the whole skill as https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails.zip) and its references, then fill one of its templates. Never write an email from scratch and never invent a footer: the footer is already in the template (newsletters use the dark newsletter footer, every other email the light one).
 
-- ESP send (Braze, Postmark, Resend): https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/assets/templates/email-template.html (600px max, hosted HTTPS images).
+- ESP newsletter (donor or partner newsletter, impact update, roundup): https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/assets/templates/email-template-newsletter.html (dark newsletter footer).
+- ESP send, any other email: https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/assets/templates/email-template.html (600px max, hosted HTTPS images, light footer).
 - Gmail paste: https://omnibibleaccount.github.io/ism-design-system/skills/ism-emails/assets/templates/email-template-gmail-paste.html (all styles inline, root 420px max, images embedded).
-- Dark text on light only (#F4F4F6 or white, text #000000); light mode only. Horizon Blue #046DE3 for buttons and links only; Radiant Dawn #E7B650 for accents and dividers only.
+- Dark text on light (#F4F4F6 or white, text #000000); light mode only; the newsletter footer is the one approved dark block. Horizon Blue #046DE3 for buttons and links only; Radiant Dawn #E7B650 for accents and dividers only.
 - One first-person primary CTA in the first phone screen. Subject under 45 characters plus a preheader. {FirstName} with "Friend" fallback.
 - Sign-off, bold black: 'til all have heard, / Troy Carl / President. Footer contact once: 1-833-60-BIBLE (24253) | contact@ism.bible.
 - Fonts: headings 'Poppins', Arial, Helvetica, sans-serif; body 'Nunito', Arial, sans-serif; quotes 'Lora', Georgia, serif.

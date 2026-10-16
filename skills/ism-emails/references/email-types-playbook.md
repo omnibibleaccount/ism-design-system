@@ -37,7 +37,7 @@ If a request blends two (e.g., impact story + gift ask), the **primary** CTA set
 6. **Primary CTA button**, Horizon Blue, first-person, above the fold on mobile.
 7. **Optional supporting block**, Scripture in Lora italic, secondary text link, or proof point.
 8. **Sign-off**, bold black, three lines: "'til all have heard," / Troy Carl / President.
-9. **Footer**, org name, tagline, 1-833-60-BIBLE (24253) | contact@ism.bible (once), address/unsubscribe (ESP route), ISM.Bible.
+9. **Footer**, newsletters: the approved dark newsletter footer (`email-template-newsletter.html`). Every other type: the light footer in its template (org name, tagline, 1-833-60-BIBLE (24253) | contact@ism.bible once, address/unsubscribe on the ESP route, ISM.Bible).
 
 ---
 
@@ -63,6 +63,9 @@ If a request blends two (e.g., impact story + gift ask), the **primary** CTA set
 - **Structure:** Lead with the news/number → why it matters to the mission → brief detail → CTA to engage → Scripture or vision line.
 - **Subject formulas:** "{Number} languages now live", "We just launched {thing}", "A milestone worth celebrating".
 - **Primary CTA:** "Explore the {thing}" / "See What's New".
+
+### Newsletters
+Donor and partner newsletters, impact and partner updates, and recurring roundups are newsletters whatever their type below: build them from `assets/templates/email-template-newsletter.html` so they end with the dark newsletter footer.
 
 ### 5. Weekly Update / Celebration
 - **Structure:** Warm open → 2-4 wins (scannable) → at least one positive testimony → a prayer point → CTA. (Aligns with the ISM weekly celebration email pattern; app-user testimonies first.)

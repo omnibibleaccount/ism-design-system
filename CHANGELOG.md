@@ -1,7 +1,7 @@
 # Changelog
 
 ## Unreleased
-- Email: the ISM Email Design & Copy Standard v1.1 is now part of the system as the agent skill `skills/ism-emails/` (workflow, references, ESP and Gmail-paste templates with the approved light footer, logos, QA scan). `rules/email.md` and `rules.json` `applied.email` follow it; the old dark `HTML-ISM-Dark-Footer` requirement is gone. The hosted site serves the skill and `skills/ism-emails.zip`; the generated prompts route email work to it.
+- Email: the ISM Email Design & Copy Standard (v1.2) is now part of the system as the agent skill `skills/ism-emails/` (workflow, references, newsletter, ESP and Gmail-paste templates, logos, QA scan). It is the single source of truth for every email. Newsletters end with the approved dark newsletter footer (`newsletter-footer.html`, Braze block `HTML-ISM-Dark-Footer`); every other email uses the light footer. `rules/email.md` and `rules.json` `applied.email` follow it. The hosted site serves the skill and `skills/ism-emails.zip`; the generated prompts route email work to it.
 - React previews and screenshots render from `@ism/ui`; component READMEs document the current React API.
 - Ten more UI line icons (75 total); web crops of three print photos; AudioPlayer, AnchorNav, Input-on-dark and ListRow fixes.
 

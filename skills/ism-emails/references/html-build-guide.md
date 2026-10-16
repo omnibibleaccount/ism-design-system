@@ -8,7 +8,8 @@ How to produce the ready-to-send HTML deliverable. Pick the delivery route first
 
 | Route | When | Template | Images | Width |
 |---|---|---|---|---|
-| **ESP** | Sent through Braze, Postmark, Resend, or another email service | `assets/templates/email-template.html` | Hosted public HTTPS URLs | Fluid, 600px max |
+| **ESP newsletter** | A newsletter (donor or partner newsletter, impact or partner update, recurring roundup) sent through an ESP | `assets/templates/email-template-newsletter.html` (dark newsletter footer) | Hosted public HTTPS URLs | Fluid, 600px max |
+| **ESP** | Any other email sent through Braze, Postmark, Resend, or another email service | `assets/templates/email-template.html` (light footer) | Hosted public HTTPS URLs | Fluid, 600px max |
 | **Gmail paste** | Troy or staff copy the rendered page from Chrome and paste into Gmail (team updates, personal partner notes) | `assets/templates/email-template-gmail-paste.html` | Embedded base64 via `scripts/embed_images.py` | Root locked to 420px max |
 
 If the user does not say, ask. If it is a team or one-to-one note from Troy's own Gmail, default to Gmail paste.
@@ -29,6 +30,7 @@ If the user does not say, ask. If it is a team or one-to-one note from Troy's ow
 - Keep the head meta: `color-scheme: light`, `supported-color-schemes: light`, viewport.
 - Images: keep the bundled filename in `src` with a `<!-- HOST: replace src with a public HTTPS URL -->` note and bundle the file so the user can upload it. Never use base64 on this route; many clients block data-URI images in received mail.
 - Footer must include a real mailing address and unsubscribe link (`{MAILING_ADDRESS}`, `{UNSUBSCRIBE_URL}`), plus the contact canon.
+- Newsletters: use `email-template-newsletter.html`. Its dark footer (`newsletter-footer.html`) already carries the address, contact canon, preferences, unsubscribe and privacy links; fill `{FIND_A_STATION_URL}`, `{APP_URL}`, `{FACEBOOK_URL}`, `{INSTAGRAM_URL}`, `{YOUTUBE_URL}`, `{PREFERENCES_URL}`, `{UNSUBSCRIBE_URL}` and `{PRIVACY_URL}`. In Braze you may swap the whole footer row for `{{content_blocks.${HTML-ISM-Dark-Footer}}}`. Host `ISM-Logo-White-on-footer-360.png` with the other images. Do not use the dark footer for any other email type.
 
 ## Gmail Paste Route
 
@@ -96,6 +98,7 @@ Do not append invisible spacer characters (zero-width joiners, `&#8199;`, `&#652
 
 - Default header (both routes): `assets/logos/Full-Logo-Black-email-360.png` displayed at 180px wide.
 - Dark photo hero (flattened image only): `Full-Logo-White.png`.
+- Newsletter footer: `ISM-Logo-White-on-footer-360.png` (white ISM logo flattened on `#20242B`), 140px wide.
 - Compact or square: `ISM-Icon.png`.
 - Publishing emails: `ISM-Pub-Logo-highres.jpg`, downscaled and converted to RGB first.
 

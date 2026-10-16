@@ -1,4 +1,4 @@
-# ISM Email Design & Copy Standard (v1.1), The Baseline
+# ISM Email Design & Copy Standard (v1.2), The Baseline
 
 This is the governing standard for every marketing and lifecycle email ISM and THRU the BIBLE (TTB) sends. It exists to lift click-through and response ratios while protecting readability, accessibility, and deliverability for a global partner base. Every email produced by this skill MUST comply with every section and pass the Pre-Send Checklist.
 
@@ -14,6 +14,7 @@ Brand Manager / owner of this standard: Curt Branscombe, Director of Digital Mar
 - Body copy sits on **Celestial White `#F4F4F6`** or white, with **Solar Black `#000000`** text.
 - Dark headers are allowed **only as a flattened image** (photo, logo, title baked in), never as live text a client can invert. Troy prefers light variants; do not produce dark-mode design variants.
 - Never use pure black or pure white as a live-text background. Use them for text and bold headers as the brand palette intends.
+- **One exception, newsletters only:** email newsletters end with the approved dark newsletter footer (§10). It holds the logo, links, address and legal lines, never reading copy. Every other email keeps the light footer.
 
 ## 2. Color = Action Only
 
@@ -68,6 +69,7 @@ Brand Manager / owner of this standard: Curt Branscombe, Director of Digital Mar
 - [ ] Tested in light & dark mode on mobile before send
 - [ ] Signature reads 'til all have heard, / Troy Carl / President
 - [ ] Footer lists 1-833-60-BIBLE (24253) | contact@ism.bible exactly once
+- [ ] Correct footer: dark newsletter footer for newsletters only, light footer for everything else (§10)
 - [ ] Built for the correct delivery route (§9) and under 100 KB total
 
 ## 8. Signature & Contact Canon (v1.1)
@@ -88,6 +90,12 @@ Brand Manager / owner of this standard: Curt Branscombe, Director of Digital Mar
 - **Gmail paste route (Troy's team and partner emails composed in Chrome and pasted into Gmail):** Gmail deletes `<style>` blocks, media queries, and classes, and bakes the browser window width into any full-width wrapper. Therefore: every style inline, no stylesheet, no classes, no grey outer shell, root table `width:100%;max-width:420px`, images embedded as compressed base64, audio as tappable Play links (never HTML5 players), no `overflow:hidden` wrappers.
 - **Size:** keep the whole message under ~100 KB; Gmail clips at about 102 KB and hides content behind "View entire message."
 - For recurring paste-delivered emails, recommend moving to an ESP once the ism.bible domain is verified, so the layout can be fully fluid on desktop and phone.
+
+## 10. Footers (v1.2)
+
+- **Email newsletters** (donor and partner newsletters, impact and partner updates, recurring roundups) use the approved **dark newsletter footer**: `assets/templates/newsletter-footer.html`, already built into `assets/templates/email-template-newsletter.html`. Background `#20242B`; white ISM logo (`assets/logos/ISM-Logo-White-on-footer-360.png`); Find a station and Download the app links; Facebook, Instagram and YouTube; `International Scripture Ministries, Inc.` / `PO Box 24253, Boone, IA 50950` / `1-833-60-BIBLE (24253) | contact@ism.bible`; the subscription notice; Manage preferences, Unsubscribe and Privacy. Links `#8AB4F0`, address `#B8B9BB`, notice `#8F9295`. In Braze the same footer is the shared content block `{{content_blocks.${HTML-ISM-Dark-Footer}}}`.
+- **Every other email** (appeals, thank-yous, receipts, prayer, welcome, events, re-engagement, recruitment, Gmail paste) uses the **light footer** already in its template.
+- Use the footer exactly as provided. Do not recolour it, restyle it, add a second contact line, or use the dark footer outside newsletters.
 
 ---
 

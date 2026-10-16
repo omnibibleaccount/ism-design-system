@@ -34,8 +34,8 @@
 - [rules/email.md](rules/email.md): email, short form of the email standard
 
 ## Email
-- [skills/ism-emails/SKILL.md](skills/ism-emails/SKILL.md): the ISM Email Design & Copy Standard v1.1 as an agent skill. Every ISM and THRU the BIBLE email follows it, not the web components.
-- [skills/ism-emails/assets/templates](skills/ism-emails/assets/templates): ESP and Gmail-paste HTML templates (the footer is inside each)
+- [skills/ism-emails/SKILL.md](skills/ism-emails/SKILL.md): the ISM Email Design & Copy Standard v1.2 as an agent skill. Every ISM and THRU the BIBLE email follows it, not the web components.
+- [skills/ism-emails/assets/templates](skills/ism-emails/assets/templates): newsletter (dark newsletter footer), ESP and Gmail-paste HTML templates; the footer is inside each
 - [skills/ism-emails/scripts/qa_scan.py](skills/ism-emails/scripts/qa_scan.py): the email QA scan
 - [rules/social.md](rules/social.md): social (thin, observed only)
 

@@ -36,17 +36,18 @@ const goodLabels = rules.voice.buttons.good.join(', ');
 const em = rules.applied.email;
 const emailFull = `## Email is different (follow the email skill, not the web components)
 
-Emails do not use ism.css, the components, the web tokens or the linter. Every ISM and THRU the BIBLE email (newsletters included) follows the ${em.standard}, strictly: it is the single source of truth for email and overrides everything else here. Fetch ${BASE}/${em.skill} (download the whole skill as ${BASE}/skills/ism-emails.zip) and its references, then fill one of its templates. Never write an email from scratch and never invent a footer: the footer is already in the template.
+Emails do not use ism.css, the components, the web tokens or the linter. Every ISM and THRU the BIBLE email (newsletters included) follows the ${em.standard}, strictly: it is the single source of truth for email and overrides everything else here. Fetch ${BASE}/${em.skill} (download the whole skill as ${BASE}/skills/ism-emails.zip) and its references, then fill one of its templates. Never write an email from scratch and never invent a footer: the footer is already in the template (newsletters use the dark newsletter footer, every other email the light one).
 
-- ESP send (Braze, Postmark, Resend): ${BASE}/${em.templates.esp.file} (${em.templates.esp.maxWidthPx}px max, hosted HTTPS images).
+- ESP newsletter (donor or partner newsletter, impact update, roundup): ${BASE}/${em.templates.espNewsletter.file} (dark newsletter footer).
+- ESP send, any other email: ${BASE}/${em.templates.esp.file} (${em.templates.esp.maxWidthPx}px max, hosted HTTPS images, light footer).
 - Gmail paste: ${BASE}/${em.templates.gmailPaste.file} (all styles inline, root ${em.templates.gmailPaste.rootMaxWidthPx}px max, images embedded).
-- Dark text on light only (${em.palette['celestial-white']} or white, text ${em.palette['solar-black']}); light mode only. Horizon Blue ${em.palette['horizon-blue']} for buttons and links only; Radiant Dawn ${em.palette['radiant-dawn']} for accents and dividers only.
+- Dark text on light (${em.palette['celestial-white']} or white, text ${em.palette['solar-black']}); light mode only; the newsletter footer is the one approved dark block. Horizon Blue ${em.palette['horizon-blue']} for buttons and links only; Radiant Dawn ${em.palette['radiant-dawn']} for accents and dividers only.
 - One first-person primary CTA in the first phone screen. Subject under ${em.subjectMaxChars} characters plus a preheader. {FirstName} with "${em.personalization.fallback}" fallback.
 - Sign-off, bold black: ${em.signature.join(' / ')}. Footer contact once: ${em.footer.contact}.
 - Fonts: headings ${em.fonts.headings}; body ${em.fonts.body}; quotes ${em.fonts.quotes}.
 - No em dashes, no emoji, no hidden characters. Run ${em.qa} and fix every FAIL.
 `;
-const emailShort = `EMAIL (the email standard is the single source of truth for email and overrides everything else here, web tokens included): never build email from the components or from scratch. Fetch ${BASE}/${em.skill} and fill ${BASE}/${em.templates.esp.file} (ESP) or ${BASE}/${em.templates.gmailPaste.file} (Gmail paste); the footer is in the template. Dark text on light, light mode only; blue for buttons and links only; one first-person CTA; sign-off ${em.signature.join(' / ')}; footer ${em.footer.contact} once; no em dashes or emoji.`;
+const emailShort = `EMAIL (the email standard is the single source of truth for email and overrides everything else here, web tokens included): never build email from the components or from scratch. Fetch ${BASE}/${em.skill} and fill ${BASE}/${em.templates.espNewsletter.file} (newsletters, dark footer), ${BASE}/${em.templates.esp.file} (other ESP emails) or ${BASE}/${em.templates.gmailPaste.file} (Gmail paste); the footer is in the template. Dark text on light, light mode only; blue for buttons and links only; one first-person CTA; sign-off ${em.signature.join(' / ')}; footer ${em.footer.contact} once; no em dashes or emoji.`;
 
 const full = `# ISM Design System: system prompt (v${tokens.version})
 

@@ -88,7 +88,7 @@ writeFileSync(join(OUT, 'llms.txt'), `# ISM Design System (hosted)
 
 ## Email
 - Every email follows the email skill, not the web components: [SKILL.md](${u('skills/ism-emails/SKILL.md')}) ([zip](${u('skills/ism-emails.zip')}))
-- Templates: [ESP](${u('skills/ism-emails/assets/templates/email-template.html')}), [Gmail paste](${u('skills/ism-emails/assets/templates/email-template-gmail-paste.html')}); rules: [email.md](${u('rules/email.md')})
+- Templates: [Newsletter](${u('skills/ism-emails/assets/templates/email-template-newsletter.html')}) (dark newsletter footer), [ESP](${u('skills/ism-emails/assets/templates/email-template.html')}), [Gmail paste](${u('skills/ism-emails/assets/templates/email-template-gmail-paste.html')}); rules: [email.md](${u('rules/email.md')})
 
 ## Visual reference
 - Screenshots: ${u('screenshots/<Name>.png')}; live specimens: ${u('previews/<Name>.html')}

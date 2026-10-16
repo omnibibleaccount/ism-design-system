@@ -819,16 +819,25 @@
     },
     "email": {
       "status": "standard",
-      "standard": "ISM Email Design & Copy Standard v1.1",
+      "standard": "ISM Email Design & Copy Standard v1.2",
       "owner": "Curt Branscombe, Director of Digital Marketing",
       "skill": "skills/ism-emails/SKILL.md",
       "authority": "Single source of truth for all ISM and THRU the BIBLE email, newsletters included. Overrides tokens.json, rules, components and older email kits for email. Strict adherence required by the President.",
       "templates": {
+        "espNewsletter": {
+          "file": "skills/ism-emails/assets/templates/email-template-newsletter.html",
+          "maxWidthPx": 600,
+          "images": "hosted HTTPS",
+          "footer": "dark newsletter footer",
+          "use": "donor and partner newsletters, impact and partner updates, recurring roundups"
+        },
         "esp": {
           "file": "skills/ism-emails/assets/templates/email-template.html",
           "maxWidthPx": 600,
           "images": "hosted HTTPS",
-          "mediaQueries": true
+          "mediaQueries": true,
+          "footer": "light",
+          "use": "every other email sent through an ESP"
         },
         "gmailPaste": {
           "file": "skills/ism-emails/assets/templates/email-template-gmail-paste.html",
@@ -836,19 +845,49 @@
           "images": "embedded base64 (scripts/embed_images.py)",
           "styleBlock": false,
           "classes": false,
-          "mediaQueries": false
+          "mediaQueries": false,
+          "footer": "light"
         }
       },
       "footer": {
-        "source": "included in each template",
-        "background": "#F4F4F6",
+        "newsletter": {
+          "file": "skills/ism-emails/assets/templates/newsletter-footer.html",
+          "background": "#20242B",
+          "logo": "skills/ism-emails/assets/logos/ISM-Logo-White-on-footer-360.png",
+          "links": [
+            "Find a station",
+            "Download the app",
+            "Facebook",
+            "Instagram",
+            "YouTube",
+            "Manage preferences",
+            "Unsubscribe",
+            "Privacy"
+          ],
+          "address": [
+            "International Scripture Ministries, Inc.",
+            "PO Box 24253, Boone, IA 50950"
+          ],
+          "colors": {
+            "link": "#8AB4F0",
+            "address": "#B8B9BB",
+            "notice": "#8F9295"
+          },
+          "braze": "{{content_blocks.${HTML-ISM-Dark-Footer}}}",
+          "scope": "newsletters only"
+        },
+        "default": {
+          "source": "included in each non-newsletter template",
+          "background": "#F4F4F6",
+          "tagline": "Making Scripture accessible to all nations, anywhere.",
+          "espRequires": [
+            "mailing address",
+            "unsubscribe link"
+          ]
+        },
         "contact": "1-833-60-BIBLE (24253) | contact@ism.bible",
         "contactTimes": 1,
-        "espRequires": [
-          "mailing address",
-          "unsubscribe link"
-        ],
-        "tagline": "Making Scripture accessible to all nations, anywhere."
+        "rule": "use exactly as provided; never write or restyle a footer"
       },
       "signature": [
         "'til all have heard,",
@@ -863,7 +902,7 @@
         "TTB.org (as contact)",
         "Biblebus@ttb.org"
       ],
-      "colorScheme": "light only; no dark variants",
+      "colorScheme": "light only; no dark variants (the newsletter footer is the one approved dark block)",
       "liveTextOnDark": false,
       "palette": {
         "solar-black": "#000000",
@@ -928,7 +967,7 @@
       ],
       "superseded": {
         "files": "reference/ui-kits/marketing-email/",
-        "reason": "pre-standard: 650px, Inter, dark #20242B footer (HTML-ISM-Dark-Footer), gradient hero word"
+        "reason": "pre-standard: 650px, Inter, gradient hero word, cream Scripture band; their dark footer is standardised as the newsletter footer in the skill"
       }
     },
     "social": {
