@@ -88,7 +88,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "`window.ISMDesignSystem_106e83.ListRow`"
+    "notes": "`import { ListRow, List, ListGroup, ListItem } from '@ism/ui'`. `ListRow` is the audio row: icon, title, progress line, duration and play button. The `.cr-lr` rows:"
   },
   "reactNative": {
     "import": "import { ListRow } from '@ism/ui-native'",
@@ -262,7 +262,7 @@
     "The switch uses Horizon Blue (`--horizon-blue`) when on; keep primary buttons out of list groups.",
     "Use `--gradient-violet` avatars and `--blue-tint` icon tiles; keep one leading style per group.",
     "Keep titles to one line. Only `.cr-lr-two` rows may wrap their meta.",
-    "The React audio row draws its progress in solid Horizon Blue as built. When you build an audio row in HTML, use AccentBar (`.cr-accentbar`, gradient) for the progress line instead."
+    "Fill an audio row's progress line with the signature gradient: in HTML use AccentBar (`.cr-accentbar`); the React `ListRow` draws it with `--gradient-line`."
   ],
   "do": [
     "Use for settings, menus, people, languages, downloads and links in app screens and account pages.",
@@ -275,7 +275,7 @@
     "The switch uses Horizon Blue (`--horizon-blue`) when on; keep primary buttons out of list groups.",
     "Use `--gradient-violet` avatars and `--blue-tint` icon tiles; keep one leading style per group.",
     "Keep titles to one line. Only `.cr-lr-two` rows may wrap their meta.",
-    "The React audio row draws its progress in solid Horizon Blue as built. When you build an audio row in HTML, use AccentBar (`.cr-accentbar`, gradient) for the progress line instead."
+    "Fill an audio row's progress line with the signature gradient: in HTML use AccentBar (`.cr-accentbar`); the React `ListRow` draws it with `--gradient-line`."
   ],
   "dont": [
     "Do not use for data with several comparable columns; use Table. Do not use for marketing content with images; use Card."
@@ -285,7 +285,7 @@
     "Switches use `role=\"switch\"` + `aria-checked` and are labelled by the row title.",
     "Label inset groups with their `.overline` heading through `aria-labelledby`.",
     "For ↗ rows that open a new tab, add visually hidden \"(opens in a new tab)\".",
-    "In the React audio row, give the play button an `aria-label` in your wrapper if you replace the default ▶."
+    "The React audio row names its play button with `playLabel` (default \"Play\"); translate it with the page. Its progress line has `role=\"progressbar\"` named by the title."
   ],
   "content": [
     "Titles are short nouns: \"Language\", \"Downloaded Bibles\", \"Daily verse\", \"dot.Bible directory\".",
@@ -294,7 +294,8 @@
   ],
   "snippets": {
     "react": [
-      "<ListRow icon={<HeadphonesIcon/>} title=\"John 3:17-4:54\" meta=\"9:12\" progress={0.3} />"
+      "<ListRow icon={<UiIcon name=\"headphones\" />} title=\"John 3:17–4:54\" meta=\"9:12\" progress={0.3} onPlay={play} />",
+      "<ListGroup title=\"Reading\">\n  <ListItem icon={<UiIcon name=\"globe\" />} title=\"Language\" value=\"Amharic\" end=\"drill\" href=\"/app/language\" />\n  <ListItem icon={<UiIcon name=\"sun\" />} title=\"Daily verse\" checked={daily} onCheckedChange={setDaily} />\n</ListGroup>"
     ],
     "html": [
       "<div class=\"cr-list cr-list-div\">\n  <a class=\"cr-lr\" href=\"/app/language\">\n    <span class=\"cr-lr-ic\" aria-hidden=\"true\"><svg>…</svg></span>\n    <span class=\"cr-lr-tx\"><span class=\"cr-lr-t\">Language</span></span>\n    <span class=\"cr-lr-end\">Amharic <svg>›</svg></span>\n  </a>\n  <div class=\"cr-lr\">\n    <span class=\"cr-av\" aria-hidden=\"true\">MS</span>\n    <span class=\"cr-lr-tx\"><span class=\"cr-lr-t\">Maria Santos</span><span class=\"cr-lr-m\">Partner · Lima, Peru</span></span>\n    <span class=\"cr-lr-end\">2d ago</span>\n  </div>\n</div>\n\n<div class=\"cr-list-inset\">\n  <span class=\"overline\" id=\"grp-reading\">Reading</span>\n  <div class=\"cr-inset-grp\" role=\"group\" aria-labelledby=\"grp-reading\">\n    <div class=\"cr-lr\">…\n      <button class=\"cr-sw\" type=\"button\" role=\"switch\" aria-checked=\"true\" aria-labelledby=\"dv\"></button>\n    </div>\n  </div>\n</div>"
@@ -302,7 +303,11 @@
     "other": [
       {
         "lang": "jsx",
-        "code": "<ListRow icon={<HeadphonesIcon/>} title=\"John 3:17-4:54\" meta=\"9:12\" progress={0.3} />"
+        "code": "<ListRow icon={<UiIcon name=\"headphones\" />} title=\"John 3:17–4:54\" meta=\"9:12\" progress={0.3} onPlay={play} />"
+      },
+      {
+        "lang": "jsx",
+        "code": "<ListGroup title=\"Reading\">\n  <ListItem icon={<UiIcon name=\"globe\" />} title=\"Language\" value=\"Amharic\" end=\"drill\" href=\"/app/language\" />\n  <ListItem icon={<UiIcon name=\"sun\" />} title=\"Daily verse\" checked={daily} onCheckedChange={setDaily} />\n</ListGroup>"
       },
       {
         "lang": "html",

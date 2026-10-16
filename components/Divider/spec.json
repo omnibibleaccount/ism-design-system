@@ -56,7 +56,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "`window.ISMDesignSystem_106e83.Divider`: a pill-ended bar painted with `--gradient-signature`."
+    "notes": "`import { Divider, Rule, OrDivider, VerticalRule, Thread } from '@ism/ui'`. `Divider` is a pill-ended accent bar painted with `--gradient-signature`, rendered with `aria-hidden=\"true\"`. The other exports render the HTML classes below:"
   },
   "reactNative": {
     "import": "import { Divider } from '@ism/ui-native'",
@@ -159,7 +159,7 @@
     ]
   ],
   "variantNotes": [
-    "Dividers have no interactive states."
+    "React: `Rule tone=\"strong\" | \"dark\"`, `OrDivider`, `VerticalRule` and `Thread` render the classes above. Dividers have no interactive states."
   ],
   "states": {
     "documented": null,
@@ -198,7 +198,7 @@
   ],
   "accessibility": [
     "A plain `<hr>` is announced as a separator. Use it only where the break is meaningful.",
-    "Decorative lines (`.thread`, React `Divider`, `.cr-rule-v`) get `aria-hidden=\"true\"` or are empty `<div>`s.",
+    "Decorative lines (`.thread`, React `Divider`, `.cr-rule-v`) get `aria-hidden=\"true\"` or are empty `<div>`s. React `Divider`, `Thread` and `VerticalRule` set it for you.",
     "The labelled divider uses `role=\"separator\"`; its word is read as part of the flow.",
     "Do not rely on a divider alone to show grouping; pair it with a heading or a gap."
   ],
@@ -208,7 +208,7 @@
   ],
   "snippets": {
     "react": [
-      "<Divider />\n<Divider orientation=\"vertical\" length={200} />"
+      "<Divider />\n<Divider orientation=\"vertical\" length={200} />\n<Rule tone=\"strong\" />\n<OrDivider />"
     ],
     "html": [
       "<hr class=\"cr-rule\">                         <!-- hairline, --gray-200 -->\n<hr class=\"cr-rule cr-rule-strong\">          <!-- 1px --charcoal-900 -->\n<hr class=\"cr-rule cr-rule-dark\">            <!-- on dark, --border-hairline-dark -->\n\n<div class=\"cr-rule-or\" role=\"separator\" aria-label=\"or\">or</div>\n\n<p style=\"display:flex;align-items:center;gap:16px\">98.7 FM <span class=\"cr-rule-v\" aria-hidden=\"true\"></span> Amharic</p>\n\n<div class=\"thread\" aria-hidden=\"true\"></div>  <!-- 2px gradient line -->"
@@ -216,7 +216,7 @@
     "other": [
       {
         "lang": "jsx",
-        "code": "<Divider />\n<Divider orientation=\"vertical\" length={200} />"
+        "code": "<Divider />\n<Divider orientation=\"vertical\" length={200} />\n<Rule tone=\"strong\" />\n<OrDivider />"
       },
       {
         "lang": "html",

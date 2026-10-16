@@ -11,7 +11,7 @@ Two-column section with a photo on one side and eyebrow, headline, lead and acti
 ```html
 <section class="dp-split" aria-labelledby="about-h">
   <div class="media dp-split-media">
-    <img class="photo" src="assets/imagery/print-photo-friends.jpg" alt="Two friends reading their Bibles together">
+    <img class="photo" src="assets/imagery/photo-friends.jpg" alt="Two friends reading their Bibles together">
   </div>
   <div class="dp-split-body">
     <span class="eyebrow">About ISM</span>

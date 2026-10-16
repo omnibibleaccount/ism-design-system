@@ -10,13 +10,48 @@ The site-wide black header bar for ism.bible: ISM mark, five main links (three o
 Two parts: the bar (`header.hdr`) and the drawer (`.drawer` with `.drawer-scrim`). The bar is fixed, 72px tall, `var(--black)`.
 
 ### React
-The bundle exposes `window.ISMDesignSystem_106e83.SiteHeader`. It takes no props (`SiteHeaderProps` is empty) and draws a static bar: logo, link row, Give pill, menu icon.
+`import { SiteHeader } from '@ism/ui'`. Renders the same `.hdr` bar and `.drawer` as the HTML below, with the behaviour built in: the `.is-scrolled` state, submenus that open on click and hover and close on Esc or outside click, and the drawer as a modal dialog (focus trap, Esc and scrim close it, scroll lock, focus returns to the menu button).
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `navigation` | `SiteHeaderNavItem[]` | — | Required. Main links in order, max five. Each item has `label`, `href`, `current`; add `children` (`{ label, href, description, current }[]`) to make a caret submenu, whose first row links to `href` (`overviewLabel`, `overviewDescription`). |
+| `give` | `ReactNode` | — | The Give pill: `<a className="btn btn-light btn-sm nv-give" href="/give">`. |
+| `languageSwitcher` | `ReactNode` | — | Placed before Give. |
+| `drawerActions` | `ReactNode` | — | Drawer buttons (`.nv-dcta`): "Give online" and "Partner with us". |
+| `skipLabel` | `ReactNode` | — | Renders the skip link; omit it only if you render your own first. |
+| `skipHref` | `string` | `"#main"` | |
+| `logo` / `drawerLogo` | `ReactNode` | — | Logo slots; default to an `<img>` of `logoSrc` (decorative in the drawer). |
+| `logoSrc` | `string` | `"/ism/assets/logos/Logo%20Black.svg"` | Set this to where your app serves the logo; CSS inverts it to white. |
+| `logoAlt` | `string` | `"ISM"` | |
+| `logoHref` | `string` | `"/"` | |
+| `logoLabel` | `string` | `"International Scripture Ministries home"` | Accessible name of the logo link. |
+| `linkComponent` | `ElementType` | `"a"` | Pass `next/link` for client-side routing. |
+| `navLabel` | `string` | `"Main"` | |
+| `openMenuLabel` / `closeMenuLabel` / `drawerLabel` | `string` | `"Open menu"` / `"Close menu"` / `"Menu"` | Override to translate. |
+| `drawerOpen` | `boolean` | — | Controlled drawer state. |
+| `defaultDrawerOpen` | `boolean` | `false` | Uncontrolled initial state. |
+| `onDrawerOpenChange` | `(open: boolean) => void` | — | |
 
 ```jsx
-<SiteHeader />
+<SiteHeader
+  skipLabel="Skip to content"
+  give={<a className="btn btn-light btn-sm nv-give" href="/give"><UiIcon name="heart" size={15} />Give</a>}
+  drawerActions={<>
+    <a className="btn btn-primary btn-lg" href="/give">Give online</a>
+    <a className="btn btn-outline-light btn-lg" href="/partner">Partner with us</a>
+  </>}
+  navigation={[
+    { label: 'About ISM', href: '/about', overviewLabel: 'About ISM overview', overviewDescription: 'Who we are and why',
+      children: [{ label: 'Our Mission', href: '/mission' }] },
+    { label: 'Resources', href: '/resources', children: [{ label: 'dot.Bible App', href: '/app', description: 'Free Bible apps in 500+ languages' }] },
+    { label: 'Global Network', href: '/global-network' },
+    { label: 'Join The Mission', href: '/join', children: [{ label: 'Partner With Us', href: '/partner' }] },
+    { label: 'Contact', href: '/contact' },
+  ]}
+/>
 ```
 
-The React component still shows an older link set (it includes "Download App", "Stories of Impact" and "Bible") and its logo points at `Logo White.svg`. Use it for quick mock-ups only. For production pages use the HTML below, which matches the current website.
+The component ships no links: pass the current set below. Add `className="nv-static"` only for docs and boards.
 
 ### HTML / CSS
 ```html

@@ -5,12 +5,14 @@ This repository is the single source of truth for the look, behaviour and wordin
 ## Order of authority
 
 1. `tokens/tokens.json`: every colour, type style, spacing, radius, shadow, gradient, z-index, motion and size value. Never hard-code a value that exists here. Flat lookup: `packages/tokens/tokens.flat.json`.
-2. `rules/rules.json` (prose in `rules/*.md`): behaviour rules the visuals cannot show: states, multilingual and RTL, layout, icons and links, accessibility, voice. Print, decks, email and social are under `applied` in `rules.json` and in `rules/print-editorial.md`, `decks.md`, `email.md`, `social.md` (social is thin).
+2. `rules/rules.json` (prose in `rules/*.md`): behaviour rules the visuals cannot show: states, multilingual and RTL, layout, icons and links, accessibility, voice. Print, decks, email and social are under `applied` in `rules.json` and in `rules/print-editorial.md`, `decks.md`, `email.md`, `social.md` (social is thin). **Email** follows the email standard packaged as the skill `skills/ism-emails/` (templates, references, QA scan); it does not use the web components or `ism.css`.
 3. `components/<Name>/spec.json` (index: `specs/index.json`, everything in one file: `specs/all.json`): per component anatomy, variants, props, states, do and don't, accessibility, content, code snippets, and which platforms implement it.
 4. `components/<Name>/README.md`: the human-written source the spec is generated from.
 5. The code: `packages/web` (HTML and CSS), `packages/react` (React, Next.js), `packages/react-native`, `packages/ios` (SwiftUI), `packages/android` (Jetpack Compose).
 
 If two sources disagree, the higher one wins and the lower one is a bug: open an issue.
+
+**Email is the exception.** For every ISM and THRU the BIBLE email (newsletters, appeals, thank-yous, updates, invitations), the email standard in `skills/ism-emails/` is the single source of truth and overrides everything above, including `tokens.json` (email uses its own palette and Poppins, Nunito and Lora). The President requires strict adherence: follow it exactly, use its templates, and do not mix in web components, web tokens or older email kits.
 
 ## Hosted copy, screenshots and the linter
 

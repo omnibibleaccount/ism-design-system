@@ -29,7 +29,7 @@ export default function Example() {
         href="/events/launch"
       />
       <NewsCard
-        imageSrc="/ism/assets/imagery/print-photo-listener.jpg"
+        imageSrc="/ism/assets/imagery/photo-listener.jpg"
         imageAlt="A woman listening to Scripture on her phone"
         badge="Field story"
         dateTime="2026-10-02"

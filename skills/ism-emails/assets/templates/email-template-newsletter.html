@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <title>{EMAIL_TITLE}</title>
+  <!-- ISM email NEWSLETTER template (ESP route). Same as email-template.html except the footer: newsletters use the approved dark newsletter footer. -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Nunito:wght@400;600;700&family=Lora:ital@1&display=swap" rel="stylesheet">
+  <style>
+    body { margin:0; padding:0; background-color:#F4F4F6; }
+    img { border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; }
+    a { color:#046DE3; }
+    @media only screen and (max-width:600px) {
+      .container { width:100% !important; }
+      .px { padding-left:20px !important; padding-right:20px !important; }
+      h1 { font-size:24px !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background-color:#F4F4F6;">
+
+  <!-- PREHEADER: complements subject, never repeats it -->
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#F4F4F6;">
+    {PREHEADER_TEXT}
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#F4F4F6;">
+    <tr>
+      <td align="center" style="padding:24px 12px;">
+
+        <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background-color:#FFFFFF;border-radius:8px;overflow:hidden;">
+
+          <!-- HEADER / LOGO (light background -> use black wordmark) -->
+          <tr>
+            <td align="center" style="padding:28px 24px 12px 24px;">
+              <!-- HOST: replace src with a public HTTPS URL for this asset. File bundled: Full-Logo-Black-email-360.png -->
+              <img src="Full-Logo-Black-email-360.png" alt="dot.Bible from International Scripture Ministries" width="180" style="display:block;width:180px;max-width:60%;height:auto;">
+            </td>
+          </tr>
+
+          <!-- HERO (optional image; authentic, high-contrast) -->
+          <tr>
+            <td align="center" class="px" style="padding:8px 24px;">
+              <!-- HOST: replace src with a public HTTPS URL. Optional hero image. -->
+              <img src="{HERO_IMAGE}" alt="{HERO_ALT_TEXT}" width="552" style="display:block;width:100%;max-width:552px;height:auto;border-radius:6px;">
+            </td>
+          </tr>
+
+          <!-- HEADLINE (Poppins bold, dark) -->
+          <tr>
+            <td class="px" style="padding:20px 24px 0 24px;">
+              <h1 style="margin:0;font-family:'Poppins',Arial,Helvetica,sans-serif;font-weight:700;font-size:28px;line-height:1.25;color:#000000;">
+                {HEADLINE}
+              </h1>
+            </td>
+          </tr>
+
+          <!-- GREETING (bold black, never blue) -->
+          <tr>
+            <td class="px" style="padding:16px 24px 0 24px;">
+              <p style="margin:0;font-family:'Nunito',Arial,sans-serif;font-size:16px;line-height:1.6;color:#000000;font-weight:700;">
+                Hi {FirstName|Friend},
+              </p>
+            </td>
+          </tr>
+
+          <!-- BODY (Nunito, dark on light, short paragraphs) -->
+          <tr>
+            <td class="px" style="padding:12px 24px 0 24px;">
+              <p style="margin:0 0 14px 0;font-family:'Nunito',Arial,sans-serif;font-size:16px;line-height:1.6;color:#000000;">
+                {BODY_PARAGRAPH_1}
+              </p>
+              <p style="margin:0 0 14px 0;font-family:'Nunito',Arial,sans-serif;font-size:16px;line-height:1.6;color:#000000;">
+                {BODY_PARAGRAPH_2}
+              </p>
+            </td>
+          </tr>
+
+          <!-- PRIMARY CTA (Horizon Blue, first-person, above the fold) -->
+          <tr>
+            <td align="center" class="px" style="padding:20px 24px 8px 24px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+                <tr>
+                  <td align="center" bgcolor="#046DE3" style="border-radius:6px;">
+                    <a href="{CTA_URL}" target="_blank" style="display:inline-block;padding:14px 30px;font-family:'Poppins',Arial,sans-serif;font-size:16px;font-weight:700;color:#FFFFFF;text-decoration:none;border-radius:6px;">
+                      {FIRST_PERSON_CTA}
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- DIVIDER (Radiant Dawn accent) -->
+          <tr>
+            <td class="px" style="padding:16px 24px;">
+              <div style="height:2px;background-color:#E7B650;line-height:2px;font-size:2px;">&nbsp;</div>
+            </td>
+          </tr>
+
+          <!-- SCRIPTURE / QUOTE (Lora italic) -->
+          <tr>
+            <td class="px" style="padding:0 24px 8px 24px;">
+              <p style="margin:0;font-family:'Lora',Georgia,serif;font-style:italic;font-size:16px;line-height:1.6;color:#41484E;">
+                "{SCRIPTURE_QUOTE}" <span style="font-style:normal;font-weight:700;">{SCRIPTURE_REF}</span>
+              </p>
+            </td>
+          </tr>
+
+          <!-- SIGN-OFF (bold black). Canon for Troy; replace name/title only if another sender is confirmed. -->
+          <tr>
+            <td class="px" style="padding:16px 24px 4px 24px;">
+              <p style="margin:0;font-family:'Nunito',Arial,sans-serif;font-size:16px;line-height:1.6;color:#000000;font-weight:700;">
+                'til all have heard,
+              </p>
+              <p style="margin:2px 0 0 0;font-family:'Nunito',Arial,sans-serif;font-size:16px;line-height:1.6;color:#000000;">
+                Troy Carl<br>President
+              </p>
+            </td>
+          </tr>
+
+          <!-- OPTIONAL SECONDARY TEXT LINK (e.g., giving ask in non-appeal email) -->
+          <tr>
+            <td class="px" style="padding:12px 24px 32px 24px;">
+              <p style="margin:0;font-family:'Nunito',Arial,sans-serif;font-size:14px;line-height:1.6;color:#41484E;">
+                {SECONDARY_TEXT_LINK}
+              </p>
+            </td>
+          </tr>
+
+          <!-- NEWSLETTER FOOTER (approved for email newsletters only; every other email keeps the light footer in its template).
+               One table row: paste it as the last row inside the 600px container table.
+               In Braze the same footer is the shared content block {{content_blocks.${HTML-ISM-Dark-Footer}}}; this copy keeps previews complete.
+               Background #20242B. Links #8AB4F0 (7.3:1). Address #B8B9BB (7.9:1). Notice and separators #8F9295 (5.0:1). Tap targets 44px. -->
+          <tr>
+            <td class="px" align="center" style="padding:40px 24px;background-color:#20242B;">
+              <!-- HOST: replace src with a public HTTPS URL. File bundled: ISM-Logo-White-on-footer-360.png (white ISM logo flattened on #20242B) -->
+              <img src="ISM-Logo-White-on-footer-360.png" width="140" alt="International Scripture Ministries" style="display:block;width:140px;max-width:140px;height:auto;margin:0 auto 24px auto;border:0;">
+              <p style="margin:0 0 4px 0;font-family:'Nunito',Arial,sans-serif;font-size:14px;line-height:20px;font-weight:700;">
+                <a href="{FIND_A_STATION_URL}" target="_blank" style="display:inline-block;padding:12px 4px;color:#8AB4F0;text-decoration:none;">Find a station&nbsp;&#8599;</a>
+                <span style="color:#8F9295;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <a href="{APP_URL}" target="_blank" style="display:inline-block;padding:12px 4px;color:#8AB4F0;text-decoration:none;">Download the app&nbsp;&#8599;</a>
+              </p>
+              <p style="margin:0 0 12px 0;font-family:'Nunito',Arial,sans-serif;font-size:13px;line-height:20px;font-weight:700;">
+                <a href="{FACEBOOK_URL}" target="_blank" style="display:inline-block;padding:12px 4px;color:#8AB4F0;text-decoration:none;">Facebook</a>
+                <span style="color:#8F9295;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <a href="{INSTAGRAM_URL}" target="_blank" style="display:inline-block;padding:12px 4px;color:#8AB4F0;text-decoration:none;">Instagram</a>
+                <span style="color:#8F9295;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <a href="{YOUTUBE_URL}" target="_blank" style="display:inline-block;padding:12px 4px;color:#8AB4F0;text-decoration:none;">YouTube</a>
+              </p>
+              <p style="margin:0 0 16px 0;font-family:'Nunito',Arial,sans-serif;font-size:13px;line-height:20px;font-weight:400;color:#B8B9BB;">International Scripture Ministries, Inc.<br>PO Box 24253, Boone, IA 50950<br>1-833-60-BIBLE (24253) | <a href="mailto:contact@ism.bible" style="color:#B8B9BB;text-decoration:none;">contact@ism.bible</a></p>
+              <p style="margin:0;font-family:'Nunito',Arial,sans-serif;font-size:12px;line-height:18px;font-weight:400;color:#8F9295;">You receive this email because you partner with International Scripture Ministries or asked for updates from us.<br>
+                <a href="{PREFERENCES_URL}" target="_blank" style="display:inline-block;padding:12px 4px;color:#8AB4F0;text-decoration:underline;">Manage preferences</a>
+                &nbsp;|&nbsp;
+                <a href="{UNSUBSCRIBE_URL}" target="_blank" style="display:inline-block;padding:12px 4px;color:#8AB4F0;text-decoration:underline;">Unsubscribe</a>
+                &nbsp;|&nbsp;
+                <a href="{PRIVACY_URL}" target="_blank" style="display:inline-block;padding:12px 4px;color:#8AB4F0;text-decoration:underline;">Privacy</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

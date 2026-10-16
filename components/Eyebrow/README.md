@@ -9,13 +9,20 @@ Small uppercase section labels: the `.eyebrow` in a thin blue rectangle that int
 
 ## Anatomy & markup
 ### React
-There is no Eyebrow component. In the app, the bundle's `Badge` plays this role: small uppercase, wide-tracked eyebrow label inside a thin outlined pill (see Badge). On the website, render the class:
-```js
-React.createElement('span', { className: 'eyebrow' }, 'About ISM')
-```
+`import { Eyebrow, Overline } from '@ism/ui'`. `Eyebrow` renders `<span class="eyebrow">` and `Overline` renders `<span class="overline">`; both pass other props (`id`, `className`) through.
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `children` | `ReactNode` | — | Required. Normal case ("About ISM"); CSS uppercases it. |
+
 ```jsx
-<Badge tone="outlineDark">Trending</Badge>
+<Eyebrow>About ISM</Eyebrow>
+<h2 className="h2">Scripture for every heart language</h2>
+
+<Overline id="grp-reading">Reading</Overline>
 ```
+
+In the app, the outlined-pill section tag is `Badge` (see Badge), not `Eyebrow`.
 
 ### HTML / CSS
 ```html

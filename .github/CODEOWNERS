@@ -1,4 +1,5 @@
-# Replace with the real GitHub team handles when the repository is created.
-*                      @ism-design-system-maintainers
-/tokens/               @ism-design-system-maintainers
-/rules/                @ism-design-system-maintainers
+# Code owners for the ISM Design System. Uses the repository owner account until an ISM GitHub team
+# (e.g. @<org>/design-system-maintainers) exists; swap the handle on every line then.
+*                      @omnibibleaccount
+/tokens/               @omnibibleaccount
+/rules/                @omnibibleaccount

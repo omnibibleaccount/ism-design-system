@@ -57,6 +57,34 @@ export const uiIcons = {
       }
     ]
   ],
+  "bag": [
+    [
+      "path",
+      {
+        "d": "M6 7h12l-1 13H7z"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M9 7V5a3 3 0 016 0v2"
+      }
+    ]
+  ],
+  "bell": [
+    [
+      "path",
+      {
+        "d": "M6 16.5V11a6 6 0 0112 0v5.5l1.5 1.5h-15z"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M10 21h4"
+      }
+    ]
+  ],
   "book-open": [
     [
       "path",
@@ -277,6 +305,20 @@ export const uiIcons = {
       }
     ]
   ],
+  "flag": [
+    [
+      "path",
+      {
+        "d": "M5.5 21V4"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M5.5 4.5H18l-2.5 4.5 2.5 4.5H5.5"
+      }
+    ]
+  ],
   "forward": [
     [
       "path",
@@ -359,6 +401,32 @@ export const uiIcons = {
       }
     ]
   ],
+  "image": [
+    [
+      "rect",
+      {
+        "x": "3.5",
+        "y": "4",
+        "width": "17",
+        "height": "16",
+        "rx": "2.5"
+      }
+    ],
+    [
+      "circle",
+      {
+        "cx": "9",
+        "cy": "9.5",
+        "r": "1.5"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M4 17.5l5-4.5 3.5 3 3-2.5 4.5 4"
+      }
+    ]
+  ],
   "info": [
     [
       "circle",
@@ -423,6 +491,26 @@ export const uiIcons = {
       }
     ]
   ],
+  "log-out": [
+    [
+      "path",
+      {
+        "d": "M10 4H6.5A1.5 1.5 0 005 5.5v13A1.5 1.5 0 006.5 20H10"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M15 8l4 4-4 4"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M19 12H9.5"
+      }
+    ]
+  ],
   "mail": [
     [
       "rect",
@@ -462,6 +550,14 @@ export const uiIcons = {
       "path",
       {
         "d": "M4 7h16M4 12h16M4 17h16"
+      }
+    ]
+  ],
+  "message": [
+    [
+      "path",
+      {
+        "d": "M5 4.5h14a1.5 1.5 0 011.5 1.5v10a1.5 1.5 0 01-1.5 1.5h-7.5L7 21v-3.5H5A1.5 1.5 0 013.5 16V6A1.5 1.5 0 015 4.5z"
       }
     ]
   ],
@@ -533,6 +629,30 @@ export const uiIcons = {
       }
     ]
   ],
+  "nfc": [
+    [
+      "rect",
+      {
+        "x": "4",
+        "y": "3",
+        "width": "16",
+        "height": "18",
+        "rx": "3"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M10 9a4 4 0 010 6"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M13 7a7 7 0 010 10"
+      }
+    ]
+  ],
   "pause": [
     [
       "path",
@@ -562,6 +682,26 @@ export const uiIcons = {
       "path",
       {
         "d": "M12 5v14M5 12h14"
+      }
+    ]
+  ],
+  "printer": [
+    [
+      "path",
+      {
+        "d": "M6 9V3h12v6"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M6 18H4v-7a2 2 0 012-2h12a2 2 0 012 2v7h-2"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M6 14h12v7H6z"
       }
     ]
   ],
@@ -675,6 +815,24 @@ export const uiIcons = {
       }
     ]
   ],
+  "smartphone": [
+    [
+      "rect",
+      {
+        "x": "6",
+        "y": "2.5",
+        "width": "12",
+        "height": "19",
+        "rx": "2.5"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M11 18.5h2"
+      }
+    ]
+  ],
   "star": [
     [
       "path",
@@ -767,6 +925,34 @@ export const uiIcons = {
       }
     ]
   ],
+  "wifi": [
+    [
+      "path",
+      {
+        "d": "M2.5 9a14 14 0 0119 0"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M5.5 12.5a9.5 9.5 0 0113 0"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M8.5 16a5 5 0 017 0"
+      }
+    ],
+    [
+      "circle",
+      {
+        "cx": "12",
+        "cy": "19.5",
+        "r": "1"
+      }
+    ]
+  ],
   "wifi-off": [
     [
       "path",
@@ -793,7 +979,7 @@ export const uiIcons = {
   ]
 } as const satisfies Record<string, readonly IconNode[]>;
 export type UiIconName = keyof typeof uiIcons;
-export const uiIconNames = ["alert-circle","alert-triangle","arrow-left","arrow-right","arrow-up-right","book-open","bookmark","calendar","cast","check","check-circle","chevron-down","chevron-left","chevron-right","chevron-up","clock","close","copy","download","download-cloud","edit","eye","file","filter","forward","globe","headphones","heart","history","home","info","language","link","list","lock","mail","map-pin","menu","minus","moon","more-horizontal","more-vertical","pause","phone","play","plus","refresh","replay","search","settings","share","signal","skip-back","skip-forward","sliders","star","sun","text-size","trash","upload","user","volume","volume-off","wifi-off","x-circle"] as const;
+export const uiIconNames = ["alert-circle","alert-triangle","arrow-left","arrow-right","arrow-up-right","bag","bell","book-open","bookmark","calendar","cast","check","check-circle","chevron-down","chevron-left","chevron-right","chevron-up","clock","close","copy","download","download-cloud","edit","eye","file","filter","flag","forward","globe","headphones","heart","history","home","image","info","language","link","list","lock","log-out","mail","map-pin","menu","message","minus","moon","more-horizontal","more-vertical","nfc","pause","phone","play","plus","printer","refresh","replay","search","settings","share","signal","skip-back","skip-forward","sliders","smartphone","star","sun","text-size","trash","upload","user","volume","volume-off","wifi","wifi-off","x-circle"] as const;
 
 /** Filled ministry icons: single colour, fill currentColor. Each has its own viewBox. */
 export const ministryIcons = {

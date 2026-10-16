@@ -30,20 +30,20 @@ body{margin:0;padding:24px;background:var(--off-white)}
     </div>
   </div>
   <div class="pv-box">
-    <span class="pv-h">React · className</span>
+    <span class="pv-h">React · IconButton</span>
     <div class="pv-row" id="r-icon"></div>
-    <span class="pv-c">no dedicated component: render a button with the classes</span>
+    <span class="pv-c">tone light · tone solid, size lg · tone light</span>
   </div>
 </div>
 <script>
 (function(){
-  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var NS = window.ISMUI; if(!NS || !window.React || !window.ReactDOM) return;
   var h = React.createElement;
   function ic(d){ return h('svg',{width:20,height:20,viewBox:'0 0 24 24',fill:'none',stroke:'currentColor',strokeWidth:1.8,strokeLinecap:'round',strokeLinejoin:'round','aria-hidden':true},h('path',{d:d})); }
   ReactDOM.createRoot(document.getElementById('r-icon')).render(h(React.Fragment,null,
-    h('button',{type:'button',className:'iconbtn cr-iconbtn-light','aria-label':'Previous chapter'},ic('M15 6l-6 6 6 6')),
-    h('button',{type:'button',className:'iconbtn cr-iconbtn-lg cr-iconbtn-solid','aria-label':'Play'},ic('M8 5v14l11-7z')),
-    h('button',{type:'button',className:'iconbtn cr-iconbtn-light','aria-label':'Next chapter'},ic('M9 6l6 6-6 6'))));
+    h(NS.IconButton,{tone:'light','aria-label':'Previous chapter'},ic('M15 6l-6 6 6 6')),
+    h(NS.IconButton,{tone:'solid',size:'lg','aria-label':'Play'},ic('M8 5v14l11-7z')),
+    h(NS.IconButton,{tone:'light','aria-label':'Next chapter'},ic('M9 6l6 6-6 6'))));
 })();
 </script>
 </body></html>

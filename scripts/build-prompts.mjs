@@ -33,6 +33,21 @@ const voice = rules.voice.rules.map((r) => `- ${r}`).join('\n');
 const forbidden = rules.accessibility.forbidden.map((r) => `- ${r}`).join('\n');
 const badLabels = rules.voice.buttons.bad.join(', ');
 const goodLabels = rules.voice.buttons.good.join(', ');
+const em = rules.applied.email;
+const emailFull = `## Email is different (follow the email skill, not the web components)
+
+Emails do not use ism.css, the components, the web tokens or the linter. Every ISM and THRU the BIBLE email (newsletters included) follows the ${em.standard}, strictly: it is the single source of truth for email and overrides everything else here. Fetch ${BASE}/${em.skill} (download the whole skill as ${BASE}/skills/ism-emails.zip) and its references, then fill one of its templates. Never write an email from scratch and never invent a footer: the footer is already in the template (newsletters use the dark newsletter footer, every other email the light one).
+
+- ESP newsletter (donor or partner newsletter, impact update, roundup): ${BASE}/${em.templates.espNewsletter.file} (dark newsletter footer).
+- ESP send, any other email: ${BASE}/${em.templates.esp.file} (${em.templates.esp.maxWidthPx}px max, hosted HTTPS images, light footer).
+- Gmail paste: ${BASE}/${em.templates.gmailPaste.file} (all styles inline, root ${em.templates.gmailPaste.rootMaxWidthPx}px max, images embedded).
+- Dark text on light (${em.palette['celestial-white']} or white, text ${em.palette['solar-black']}); light mode only; the newsletter footer is the one approved dark block. Horizon Blue ${em.palette['horizon-blue']} for buttons and links only; Radiant Dawn ${em.palette['radiant-dawn']} for accents and dividers only.
+- One first-person primary CTA in the first phone screen. Subject under ${em.subjectMaxChars} characters plus a preheader. {FirstName} with "${em.personalization.fallback}" fallback.
+- Sign-off, bold black: ${em.signature.join(' / ')}. Footer contact once: ${em.footer.contact}.
+- Fonts: headings ${em.fonts.headings}; body ${em.fonts.body}; quotes ${em.fonts.quotes}.
+- No em dashes, no emoji, no hidden characters. Run ${em.qa} and fix every FAIL.
+`;
+const emailShort = `EMAIL (the email standard is the single source of truth for email and overrides everything else here, web tokens included): never build email from the components or from scratch. Fetch ${BASE}/${em.skill} and fill ${BASE}/${em.templates.espNewsletter.file} (newsletters, dark footer), ${BASE}/${em.templates.esp.file} (other ESP emails) or ${BASE}/${em.templates.gmailPaste.file} (Gmail paste); the footer is in the template. Dark text on light, light mode only; blue for buttons and links only; one first-person CTA; sign-off ${em.signature.join(' / ')}; footer ${em.footer.contact} once; no em dashes or emoji.`;
 
 const full = `# ISM Design System: system prompt (v${tokens.version})
 
@@ -66,6 +81,7 @@ If a fetch fails, say you could not read the system and stop. Do not fall back t
 
 If content is missing (Scripture text, audio, images, copy), do not stop and do not invent it. Build the full page with clearly marked placeholders in the page language, say exactly what is missing and where it must come from, and ask for it in the same reply. Scripture text must be marked in a comment as unverified until checked against the approved source.
 
+${emailFull}
 ## Non-negotiable rules
 
 ${building}
@@ -108,8 +124,8 @@ Say what is missing, propose the closest existing component or token, and wait. 
 
 ## Self-check before you answer
 
-- No hex, rgb or hsl in my output (except inside token definitions I was told to edit).
-- No font other than Inter, Lora, Procerus and the Noto fallbacks.
+- No hex, rgb or hsl in my output (except inside token definitions I was told to edit, and in email, which uses the email skill's inline palette).
+- No font other than Inter, Lora, Procerus and the Noto fallbacks (email: the fonts in the email section).
 - No numeric z-index, no raw px radius, no raw box-shadow or gradient.
 - Only class names that exist in ism.css; only components that exist in the index.
 - One primary button per group; labels verb first, no exclamation marks, no emoji.
@@ -124,6 +140,8 @@ SOURCE OF TRUTH (fetch before designing; if you cannot, say so and stop):
 ${BASE}/tokens/tokens.json (all tokens) · ${BASE}/rules/rules.json (behaviour rules) · ${BASE}/specs/index.json (all ${index.components.length} components) · ${BASE}/components/<Name>/spec.json (usage, do/don't, snippets) · ${BASE}/screenshots/<Name>.png (how it must look) · ${BASE}/css/ism.css (real stylesheet) · ${BASE}/manifest.json (all files).
 
 METHOD: 1) map each UI part to a component in the index; 2) read its spec.json and look at its screenshot; 3) use the real ism.css and the class names or React props from the snippets; 4) use tokens by name, never by value; 5) end with a "Design system check": components used, tokens used, any doubts. If content is missing (Scripture text, audio, images, copy), do not stop and do not invent it. Build the full page with clearly marked placeholders in the page language, say exactly what is missing and where it must come from, and ask for it in the same reply. Scripture text must be marked in a comment as unverified until checked against the approved source.
+
+${emailShort}
 
 RULES:
 ${building}

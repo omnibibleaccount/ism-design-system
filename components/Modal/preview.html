@@ -1,10 +1,12 @@
 <!-- @dsCard group="Feedback" height=1143 subtitle="Dialogs and confirmations" -->
 <!doctype html><html><head><meta charset="utf-8"><style>
 body{margin:0;padding:24px;background:var(--off-white)}
+/* Specimens sit inline, not in a viewport: drop the 100vh cap so the screenshot (120px-tall viewport) shows whole dialogs. */
+.pv .fb-modal{max-height:none}
 .pv{display:flex;flex-direction:column;gap:24px}
 .pv-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 @media (max-width:860px){.pv-two{grid-template-columns:1fr} }
-.pv-stage{background-image:url("../../assets/imagery/print-photo-friends.jpg")}
+.pv-stage{background-image:url("../../assets/imagery/photo-friends.jpg")}
 .pv-stage-2{background-image:url("../../assets/imagery/deck-photo-listeners.png")}
 </style></head><body>
 <div class="pv">

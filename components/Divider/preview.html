@@ -37,14 +37,14 @@ body{margin:0;padding:24px;background:var(--off-white)}
   <div class="pv-box pv-dk">
     <span class="pv-h">React · Divider</span>
     <div id="r-h"></div>
-    <span class="pv-c">default · length 72 · thickness 2</span>
+    <span class="pv-c">default (length 72 · thickness 2) · length 200 · thickness 3</span>
     <div class="pv-vert" id="r-v"></div>
     <span class="pv-c">orientation vertical · length 120 / 80</span>
   </div>
 </div>
 <script>
 (function(){
-  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var NS = window.ISMUI; if(!NS || !window.React || !window.ReactDOM) return;
   var h = React.createElement;
   ReactDOM.createRoot(document.getElementById('r-h')).render(h('div',{ style: { display:'flex', flexDirection:'column', gap:14 } },
     h(NS.Divider,null),

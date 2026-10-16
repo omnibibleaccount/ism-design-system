@@ -10,18 +10,49 @@ The site-wide black footer for ism.bible: a gradient-bordered giving banner, the
 Top to bottom: glow layer, CTA banner, brand column + three nav columns, hairline, legal row.
 
 ### React
-The bundle exposes `window.ISMDesignSystem_106e83.Footer`.
+`import { Footer } from '@ism/ui'`. Data-driven: it renders the same `.nv-foot` markup as the HTML below from `columns`, `socials` and `legal`.
 
-| Prop | Type | Default |
-| --- | --- | --- |
-| `ctaText` | `string` (optional) | "Help deliver the Bible beyond every barrier." |
-| `ctaLabel` | `string` (optional) | "Support Bible Access" |
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `columns` | `{ heading, links: { label, href }[] }[]` | — | Required. Link columns; use the three in Content. Headings render as `<h2>`. |
+| `ctaText` | `ReactNode` | — | Mission sentence in the giving banner. |
+| `ctaLabel` | `ReactNode` | — | Banner button label (outline, with ↗). Shown only with `ctaHref`. |
+| `ctaHref` | `string` | — | Banner button destination. The banner is omitted when `ctaText` and `ctaLabel` are both missing. |
+| `tagline` | `ReactNode` | — | Under the logo. |
+| `socials` | `{ name, href, icon }[]` | — | 44px rings; `name` is the link's `aria-label`, give `icon` `aria-hidden`. |
+| `legal` | `ReactNode[]` | — | Legal lines; each becomes a paragraph. |
+| `legalLinks` | `{ label, href }[]` | — | Cookie Policy, Terms, Privacy. |
+| `cookieSettingsLabel` | `ReactNode` | — | "Cookie settings" `<button>`; rendered only with `onCookieSettings`. |
+| `onCookieSettings` | `() => void` | — | Reopen the cookie banner. |
+| `legalExtra` | `ReactNode` | — | Extra content at the end of the legal row. |
+| `logo` | `ReactNode` | — | Logo slot; defaults to an `<img>` of `logoSrc`, inverted to white by CSS. |
+| `logoSrc` | `string` | `"/ism/assets/logos/Full%20Logo%20Black.svg"` | Set this to where your app serves the logo. |
+| `logoAlt` | `string` | `"International Scripture Ministries"` | |
+| `logoHref` | `string` | `"/"` | |
+| `logoLabel` | `string` | `"International Scripture Ministries home"` | Accessible name of the logo link. |
+| `navLabel` | `string` | `"Footer"` | Accessible name of the columns' `<nav>`. |
+| `linkComponent` | `ElementType` | `"a"` | Pass `next/link` for client-side routing. |
+| `compact` | `boolean` | `false` | Forces the phone layout (`.nv-foot-sm`); it also applies below 768px. |
 
 ```jsx
-<Footer ctaText="Help deliver the Bible beyond every barrier." ctaLabel="Support Bible Access" />
+<Footer
+  ctaText="Help deliver the Bible beyond every barrier."
+  ctaLabel="Support Bible Access"
+  ctaHref="/give"
+  tagline="Delivering unhindered access to the Bible until everyone can engage with Scripture in their own language, without barriers."
+  columns={[
+    { heading: 'About', links: [{ label: 'About ISM', href: '/about' }, { label: 'Our Mission', href: '/mission' }] },
+    { heading: 'Platforms', links: [{ label: 'dot.Bible App', href: '/app' }] },
+    { heading: 'Get Involved', links: [{ label: 'Give Online', href: '/give' }] },
+  ]}
+  legal={['© 2026 – International Scripture Ministries Inc', 'ISM is a 501(c)(3) nonprofit organization. All donations are tax-deductible.']}
+  legalLinks={[{ label: 'Cookie Policy', href: '/cookies' }, { label: 'Terms', href: '/terms' }, { label: 'Privacy', href: '/privacy' }]}
+  cookieSettingsLabel="Cookie settings"
+  onCookieSettings={openCookieBanner}
+/>
 ```
 
-The React footer is a static picture: its links are plain text, the Platforms column has no Global Bible Network, there is no Newsletter or Cookie settings, and its glow comes from a remote image. Use it for mock-ups. For production pages use the HTML below.
+The component ships no copy: pass the banner, tagline, columns and legal text from Content below.
 
 ### HTML / CSS
 ```html

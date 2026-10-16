@@ -66,7 +66,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "There is no dedicated React component. Render a `<button>` with the classes; the bundle's `Button` is for labelled pills."
+    "notes": "`import { IconButton } from '@ism/ui'`. For labelled pills use `Button`."
   },
   "reactNative": {
     "import": "import { IconButton } from '@ism/ui-native'",
@@ -229,15 +229,15 @@
   ],
   "snippets": {
     "react": [
-      "React.createElement('button', { type: 'button', className: 'iconbtn cr-iconbtn-light', 'aria-label': 'Next chapter' }, chevronIcon)"
+      "<IconButton tone=\"light\" aria-label=\"Next chapter\"><UiIcon name=\"chevron-right\" /></IconButton>"
     ],
     "html": [
       "<!-- on dark (header, drawer) -->\n<button class=\"iconbtn\" type=\"button\" aria-label=\"Open menu\">\n  <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M4 7h16M4 12h16M4 17h16\"/></svg>\n</button>\n\n<!-- on light -->\n<button class=\"iconbtn cr-iconbtn-light\" type=\"button\" aria-label=\"Share\">…</button>"
     ],
     "other": [
       {
-        "lang": "js",
-        "code": "React.createElement('button', { type: 'button', className: 'iconbtn cr-iconbtn-light', 'aria-label': 'Next chapter' }, chevronIcon)"
+        "lang": "jsx",
+        "code": "<IconButton tone=\"light\" aria-label=\"Next chapter\"><UiIcon name=\"chevron-right\" /></IconButton>"
       },
       {
         "lang": "html",

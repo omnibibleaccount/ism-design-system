@@ -42,9 +42,10 @@
     "check:lint-data": "node scripts/lint-usage.mjs --check-data"
   },
   "devDependencies": {
-    "typescript": "^5.9.0",
     "@types/node": "^22.0.0",
-    "playwright-core": "^1.56.0"
+    "esbuild": "^0.28.2",
+    "playwright-core": "^1.56.0",
+    "typescript": "^5.9.0"
   },
   "overrides": {
     "next": {

@@ -45,7 +45,7 @@
       }
     ],
     "propsSource": "typescript",
-    "notes": "There is no dedicated React component. Render a `<button className=\"chip\">` and drive `aria-pressed` from state."
+    "notes": "`import { Chip, ChipGroup } from '@ism/ui'`. `ChipGroup` renders the `role=\"group\"` with an 8px gap and manages pressed state: `options` (`{ value, label, disabled }[]`), `mode` `\"single\" | \"multiple\"` (default `\"single\"`), `value` / `defaultValue`, `onChange`, and a required `aria-label`."
   },
   "reactNative": {
     "import": "import { Chip } from '@ism/ui-native'",
@@ -142,15 +142,15 @@
   ],
   "snippets": {
     "react": [
-      "React.createElement('button', { type: 'button', className: 'chip', 'aria-pressed': on ? 'true' : 'false', onClick: toggle }, 'Amharic')"
+      "<ChipGroup aria-label=\"Filter resources\" defaultValue=\"all\" onChange={setTopic}\n  options={[{ value: 'all', label: 'All' }, { value: 'about', label: 'About ISM' }, { value: 'apps', label: 'Apps' }]} />\n<Chip pressed={on} onClick={toggle}>Amharic</Chip>"
     ],
     "html": [
       "<div role=\"group\" aria-label=\"Filter resources\">\n  <button type=\"button\" class=\"chip\" aria-pressed=\"true\">All</button>\n  <button type=\"button\" class=\"chip\" aria-pressed=\"false\">About ISM</button>\n  <button type=\"button\" class=\"chip\" aria-pressed=\"false\">Apps</button>\n  <button type=\"button\" class=\"chip\" aria-pressed=\"false\">Giving</button>\n</div>"
     ],
     "other": [
       {
-        "lang": "js",
-        "code": "React.createElement('button', { type: 'button', className: 'chip', 'aria-pressed': on ? 'true' : 'false', onClick: toggle }, 'Amharic')"
+        "lang": "jsx",
+        "code": "<ChipGroup aria-label=\"Filter resources\" defaultValue=\"all\" onChange={setTopic}\n  options={[{ value: 'all', label: 'All' }, { value: 'about', label: 'About ISM' }, { value: 'apps', label: 'Apps' }]} />\n<Chip pressed={on} onClick={toggle}>Amharic</Chip>"
       },
       {
         "lang": "html",

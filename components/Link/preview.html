@@ -28,17 +28,17 @@ body{margin:0;padding:24px;background:var(--off-white)}
     <div style="display:flex;gap:20px"><a class="navlink" href="#" aria-current="page">About ISM</a><a class="navlink" href="#">Resources</a></div>
   </div>
   <div class="pv-box">
-    <span class="pv-h">React · Button ghost</span>
+    <span class="pv-h">React · Link ghost</span>
     <div id="r-link"></div>
-    <span class="pv-c">variant="ghost" with a ↗ icon</span>
+    <span class="pv-c">variant="ghost" · arrow</span>
   </div>
 </div>
 <script>
 (function(){
-  var NS = window.ISMDesignSystem_106e83; if(!NS || !window.React || !window.ReactDOM) return;
+  var NS = window.ISMUI; if(!NS || !window.React || !window.ReactDOM) return;
   var h = React.createElement;
   ReactDOM.createRoot(document.getElementById('r-link')).render(
-    h(NS.Button,{variant:'ghost',icon:h('span',{className:'arrow','aria-hidden':true},'↗')},'Browse All'));
+    h(NS.Link,{variant:'ghost',arrow:true,href:'#'},'Browse All'));
 })();
 </script>
 </body></html>

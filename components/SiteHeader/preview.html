@@ -18,7 +18,7 @@ body{margin:0}
 <div class="pv">
 
   <div class="pv-sec">
-    <span class="pv-lbl">React · &lt;SiteHeader /&gt; from the component bundle</span>
+    <span class="pv-lbl">React · &lt;SiteHeader /&gt; from @ism/ui · same navigation as the HTML bar below</span>
     <div id="nv-react" style="border-radius:12px;overflow:hidden;min-height:66px;background:var(--black)"></div>
   </div>
 
@@ -127,9 +127,20 @@ body{margin:0}
 (function(){
   var el=document.getElementById('nv-react');
   try{
-    var ns=window.ISMDesignSystem_106e83;
+    var ns=window.ISMUI;
     if(ns&&ns.SiteHeader&&window.React&&window.ReactDOM){
-      ReactDOM.createRoot(el).render(React.createElement(ns.SiteHeader));
+      var h=React.createElement;
+      var heart=h('svg',{width:15,height:15,viewBox:'0 0 24 24',fill:'currentColor','aria-hidden':true},h('path',{d:'M12 21s-7.5-4.6-9.6-9.4C1 8.4 3 5 6.4 5c2 0 3.6 1.1 4.6 2.6h2C14 6.1 15.6 5 17.6 5 21 5 23 8.4 21.6 11.6 19.5 16.4 12 21 12 21z'}));
+      ReactDOM.createRoot(el).render(h(ns.SiteHeader,{className:'nv-static',logoHref:'#',logoSrc:'../../assets/logos/Logo%20Black.svg',
+        give:h('a',{className:'btn btn-light btn-sm nv-give',href:'#'},heart,'Give'),
+        navigation:[
+          {label:'About ISM',href:'#',current:true,children:[{label:'Mission & Vision',href:'#'},{label:'Core Values',href:'#'},{label:'Our Team',href:'#'},{label:'Statement of Faith',href:'#'}]},
+          {label:'Resources',href:'#',overviewLabel:'Resources overview',overviewDescription:'All programs in one place',children:[
+            {label:'dot.Bible App',href:'#',description:'Free Bible apps in 500+ languages'},{label:'HD Radio Broadcast',href:'#',description:'Scripture on the airwaves'},
+            {label:'ISM Publishing',href:'#',description:'Print Bibles and study resources'},{label:'Share with NFC Cards',href:'#',description:'Tap a card to open the Bible'}]},
+          {label:'Global Network',href:'#'},
+          {label:'Join The Mission',href:'#',children:[{label:'Give Online',href:'#'},{label:'Partner With Us',href:'#'},{label:'Newsletter',href:'#'}]},
+          {label:'Contact',href:'#'}]}));
     }
   }catch(e){}
   var parents=document.querySelectorAll('.nv-dparent');

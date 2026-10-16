@@ -11,20 +11,31 @@ Rounded 48px text field with its label above, available as the React `Input` and
 Label above, field, then one line of hint OR error OR success below.
 
 ### React
-`window.ISMDesignSystem_106e83.Input` renders a `<label>` wrapping a 13px label and the field.
+`import { Input, Textarea } from '@ism/ui'`. Renders the same `.field` › `.label` + `.input` markup as the HTML below and wires `for`/`id`, `aria-describedby` and `aria-invalid` for you.
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `label` | `string` | — | Shown above the field. |
-| `placeholder` | `string` | — | An example, never the label. |
-| `dark` | `boolean` | `false` | Translucent field for `.sec-ink` / black surfaces. |
+| `label` | `ReactNode` | — | Required. Shown above the field. |
+| `hint` | `ReactNode` | — | `.hint` line; shown only when there is no error or success. |
+| `error` | `ReactNode` | — | `.err` line with an icon; sets `aria-invalid="true"` and replaces the hint. |
+| `success` | `ReactNode` | — | `.cr-ok-msg` line and a tick in the field. Only where a check really ran. |
+| `optional` | `boolean` | `false` | Appends the `.opt` marker to the label. |
+| `optionalLabel` | `ReactNode` | `"(optional)"` | Text of the marker. |
+| `size` | `"md" \| "lg"` | `"md"` | `lg` is `.input-lg` (60px) with the 17px `.cr-label-lg` label. |
+| `prefix` | `ReactNode` | — | Decorative symbol inside the start (`.cr-amount`), such as `$`; pair with `size="lg"`. |
 | `type` | `string` | `"text"` | `email`, `tel`, `password`, … |
+| `dark` | `boolean` | `false` | Adds `.fm-sub-input`, the translucent pill field used inside `.sec-ink` and `.on-dark`. |
+| `fieldClassName` | `string` | — | Class on the outer `.field`. |
+| …rest | `InputHTMLAttributes` | | `placeholder`, `autoComplete`, `disabled` (also dims the label), `readOnly` (adds `.cr-ro` and the lock icon), `id` (generated when omitted). |
+
+`Textarea` takes the same field props except `size`, `prefix` and `type`.
 
 ```jsx
-<Input label="Email" placeholder="you@example.com" />
-<Input label="Email" placeholder="you@example.com" dark />
+<Input label="Email" type="email" autoComplete="email" placeholder="you@example.com" error="Enter a full email address." />
+<Input label="Order #" optional hint="For questions about an ISM Publishing or NFC card order." />
+<Input label="Gift amount (USD)" size="lg" prefix="$" inputMode="decimal" defaultValue="50" />
+<Textarea label="Prayer request" placeholder="How can we help?" />
 ```
-The React version has no error, hint or disabled states; use the HTML classes for full forms.
 
 ### HTML / CSS
 ```html
@@ -60,7 +71,7 @@ The React version has no error, hint or disabled states; use the HTML classes fo
 | Error | `aria-invalid="true"` + `.err` | `--error` border, pale error fill |
 | Success | `.cr-ok` + `.cr-ok-msg`, tick in `.cr-adorn-end.cr-ok-ic` | `--success` border |
 
-Sizes: default 48px, `.input-lg` 60px (pair with `.cr-label-lg` 17px label), amount 76px. Textarea starts at 144px and resizes vertically. Dark: React `dark`.
+Sizes: default 48px, `.input-lg` 60px (pair with `.cr-label-lg` 17px label), amount 76px. Textarea starts at 144px and resizes vertically. React: `size="lg"`, `prefix` for the amount field, `dark` for dark surfaces.
 
 ## Rules
 - Always show a visible `.label` above the field. Placeholders are examples only.
